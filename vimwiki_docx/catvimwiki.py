@@ -78,15 +78,14 @@ def get_last_monday(today: datetime.date = datetime.datetime.now()) -> datetime.
 def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
+    wikidiary: Path = Path.home() / "Documents/vimwiki/diary",
     refilter: Tuple[str, ...] = (
         # Regex vimwiki tags.
         r"^:.*:$",
-        # Regex task bullet - [ ]
-        r"-\s\[\s\]",
+        # Regex task [ ]
+        r"\s\[\s\]",
         # Regex bullet *
         r"^\s{0,}\*\s",
-        # Regex arabic numbered task list 1. [ ]
-        r"\d{1,}.\s\[\s\]",
     ),
 ):
     """TODO: Docstring for catdiary.
@@ -100,7 +99,6 @@ def catdiary(
     TODO
 
     """
-    wikidiary = Path.home() / "Documents/vimwiki/diary"
     diaryin = wikidiary.glob("[0-9]*.wiki")
     diaryin = (
         day
@@ -111,16 +109,13 @@ def catdiary(
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"
 
-    regexfilter = r"(?!("
-    regexfilter += r"|".join(refilter)
-    regexfilter += r".))"
-    pattern = re.compile(regexfilter)
+    pattern = re.compile(r"|".join(refilter))
 
     with open(diaryout, "w", encoding="utf8") as fout, fileinput.input(
         diaryin, openhook=fileinput.hook_encoded("utf-8")
     ) as fin:
         for line in fin:
-            if re.match(pattern, line) is not None:
+            if re.search(pattern, line) is None:
                 fout.write(line)
 
     return diaryout

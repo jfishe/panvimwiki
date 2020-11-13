@@ -40,7 +40,7 @@ def test_get_last_monday(test_input: str, expected: str):
 @pytest.mark.parametrize(
     "test_input",
     [
-        "2020-10-15", "2020-10-08", "2017-04-27",
+        "2017-04-27",
     ],
 )
 def test_catdiary(test_input):
@@ -55,7 +55,8 @@ def test_catdiary(test_input):
     TODO
 
     """
+    wikidiary: Path = Path(__file__).parents[0] / "vimwiki/diary"
     enddate: datetime.date = datetime.date.fromisoformat(test_input)
     startdate: datetime.date = get_last_monday(enddate)
-    diaryout: Path = catdiary(startdate, enddate)
+    diaryout: Path = catdiary(startdate, enddate, wikidiary)
     assert diaryout.exists

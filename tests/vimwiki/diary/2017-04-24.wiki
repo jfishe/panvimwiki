@@ -1,0 +1,50 @@
+= Journal 2017-04-24 =
+
+== Ordered List ==
+:TagShouldNotAppear:
+
+1. [X] Ordered list task4 should appear
+       :InlineTagShouldAppear:
+2. [ ] Ordered list task0 should NOT appear
+       Continuation should appear--avoid hard wrap!
+  a) [ ] Ordered list task0 should NOT appear
+3. [.] Ordered list task1 should appear
+  a) [.] Ordered list task1 should appear
+4. [o] Ordered list task2 should appear
+5. [O] Ordered list task3 should appear
+6. [-] Ordered list taskX should appear
+
+=== Definition List ===
+
+Term 1:: Definition 1 should appear
+Term 2:: should appear
+:: Definition 2 should appear
+:: Definition 3 should appear
+
+=== Unordered lists ===
+  - Bulleted list item 1 should appear
+  - Bulleted list item 1 should appear :InlineTagShouldAppear:InlineTagShouldAppear:
+  - Bulleted list item 2 should appear
+  - [ ] Bulleted list item 3 should NOT appear
+  - [.] Bulleted list item 4 should appear
+  * Bulleted list item 1 should NOT appear
+  * Bulleted list item 2 should NOT appear
+  * [ ] Bulleted list item 3 should NOT appear
+  * [.] Bulleted list item 4 should NOT appear
+
+=== Text ===
+
+Normal text should appear.
+
+== Empty Heading should appear ==
+
+== Empty Parent Heading should appear ==
+
+=== Empty Child Heading should appear ===
+
+== Empty Parent Heading with Non-Empty Child should appear ==
+
+=== Non-Empty Child Heading should appear ===
+
+Non-Empty Child text should appear.
+
