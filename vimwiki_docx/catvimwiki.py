@@ -88,17 +88,24 @@ def catdiary(
         r"^\s{0,}\*\s",
     ),
 ):
-    """TODO: Docstring for catdiary.
+    """Concatenate Vimwiki diary files and apply regex filter.
 
     Parameters
     ----------
-    function : TODO
+    startdate : Starting date for Vimwiki diary entry.
+
+    enddate : End date date for Vimwiki diary entry.
 
     Returns
     -------
-    TODO
+    Path to concatenated Vimwiki diary entries from startdate to enddate,
+    inclusive of both.
 
     """
+    if startdate > enddate:
+        errmsg = f"enddate {enddate} should not precede startdate {startdate}."
+        raise ValueError(errmsg)
+
     diaryin = wikidiary.glob("[0-9]*.wiki")
     diaryin = (
         day

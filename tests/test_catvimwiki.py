@@ -4,6 +4,7 @@ import datetime
 import fileinput
 import re
 from pathlib import Path
+from typing import Tuple
 
 import pytest
 
@@ -81,3 +82,28 @@ def test_catdiary_20170427(test_input):
             if research is not None:
                 containsnot.append(research.string)
     assert len(containsnot) == 1, containsnot
+
+
+@pytest.mark.parametrize(
+        "test_input",
+        [
+                    ("2017-04-27", "2017-04-26"),
+                ],
+)
+def test_catdiary_startdate_after_enddate(test_input: Tuple[str, str]):
+    """Given startdate after enddate, catdiary should raise ValueError.
+
+    Parameters
+    ----------
+    test_input : ISO format date (startdate, enddate)
+
+    Returns
+    -------
+    TODO
+
+    """
+    startdate = datetime.date.fromisoformat(test_input[0])
+    enddate = datetime.date.fromisoformat(test_input[1])
+
+    with pytest.raises(ValueError):
+        catdiary(startdate, enddate)
