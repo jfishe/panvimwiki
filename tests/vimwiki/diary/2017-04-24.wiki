@@ -3,16 +3,18 @@
 == Ordered List ==
 :TagShouldNotAppear:
 
-1. [X] Ordered list task4 should appear
+1. [X] OrderedList done4 should appear
        :InlineTagShouldAppear:
-2. [ ] Ordered list task0 should NOT appear
+2. [ ] OrderedList done0 should NOT appear
        Continuation should appear--avoid hard wrap!
-  a) [ ] Ordered list task0 should NOT appear
-3. [.] Ordered list task1 should appear
-  a) [.] Ordered list task1 should appear
-4. [o] Ordered list task2 should appear
-5. [O] Ordered list task3 should appear
-6. [-] Ordered list taskX should appear
+  a) [ ] OrderedList a) done0 should NOT appear
+3. [.] OrderedList done1 should appear
+  a) [.] OrderedList a) done1 should appear
+4. [o] OrderedList done2 should appear
+5. [O] OrderedList done3 should appear
+6. [-] OrderedList doneX should appear
+7. OrderedList should appear
+  a) OrderedList a) should appear
 
 === Definition List ===
 
@@ -37,6 +39,7 @@ Term 2:: should appear
 Normal text should appear.
 
 == Empty Heading should appear ==
+
 
 == Empty Parent Heading should appear ==
 
