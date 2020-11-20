@@ -41,40 +41,6 @@ def get_last_monday(today: datetime.date = datetime.datetime.now()) -> datetime.
     return today + relativedelta(weekday=MO(-1))
 
 
-# def getdates(
-#     start: Union[str, datetime.date] = None,
-#     end: Union[str, datetime.date] = None,
-# ) -> Tuple[datetime.date, datetime.date]:
-#     """TODO: Docstring for getdates.
-
-#     Parameters
-#     ----------
-#     start :
-
-#     Returns
-#     -------
-#     startdate : Default to Monday of this week.
-
-#     """
-#     enddate: datetime.date
-#     if end is None:
-#         enddate = datetime.date.today()
-#     elif isinstance(end, str):
-#         enddate = parser.parse(end)
-#     elif isinstance(end, datetime.date):
-#         enddate = end
-#     else:
-#         enddate = None
-
-#     startdate: datetime.date
-#     if start is None:
-#         startdate = enddate
-#     elif
-#         startdate = enddate - datetime.timedelta(days=enddate.weekday())
-
-#     return startdate, enddate
-
-
 def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
