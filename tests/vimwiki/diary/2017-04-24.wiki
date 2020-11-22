@@ -36,14 +36,15 @@ Term 2:: should appear
 
 === Text ===
 
-Normal text should appear.
-
-== Empty Heading should appear ==
+Normal text should appear with only one blank line preceding next heading.
 
 
-== Empty Parent Heading should appear ==
+== Empty Heading with multiple blank lines should NOT appear ==
 
-=== Empty Child Heading should appear ===
+
+== Empty Parent Heading with empty child heading should NOT appear ==
+
+=== Empty Child Heading should NOT appear ===
 
 == Empty Parent Heading with Non-Empty Child should appear ==
 
@@ -51,3 +52,4 @@ Normal text should appear.
 
 Non-Empty Child text should appear.
 
+=== Empty heading at EOF should NOT appear ===

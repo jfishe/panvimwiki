@@ -92,3 +92,54 @@ def catdiary(
                 fout.write(line)
 
     return diaryout
+
+
+def del_empty_heading(
+    wikifile: Path,
+    reheading: str = (
+        # Match start of line with one or more heading delimeters.
+        # Group 1 captures the number of heading delimeters.
+        r"^(=+)"
+        # Match any characters until Group 1 repeats--i.e., end of heading.
+        r".+\1"
+        # Match one or more whitespaces, such as EOL.
+        r"\s+"
+        # Capture Group 2--the beginning of the next heading at the same level
+        # or the end of file/string.  Do not match a child heading.
+        r"((\1[^=])|\Z)"
+    ),
+):
+    """Remove empty headings from Vimwiki file.
+
+    Apply Regex until no empty headings remain.
+
+    Parameters
+    ----------
+    wikifile : Path to Vimwiki to modify.
+
+    reheading : Regex to match empty headings.
+
+    Returns
+    -------
+    Path to modified Vimikwik file.
+
+    """
+    with open(wikifile, "r", encoding="utf8") as fin:
+        diary = fin.read()
+
+    pattern = re.compile(reheading, re.MULTILINE)
+
+    def remove_group_1(match: re.Match):
+        """Return capture group 2 only."""
+        return match.group(2)
+
+    while True:
+        if re.search(pattern, diary):
+            diary = re.sub(pattern, remove_group_1, diary)
+        else:
+            break
+
+    with open(wikifile, "w", encoding="utf8") as fout:
+        fout.write(diary)
+
+    return wikifile
