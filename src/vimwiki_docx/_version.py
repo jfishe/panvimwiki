@@ -43,7 +43,7 @@ def get_config():
     cfg.style = ""
     cfg.tag_prefix = ""
     cfg.parentdir_prefix = "vimwiki_docx-"
-    cfg.versionfile_source = "vimwiki_docx/_version.py"
+    cfg.versionfile_source = "src/vimwiki_docx/_version.py"
     cfg.verbose = False
     return cfg
 
