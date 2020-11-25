@@ -117,7 +117,8 @@ def del_empty_heading(
     ----------
     wikifile : Path to Vimwiki to modify.
 
-    reheading : Regex to match empty headings.
+    reheading : Regex to match empty headings. Substitute the regex with
+                capture group 2.
 
     Returns
     -------
@@ -129,17 +130,17 @@ def del_empty_heading(
 
     pattern = re.compile(reheading, re.MULTILINE)
 
-    def remove_group_1(match: re.Match):
-        """Return capture group 2 only."""
+    def remove_empty_heading(match: re.Match) -> str:
+        """Remove empty heading by returning capture group 2 only."""
         return match.group(2)
 
-    while True:
-        if re.search(pattern, diary):
-            diary = re.sub(pattern, remove_group_1, diary)
-        else:
-            break
+    ismatch = False
+    while re.search(pattern, diary):
+        ismatch = True
+        diary = re.sub(pattern, remove_empty_heading, diary)
 
-    with open(wikifile, "w", encoding="utf8") as fout:
-        fout.write(diary)
+    if ismatch:
+        with open(wikifile, "w", encoding="utf8") as fout:
+            fout.write(diary)
 
     return wikifile

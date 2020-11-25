@@ -102,3 +102,26 @@ def test_del_empty_heading(catdiary_fixture):
     diaryout = del_empty_heading(catdiary_fixture)
     containsnot = search_not(diaryout)
     assert len(containsnot) == 1, containsnot
+
+
+def test_no_del_empty_heading():
+    """Test del_empty_heading does not modify Vimwiki file.
+
+    Given the file does not contain empty headings, do not modify the file.
+
+    Returns
+    -------
+    None
+
+    """
+    test_input = "2017-04-26"
+    wikidiary: Path = Path(__file__).parents[0] / "vimwiki/diary"
+    enddate: datetime.date = datetime.date.fromisoformat(test_input)
+    startdate: datetime.date = enddate
+
+    diaryout: Path = catdiary(startdate, enddate, wikidiary)
+    modified = diaryout.stat().st_mtime
+
+    diaryout = del_empty_heading(diaryout)
+
+    assert modified == diaryout.stat().st_mtime
