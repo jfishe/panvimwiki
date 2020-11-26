@@ -3,7 +3,7 @@ import versioneer
 
 requirements = [
     # package requirements go here
-    'python-dateutil >= 2.8',
+    'python-dateutil >=2.8',
 ]
 
 setup(
@@ -22,8 +22,6 @@ setup(
     install_requires=requirements,
     keywords='vimwiki_docx',
     classifiers=[
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ]
 )

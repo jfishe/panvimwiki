@@ -3,7 +3,7 @@
 
 package:
   name: vimwiki_docx
-  
+
   version: {{ data['version'] }}
 
 source:
@@ -16,8 +16,8 @@ build:
   # "skip: True  # [not win]" to limit to Windows.
   script: {{ PYTHON }} -m pip install --no-deps --ignore-installed -vv .
   noarch: python
-  
-  
+
+
 
 requirements:
   # if you need compilers, uncomment these
@@ -47,5 +47,5 @@ test:
 about:
   home: https://github.com/jfishe/vimwiki_docx
   summary: Vimwiki Diary tools for conversion to Microsoft Word docx
-  license: {{ setup_py.get('license') }}
+  license: {{ data['license'] }}
   license_file: LICENSE
