@@ -1,6 +1,6 @@
 ---
 exclude_paths:
-  - 'vimwiki_docx/_version.py'
+  - 'src/vimwiki_docx/_version.py'
   - 'tests/**/*'
   - 'tests/*'
   - 'benchmarks/**/*'

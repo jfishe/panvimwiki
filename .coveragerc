@@ -1,7 +1,7 @@
 [report]
 omit =
     setup.py
-    vimwiki_docx/__main__.py
-    vimwiki_docx/_version.py
+    src/vimwiki_docx/__main__.py
+    src/vimwiki_docx/_version.py
     versioneer.py
     tests/*
