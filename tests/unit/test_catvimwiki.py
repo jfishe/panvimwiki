@@ -11,6 +11,18 @@ from vimwiki_docx.catvimwiki import catdiary, get_last_monday, get_last_thursday
 @pytest.mark.parametrize(
     "test_input, expected",
     [
+        (get_last_monday(), datetime.date),
+        (get_last_thursday(), datetime.date),
+    ],
+)
+def test_get_last_default(test_input: str, expected: str):
+    """Test get_last_monday or thursday default parameters."""
+    assert type(test_input) is expected
+
+
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
         ("2020-10-31", "2020-10-29"),
         ("2020-11-01", "2020-10-29"),
         ("2020-10-29", "2020-10-29"),

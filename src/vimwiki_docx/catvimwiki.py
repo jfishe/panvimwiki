@@ -11,7 +11,7 @@ from typing import Tuple
 from dateutil.relativedelta import MO, TH, relativedelta
 
 
-def get_last_thursday(today: datetime.date = datetime.datetime.now()) -> datetime.date:
+def get_last_thursday(today: datetime.date = datetime.date.today()) -> datetime.date:
     """Return datetime for closest Thursday before today.
 
     Parameters
@@ -26,7 +26,7 @@ def get_last_thursday(today: datetime.date = datetime.datetime.now()) -> datetim
     return today + relativedelta(weekday=TH(-1))
 
 
-def get_last_monday(today: datetime.date = datetime.datetime.now()) -> datetime.date:
+def get_last_monday(today: datetime.date = datetime.date.today()) -> datetime.date:
     """Return datetime for closest Monday before today.
 
     Parameters
@@ -53,7 +53,7 @@ def catdiary(
         # Regex bullet *
         r"^\s{0,}\*\s",
     ),
-):
+) -> Path:
     """Concatenate Vimwiki diary files and apply regex filter.
 
     Parameters
