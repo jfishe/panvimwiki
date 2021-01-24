@@ -29,6 +29,7 @@ requirements:
     - pip
   run:
     - python
+    - pandoc
     # dependencies are defined in setup.py
     {% for dep in data['install_requires'] %}
     - {{ dep.lower() }}
