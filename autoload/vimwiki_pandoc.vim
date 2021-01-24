@@ -4,6 +4,7 @@
 " Home: 
 
 if exists('g:loaded_vimwiki_pandoc_auto') || !has('python3') || &compatible
+            \ || !executable('pandoc')
     finish
 endif
 let g:loaded_vimwiki_pandoc_auto = 1
@@ -63,33 +64,35 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
         diary: Path = catdiary(
             startdate=startdate, enddate=enddate, wikidiary=Path(vim.eval("l:diary_path"))
         )
+
         diary = del_empty_heading(diary)
     EOF
 
-    execute 'edit ' . py3eval('str(diary)')
+    execute 'tabedit'  py3eval('str(diary)')
     VimwikiRenumberAllLists
     update
 
     let l:input = fnameescape(expand('%'))
-    let l:output = fnameescape(expand('%:p:r') . '.docx')
-    echomsg 'Data dir:' . l:datadir
+    let l:output = fnameescape(expand('%:p:r').'.docx')
 
     let l:cmd = 'pandoc --from=vimwiki --to=docx'
                 \ .' --shift-heading-level-by='.a:shiftheading
     if l:datadir !=? ''
-        let l:cmd = l:cmd . ' --data-dir=' . l:datadir
+        let l:cmd = l:cmd.' --data-dir='.l:datadir
     endif
     let l:cmd = l:cmd.' --output='.l:output
 
-    execute '!start' l:cmd l:input
+    silent execute '!start /b' l:cmd l:input
 
     " Copy path to MS Word file to clipboard.
     let @+ = l:output
 
     " Open in MS Word.
     if a:bang
-        bdelete
-        execute '!start ' l:output
+        tabclose
+        silent execute '!start /b' l:output
+    else
+        edit
     endif
 endfunction "}}}
 "}}}

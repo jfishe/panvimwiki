@@ -5,14 +5,10 @@
 " Author: John D. Fisher
 
 " Should we load? {{{1
-if !has("python3")
-  echo "vim has to be compiled with +python3 to run this"
-  finish
-endif
-if exists('g:vimwiki_pandoc#loaded') && g:vimwiki_pandoc#loaded
+if exists('g:vimwiki_pandoc_loaded') || !has("python3") || &compatible
     finish
 endif
-let g:vimwiki_pandoc#loaded = 1
+let g:vimwiki_pandoc_loaded = 1
 " }}}1
 
 " Save current &cpo and reset to Vim default compatibility options.
@@ -36,8 +32,6 @@ let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " from vimwiki_docx.vimwiki_week import convert_last_week
 " EOF
 
-command! -nargs=0 VimwikiConvertWeek call vimwiki_pandoc#convert_week()
-command! -nargs=* ConvertVimwiki call vimwiki_pandoc#convert_from_to(<f-args>)
 " Restore Vim compatibility options.
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
