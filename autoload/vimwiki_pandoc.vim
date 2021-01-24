@@ -32,10 +32,25 @@ function! s:diary_path(...) abort "{{{
 endfunction "}}}
 
 function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
-    " Today is the basename for the Vimwiki Diary buffer.
-    let l:today = expand('%:t:r')
+    if a:0 == 0
+        let l:today_only = v:false
+    else
+        let l:today_only = v:true
+    endif
+
     " Path for Vimwiki Diary buffer
     let l:diary_path = vimwiki#path#path_norm(s:diary_path())
+
+    let l:current_path = vimwiki#path#path_norm(expand('%:p:h').'/')
+
+    if ! vimwiki#path#is_equal(l:current_path, l:diary_path)
+        echomsg 'Vimwiki Pandoc Error: You can only convert Vimwiki diary files.'
+        return
+    endif
+    " Today is the basename for the Vimwiki Diary buffer.
+    let l:today = expand('%:t:r')
+
+
     " Path for Vimwiki templates
     let l:datadir = fnameescape(s:get_pandoc_datadir(''))
 
@@ -52,9 +67,10 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
             del_empty_heading,
         )
 
-        start_date: str = vim.eval("l:today")
+        start_date: str = vim.eval(r"l:today")
 
-        if vim.eval("a:0") == "0":
+        today_only: bool = vim.eval(r"l:today_only")
+        if today_only is False:
             enddate: datetime.date = datetime.date.fromisoformat(start_date)
             startdate: datetime.date = get_last_monday(enddate)
         else:
@@ -62,7 +78,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
             enddate = startdate
 
         diary: Path = catdiary(
-            startdate=startdate, enddate=enddate, wikidiary=Path(vim.eval("l:diary_path"))
+            startdate=startdate, enddate=enddate, wikidiary=Path(vim.eval(r"l:diary_path"))
         )
 
         diary = del_empty_heading(diary)
