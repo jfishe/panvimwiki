@@ -1,13 +1,17 @@
-" vim:tabstop=4:shiftwidth=4:expandtab:textwidth=99:foldmethod=marker
-" Vimwiki_Pandoc autoload plugin file {{{
-" Desc: Concatenate, filter and convert Vimwiki Diary using Pandoc
-" Home: 
+" Vimwiki_Pandoc autoload
+" Description: Concatenate, filter and convert Vimwiki Diary using Pandoc
+" Home: https://github.com/jfishe/vimwiki_docx
+" Maintainer: John D. Fisher <jdfenw@gmail.com>
+" Last Change: 2021-01-29
 
 if exists('g:loaded_vimwiki_pandoc_auto') || !has('python3') || &compatible
             \ || !executable('pandoc')
     finish
 endif
 let g:loaded_vimwiki_pandoc_auto = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
 
 function! s:get_pandoc_datadir(name) abort "{{{
     if a:name ==? ''
@@ -88,6 +92,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     VimwikiRenumberAllLists
     update
 
+    " TODO: refactor to separate function.
     let l:input = fnameescape(expand('%'))
     let l:output = fnameescape(expand('%:p:r').'.docx')
 
@@ -111,4 +116,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
         edit
     endif
 endfunction "}}}
-"}}}
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+" vim:tabstop=4:shiftwidth=4:expandtab:textwidth=99:foldmethod=marker
