@@ -21,8 +21,13 @@ if !exists(":VimwikiConvertToday")
         \ call vimwiki_pandoc#convert_week(<bang>0, 1, 1)
 endif
 
-let b:undo_ftplugin = "delcommand VimwikiConvertWeek"
-      \ .. "| delcommand VimwikiConvertToday"
+let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
+if !empty('b:undo_ftplugin')
+  let b:undo_ftplugin ..= " | "
+endif
+let b:undo_ftplugin ..= "delcommand VimwikiConvertWeek"
+      \ .. " | delcommand VimwikiConvertToday"
+      \ .. " | unlet b:did_ftplugin_vimwiki_pandoc"
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
