@@ -67,6 +67,11 @@ def catdiary(
     Path to concatenated Vimwiki diary entries from startdate to enddate,
     inclusive of both.
 
+    Raises
+    ______
+    ValueError
+        If `startdate` is after `enddate`
+
     """
     if startdate > enddate:
         errmsg = f"enddate {enddate} should not precede startdate {startdate}."
