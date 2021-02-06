@@ -82,7 +82,10 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
             enddate = startdate
 
         diary: Path = catdiary(
-            startdate=startdate, enddate=enddate, wikidiary=Path(vim.eval(r"l:diary_path"))
+            startdate=startdate,
+            enddate=enddate,
+            wikidiary=Path(vim.eval(r"l:diary_path")
+            )
         )
 
         diary = del_empty_heading(diary)
