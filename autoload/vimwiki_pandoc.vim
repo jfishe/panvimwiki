@@ -61,31 +61,24 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     " TODO: refactor into python3 file
     python3 << trim EOF
         import vim
-        import datetime
 
         from pathlib import Path
 
-        from vimwiki_docx.catvimwiki import (
-            catdiary,
-            get_last_monday,
-            del_empty_heading,
-        )
+        from vimwiki_docx.catvimwiki import del_empty_heading
+        from vimwiki_docx.vimwiki_week import concatenate_diary
 
-        start_date: str = vim.eval(r"l:today")
+        end_date: str = vim.eval(r"l:today")
 
         today_only: bool = vim.eval(r"l:today_only")
         if today_only is False:
-            enddate: datetime.date = datetime.date.fromisoformat(start_date)
-            startdate: datetime.date = get_last_monday(enddate)
+            start_date: str = None
         else:
-            startdate = datetime.date.fromisoformat(start_date)
-            enddate = startdate
+            start_date = end_date
 
-        diary: Path = catdiary(
-            startdate=startdate,
-            enddate=enddate,
-            wikidiary=Path(vim.eval(r"l:diary_path")
-            )
+        diary: Path = concatenate_diary(
+            start_date = start_date,
+            end_date = end_date,
+            diary_path = vim.eval(r"l:diary_path")
         )
 
         diary = del_empty_heading(diary)
