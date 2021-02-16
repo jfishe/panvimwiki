@@ -56,7 +56,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
 
 
     " Path for Vimwiki templates
-    let l:datadir = fnameescape(s:get_pandoc_datadir(''))
+    let l:datadir = s:get_pandoc_datadir('')
 
     " TODO: refactor into python3 file
     python3 << trim EOF
@@ -89,17 +89,17 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     update
 
     " TODO: refactor to separate function.
-    let l:input = fnameescape(expand('%'))
-    let l:output = fnameescape(expand('%:p:r').'.docx')
+    let l:input = expand('%')
+    let l:output = expand('%:p:r').'.docx'
 
     let l:cmd = 'pandoc --from=vimwiki --to=docx'
                 \ .' --shift-heading-level-by='.a:shiftheading
     if l:datadir !=? ''
-        let l:cmd = l:cmd.' --data-dir='.l:datadir
+        let l:cmd = l:cmd.' --data-dir='.shellescape(l:datadir)
     endif
-    let l:cmd = l:cmd.' --output='.l:output
+    let l:cmd = l:cmd.' --output='.shellescape(l:output)
 
-    silent execute '!start /b' l:cmd l:input
+    execute '!start /b' l:cmd shellescape(l:input)
 
     " Copy path to MS Word file to clipboard.
     let @+ = l:output
@@ -107,7 +107,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     " Open in MS Word.
     if a:bang
         tabclose
-        silent execute '!start /b' l:output
+        execute '!start /b' shellescape(l:output)
     else
         edit
     endif
