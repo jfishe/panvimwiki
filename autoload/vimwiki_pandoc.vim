@@ -20,19 +20,16 @@ function! s:get_pandoc_datadir(name) abort "{{{
         let name = a:name
     endif
 
-    let fname = expand(vimwiki#vars#get_wikilocal('template_path').name)
+    let fname = vimwiki#path#path_norm(
+        \ vimwiki#path#join_path(
+        \ vimwiki#vars#get_wikilocal('template_path'), name
+        \ ))
 
     if filereadable(fname)
         return fnamemodify(fname, ':p:h')
     else
         return ''
     endif
-endfunction "}}}
-
-function! s:diary_path(...) abort "{{{
-    " https://github.com/vimwiki/vimwiki/blob/619f04f89861c58e5a6415a4f83847752928252d/autoload/vimwiki/diary.vim#L21
-    let idx = a:0 == 0 ? vimwiki#vars#get_bufferlocal('wiki_nr') : a:1
-    return vimwiki#vars#get_wikilocal('path', idx).vimwiki#vars#get_wikilocal('diary_rel_path', idx)
 endfunction "}}}
 
 function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
@@ -43,8 +40,11 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     endif
 
     " Path for Vimwiki Diary buffer
-    let l:diary_path = vimwiki#path#path_norm(s:diary_path())
-
+    let l:diary_path = vimwiki#path#path_norm(
+        \ vimwiki#path#join_path(
+        \ vimwiki#vars#get_wikilocal('path'),
+        \ vimwiki#vars#get_wikilocal('diary_rel_path')
+        \ ))
     let l:current_path = vimwiki#path#path_norm(expand('%:p:h').'/')
 
     if ! vimwiki#path#is_equal(l:current_path, l:diary_path)
@@ -99,7 +99,11 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     endif
     let l:cmd = l:cmd.' --output='.shellescape(l:output)
 
-    execute '!start /b' l:cmd shellescape(l:input)
+    if has('win32') || has('win64')
+      silent execute '!start /b' l:cmd l:input
+    else
+      silent execute '!' l:cmd l:input
+    endif
 
     " Copy path to MS Word file to clipboard.
     let @+ = l:output
@@ -107,7 +111,9 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     " Open in MS Word.
     if a:bang
         tabclose
-        execute '!start /b' shellescape(l:output)
+        if (has('win32') || has('win64'))
+            execute '!start /b' shellescape(l:output)
+        endif
     else
         edit
     endif
