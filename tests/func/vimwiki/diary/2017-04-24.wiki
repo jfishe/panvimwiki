@@ -32,7 +32,9 @@ Term 2:: should appear
   * Bulleted list item 1 should NOT appear
   * Bulleted list item 2 should NOT appear
   * [ ] Bulleted list item 3 should NOT appear
-  * [.] Bulleted list item 4 should NOT appear
+  * [.] Bulleted list item 4 should appear
+  * [[file:URI|Bulleted list item 5 should NOT appear]]
+  * [[d|Bulleted list item 6 should NOT appear]]
 
 === Text ===
 

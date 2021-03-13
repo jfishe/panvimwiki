@@ -44,14 +44,14 @@ def get_last_monday(today: datetime.date = datetime.date.today()) -> datetime.da
 def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
-    wikidiary: Path = Path.home() / "Documents/vimwiki/diary",
+    wikidiary: Path = Path.home() / "vimwiki/diary",
     refilter: Tuple[str, ...] = (
         # Regex vimwiki tags.
         r"^:.*:$",
         # Regex task [ ]
         r"\s\[\s\]",
         # Regex bullet *
-        r"^\s{0,}\*\s",
+        r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
     ),
 ) -> Path:
     """Concatenate Vimwiki diary files and apply regex filter.
@@ -61,6 +61,16 @@ def catdiary(
     startdate : Starting date for Vimwiki diary entry.
 
     enddate : End date date for Vimwiki diary entry.
+
+    wikidiary : Path to Vimwiki diary directory. Defaults to
+                `$HOME/vimwiki/diary`.
+
+    refilter : Regex to remove matching lines from Vimwiki diary entries.
+               Defaults to removing:
+
+               - Vimwiki tag lines, e.g., :tag1:tag2:
+               - Not started tasks, e.g., - [ ] Task1
+               - Non-task * bullet lines, e.g., * [[URI|Description]] or * Text
 
     Returns
     -------
