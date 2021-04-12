@@ -59,30 +59,30 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     let l:datadir = s:get_pandoc_datadir('')
 
     " TODO: refactor into python3 file
-    python3 << trim EOF
-        import vim
+python3 << EOF
+import vim
 
-        from pathlib import Path
+from pathlib import Path
 
-        from vimwiki_docx.catvimwiki import del_empty_heading
-        from vimwiki_docx.vimwiki_week import concatenate_diary
+from vimwiki_docx.catvimwiki import del_empty_heading
+from vimwiki_docx.vimwiki_week import concatenate_diary
 
-        end_date: str = vim.eval(r"l:today")
+end_date: str = vim.eval(r"l:today")
 
-        today_only: bool = vim.eval(r"l:today_only")
-        if today_only is False:
-            start_date: str = None
-        else:
-            start_date = end_date
+today_only: bool = vim.eval(r"l:today_only")
+if today_only is False:
+    start_date: str = None
+else:
+    start_date = end_date
 
-        diary: Path = concatenate_diary(
-            start_date = start_date,
-            end_date = end_date,
-            diary_path = vim.eval(r"l:diary_path")
-        )
+diary: Path = concatenate_diary(
+    start_date = start_date,
+    end_date = end_date,
+    diary_path = vim.eval(r"l:diary_path")
+)
 
-        diary = del_empty_heading(diary)
-    EOF
+diary = del_empty_heading(diary)
+EOF
 
     execute 'tabedit'  py3eval('str(diary)')
     VimwikiRenumberAllLists
@@ -106,7 +106,12 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
     endif
 
     " Copy path to MS Word file to clipboard.
-    let @+ = l:output
+    if has('win32') || has('win64')
+        let @+ = l:output
+    elseif executable('wslpath')
+        let @+ = system('wslpath -w '..shellescape(l:output))
+    endif
+
 
     " Open in MS Word.
     if a:bang
