@@ -84,9 +84,20 @@ diary: Path = concatenate_diary(
 diary = del_empty_heading(diary)
 EOF
 
+
+    " help taskwiki_disable
+    let l:undo_taskwiki_disable = get(g:, 'taskwiki_disable', '')
+    if empty('l:taskwiki_disable')
+        let g:taskwiki_disable = 'disable'
+    endif
+
     execute 'tabedit'  py3eval('str(diary)')
     VimwikiRenumberAllLists
     update
+
+    if empty('l:taskwiki_disable')
+        unlet g:taskwiki_disable
+    endif
 
     " TODO: refactor to separate function.
     let l:input = expand('%')
