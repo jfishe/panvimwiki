@@ -4,7 +4,7 @@ import datetime
 import fileinput
 import re
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 import pytest
 
@@ -15,8 +15,8 @@ from vimwiki_docx.catvimwiki import (
 )
 
 
-def search_not(diaryout: Path) -> List[str]:
-    """Regex search for not, case-insensitive.
+def search_not(diaryout: Path) -> Tuple[List[str], ...]:
+    """Regex search for not & should appear, case-insensitive.
 
     Parameters
     ----------
@@ -24,18 +24,25 @@ def search_not(diaryout: Path) -> List[str]:
 
     Returns
     -------
-    Lines containing not.
+    Lines containing not and lines containing 'should appear'. One result per
+    line.
 
     """
-    pattern = re.compile(r"not", re.IGNORECASE)
+    not_pattern = re.compile(r"not", re.IGNORECASE)
+    should_pattern = re.compile(r"should appear|shouldappear", re.IGNORECASE)
     containsnot = []
+    containsshould = []
     with fileinput.input(diaryout, openhook=fileinput.hook_encoded("utf-8")) as fin:
         for line in fin:
-            research = re.search(pattern, line)
+            research = re.search(not_pattern, line)
             if research is not None:
                 containsnot.append(research.string)
 
-    return containsnot
+            research = re.search(should_pattern, line)
+            if research is not None:
+                containsshould.append(research.string)
+
+    return containsnot, containsshould
 
 
 @pytest.fixture
@@ -80,8 +87,9 @@ def test_catdiary(catdiary_fixture):
         If concatenated diary does not contain 5x `not`.
 
     """
-    containsnot = search_not(catdiary_fixture)
+    containsnot, containsshould = search_not(catdiary_fixture)
     assert len(containsnot) == 5, containsnot
+    assert len(containsshould) == 23, containsshould
 
 
 def test_del_empty_heading(catdiary_fixture):
@@ -100,8 +108,9 @@ def test_del_empty_heading(catdiary_fixture):
 
     """
     diaryout = del_empty_heading(catdiary_fixture)
-    containsnot = search_not(diaryout)
+    containsnot, containsshould = search_not(diaryout)
     assert len(containsnot) == 1, containsnot
+    assert len(containsshould) == 23, containsshould
 
 
 def test_no_del_empty_heading():
