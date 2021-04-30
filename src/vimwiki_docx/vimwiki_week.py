@@ -34,7 +34,7 @@ def concatenate_diary(
     Raises
     ______
     ValueError
-        `catdiary()` raises ValueError if `start_date` is after `start_date`
+        `catdiary()` raises ValueError if `start_date` is after `end_date`
 
     """
     if end_date is None:
