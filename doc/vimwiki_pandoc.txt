@@ -1,0 +1,52 @@
+*vimwiki_pandoc.txt*	For Vim version 8.2	Last change: 2021 Apr 23
+
+Convert Vimwiki DiaryNotes to Microsoft Word docx format.
+
+Author: John D. Fisher <https://github.com/jfishe>
+License: Same terms as Vim itself (see |license|)
+
+==============================================================================
+2. Commands					     *vimwiki_pandoc-commands*
+
+------------------------------------------------------------------------------
+2.2. Local commands				      *vimwiki-local-commands*
+
+These commands are only available (and meaningful) when you are currently in a
+Vimwiki file.
+
+:VimwikiConvertToday[!]                                 *:VimwikiConvertToday*
+		Convert the current DiaryNote (See |:VimwikiMakeDiaryNote|)
+		|buffer| to Microsoft Word docx format.Remove extraneous
+		info:
+
+		- Vimwiki tag lines, e.g., :tag1:tag2:
+		- Not started tasks, e.g., - [ ] Task1
+		- Non-task * bullet lines, e.g., * [[URI|Description]] or *
+		  Text
+		- Remove empty parent/child headings.
+
+		Copy the path to the Word file to the clipboard register "+
+		|quoteplus|.
+
+		On Windows Subsystem for Linux (WSL), convert the path from
+		POSIX to Windows before copying to clipboard.
+
+		When the [!] is present, do not |:tabedit| the converted
+		DiaryNote and attempt to open the docx file with the default
+		program.
+
+:VimwikiConvertWeek[!]                                 *:VimwikiConvertWeek*
+		Concatentate the previous Monday through the current DiaryNote
+		(See |:VimwikiMakeDiaryNote|) |buffer| and convert to
+		Microsoft Word docx format.
+
+		Otherwise behave as `:VimwikiConvertToday`.
+
+==============================================================================
+3. Python3					     *vimwiki_pandoc-python3*
+
+:!pydoc vimwiki_docx.catvimwiki
+
+:!pydoc vimwiki_docx.vimwiki_week
+
+ vim:tw=78:isk=!-~,^*,^\|,^\":ts=8:noet:ft=help:norl:
