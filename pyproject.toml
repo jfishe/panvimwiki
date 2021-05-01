@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "vimwiki_docx"
+author = "John D. Fisher"
+author-email = "jdfenw@gmail.com"
+home-page = "https://github.com/jfishe/vimwiki_docx"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+description-file = "README.rst"
+
