@@ -4,7 +4,8 @@
 " Maintainer: John D. Fisher
 " Last Change: 2021-01-29
 
-if exists('b:did_ftplugin_vimwiki_pandoc')
+if exists('b:did_ftplugin_vimwiki_pandoc') || &compatible
+            \ || !executable('pandoc') || !has('patch-8.2.0578h')
   finish
 endif
 let b:did_ftplugin_vimwiki_pandoc = 1  " Don't load another plugin for this buffer
