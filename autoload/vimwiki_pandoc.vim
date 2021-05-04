@@ -91,13 +91,9 @@ EOF
         let g:taskwiki_disable = 'disable'
     endif
 
-    execute 'tabedit'  py3eval('str(diary)')
-    VimwikiRenumberAllLists
-    update
-
-    if empty('l:taskwiki_disable')
-        unlet g:taskwiki_disable
-    endif
+    silent execute 'tabedit'  py3eval('str(diary)')
+    silent VimwikiRenumberAllLists
+    silent update
 
     " TODO: refactor to separate function.
     let l:input = expand('%')
@@ -123,15 +119,20 @@ EOF
         let @+ = system('wslpath -w '..shellescape(l:output))
     endif
 
-
     " Open in MS Word.
     if a:bang
-        tabclose
+        silent tabclose
         if (has('win32') || has('win64'))
-            execute '!start /b' shellescape(l:output)
+            silent execute '!start /b' shellescape(l:output)
+        elseif executable('wslpath')
+            silent execute system('wslview $(wslpath -w '..shellescape(l:output)..')')
         endif
     else
         edit
+    endif
+
+    if empty('l:taskwiki_disable')
+        unlet g:taskwiki_disable
     endif
 endfunction "}}}
 
