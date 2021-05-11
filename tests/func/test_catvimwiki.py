@@ -12,6 +12,7 @@ from vimwiki_docx.catvimwiki import (
     catdiary,
     get_last_monday,
     del_empty_heading,
+    del_taskwiki_heading,
 )
 
 
@@ -88,7 +89,7 @@ def test_catdiary(catdiary_fixture):
 
     """
     containsnot, containsshould = search_not(catdiary_fixture)
-    assert len(containsnot) == 5, containsnot
+    assert len(containsnot) == 7, containsnot
     assert len(containsshould) == 23, containsshould
 
 
@@ -134,3 +135,25 @@ def test_no_del_empty_heading():
     diaryout = del_empty_heading(diaryout)
 
     assert modified == diaryout.stat().st_mtime
+
+
+def test_del_taskwiki_heading(catdiary_fixture):
+    """Test del_taskwiki_heading removes all but 1 `not`.
+
+    Remove `should NOT appear` empty headings.
+
+    Parameters
+    ----------
+    catdiary_fixture : Path
+        Concatenated Vimwiki diary entries
+
+    Returns
+    -------
+    None
+
+    """
+    diaryout = del_taskwiki_heading(catdiary_fixture)
+    containsnot, containsshould = search_not(diaryout)
+    assert len(containsnot) == 5, containsnot
+    assert len(containsshould) == 23, containsshould
+

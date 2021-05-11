@@ -64,7 +64,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
 
         from pathlib import Path
 
-        from vimwiki_docx.catvimwiki import del_empty_heading
+        from vimwiki_docx.catvimwiki import del_empty_heading, del_taskwiki_heading
         from vimwiki_docx.vimwiki_week import concatenate_diary
 
         end_date: str = vim.eval(r"l:today")
@@ -81,7 +81,7 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
             diary_path = vim.eval(r"l:diary_path")
         )
 
-        diary = del_empty_heading(diary)
+        diary = del_taskwiki_heading(del_empty_heading(diary))
     EOF
 
 

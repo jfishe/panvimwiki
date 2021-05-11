@@ -159,3 +159,45 @@ def del_empty_heading(
             fout.write(diary)
 
     return wikifile
+
+
+def del_taskwiki_heading(
+    wikifile: Path,
+    reheading: str = (
+        # Match start of line with one or more heading delimeters.
+        # Group 1 captures the number of heading delimeters.
+        r"^(=+)"
+        # Match any characters, except pipe, the taskwiki delimeter.
+        # Group 2 captures the heading we're keeping.
+        r"([^|]+)"
+        # Match space pipe, which starts taskwiki heading.
+        r"\s\|.+"
+        # Match space followed by Group 1.
+        r"\s\1$"
+    ),
+):
+    """Remove taskwiki heading.
+
+    wikifile : Path to Vimwiki to modify.
+
+    reheading : Regex to match empty headings. Substitute the regex with
+                capture group 2.
+
+    Returns
+    -------
+    Path to modified Vimikwik file.
+
+    """
+    with open(wikifile, "r", encoding="utf8") as fin:
+        diary = fin.read()
+
+    pattern = re.compile(reheading, re.MULTILINE)
+    replace = r"\1\2 \1"
+
+    if re.search(pattern, diary):
+        diary = re.sub(pattern, replace, diary)
+
+        with open(wikifile, "w", encoding="utf8") as fout:
+            fout.write(diary)
+
+    return wikifile

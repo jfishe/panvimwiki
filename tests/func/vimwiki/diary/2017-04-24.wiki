@@ -31,10 +31,16 @@ Term 2:: should appear
   - [.] Bulleted list item 4 should appear
   * Bulleted list item 1 should NOT appear
   * Bulleted list item 2 should NOT appear
-  * [ ] Bulleted list item 3 should NOT appear
-  * [.] Bulleted list item 4 should appear
+  * [ ] Bulleted list item 3 should NOT appear  #999f5e9a
+  * [.] Bulleted list item 4 should appear  #c759b18d
   * [[file:URI|Bulleted list item 5 should NOT appear]]
   * [[d|Bulleted list item 6 should NOT appear]]
+
+Del_empty_heading will remove the following, but del_taskwiki_heading will only
+remove the taskwiki heading:
+
+=== Should include heading | should not appear | should not appear ===
+==== Should include heading || should not appear | should not appear ====
 
 === Text ===
 
