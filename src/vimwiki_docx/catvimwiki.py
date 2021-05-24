@@ -54,7 +54,7 @@ def catdiary(
         r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
     ),
 ) -> Path:
-    """Concatenate Vimwiki diary files and apply regex filter.
+    r"""Concatenate Vimwiki diary files and apply regex filter.
 
     Parameters
     ----------
@@ -71,6 +71,15 @@ def catdiary(
                - Vimwiki tag lines, e.g., :tag1:tag2:
                - Not started tasks, e.g., - [ ] Task1
                - Non-task * bullet lines, e.g., * [[URI|Description]] or * Text
+
+               ```
+               # Regex vimwiki tags.
+               r"^:.*:$",
+               # Regex task [ ]
+               r"\s\[\s\]",
+               # Regex bullet *
+               r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
+               ```
 
     Returns
     -------
