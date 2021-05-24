@@ -1,21 +1,16 @@
-============
-vimwiki_docx
-============
+# vimwiki_docx
+
+Vimwiki Diary tools for conversion to Microsoft Word docx.
 
 
-Add a short description here!
-
-
-Description
-===========
+## Description
 
 A longer description of your project goes here...
 
 
-.. _pyscaffold-notes:
+<!-- pyscaffold-notes -->
 
-Note
-====
+## Note
 
 This project has been set up using PyScaffold 4.0.1. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
