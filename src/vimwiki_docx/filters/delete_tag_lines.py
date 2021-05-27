@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Remove Vimwiki tag lines, e.g., :tag1:tag2:.
+
+Pandoc filter using panflute
+"""
+
+import re
+import panflute as pf
+
+
+def prepare(doc):
+    """Pre-filter."""
+    doc.tagline = False
+
+
+def action(elem, doc):
+    """Remove Vimwiki tag lines, e.g., :tag1:tag2:.
+
+    Pandoc filter using panflute
+
+    In-line tags in paragraphs and lists remain.
+    """
+    if (
+        isinstance(elem, pf.Para)
+        and isinstance(elem.content[0], pf.Span)
+        and elem.content[-1].classes == ["tag"]
+    ):
+        return []
+    # return None -> element unchanged
+    # return [] -> delete element
+    return None
+
+
+def finalize(doc):
+    """Post-filter."""
+    pass
+
+
+def main(doc=None):
+    """Remove taskwiki heading.
+
+    Pandoc filter using panflute
+    """
+    return pf.run_filter(action, prepare=prepare, finalize=finalize, doc=doc)
+
+
+if __name__ == "__main__":
+    main()

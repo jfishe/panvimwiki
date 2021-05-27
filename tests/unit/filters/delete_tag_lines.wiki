@@ -1,0 +1,17 @@
+= Vimwiki Tag Lines and In-line Tags =
+
+In normal paragraphs :InlineTagShouldAppear:InlineTagShouldAppear:
+
+== Ordered List ==
+:TagShouldNotAppear:TagShouldNotAppear2:
+
+1. [X] OrderedList done4 should appear with
+       :InlineTagShouldAppear:
+
+=== Unordered lists ===
+  - Bulleted list item 1 should appear :InlineTagShouldAppear:InlineTagShouldAppear:
+
+Multiple rows of tags should be deleted, when not part of a paragraph.
+
+:TagShouldNotAppear:TagShouldNotAppear2:
+:TagShouldNotAppear:TagShouldNotAppear2:
