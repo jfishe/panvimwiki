@@ -9,15 +9,15 @@ from typing import List
 
 
 def pandoc_filter_fixture():
-    """TODO: Docstring for pandoc_filter_fixture.
+    """Parameterize panflute filter script input and expected output.
 
-    Parameters
-    ----------
-    function : TODO
+    Assume filters/ contains filter_name.wiki and filter_name.out.md where
+    filter_name.py is an installed console script that converts from the wiki
+    to out.md.
 
     Returns
     -------
-    TODO
+    List[pytest.param]
 
     """
     filter_input: Path = Path(__file__).parents[0] / "filters"
@@ -35,9 +35,6 @@ def pandoc_filter_fixture():
 )
 def test_pandoc_filter(test_input: Path, filters: List[str], expected: Path):
     """Test pandoc python filters wiki to produce expected markdown.
-
-    Assume filters/ contains filter_name.wiki and filter_name.out.md where
-    filter_name.py is an installed console script.
 
     Parameters
     ----------
