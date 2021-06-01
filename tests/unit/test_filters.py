@@ -11,7 +11,7 @@ import pytest
 def pandoc_filter_fixture():
     """Parameterize panflute filter script input and expected output.
 
-    Assume filters/ contains filter_name.wiki and filter_name.out.md where
+    Assume filter/ contains filter_name.wiki and filter_name.out.md where
     filter_name.py is an installed console script that converts from .wiki to
     out.md.
 
@@ -22,17 +22,17 @@ def pandoc_filter_fixture():
 
     """
     prefilter_input: Path = Path(__file__).parents[0] / "prefilter"
-    filter_input: Path = Path(__file__).parents[0] / "filters"
+    filter_input: Path = Path(__file__).parents[0] / "filter"
 
     for wiki_input in chain(
         prefilter_input.glob("*.wiki", filter_input.glob("*.wiki"))
     ):
-        filters = str(wiki_input.with_suffix(".py").name)
+        filter = str(wiki_input.with_suffix(".py").name)
 
         if prefilter_input == wiki_input.parent:
             with open(wiki_input, mode="r") as fin:
                 filter_out = subprocess.run(
-                    filters, capture_output=True, encoding="utf8", stdin=fin, check=True
+                    filter, capture_output=True, encoding="utf8", stdin=fin, check=True
                 )
 
             test_input = pypandoc.convert_text(
@@ -40,14 +40,14 @@ def pandoc_filter_fixture():
             )
         else:
             test_input = pypandoc.convert_file(
-                str(wiki_input), to="markdown", format="vimwiki", filters=[filters]
+                str(wiki_input), to="markdown", format="vimwiki", filters=[filter]
             )
 
         markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output, mode="r") as f:
             expected = f.read()
 
-        yield pytest.param(test_input, expected, id=filters)
+        yield pytest.param(test_input, expected, id=filter)
 
 
 @pytest.mark.parametrize(

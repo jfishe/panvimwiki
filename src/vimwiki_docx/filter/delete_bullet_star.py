@@ -24,9 +24,9 @@ def action(line: str):
 
     """
     regex: Tuple[str, ...] = (
-            # Regex bullet *
-            r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
-        )
+        # Regex bullet *
+        r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
+    )
 
     pattern = re.compile(r"|".join(regex))
 
@@ -39,7 +39,7 @@ def main():
     """Remove Non-task * bullet lines, e.g., * [[URI|Description]] or * Text."""
     for line in fileinput.input():
         if action(line) is not None:
-            print(line.rstrip('\n'))
+            print(line.rstrip("\n"))
 
 
 if __name__ == "__main__":
