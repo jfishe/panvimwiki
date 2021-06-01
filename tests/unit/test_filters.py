@@ -1,13 +1,11 @@
 """Unit Tests pandoc filters Vimwiki files."""
 
-import pytest
-
-import pypandoc
-
+import subprocess
 from itertools import chain
 from pathlib import Path
 
-import subprocess
+import pypandoc
+import pytest
 
 
 def pandoc_filter_fixture():

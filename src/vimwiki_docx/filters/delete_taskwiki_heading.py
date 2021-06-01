@@ -19,7 +19,7 @@ def action(elem, doc):
     # regex = r"\s\|.*$"
     subst = ""
 
-    if type(elem) == pf.Header:
+    if isinstance(elem, pf.Header):
         # result = re.sub(regex, subst, elem.identifier, 0, re.MULTILINE)
         result = re.sub(regex, subst, elem.identifier, 0)
         elem.content = pf.convert_text(result)[0].content

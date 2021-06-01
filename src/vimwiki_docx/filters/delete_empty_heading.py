@@ -14,11 +14,11 @@ def prepare(doc):
 
 def action(elem, doc):
     """Remove empty headings from Vimwiki file."""
-    if type(elem) == pf.Header:
+    if isinstance(elem, pf.Header):
         lookahead = elem.next
         if lookahead is None:
             return []
-        if type(lookahead) == pf.Header and lookahead.level <= elem.level:
+        if isinstance(lookahead, pf.Header) and lookahead.level <= elem.level:
             return []
     # return None -> element unchanged
     # return [] -> delete element

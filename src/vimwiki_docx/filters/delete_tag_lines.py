@@ -4,7 +4,6 @@
 Pandoc filter using panflute
 """
 
-import re
 import panflute as pf
 
 
