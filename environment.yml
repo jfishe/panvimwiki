@@ -1,0 +1,16 @@
+name: pyscaffold
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pandoc
+  - python <3.10
+  - pip
+  - pre-commit
+  - pyscaffold
+  - pyscaffoldext-markdown
+  - sphinx
+  - pytest
+  - pytest-cov
+  - tox
+  - virtualenv
