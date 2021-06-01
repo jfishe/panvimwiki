@@ -4,7 +4,10 @@ import pytest
 
 import pypandoc
 
+from itertools import chain
 from pathlib import Path
+
+import subprocess
 
 
 def pandoc_filter_fixture():
@@ -20,14 +23,27 @@ def pandoc_filter_fixture():
                 panflute requires pandoc-types >= 1.22
 
     """
+    prefilter_input: Path = Path(__file__).parents[0] / "prefilter"
     filter_input: Path = Path(__file__).parents[0] / "filters"
 
-    for wiki_input in filter_input.glob("*.wiki"):
+    for wiki_input in chain(
+        prefilter_input.glob("*.wiki", filter_input.glob("*.wiki"))
+    ):
         filters = str(wiki_input.with_suffix(".py").name)
 
-        test_input = pypandoc.convert_file(
-            str(wiki_input), to="markdown", format="vimwiki", filters=[filters]
-        )
+        if prefilter_input == wiki_input.parent:
+            with open(wiki_input, mode="r") as fin:
+                filter_out = subprocess.run(
+                    filters, capture_output=True, encoding="utf8", stdin=fin, check=True
+                )
+
+            test_input = pypandoc.convert_text(
+                str(filter_out.stdout), to="markdown", format="vimwiki"
+            )
+        else:
+            test_input = pypandoc.convert_file(
+                str(wiki_input), to="markdown", format="vimwiki", filters=[filters]
+            )
 
         markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output, mode="r") as f:
@@ -37,8 +53,7 @@ def pandoc_filter_fixture():
 
 
 @pytest.mark.parametrize(
-    "test_input, expected",
-    pandoc_filter_fixture(),
+    "test_input, expected", pandoc_filter_fixture(),
 )
 def test_pandoc_filter(test_input: str, expected: str):
     """Test pandoc python filters wiki to produce expected markdown.
