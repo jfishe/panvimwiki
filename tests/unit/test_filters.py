@@ -38,10 +38,12 @@ def pandoc_filter_fixture():
             test_input = pypandoc.convert_text(
                 str(filter_out.stdout), to="markdown", format="vimwiki"
             )
+            filter = 'plain_text_pre_filter/' + filter
         else:
             test_input = pypandoc.convert_file(
                 str(wiki_input), to="markdown", format="vimwiki", filters=[filter]
             )
+            filter = 'pandoc_filter/' + filter
 
         markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output, mode="r") as f:

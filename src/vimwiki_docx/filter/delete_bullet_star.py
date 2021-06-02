@@ -4,9 +4,9 @@
 Plain text filter
 """
 
-import fileinput
 import re
 from typing import Tuple
+from vimwiki_docx.filter.prefilter import prefilter
 
 
 def action(line: str):
@@ -36,11 +36,8 @@ def action(line: str):
 
 
 def main():
-    """Remove Non-task * bullet lines, e.g., * [[URI|Description]] or * Text."""
-    for line in fileinput.input():
-        if action(line) is not None:
-            print(line.rstrip("\n"))
-
+    """Filter stdio with action()."""
+    prefilter(action)
 
 if __name__ == "__main__":
     main()

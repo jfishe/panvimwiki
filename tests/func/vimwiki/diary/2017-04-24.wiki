@@ -35,6 +35,9 @@ Term 2:: should appear
   * [.] Bulleted list item 4 should appear  #1039a766
   * [[file:URI|Bulleted list item 5 should NOT appear]]
   * [[d|Bulleted list item 6 should NOT appear]]
+  * [S] Bulleted list item 2 should convert to [.] done1  #0b87d634
+  * [ ] Bulleted list item 3 should NOT appear  #91825f8f
+  * [X] Bulleted list done4 item 4 should appear  #f28405d6
 
 Del_empty_heading will remove the following, but del_taskwiki_heading will only
 remove the taskwiki heading:

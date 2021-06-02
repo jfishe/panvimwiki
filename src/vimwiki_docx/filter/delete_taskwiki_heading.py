@@ -16,11 +16,9 @@ def prepare(doc):
 def action(elem, doc):
     """Remove taskwiki heading."""
     regex = re.compile(r"\|.*$", re.MULTILINE)
-    # regex = r"\s\|.*$"
     subst = ""
 
     if isinstance(elem, pf.Header):
-        # result = re.sub(regex, subst, elem.identifier, 0, re.MULTILINE)
         result = re.sub(regex, subst, elem.identifier, 0)
         elem.content = pf.convert_text(result)[0].content
         elem.identifier = result

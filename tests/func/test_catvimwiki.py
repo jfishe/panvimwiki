@@ -90,7 +90,7 @@ def test_catdiary(catdiary_fixture):
     """
     containsnot, containsshould = search_not(catdiary_fixture)
     assert len(containsnot) == 7, containsnot
-    assert len(containsshould) == 23, containsshould
+    assert len(containsshould) == 24, containsshould
 
 
 def test_del_empty_heading(catdiary_fixture):
@@ -111,7 +111,7 @@ def test_del_empty_heading(catdiary_fixture):
     diaryout = del_empty_heading(catdiary_fixture)
     containsnot, containsshould = search_not(diaryout)
     assert len(containsnot) == 1, containsnot
-    assert len(containsshould) == 23, containsshould
+    assert len(containsshould) == 24, containsshould
 
 
 def test_no_del_empty_heading():
@@ -155,5 +155,5 @@ def test_del_taskwiki_heading(catdiary_fixture):
     diaryout = del_taskwiki_heading(catdiary_fixture)
     containsnot, containsshould = search_not(diaryout)
     assert len(containsnot) == 5, containsnot
-    assert len(containsshould) == 23, containsshould
+    assert len(containsshould) == 24, containsshould
 
