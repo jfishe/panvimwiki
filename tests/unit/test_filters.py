@@ -25,7 +25,7 @@ def pandoc_filter_fixture():
     filter_input: Path = Path(__file__).parents[0] / "filter"
 
     for wiki_input in chain(
-        prefilter_input.glob("*.wiki", filter_input.glob("*.wiki"))
+        prefilter_input.glob("*.wiki"), filter_input.glob("*.wiki")
     ):
         filter = str(wiki_input.with_suffix(".py").name)
 
@@ -51,7 +51,8 @@ def pandoc_filter_fixture():
 
 
 @pytest.mark.parametrize(
-    "test_input, expected", pandoc_filter_fixture(),
+    "test_input, expected",
+    pandoc_filter_fixture(),
 )
 def test_pandoc_filter(test_input: str, expected: str):
     """Test pandoc python filters wiki to produce expected markdown.
