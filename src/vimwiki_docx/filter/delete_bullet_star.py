@@ -2,42 +2,23 @@
 """Remove * bullet list items from unordered list.
 
 Plain text filter
+
+- Read stdin.
+- Remove non-task * bullet lines, e.g., * [[URI|Description]] or * Text.
+- Write filtered result to stdout.
 """
 
-import re
-from typing import Tuple
 from vimwiki_docx.filter.prefilter import prefilter
 
 
-def action(line: str):
-    r"""Regex to remove matching lines from Vimwiki entries.
-
-        - Non-task * bullet lines, e.g., * [[URI|Description]] or * Text
-
-    Parameters
-    ----------
-    line : Text to filter
-
-    Returns
-    -------
-    Line that does not match the filter  r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
-
-    """
-    regex: Tuple[str, ...] = (
-        # Regex bullet *
-        r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
-    )
-
-    pattern = re.compile(r"|".join(regex))
-
-    if re.search(pattern, line) is None:
-        return line
-    return None
+DELETE = r"^\s{0,}\*\s((?!\[\S\]\s).)*$"
+REPLACE = None
 
 
 def main():
     """Filter stdio with action()."""
-    prefilter(action)
+    prefilter(delete=DELETE, replace=REPLACE)
+
 
 if __name__ == "__main__":
     main()
