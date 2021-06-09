@@ -5,13 +5,10 @@ import fileinput
 import os
 import re
 from pathlib import Path
-from typing import Tuple
-
-# from dateutil import parser
 from dateutil.relativedelta import MO, TH, relativedelta
 
 
-def get_last_thursday(today: datetime.date = datetime.date.today()) -> datetime.date:
+def get_last_thursday(today: datetime.date = None) -> datetime.date:
     """Return datetime for closest Thursday before today.
 
     Parameters
@@ -23,10 +20,12 @@ def get_last_thursday(today: datetime.date = datetime.date.today()) -> datetime.
     Previous Thursday before today, unless today is Thursday.
 
     """
+    if today is None:
+        today = datetime.date.today()
     return today + relativedelta(weekday=TH(-1))
 
 
-def get_last_monday(today: datetime.date = datetime.date.today()) -> datetime.date:
+def get_last_monday(today: datetime.date = None) -> datetime.date:
     """Return datetime for closest Monday before today.
 
     Parameters
@@ -38,6 +37,8 @@ def get_last_monday(today: datetime.date = datetime.date.today()) -> datetime.da
     Previous Monday before today, unless today is Monday.
 
     """
+    if today is None:
+        today = datetime.date.today()
     return today + relativedelta(weekday=MO(-1))
 
 
@@ -45,16 +46,10 @@ def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
     wikidiary: Path = Path.home() / "vimwiki/diary",
-    refilter: Tuple[str, ...] = (
-        # Regex vimwiki tags.
-        r"^:.*:$",
-        # Regex task [ ]
-        r"\s\[\s\]",
-        # Regex bullet *
-        r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
-    ),
 ) -> Path:
-    r"""Concatenate Vimwiki diary files and apply regex filter.
+    """Concatenate Vimwiki diary files.
+
+    Assume diary wiki files are named using ISO date, e.g., `2021-06-09.wiki`.
 
     Parameters
     ----------
@@ -64,22 +59,6 @@ def catdiary(
 
     wikidiary : Path to Vimwiki diary directory. Defaults to
                 `$HOME/vimwiki/diary`.
-
-    refilter : Regex to remove matching lines from Vimwiki diary entries.
-               Defaults to removing:
-
-               - Vimwiki tag lines, e.g., :tag1:tag2:
-               - Not started tasks, e.g., - [ ] Task1
-               - Non-task * bullet lines, e.g., * [[URI|Description]] or * Text
-
-               ```
-               # Regex vimwiki tags.
-               r"^:.*:$",
-               # Regex task [ ]
-               r"\s\[\s\]",
-               # Regex bullet *
-               r"^\s{0,}\*\s((?!\[\S\]\s).)*$",
-               ```
 
     Returns
     -------
@@ -106,14 +85,11 @@ def catdiary(
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"
 
-    pattern = re.compile(r"|".join(refilter))
-
     with open(diaryout, "w", encoding="utf8") as fout, fileinput.input(
-        diaryin, openhook=fileinput.hook_encoded("utf-8")
+        files=diaryin, openhook=fileinput.hook_encoded("utf-8")
     ) as fin:
         for line in fin:
-            if re.search(pattern, line) is None:
-                fout.write(line)
+            fout.write(line)
 
     return diaryout
 
