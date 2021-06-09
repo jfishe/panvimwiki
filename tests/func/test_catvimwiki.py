@@ -89,7 +89,7 @@ def test_catdiary(catdiary_fixture):
 
     """
     containsnot, containsshould = search_not(catdiary_fixture)
-    assert len(containsnot) == 7, containsnot
+    assert len(containsnot) == 17, containsnot
     assert len(containsshould) == 24, containsshould
 
 
@@ -110,7 +110,7 @@ def test_del_empty_heading(catdiary_fixture):
     """
     diaryout = del_empty_heading(catdiary_fixture)
     containsnot, containsshould = search_not(diaryout)
-    assert len(containsnot) == 1, containsnot
+    assert len(containsnot) == 11, containsnot
     assert len(containsshould) == 24, containsshould
 
 
@@ -137,7 +137,30 @@ def test_no_del_empty_heading():
     assert modified == diaryout.stat().st_mtime
 
 
-def test_del_taskwiki_heading(catdiary_fixture):
+@pytest.mark.parametrize(
+    "reheading, not_count, should_count",
+    [
+        pytest.param(
+            (
+                # Match start of line with one or more heading delimeters.
+                # Group 1 captures the number of heading delimeters.
+                r"^(=+)"
+                # Match any characters, except pipe, the taskwiki delimeter.
+                # Group 2 captures the heading we're keeping.
+                r"([^|]+)"
+                # Match space pipe, which starts taskwiki heading.
+                r"\s\|.+"
+                # Match space followed by Group 1.
+                r"\s\1$"
+            ),
+            15,
+            24,
+            id="default regex",
+        ),
+        pytest.param(r"bB", 17, 24, id="Non-matching regex"),
+    ],
+)
+def test_del_taskwiki_heading(reheading, not_count, should_count, catdiary_fixture):
     """Test del_taskwiki_heading removes all but 1 `not`.
 
     Remove `should NOT appear` empty headings.
@@ -152,8 +175,7 @@ def test_del_taskwiki_heading(catdiary_fixture):
     None
 
     """
-    diaryout = del_taskwiki_heading(catdiary_fixture)
+    diaryout = del_taskwiki_heading(catdiary_fixture, reheading=reheading)
     containsnot, containsshould = search_not(diaryout)
-    assert len(containsnot) == 5, containsnot
-    assert len(containsshould) == 24, containsshould
-
+    assert len(containsnot) == not_count, containsnot
+    assert len(containsshould) == should_count, containsshould
