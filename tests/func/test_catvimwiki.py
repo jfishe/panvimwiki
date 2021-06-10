@@ -10,7 +10,6 @@ import pytest
 
 from vimwiki_docx.catvimwiki import (
     catdiary,
-    get_last_monday,
     del_empty_heading,
     del_taskwiki_heading,
 )
@@ -44,27 +43,6 @@ def search_not(diaryout: Path) -> Tuple[List[str], ...]:
                 containsshould.append(research.string)
 
     return containsnot, containsshould
-
-
-@pytest.fixture
-def catdiary_fixture() -> Path:
-    """Concatenate Vimwiki diary entries two non-contiguous days.
-
-    Concatenate `vimwiki/diary/2017-04-24.wiki` and
-    `vimwiki/diary/2017-04-26.wiki`. When provided enddate 2017-04-27
-    Use get_last_monday(test_input) for startdate. Should not fail when other
-    days between Monday and Thursday are missing.
-
-    Returns
-    -------
-    Path to concatenated Vimwiki diary
-
-    """
-    test_input = "2017-04-27"
-    wikidiary: Path = Path(__file__).parents[0] / "vimwiki/diary"
-    enddate: datetime.date = datetime.date.fromisoformat(test_input)
-    startdate: datetime.date = get_last_monday(enddate)
-    return catdiary(startdate, enddate, wikidiary)
 
 
 def test_catdiary(catdiary_fixture):
