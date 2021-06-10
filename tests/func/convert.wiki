@@ -1,0 +1,61 @@
+= Journal 2017-04-24 =
+
+== Ordered List ==
+:TagShouldNotAppear:
+
+1. [X] OrderedList done4 should appear
+       :InlineTagShouldAppear:
+       Continuation should appear--avoid hard wrap!
+3. [.] OrderedList done1 should appear
+  a) [.] OrderedList a) done1 should appear
+4. [o] OrderedList done2 should appear
+5. [O] OrderedList done3 should appear
+6. [-] OrderedList doneX should appear
+7. OrderedList should appear
+  a) OrderedList a) should appear
+
+=== Definition List ===
+
+Term 1:: Definition 1 should appear
+Term 2:: should appear
+:: Definition 2 should appear
+:: Definition 3 should appear
+
+=== Unordered lists ===
+  - Bulleted list item 1 should appear
+  - Bulleted list item 1 should appear :InlineTagShouldAppear:InlineTagShouldAppear:
+  - Bulleted list item 2 should appear
+  - [.] Bulleted list item 4 should appear
+  * [.] Bulleted list item 4 should appear  #1039a766
+  * [.] Bulleted list item 2 should convert to [.] done1  #0b87d634
+  * [X] Bulleted list done4 item 4 should appear  #f28405d6
+
+Del_empty_heading will remove the following, but del_taskwiki_heading will only
+remove the taskwiki heading:
+
+=== Should include heading | should not appear | should not appear ===
+==== Should include heading || should not appear || should not appear ====
+
+=== Text ===
+
+Normal text should appear with only one blank line preceding next heading.
+
+
+== Empty Heading with multiple blank lines should NOT appear ==
+
+
+== Empty Parent Heading with empty child heading should NOT appear ==
+
+=== Empty Child Heading should NOT appear ===
+
+== Empty Parent Heading with Non-Empty Child should appear ==
+
+=== Non-Empty Child Heading should appear ===
+
+Non-Empty Child text should appear.
+
+=== Empty heading at EOF should NOT appear ===
+= Journal 2017-04-26 =
+
+Should concatenate non-contiguous Monday and Wednesday and ignore missing
+Tuesday and Thursday. Spurious not for test validation.

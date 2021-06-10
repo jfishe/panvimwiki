@@ -2,14 +2,14 @@
 
 import datetime
 from pathlib import Path
-
 import pytest
+from typing import Generator
 
 from vimwiki_docx.catvimwiki import catdiary, get_last_monday
 
 
-@pytest.fixture(scope="module")
-def catdiary_fixture() -> Path:
+@pytest.fixture(scope="function")
+def catdiary_fixture() -> Generator[Path, None, None]:
     """Concatenate Vimwiki diary entries two non-contiguous days.
 
     Concatenate `vimwiki/diary/2017-04-24.wiki` and
@@ -26,4 +26,6 @@ def catdiary_fixture() -> Path:
     wikidiary: Path = Path(__file__).parents[0] / "func/vimwiki/diary"
     enddate: datetime.date = datetime.date.fromisoformat(test_input)
     startdate: datetime.date = get_last_monday(enddate)
-    return catdiary(startdate, enddate, wikidiary)
+    wiki_output = catdiary(startdate, enddate, wikidiary)
+    yield wiki_output
+    wiki_output.unlink()
