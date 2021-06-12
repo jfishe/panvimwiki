@@ -12,6 +12,7 @@ dependencies:
   - pyscaffoldext-markdown
   - pytest
   - pytest-cov
+  - pytest-freezegun
   - sphinx
   - tox
   - virtualenv
