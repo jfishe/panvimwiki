@@ -64,8 +64,8 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
 
         from pathlib import Path
 
-        from vimwiki_docx.catvimwiki import del_empty_heading, del_taskwiki_heading
         from vimwiki_docx.vimwiki_week import concatenate_diary
+        from vimwiki_docx.convert import convert
 
         end_date: str = vim.eval(r"l:today")
 
@@ -75,44 +75,35 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
         else:
             start_date = end_date
 
-        diary: Path = concatenate_diary(
+        inputfile: Path = concatenate_diary(
             start_date = start_date,
             end_date = end_date,
             diary_path = vim.eval(r"l:diary_path")
         )
 
-        diary = del_taskwiki_heading(del_empty_heading(diary))
+        to: str = "docx"
+        outputfile: Path = inputfile.with_suffix(("." + to))
+
+        extra_args = [
+            "--shift-heading-level-by",
+            vim.eval(r"a:shiftheading"),
+        ]
+        datadir = vim.eval(r"l:datadir")
+        if datadir != "":
+            extra_args.extend(["--data-dir", datadir,])
+
+        convert(
+            inputfile=str(inputfile),
+            outputfile=str(outputfile),
+            to=to,
+            extra_args=extra_args,
+        )
     EOF
 
 
-    " help taskwiki_disable
-    let l:undo_taskwiki_disable = get(g:, 'taskwiki_disable', '')
-    if empty('l:taskwiki_disable')
-        let g:taskwiki_disable = 'disable'
-    endif
-
-    silent execute 'tabedit'  py3eval('str(diary)')
-    silent VimwikiRenumberAllLists
-    silent update
-
-    " TODO: refactor to separate function.
-    let l:input = expand('%')
-    let l:output = expand('%:p:r').'.docx'
-
-    let l:cmd = 'pandoc --from=vimwiki --to=docx'
-                \ .' --shift-heading-level-by='.a:shiftheading
-    if l:datadir !=? ''
-        let l:cmd = l:cmd.' --data-dir='.shellescape(l:datadir)
-    endif
-    let l:cmd = l:cmd.' --output='.shellescape(l:output)
-
-    if has('win32') || has('win64')
-      silent execute '!start /b' l:cmd l:input
-    else
-      silent execute '!' l:cmd l:input
-    endif
-
     " Copy path to MS Word file to clipboard.
+    let l:output = py3eval('str(outputfile)')
+
     if has('win32') || has('win64')
         let @+ = l:output
     elseif executable('wslpath')
@@ -121,18 +112,11 @@ function! vimwiki_pandoc#convert_week(bang, shiftheading, ...) abort "{{{
 
     " Open in MS Word.
     if a:bang
-        silent tabclose
         if (has('win32') || has('win64'))
             silent execute '!start /b' shellescape(l:output)
         elseif executable('wslpath')
             silent execute system('wslview $(wslpath -w '..shellescape(l:output)..')')
         endif
-    else
-        edit
-    endif
-
-    if empty('l:taskwiki_disable')
-        unlet g:taskwiki_disable
     endif
 endfunction "}}}
 
