@@ -1,6 +1,7 @@
 """Process filters."""
 
 import subprocess
+from pathlib import Path
 from typing import Tuple
 
 import pypandoc
@@ -14,6 +15,12 @@ FILTER = (
     "delete_tag_lines.py",
     "delete_taskwiki_heading.py",
 )
+EXTRA_ARGS = (
+    "--shift-heading-level-by",
+    "1",
+    "--data-dir",
+    str(Path.home() / "vimwiki_html/templates"),
+)
 
 
 def convert(
@@ -22,6 +29,7 @@ def convert(
     to: str = "markdown",
     prefilters: Tuple[str, ...] = PREFILTER,
     filters: Tuple[str, ...] = FILTER,
+    extra_args: Tuple[str, ...] = EXTRA_ARGS,
 ):
     """Convert Vimwiki with pandoc after applying prefilters and pandoc filters.
 
@@ -43,6 +51,10 @@ def convert(
               for provided filters. Any valid
               `pandoc --filter <filter name>` should work.
 
+    extra_args : Additional pandoc arguments and parameters.
+                 See `pydoc pypandoc.convert_text`
+                 for details and `pandoc --help` for valid content.
+
     Returns
     -------
     None
@@ -63,10 +75,16 @@ def convert(
         source = filter_out.stdout
 
     # Pandoc Filter
+    if extra_args is None:
+        extraargs = ()
+    else:
+        extraargs = extra_args
+
     pypandoc.convert_text(
         source=source,
         to=to,
         format="vimwiki",
         filters=filters,
         outputfile=outputfile,
+        extra_args=extraargs,
     )
