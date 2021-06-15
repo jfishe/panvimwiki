@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Remove empty headings from Vimwiki file.
 
+Headings are not empty if they contain tag lines. Execute `delete_tag_lines.py`
+first to empty such headings.
+
 Pandoc filter using panflute
 """
 

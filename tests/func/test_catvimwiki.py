@@ -67,7 +67,7 @@ def test_catdiary(catdiary_fixture):
 
     """
     containsnot, containsshould = search_not(catdiary_fixture)
-    assert len(containsnot) == 17, containsnot
+    assert len(containsnot) == 21, containsnot
     assert len(containsshould) == 24, containsshould
 
 
@@ -88,7 +88,7 @@ def test_del_empty_heading(catdiary_fixture):
     """
     diaryout = del_empty_heading(catdiary_fixture)
     containsnot, containsshould = search_not(diaryout)
-    assert len(containsnot) == 11, containsnot
+    assert len(containsnot) == 15, containsnot
     assert len(containsshould) == 24, containsshould
 
 
@@ -131,11 +131,11 @@ def test_no_del_empty_heading():
                 # Match space followed by Group 1.
                 r"\s\1$"
             ),
-            15,
+            19,
             24,
             id="default regex",
         ),
-        pytest.param(r"bB", 17, 24, id="Non-matching regex"),
+        pytest.param(r"bB", 21, 24, id="Non-matching regex"),
     ],
 )
 def test_del_taskwiki_heading(reheading, not_count, should_count, catdiary_fixture):

@@ -63,4 +63,10 @@ Normal text should appear with only one blank line preceding next heading.
 
 Non-Empty Child text should appear.
 
+== Empty Parent Heading with empty child heading and tag line should NOT appear ==
+:TagShouldNotAppear:
+
+=== Empty Child Heading with tag line should NOT appear ===
+:TagShouldNotAppear:
+
 === Empty heading at EOF should NOT appear ===

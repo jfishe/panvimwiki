@@ -12,9 +12,9 @@ from vimwiki_docx.vimwiki_week import concatenate_diary
 @pytest.mark.parametrize(
     "start_date, end_date, expected",
     [
-        pytest.param(None, None, (2, 2334), id="No start or end date"),
+        pytest.param(None, None, (2, 2521), id="No start or end date"),
         pytest.param(
-            "2017-04-24", "2017-04-26", (2, 2334), id="Specify start and end dates"
+            "2017-04-24", "2017-04-26", (2, 2521), id="Specify start and end dates"
         ),
     ],
 )

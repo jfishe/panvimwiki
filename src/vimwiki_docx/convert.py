@@ -11,8 +11,8 @@ PREFILTER = (
     "delete_task_pending.py",
 )
 FILTER = (
-    "delete_empty_heading.py",
     "delete_tag_lines.py",
+    "delete_empty_heading.py",
     "delete_taskwiki_heading.py",
 )
 EXTRA_ARGS = (

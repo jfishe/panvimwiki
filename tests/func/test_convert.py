@@ -17,8 +17,8 @@ PREFILTER = (
     "delete_task_pending.py",
 )
 FILTER = (
-    "delete_empty_heading.py",
     "delete_tag_lines.py",
+    "delete_empty_heading.py",
     "delete_taskwiki_heading.py",
 )
 EXTRA_ARGS = (
@@ -29,20 +29,43 @@ EXTRA_ARGS = (
     "--verbose",
 )
 
+FILTER_WITH_WRONG_ORDER = (
+    "delete_empty_heading.py",
+    "delete_tag_lines.py",
+    "delete_taskwiki_heading.py",
+)
+
 
 @pytest.mark.parametrize(
-    "convert_expected, to, extra_args",
+    "convert_expected, to, extra_args, filters",
     [
-        pytest.param(RESULT_PATH / "convert.md", "markdown", None, id="markdown"),
-        pytest.param(RESULT_PATH / "convert.docx", "docx", None, id="docx"),
+        pytest.param(
+            RESULT_PATH / "convert.md", "markdown", None, FILTER, id="markdown"
+        ),
+        pytest.param(
+            RESULT_PATH / "convert.md",
+            "markdown",
+            None,
+            FILTER_WITH_WRONG_ORDER,
+            id="filter_disorder",
+            marks=pytest.mark.xfail(
+                reason="delete_empty_heading.py before delete_tag_lines.py",
+            ),
+        ),
+        pytest.param(RESULT_PATH / "convert.docx", "docx", None, FILTER, id="docx"),
         pytest.param(
             RESULT_PATH / "convert_shift.md",
             "markdown",
             EXTRA_ARGS,
+            FILTER,
             id="markdown_extra_args",
         ),
         pytest.param(
-            RESULT_PATH / "convert_shift.docx", "docx", EXTRA_ARGS, id="docx_extra_args"
+            RESULT_PATH / "convert_shift.docx",
+            "docx",
+            EXTRA_ARGS,
+            FILTER,
+            id="docx_extra_args",
         ),
     ],
 )
@@ -51,6 +74,7 @@ def test_convert(
     convert_expected: Path,
     to: str,
     extra_args: Tuple,
+    filters: Tuple,
 ):
     """Test prefilters and filters in series against expected output."""
     # Setup
@@ -62,7 +86,7 @@ def test_convert(
         outputfile=str(outputfile),
         to=to,
         prefilters=PREFILTER,
-        filters=FILTER,
+        filters=filters,
         extra_args=extra_args,
     )
 
