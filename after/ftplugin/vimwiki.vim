@@ -15,11 +15,11 @@ set cpo&vim
 
 if !exists(":VimwikiConvertWeek")
   command -buffer -bang -nargs=0 VimwikiConvertWeek
-        \ call vimwiki_pandoc#convert_week(<bang>0, 1)
+        \ call vimwiki_pandoc#convert(<bang>0, 1, 1)
 endif
-if !exists(":VimwikiConvertToday")
-  command -buffer -bang -nargs=0 VimwikiConvertToday
-        \ call vimwiki_pandoc#convert_week(<bang>0, 1, 1)
+if !exists(":VimwikiConvert")
+  command -buffer -bang -nargs=0 VimwikiConvert
+        \ call vimwiki_pandoc#convert(<bang>0, 1)
 endif
 
 let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
@@ -27,7 +27,7 @@ if !empty('b:undo_ftplugin')
   let b:undo_ftplugin ..= " | "
 endif
 let b:undo_ftplugin ..= "delcommand VimwikiConvertWeek"
-      \ .. " | delcommand VimwikiConvertToday"
+      \ .. " | delcommand VimwikiConvert"
       \ .. " | unlet b:did_ftplugin_vimwiki_pandoc"
 
 let &cpo = s:save_cpo
