@@ -13,13 +13,13 @@ let b:did_ftplugin_vimwiki_pandoc = 1  " Don't load another plugin for this buff
 let s:save_cpo = &cpo
 set cpo&vim
 
-if !exists(":VimwikiConvertWeek")
-  command -buffer -bang -nargs=0 VimwikiConvertWeek
-        \ call vimwiki_pandoc#convert(<bang>0, 1, 1)
-endif
 if !exists(":VimwikiConvert")
   command -buffer -bang -nargs=0 VimwikiConvert
         \ call vimwiki_pandoc#convert(<bang>0, 1)
+endif
+if !exists(":VimwikiConvertWeek")
+  command -buffer -bang -nargs=0 VimwikiConvertWeek
+        \ call vimwiki_pandoc#convert(<bang>0, 1, 1)
 endif
 
 let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
