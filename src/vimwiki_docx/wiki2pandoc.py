@@ -5,8 +5,9 @@ try:
 except ModuleNotFoundError:
     pass
 
-from pathlib import Path
+import os
 
+from pathlib import Path
 from vimwiki_docx.vimwiki_week import concatenate_diary
 from vimwiki_docx.convert import convert
 
@@ -35,7 +36,9 @@ def wiki2pandoc() -> str:
     else:
         inputfile = Path(vim.eval(r"expand('%:p')"))
 
+    tmppath: str = os.getenv("TMP", os.getcwd())
     outputfile: Path = inputfile.with_suffix(("." + to))
+    outputfile = Path(tmppath) / outputfile.name
 
     extra_args = [
         "--shift-heading-level-by",

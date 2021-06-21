@@ -94,7 +94,7 @@ function! vimwiki_pandoc#convert(bang, shiftheading, ...) abort "{{{
         if (has('win32') || has('win64'))
             silent execute '!start /b' shellescape(l:output)
         elseif executable('wslpath')
-            silent execute system('wslview $(wslpath -w '..shellescape(l:output)..')')
+            silent execute system('wslview "$(wslpath -w '..shellescape(l:output)..')"')
         endif
     endif
 endfunction "}}}
