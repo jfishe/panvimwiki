@@ -19,12 +19,15 @@ def action(elem, doc):
 
     In-line tags in paragraphs and lists remain.
     """
-    if (
-        isinstance(elem, pf.Para)
-        and isinstance(elem.content[0], pf.Span)
-        and elem.content[-1].classes == ["tag"]
-    ):
-        return []
+    try:
+        if (
+            isinstance(elem, pf.Para)
+            and isinstance(elem.content[0], pf.Span)
+            and elem.content[-1].classes == ["tag"]
+        ):
+            return []
+    except AttributeError:
+        raise AttributeError("Vimwiki tagline should follow the item tagged. Try moving the tagline below the paragraph.")
     # return None -> element unchanged
     # return [] -> delete element
     return None

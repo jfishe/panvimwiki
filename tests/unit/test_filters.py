@@ -38,12 +38,12 @@ def pandoc_filter_fixture():
             test_input = pypandoc.convert_text(
                 str(filter_out.stdout), to="markdown", format="vimwiki"
             )
-            filter = 'plain_text_pre_filter/' + filter
+            filter = "plain_text_pre_filter/" + filter
         else:
             test_input = pypandoc.convert_file(
                 str(wiki_input), to="markdown", format="vimwiki", filters=[filter]
             )
-            filter = 'pandoc_filter/' + filter
+            filter = "pandoc_filter/" + filter
 
         markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output, mode="r") as f:
@@ -71,3 +71,29 @@ def test_pandoc_filter(test_input: str, expected: str):
 
     """
     assert test_input == expected
+
+
+def test_delete_tag_lines_disorder():
+    """Given tagline above tagged paragraph, raise AttributeError with helpful error message."""
+    tagline = (
+        r":TagShouldNotAppear:TagShouldNotAppear2:"
+        "\n"
+        r"[[mailto:Hancock, John R. <none@nowhere.org>|Hancock, John R.]]:: "
+        r"below the tagline. "
+        r"Pandoc Vimwiki reader parses this as one paragraph, "
+        r"with a Softbreak between."
+        "\n"
+    )
+    match = (
+        "Vimwiki tagline should follow the item tagged. "
+        "Try moving the tagline below the paragraph."
+    )
+    with pytest.raises(RuntimeError, match=match) as excinfo:
+        pypandoc.convert_text(
+            tagline,
+            to="markdown",
+            format="vimwiki",
+            filters=["delete_tag_lines.py"],
+            encoding="utf8",
+        )
+    assert "AttributeError" in str(excinfo.value)
