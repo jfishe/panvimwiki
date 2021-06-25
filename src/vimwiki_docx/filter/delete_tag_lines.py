@@ -27,6 +27,7 @@ def action(elem, doc):
         ):
             return []
     except AttributeError:
+        pf.debug(elem.content)
         raise AttributeError("Vimwiki tagline should follow the item tagged. Try moving the tagline below the paragraph.")
     # return None -> element unchanged
     # return [] -> delete element
