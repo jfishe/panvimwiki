@@ -5,14 +5,20 @@ try:
 except ModuleNotFoundError:
     pass
 
-import os
-
 from pathlib import Path
 from vimwiki_docx.vimwiki_week import concatenate_diary
 from vimwiki_docx.convert import convert
+from vim_bridge import bridged
 
 
-def wiki2pandoc() -> str:
+@bridged
+def wiki2pandoc(
+    is_diary: str,
+    is_concatenate: str,
+    to: str = "docx",
+    end_date: str = None,
+    start_date: str = None,
+) -> str:
     """Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
 
     Returns
@@ -20,44 +26,45 @@ def wiki2pandoc() -> str:
     Absolute path to converted Vimwiki file
 
     """
-    isdiary: bool = vim.eval(r"l:isdiary")
-    today_only: bool = vim.eval(r"l:today_only")
-    to: str = vim.eval(r"l:format")
+    isdiary: bool = bool(int(is_diary))
+    isconcatenate: bool = bool(int(is_concatenate))
 
-    if isdiary and today_only is False:
-        end_date: str = vim.eval(r"l:today")
-        start_date = None
-
+    if isdiary and isconcatenate:
+        if end_date == "":
+            end_date = None
+        if start_date == "":
+            start_date = None
+        diary_path = vim.eval(
+            r"vimwiki#path#path_norm("
+            r"vimwiki#path#join_path("
+            r"vimwiki#vars#get_wikilocal('path'),"
+            r"vimwiki#vars#get_wikilocal('diary_rel_path')"
+            r"))"
+        )
         inputfile: Path = concatenate_diary(
             start_date=start_date,
             end_date=end_date,
-            diary_path=vim.eval(r"l:diary_path"),
+            diary_path=diary_path,
         )
     else:
         inputfile = Path(vim.eval(r"expand('%:p')"))
 
-    tmppath: str = os.getenv("TMP", os.getcwd())
+    path_html = vim.eval(
+        r"vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html'))"
+    )
+
     outputfile: Path = inputfile.with_suffix(("." + to))
-    outputfile = Path(tmppath) / outputfile.name
 
-    extra_args = [
-        "--shift-heading-level-by",
-        vim.eval(r"a:shiftheading"),
-    ]
-    datadir: str = vim.eval(r"l:datadir")
-    if datadir != "":
-        extra_args.extend(
-            [
-                "--data-dir",
-                datadir,
-            ]
-        )
+    outputfile = Path(path_html).parent / Path(to) / outputfile.name
 
+    extra_args = vim.eval(r"get(g:wiki2pandoc_settings, 'extra_args')")
+    if extra_args == "0":
+        extra_args = []
     convert(
         inputfile=str(inputfile),
         outputfile=str(outputfile),
         to=to,
-        extra_args=extra_args,
+        extra_args=tuple(extra_args),
     )
 
     return str(outputfile)

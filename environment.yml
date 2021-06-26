@@ -16,3 +16,5 @@ dependencies:
   - sphinx
   - tox
   - virtualenv
+  - pip:
+    - vim_bridge3
