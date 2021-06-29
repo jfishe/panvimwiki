@@ -54,8 +54,8 @@ def wiki2pandoc(
     )
 
     outputfile: Path = inputfile.with_suffix(("." + to))
-
     outputfile = Path(path_html).parent / Path(to) / outputfile.name
+    outputfile.parent.mkdir(parents=True, exist_ok=True)
 
     extra_args = vim.eval(r"get(g:wiki2pandoc_settings, 'extra_args')")
     if extra_args == "0":
