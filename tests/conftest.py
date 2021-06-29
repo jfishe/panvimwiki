@@ -32,3 +32,21 @@ def catdiary_fixture() -> Generator[Path, None, None]:
 
     # Teardown
     wiki_output.unlink()
+
+def vimserver():
+    """TODO: Docstring for vimserver.
+    Returns
+    -------
+    TODO
+
+    """
+    vim_invocation = ("vim -Nu <(cat << EOF"
+"filetype off"
+"set rtp+=.vim/bundle/vader.vim"
+"set rtp+=.vim/bundle/vimwiki"
+"set rtp+=.vim/bundle/vimwiki_docx"
+"set rtp+=.vim/bundle/vimwiki_docx/after"
+"filetype plugin indent on"
+"syntax enable"
+"EOF"")")
+
