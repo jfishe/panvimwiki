@@ -1,20 +1,10 @@
-Execute (VimwikiConvert missing vimwiki_html/docx):
-  Log getcwd()
-  edit vimwiki/diary/2017-04-24.wiki
-  AssertThrows VimwikiConvert
-  Log g:vader_exception
-  Log g:vader_throwpoint
-  AssertEqual g:vader_exception[-61:-4], 'openBinaryFile: does not exist (No such file or directory)'
-
-Execute (VimwikiConvert existing vimwiki_html/docx):
+Execute (VimwikiConvert to vimwiki_html/docx):
   let s:tmpdir = tempname()
   let g:html = s:tmpdir .. '/vimwiki_html/html'
   call vimwiki#vars#set_wikilocal('path_html', g:html, 0)
-  call mkdir(g:html, "p")
   Log resolve(vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html', 0)))
 
   let g:docx = s:tmpdir .. '/vimwiki_html/docx'
-  call mkdir(g:docx, "p")
   Log resolve(g:docx)
 
   edit vimwiki/diary/2017-04-24.wiki
