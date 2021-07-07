@@ -1,9 +1,6 @@
 """Vim interface to convert Vimwiki to another format using pandoc."""
 
-try:
-    import vim
-except ModuleNotFoundError:
-    pass
+import vim
 
 from pathlib import Path
 from vimwiki_docx.vimwiki_week import concatenate_diary

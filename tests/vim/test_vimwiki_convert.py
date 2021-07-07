@@ -1,24 +1,18 @@
-"""Test VimwikiConvert using Vader."""
+"""Test Wiki2pandoc using Vader.vim."""
 
 import subprocess
 import shlex
 from pathlib import Path
 
 
-def test_vimwiki_convert():
-    """TODO: Docstring for test.
+def test_vim_vader_all():
+    """Run Vader.vim on *.vader.
 
-    Parameters
-    ----------
-    function : TODO
-
-    Returns
-    -------
-    TODO
-
+    Pytest monitors python coverage and Vader runs Vim python modules--i.e., we
+    don't have to mock `import vim`. `run.sh` runs without Pytest.
     """
     cwd: Path = Path(__file__).parents[0]
-    vim_command = shlex.split("vim -Nu vimrc -Es -c 'Vader! VimwikiConvert.vader'")
+    vim_command = shlex.split("vim -Nu vimrc -Es -c 'Vader! *.vader'")
     test_input = subprocess.run(
         vim_command, capture_output=True, encoding="utf8", check=True, cwd=cwd
     )
