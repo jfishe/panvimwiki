@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - pandoc
-  - python <3.10
+  - python <3.9
   - pip
   - pre-commit
   - pypandoc
@@ -17,5 +17,5 @@ dependencies:
   - tox
   - virtualenv
   - pip:
-    - vim-tools
+    # - vim-tools
     - vim_bridge3
