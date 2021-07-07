@@ -18,7 +18,7 @@
 
 ## Taskwiki Unordered List {#Taskwiki Unordered List}
 
--   []{.done1}Bulleted list item 1 should appear \#4a7369ae
+-   []{.done1}Bulleted list item 1 should appear #4a7369ae
 -   []{.done1}Bulleted list item 2 should convert to \[.\] done1
-    \#d6198091
+    #d6198091
 -   []{.done4}Bulleted list done4 item 4 should appear

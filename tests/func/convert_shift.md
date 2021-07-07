@@ -33,10 +33,10 @@ Term 2
     .tag}
 -   Bulleted list item 2 should appear
 -   []{.done1}Bulleted list item 4 should appear
--   []{.done1}Bulleted list item 4 should appear \#1039a766
+-   []{.done1}Bulleted list item 4 should appear #1039a766
 -   []{.done1}Bulleted list item 2 should convert to \[.\] done1
-    \#0b87d634
--   []{.done4}Bulleted list done4 item 4 should appear \#f28405d6
+    #0b87d634
+-   []{.done4}Bulleted list done4 item 4 should appear #f28405d6
 
 Del_empty_heading will remove the following, but del_taskwiki_heading
 will only remove the taskwiki heading:
