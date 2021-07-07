@@ -1,11 +1,44 @@
-let vader_path = empty($VADER_PATH) ? '~/.vim/bundle/vader.vim' : $VADER_PATH
-let vimwiki_path = empty($VIMWIKI_PATH) ? '~/.vim/bundle/vimwiki' : $VIMWIKI_PATH
-
+set noloadplugins
 filetype off
+
+" Absolute path to this vimrc file.
+let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+" Default parent directory for Vimwiki files, converted output and templates.
+let s:my_wiki = s:vimdir
+let g:my_wiki = empty($MY_WIKI) ? s:my_wiki : $MY_WIKI
+
+" Bundle directory for plugins.
+let s:bundle = resolve(s:vimdir..'/bundle')
+let g:vader_path = empty($VADER_PATH) ? s:bundle..'/vader.vim' : $VADER_PATH
+let g:vimwiki_path = empty($VIMWIKI_PATH) ? s:bundle..'/vimwiki' : $VIMWIKI_PATH
+let g:vimwiki_docx_path = empty($VIMWIKI_DOCX_PATH) ? s:bundle..'/vimwiki_docx' : $VIMWIKI_DOCX_PATH
+
 
 execute 'set rtp+=' .. vader_path
 execute 'set rtp+=' .. vimwiki_path
-set rtp+=../..
+execute 'set rtp+=' .. vimwiki_docx_path
+execute 'set rtp+=' .. vimwiki_docx_path .. '/after'
+" Avoid sourcing user vimrc, plugin, which can override Vimwiki configuration
+" below
+execute 'set rtp-=' .. expand("~/.vim")
+execute 'set rtp-=' .. expand("~/.vim/after")
 
+" Configure Vimwiki
+let s:wiki_1 = {}
+let s:wiki_1.path = g:my_wiki . '/vimwiki/'
+let s:wiki_1.path_html = g:my_wiki . '/vimwiki_html/html'
+let s:wiki_1.template_path = g:my_wiki . '/vimwiki_html/templates/'
+let g:vimwiki_list = [ s:wiki_1 ]
+
+" Configure Vimwiki_docx
+let g:wiki2pandoc_settings = {}
+let g:wiki2pandoc_settings.extra_args = [
+      \ '--shift-heading-level-by', '1',
+      \ '--data-dir', s:wiki_1.template_path
+      \ ]
+let g:wiki2pandoc_settings.format = 'docx'
+
+set loadplugins
 filetype plugin indent on
 syntax enable
+" vim:tabstop=2:shiftwidth=2:expandtab:foldmethod=marker:textwidth=79
