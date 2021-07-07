@@ -38,6 +38,8 @@ htmlcov/*
 junit*.xml
 coverage.xml
 .pytest_cache/
+tests/vim/bundle/vader.vim/
+tests/vim/bundle/vimwiki/
 
 # Build and docs folder/files
 build/*
