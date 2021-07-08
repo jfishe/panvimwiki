@@ -15,6 +15,7 @@ def wiki2pandoc(
     to: str = "docx",
     end_date: str = None,
     start_date: str = None,
+    extra_args=None,
 ) -> str:
     """Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
 
@@ -25,6 +26,8 @@ def wiki2pandoc(
     """
     isdiary: bool = bool(int(is_diary))
     isconcatenate: bool = bool(int(is_concatenate))
+    if extra_args == "0":
+        extra_args = []
 
     if isdiary and isconcatenate:
         if end_date == "":
@@ -54,9 +57,6 @@ def wiki2pandoc(
     outputfile = Path(path_html).parent / Path(to) / outputfile.name
     outputfile.parent.mkdir(parents=True, exist_ok=True)
 
-    extra_args = vim.eval(r"get(g:wiki2pandoc_settings, 'extra_args')")
-    if extra_args == "0":
-        extra_args = []
     convert(
         inputfile=str(inputfile),
         outputfile=str(outputfile),

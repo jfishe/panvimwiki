@@ -26,7 +26,13 @@ function! vimwiki_pandoc#convert(bang, ...) abort "{{{
     " shiftheading : Pass value to pandoc, as in:
     "   `pandoc -shift-heading-level-by=<shiftheading>`
     " Path for Vimwiki Diary buffer
-    let l:format = get(g:wiki2pandoc_settings, 'format', 'docx')
+    if exists('g:wiki2pandoc_settings')
+        let l:format = get(g:wiki2pandoc_settings, 'format', 'docx')
+        let l:extra_args = get(g:wiki2pandoc_settings, 'extra_args', '0')
+    else
+        let l:format = 'docx'
+        let l:extra_args = '0'
+    endif
 
     let l:diary_path = vimwiki#path#path_norm(
         \ vimwiki#path#join_path(
@@ -58,7 +64,7 @@ function! vimwiki_pandoc#convert(bang, ...) abort "{{{
     python3 from vimwiki_docx.wiki2pandoc import wiki2pandoc
 
     " Vim_bridge embeds quotation marks in the string.
-    let l:output = Wiki2pandoc(l:is_diary, l:is_concatenate, l:format, l:end_date, '')[1:-2]
+    let l:output = Wiki2pandoc(l:is_diary, l:is_concatenate, l:format, l:end_date, '', l:extra_args)[1:-2]
 
     " Copy path to MS Word file to clipboard.
     if has('win32') || has('win64')
