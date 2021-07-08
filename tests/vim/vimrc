@@ -2,13 +2,13 @@ set noloadplugins
 filetype off
 
 " Absolute path to this vimrc file.
-let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Default parent directory for Vimwiki files, converted output and templates.
-let s:my_wiki = s:vimdir
+let s:my_wiki = g:vimdir
 let g:my_wiki = empty($MY_WIKI) ? s:my_wiki : $MY_WIKI
 
 " Bundle directory for plugins.
-let s:bundle = resolve(s:vimdir..'/bundle')
+let s:bundle = resolve(g:vimdir..'/bundle')
 let g:vader_path = empty($VADER_PATH) ? s:bundle..'/vader.vim' : $VADER_PATH
 let g:vimwiki_path = empty($VIMWIKI_PATH) ? s:bundle..'/vimwiki' : $VIMWIKI_PATH
 let g:vimwiki_docx_path = empty($VIMWIKI_DOCX_PATH) ? s:bundle..'/vimwiki_docx' : $VIMWIKI_DOCX_PATH

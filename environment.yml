@@ -19,3 +19,4 @@ dependencies:
   - pip:
     # - vim-tools
     - vim_bridge3
+    - covimerage

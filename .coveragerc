@@ -2,7 +2,9 @@
 [run]
 branch = True
 source = vimwiki_docx
-# omit = bad_file.py
+plugins = covimerage
+data_file = .coverage_covimerage
+# omit =
 
 [paths]
 source =

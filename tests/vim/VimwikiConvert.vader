@@ -1,4 +1,5 @@
 Before (Setup conversion output vimwiki/html, etc.):
+  call chdir(g:vimdir)
   let s:tmpdir = tempname()
   let g:html = s:tmpdir .. '/vimwiki_html/html'
   call vimwiki#vars#set_wikilocal('path_html', g:html, 0)

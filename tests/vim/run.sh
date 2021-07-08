@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-vim -Nu vimrc -Es -c 'Vader! *.vader'
+covimerage -v run vim -Nu vimrc -Es -c 'Vader! *.vader'
