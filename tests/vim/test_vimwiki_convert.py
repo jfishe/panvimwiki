@@ -12,9 +12,9 @@ def test_vim_vader_all():
     don't have to mock `import vim`. `run.sh` runs without Pytest.
     """
     cwd: Path = Path(__file__).parents[0]
-    vim_command = shlex.split("vim -Nu vimrc -Es -c 'Vader! *.vader'")
+    vim_command = shlex.split("vim -Nu tests/vim/vimrc -Es -c 'Vader! tests/vim/*.vader'")
     test_input = subprocess.run(
-        vim_command, capture_output=True, encoding="utf8", check=True, cwd=cwd
+        vim_command, capture_output=True, encoding="utf8", check=True,
     )
     print(test_input.stdout)
     print(test_input.stderr)
