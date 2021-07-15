@@ -34,12 +34,13 @@ tags
 htmlcov/*
 .coverage
 .coverage.*
+.coverage_*
 .tox
 junit*.xml
 coverage.xml
 .pytest_cache/
-tests/vim/bundle/vader.vim/
-tests/vim/bundle/vimwiki/
+tests/vim/bundle
+prepm.wiki
 
 # Build and docs folder/files
 build/*

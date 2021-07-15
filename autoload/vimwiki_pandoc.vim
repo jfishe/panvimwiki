@@ -43,10 +43,12 @@ function! vimwiki_pandoc#convert(bang, ...) abort "{{{
 
     if a:0 > 0
         let l:is_concatenate = 1
-        if ! vimwiki#path#is_equal(l:current_path, l:diary_path)
-            echomsg 'Vimwiki Pandoc Error: You can only concatenate Vimwiki Diary Notes.'
-            return
-        endif
+        try
+            if ! vimwiki#path#is_equal(l:current_path, l:diary_path)
+                throw 'Vimwiki Pandoc Error: You can only concatenate Vimwiki Diary Notes.'
+            endif
+        endtry
+
         let l:is_diary = 1
     elseif vimwiki#path#is_equal(l:current_path, l:diary_path)
         let l:is_diary = 1

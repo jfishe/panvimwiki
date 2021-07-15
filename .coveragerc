@@ -2,6 +2,10 @@
 [run]
 branch = True
 source = vimwiki_docx
+include =
+    autoload/*.vim
+    plugin/*.vim
+    after/*/*.vim
 plugins = covimerage
 data_file = .coverage_covimerage
 # omit =
@@ -10,6 +14,9 @@ data_file = .coverage_covimerage
 source =
     src/
     */site-packages/
+    autoload/
+    plugin/
+    after/
 
 [report]
 # Regexes for lines to exclude from consideration
@@ -28,3 +35,4 @@ exclude_lines =
     # Don't complain if non-runnable code isn't run:
     if 0:
     if __name__ == .__main__.:
+omit = tests/vim/bundle/*
