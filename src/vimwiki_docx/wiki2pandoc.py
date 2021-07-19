@@ -46,22 +46,19 @@ def wiki2pandoc(
             end_date=end_date,
             diary_path=diary_path,
         )
+        outputfile: Path = inputfile.with_suffix(("." + to))
     else:
         inputfile = Path(vim.eval(r"expand('%:p')"))
-
-    path_html = vim.eval(
-        r"vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html'))"
-    )
-
-    outputfile: Path = inputfile.with_suffix(("." + to))
-    if isdiary:
-        diary_rel_path = vim.eval(
-            r"vimwiki#vars#get_wikilocal('diary_rel_path')"
+        wiki_path = Path(
+            vim.eval(r"vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path'))")
         )
-        outputfile = Path(path_html).parent / Path(to) / Path(diary_rel_path) / outputfile.name
-    else:
-        outputfile = Path(path_html).parent / Path(to) / outputfile.name
-    outputfile.parent.mkdir(parents=True, exist_ok=True)
+
+        path_html = Path(
+            vim.eval(r"vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html'))")
+        )
+        outputfile = inputfile.with_suffix(("." + to))
+        outputfile = path_html.parent / Path(to) / outputfile.relative_to(wiki_path)
+        outputfile.parent.mkdir(parents=True, exist_ok=True)
 
     convert(
         inputfile=str(inputfile),
