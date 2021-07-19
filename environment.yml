@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - black
   - pandoc
   - python <3.9
   - pip
@@ -13,10 +14,14 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-freezegun
+  - pydocstyle
+  - flake8
+  - mypy
   - sphinx
   - tox
   - virtualenv
   - pip:
+    - pipx
     # - vim-tools
     - vim_bridge3
-    - covimerage
+    # - covimerage dependencies conflict with pytest. `pipx install covimerage` works.
