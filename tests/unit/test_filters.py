@@ -27,7 +27,7 @@ def pandoc_filter_fixture():
     for wiki_input in chain(
         prefilter_input.glob("*.wiki"), filter_input.glob("*.wiki")
     ):
-        filter = str(wiki_input.with_suffix(".py").name)
+        filter = str(wiki_input.stem)
 
         if prefilter_input == wiki_input.parent:
             with open(wiki_input, mode="r") as fin:
@@ -74,7 +74,11 @@ def test_pandoc_filter(test_input: str, expected: str):
 
 
 def test_delete_tag_lines_disorder():
-    """Given tagline above tagged paragraph, raise AttributeError with helpful error message."""
+    """test_delete_tag_lines_disorder.
+
+    Given tagline above tagged paragraph, raise AttributeError with helpful
+    error message.
+    """
     tagline = (
         r":TagShouldNotAppear:TagShouldNotAppear2:"
         "\n"
@@ -93,7 +97,7 @@ def test_delete_tag_lines_disorder():
             tagline,
             to="markdown",
             format="vimwiki",
-            filters=["delete_tag_lines.py"],
+            filters=["delete_tag_lines"],
             encoding="utf8",
         )
     assert "AttributeError" in str(excinfo.value)

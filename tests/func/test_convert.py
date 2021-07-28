@@ -13,13 +13,13 @@ RESULT_PATH: Path = Path(__file__).parents[0]
 DATA_DIR: Path = RESULT_PATH / "vimwiki_html/templates"
 
 PREFILTER = (
-    "delete_bullet_star.py",
-    "delete_task_pending.py",
+    "delete_bullet_star",
+    "delete_task_pending",
 )
 FILTER = (
-    "delete_tag_lines.py",
-    "delete_empty_heading.py",
-    "delete_taskwiki_heading.py",
+    "delete_tag_lines",
+    "delete_empty_heading",
+    "delete_taskwiki_heading",
 )
 EXTRA_ARGS = (
     "--shift-heading-level-by",
@@ -30,9 +30,9 @@ EXTRA_ARGS = (
 )
 
 FILTER_WITH_WRONG_ORDER = (
-    "delete_empty_heading.py",
-    "delete_tag_lines.py",
-    "delete_taskwiki_heading.py",
+    "delete_empty_heading",
+    "delete_tag_lines",
+    "delete_taskwiki_heading",
 )
 
 
@@ -49,7 +49,7 @@ FILTER_WITH_WRONG_ORDER = (
             FILTER_WITH_WRONG_ORDER,
             id="filter_disorder",
             marks=pytest.mark.xfail(
-                reason="delete_empty_heading.py before delete_tag_lines.py",
+                reason="delete_empty_heading before delete_tag_lines",
             ),
         ),
         pytest.param(RESULT_PATH / "convert.docx", "docx", None, FILTER, id="docx"),

@@ -7,13 +7,13 @@ from typing import Tuple
 import pypandoc
 
 PREFILTER = (
-    "delete_bullet_star.py",
-    "delete_task_pending.py",
+    "delete_bullet_star",
+    "delete_task_pending",
 )
 FILTER = (
-    "delete_tag_lines.py",
-    "delete_empty_heading.py",
-    "delete_taskwiki_heading.py",
+    "delete_tag_lines",
+    "delete_empty_heading",
+    "delete_taskwiki_heading",
 )
 EXTRA_ARGS = (
     "--shift-heading-level-by",
