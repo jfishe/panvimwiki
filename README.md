@@ -1,38 +1,74 @@
+# Filter and convert Vimwiki notes using pandoc
 
-## Description
+## Introduction
 
 Vimwiki_pandoc provides tools for conversion to Microsoft Word docx or other
-output formats supported by
-[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
+output formats supported by [Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
 Vimwiki_pandoc provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 
 ## Installation
 
-``` bash
+```bash
 git clone https://github.com/jfishe/vimwiki_docx.git $HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc
 pushd $HOME/.vim/pack/vimwiki/start/vimwiki_pandoc
 python -m pip install $HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc
 ```
 
 Vimwiki_pandoc requires Vim compiled with Python 3, so add the following to
-'~/.vim/vimrc' prior to `filetype plugin indent on`. See |:packadd| for an
+`|vimrc|` prior to `|:filetype-plugin-on|`. See `|:packadd|` for an
 explanation.
 
-``` vim
+```vim
 if has('python3')
   packadd! vimwiki_docx
 endif
 ```
 
+## Commands
+
+### Local Commands
+
+These commands are only available (and meaningful) when you are currently in a
+Vimwiki file.
+
+#### VimwikiConvert
+
+- `VimwikiConvert`: Convert the current Vimwiki buffer
+- `VimwikiConvert!`: Convert and open with default viewer.
+
+Convert the current Vimwiki `|buffer|` to the selected output format (default: docx) specified in `|g:vimwiki_pandoc_settings|`.format.
+
+Copy the path to the Word file to the clipboard register "+
+`|quoteplus|`. On Windows Subsystem for Linux (WSL), convert the path from
+POSIX to Windows before copying to clipboard.
+
+Remove extraneous info:
+
+- Vimwiki tag lines, e.g., :tag1:tag2:
+- Not started tasks, e.g., - [ ] Task1
+- Non-task _ bullet lines, e.g., _ [[URI|Description]] or \*
+  Text
+- Remove empty parent/child headings.
+
+#### VimwikiConvertWeek
+
+- `VimwikiConvertWeek`: Concatentate DiaryNotes for Monday through current buffer and convert.
+- `VimwikiConvertWeek!`: Concatenate, convert and open in default viewer.
+
+After concatenating DiaryNotes for the week, behave as `|VimwikiConvert|`.
+
 ## Options
 
-Optionally add the following to '~/.vim/vimrc' or, preferably,
-'~/.vim/plugin/vimwiki.vim'. Vimwiki_pandoc defaults to docx format, without extra_args.
-`g:wiki2pandoc_settings` 
+### Settings
 
-``` vim
-let g:wiki2pandoc_settings = {
+- `g:vimwiki_pandoc_settings`
+
+  Optionally add the following to `|vimrc|` or, preferably,
+  '~/.vim/plugin/vimwiki.vim'. Vimwiki_pandoc defaults to docx format, without extra_args.
+
+```vim
+let g:vimwiki_pandoc_settings = {
       \ 'extra_args': [ '--shift-heading-level-by', '1',
       \ '--data-dir', '~/vimwiki_html/templates/'
       \ ],
@@ -42,7 +78,7 @@ let g:wiki2pandoc_settings = {
 
 ## Development and Testing
 
-Because pandoc is required a conda environment called `pyscaffold` is created.
+Because pandoc is required, a conda environment called `pyscaffold` is created.
 The default name may be overridden with the `--name <environment name>`
 parameter.
 
@@ -65,41 +101,6 @@ tox -e vim # Run Vader tests and generate coverage report.
 # Run Vader tests and view results with Vim.
 vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 ```
-
-## Commands
-
-### Local Commands
-
-These commands are only available (and meaningful) when you are currently in a
-Vimwiki file.
-
-`:VimwikiConvert[!]`
-Convert the current DiaryNote (See |:VimwikiMakeDiaryNote|)
-|buffer| to Microsoft Word docx format.Remove extraneous
-info:
-
-- Vimwiki tag lines, e.g., :tag1:tag2:
-- Not started tasks, e.g., - [ ] Task1
-- Non-task _ bullet lines, e.g., _ [[URI|Description]] or \*
-  Text
-- Remove empty parent/child headings.
-
-Copy the path to the Word file to the clipboard register "+
-|quoteplus|.
-
-On Windows Subsystem for Linux (WSL), convert the path from
-POSIX to Windows before copying to clipboard.
-
-When the [!] is present, do not |:tabedit| the converted
-DiaryNote and attempt to open the docx file with the default
-program.
-
-:VimwikiConvertWeek[!] _:VimwikiConvertWeek_
-Concatentate the previous Monday through the current DiaryNote
-(See |:VimwikiMakeDiaryNote|) |buffer| and convert to
-Microsoft Word docx format.
-
-    	Otherwise behave as `:VimwikiConvertToday`.
 
 <!-- pyscaffold-notes -->
 
