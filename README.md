@@ -3,21 +3,38 @@
 ## Introduction
 
 Vimwiki_pandoc provides tools for conversion to Microsoft Word docx or other
-output formats supported by [Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
+output formats supported by
+[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
 Vimwiki_pandoc provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 
 ## Installation
 
+Vimwiki_pandoc requires
+[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
+Installation with conda is recommended because the system version, e.g., with
+Ubuntu, may be too old. Or download from the website.
+
+Using the Vim 8 native packages, vimwiki_pandoc should install in
+`pack/*/opt/vimwiki_pandoc` because it depends on `|python3|` and requires
+installation of the python package vimwiki_pandoc.
+
+From a bash shell, enter the following:
+
 ```bash
-git clone https://github.com/jfishe/vimwiki_docx.git $HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc
-pushd $HOME/.vim/pack/vimwiki/start/vimwiki_pandoc
-python -m pip install $HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc
+# Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/vimwiki_pandoc
+dest="$HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc"
+
+git clone https://github.com/jfishe/vimwiki_docx.git "$dest"
+
+# Activate the python environment used by Vim.
+python -m pip install "$dest"
 ```
 
 Vimwiki_pandoc requires Vim compiled with Python 3, so add the following to
 `|vimrc|` prior to `|:filetype-plugin-on|`. See `|:packadd|` for an
-explanation.
+explanation. Otherwise, install vimwiki_pandoc in
+`pack/*/start/vimwiki_pandoc`.
 
 ```vim
 if has('python3')
@@ -37,7 +54,8 @@ Vimwiki file.
 - `VimwikiConvert`: Convert the current Vimwiki buffer
 - `VimwikiConvert!`: Convert and open with default viewer.
 
-Convert the current Vimwiki `|buffer|` to the selected output format (default: docx) specified in `|g:vimwiki_pandoc_settings|`.format.
+Convert the current Vimwiki `|buffer|` to the selected output format (default:
+docx) specified in `|g:vimwiki_pandoc_settings|`.format.
 
 Copy the path to the Word file to the clipboard register "+
 `|quoteplus|`. On Windows Subsystem for Linux (WSL), convert the path from
@@ -53,7 +71,8 @@ Remove extraneous info:
 
 #### VimwikiConvertWeek
 
-- `VimwikiConvertWeek`: Concatentate DiaryNotes for Monday through current buffer and convert.
+- `VimwikiConvertWeek`: Concatentate DiaryNotes for Monday through current
+  buffer and convert.
 - `VimwikiConvertWeek!`: Concatenate, convert and open in default viewer.
 
 After concatenating DiaryNotes for the week, behave as `|VimwikiConvert|`.
