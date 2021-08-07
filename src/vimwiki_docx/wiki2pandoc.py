@@ -1,11 +1,16 @@
 """Vim interface to convert Vimwiki to another format using pandoc."""
 
-import vim
+try:
+    import vim
+    from vim_bridge import bridged
+except ModuleNotFoundError:
+    def bridged(func):
+        """Mock vim_bridge bridged so Sphinx will work."""
+        return func
 
 from pathlib import Path
 from vimwiki_docx.vimwiki_week import concatenate_diary
 from vimwiki_docx.convert import convert
-from vim_bridge import bridged
 
 
 @bridged

@@ -6,9 +6,10 @@ include =
     autoload/*.vim
     plugin/*.vim
     after/*/*.vim
-plugins = covimerage
-data_file = .coverage_covimerage
+# plugins = covimerage
+# data_file = .coverage_covimerage
 # omit =
+disable_warnings = include-ignored
 
 [paths]
 source =
@@ -36,3 +37,4 @@ exclude_lines =
     if 0:
     if __name__ == .__main__.:
 omit = tests/vim/bundle/*
+show_missing = true

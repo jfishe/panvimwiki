@@ -5,6 +5,8 @@ channels:
 dependencies:
   - black
   - pandoc
+  - panflute
+  - importlib_metadata
   - python <3.9
   - pip
   - pre-commit
