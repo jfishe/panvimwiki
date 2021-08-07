@@ -3,7 +3,7 @@
 try:
     import vim
     from vim_bridge import bridged
-except ModuleNotFoundError:
+except ModuleNotFoundError:  # pragma: no cover
     def bridged(func):
         """Mock vim_bridge bridged so Sphinx will work."""
         return func
