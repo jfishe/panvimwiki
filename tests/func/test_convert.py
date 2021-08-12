@@ -7,7 +7,7 @@ from typing import Tuple
 import pypandoc
 import pytest
 
-from vimwiki_docx.convert import convert
+from panvimwiki.convert import convert
 
 RESULT_PATH: Path = Path(__file__).parents[0]
 DATA_DIR: Path = RESULT_PATH / "vimwiki_html/templates"

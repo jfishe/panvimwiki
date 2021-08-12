@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from vimwiki_docx.vimwiki_week import concatenate_diary
+from panvimwiki.vimwiki_week import concatenate_diary
 
 
 @pytest.mark.freeze_time("2017-04-27")

@@ -1,5 +1,5 @@
 """
-    Setup file for vimwiki_docx.
+    Setup file for panvimwiki.
     Use setup.cfg to configure your project.
 
     This file was generated with PyScaffold 4.0.1.

@@ -1,14 +1,14 @@
 " vim: set fdm=marker et ts=4 sw=4 sts=4:
 
-" File: vimwiki_pandoc.vim
+" File: panvimwiki.vim
 " Description: Convert Vimwiki to other formats using pandoc
 " Author: John D. Fisher
 
 " Should we load? {{{1
-if exists('g:vimwiki_pandoc_loaded') || !has("python3") || &compatible
+if exists('g:panvimwiki_loaded') || !has("python3") || &compatible
     finish
 endif
-let g:vimwiki_pandoc_loaded = 1
+let g:panvimwiki_loaded = 1
 " }}}1
 
 " Save current &cpo and reset to Vim default compatibility options.
@@ -29,7 +29,7 @@ let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " #python_root_dir = plugin_root_dir / "../python3"
 
 " #sys.path.insert(0, str(python_root_dir.resolve()))
-" from vimwiki_docx.vimwiki_week import convert_last_week
+" from panvimwiki.vimwiki_week import convert_last_week
 " EOF
 
 " Restore Vim compatibility options.

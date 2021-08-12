@@ -20,7 +20,7 @@ bash> delete_task_pending
 
 """
 
-from vimwiki_docx.filter.prefilter import prefilter
+from panvimwiki.filter.prefilter import prefilter
 
 DELETE = r"\s\[[\sW]\]"
 REPLACE = (r"\s\[S\]", " [.]")

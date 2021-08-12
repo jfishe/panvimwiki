@@ -4,7 +4,7 @@ import datetime
 
 from pathlib import Path
 
-from vimwiki_docx.catvimwiki import catdiary, get_last_monday, get_last_thursday
+from panvimwiki.catvimwiki import catdiary, get_last_monday, get_last_thursday
 
 
 def concatenate_diary(

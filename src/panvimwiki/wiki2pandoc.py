@@ -4,8 +4,8 @@ import vim  # noqa
 from vim_bridge import bridged
 
 from pathlib import Path
-from vimwiki_docx.vimwiki_week import concatenate_diary
-from vimwiki_docx.convert import convert
+from panvimwiki.vimwiki_week import concatenate_diary
+from panvimwiki.convert import convert
 
 
 @bridged

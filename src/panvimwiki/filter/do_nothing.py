@@ -4,7 +4,7 @@
 Plain text filter
 """
 
-from vimwiki_docx.filter.prefilter import prefilter
+from panvimwiki.filter.prefilter import prefilter
 
 
 DELETE = None

@@ -2,44 +2,44 @@
 
 ## Introduction
 
-Vimwiki_pandoc provides tools for conversion to Microsoft Word docx or other
+Panvimwiki provides tools for conversion to Microsoft Word docx or other
 output formats supported by
 [Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
-Vimwiki_pandoc provides command line tools as well as Vim commands to
+Panvimwiki provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 
 ## Installation
 
-Vimwiki_pandoc requires
+Panvimwiki requires
 [Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
 Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
-Using the Vim 8 native packages, vimwiki_pandoc should install in
-`pack/*/opt/vimwiki_pandoc` because it depends on `|python3|` and requires
-installation of the python package vimwiki_pandoc.
+Using the Vim 8 native packages, panvimwiki should install in
+`pack/*/opt/panvimwiki` because it depends on `|python3|` and requires
+installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
 
 ```bash
-# Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/vimwiki_pandoc
-dest="$HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc"
+# Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
+dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
 
-git clone https://github.com/jfishe/vimwiki_docx.git "$dest"
+git clone https://github.com/jfishe/panvimwiki.git "$dest"
 
 # Activate the python environment used by Vim.
-# Then install vimwiki_docx in that python environment.
+# Then install panvimwiki in that python environment.
 python -m pip install "$dest"
 ```
 
-Vimwiki_pandoc requires Vim compiled with Python 3, so add the following to
+Panvimwiki requires Vim compiled with Python 3, so add the following to
 `|vimrc|` prior to `|:filetype-plugin-on|`. See `|:packadd|` for an
-explanation. Otherwise, install vimwiki_pandoc in
-`pack/*/start/vimwiki_pandoc`.
+explanation. Otherwise, install panvimwiki in
+`pack/*/start/panvimwiki`.
 
 ```vim
 if has('python3')
-  packadd! vimwiki_docx
+  packadd! panvimwiki
 endif
 ```
 
@@ -47,7 +47,7 @@ endif
 
 ### Command Line Shell
 
-Vimwiki_pandoc provides plain text pre-filters and pandoc filters for use from
+Panvimwiki provides plain text pre-filters and pandoc filters for use from
 the command line.
 
 #### Pre-filters
@@ -100,7 +100,7 @@ Vimwiki file.
 - `VimwikiConvert!`: Convert and open with default viewer.
 
 Convert the current Vimwiki `|buffer|` to the selected output format (default:
-docx) specified in `|g:vimwiki_pandoc_settings|`.format.
+docx) specified in `|g:panvimwiki_settings|`.format.
 
 Copy the path to the Word file to the clipboard register "+
 `|quoteplus|`. On Windows Subsystem for Linux (WSL), convert the path from
@@ -126,13 +126,13 @@ After concatenating DiaryNotes for the week, behave as `|VimwikiConvert|`.
 
 ### Settings
 
-- `g:vimwiki_pandoc_settings`
+- `g:panvimwiki_settings`
 
   Optionally add the following to `|vimrc|` or, preferably,
-  '~/.vim/plugin/vimwiki.vim'. Vimwiki_pandoc defaults to docx format, without extra_args.
+  '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format, without extra_args.
 
 ```vim
-let g:vimwiki_pandoc_settings = {
+let g:panvimwiki_settings = {
       \ 'extra_args': [ '--shift-heading-level-by', '1',
       \ '--data-dir', '~/vimwiki_html/templates/'
       \ ],
@@ -147,8 +147,8 @@ The default name may be overridden with the `--name <environment name>`
 parameter.
 
 ```bash
-git clone https://github.com/jfishe/vimwiki_docx.git
-cd vimwiki_docx
+git clone https://github.com/jfishe/panvimwiki.git
+cd panvimwiki
 conda env create --file environment.yml --name pyscaffold
 conda activate pyscaffold
 pipx install covimerage

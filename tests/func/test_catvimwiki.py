@@ -8,7 +8,7 @@ from typing import List, Tuple
 
 import pytest
 
-from vimwiki_docx.catvimwiki import (
+from panvimwiki.catvimwiki import (
     catdiary,
     del_empty_heading,
     del_taskwiki_heading,

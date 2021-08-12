@@ -8,7 +8,7 @@ Plain text filter
 - Write filtered result to stdout.
 """
 
-from vimwiki_docx.filter.prefilter import prefilter
+from panvimwiki.filter.prefilter import prefilter
 
 
 DELETE = r"^\s{0,}\*\s((?!\[\S\]\s).)*$"

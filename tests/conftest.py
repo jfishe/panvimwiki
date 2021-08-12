@@ -1,11 +1,11 @@
-"""Conftest.py for vimwiki_docx."""
+"""Conftest.py for panvimwiki."""
 
 import datetime
 import pytest
 from typing import Generator
 from pathlib import Path
 
-from vimwiki_docx.catvimwiki import catdiary, get_last_monday
+from panvimwiki.catvimwiki import catdiary, get_last_monday
 
 
 @pytest.fixture(scope="function")
@@ -32,21 +32,3 @@ def catdiary_fixture() -> Generator[Path, None, None]:
 
     # Teardown
     wiki_output.unlink()
-
-def vimserver():
-    """TODO: Docstring for vimserver.
-    Returns
-    -------
-    TODO
-
-    """
-    vim_invocation = ("vim -Nu <(cat << EOF"
-"filetype off"
-"set rtp+=.vim/bundle/vader.vim"
-"set rtp+=.vim/bundle/vimwiki"
-"set rtp+=.vim/bundle/vimwiki_docx"
-"set rtp+=.vim/bundle/vimwiki_docx/after"
-"filetype plugin indent on"
-"syntax enable"
-"EOF"")")
-

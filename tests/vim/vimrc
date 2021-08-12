@@ -11,13 +11,13 @@ let g:my_wiki = empty($MY_WIKI) ? s:my_wiki : $MY_WIKI
 let s:bundle = resolve(g:vimdir..'/bundle')
 let g:vader_path = empty($VADER_PATH) ? s:bundle..'/vader.vim' : $VADER_PATH
 let g:vimwiki_path = empty($VIMWIKI_PATH) ? s:bundle..'/vimwiki' : $VIMWIKI_PATH
-let g:vimwiki_docx_path = empty($VIMWIKI_DOCX_PATH) ? s:bundle..'/vimwiki_docx' : $VIMWIKI_DOCX_PATH
+let g:panvimwiki_path = empty($PANVIMWIKI_PATH) ? s:bundle..'/panvimwiki' : $PANVIMWIKI_PATH
 
 
 execute 'set rtp+=' .. vader_path
 execute 'set rtp+=' .. vimwiki_path
-execute 'set rtp+=' .. vimwiki_docx_path
-execute 'set rtp+=' .. vimwiki_docx_path .. '/after'
+execute 'set rtp+=' .. panvimwiki_path
+execute 'set rtp+=' .. panvimwiki_path .. '/after'
 " Avoid sourcing user vimrc, plugin, which can override Vimwiki configuration
 " below
 execute 'set rtp-=' .. expand("~/.vim")
@@ -30,13 +30,13 @@ let s:wiki_1.path_html = g:my_wiki . '/vimwiki_html/html'
 let s:wiki_1.template_path = g:my_wiki . '/vimwiki_html/templates/'
 let g:vimwiki_list = [ s:wiki_1 ]
 
-" Configure Vimwiki_docx
-let g:wiki2pandoc_settings = {}
-let g:wiki2pandoc_settings.extra_args = [
+" Configure Panvimwiki
+let g:panvimwiki_settings = {}
+let g:panvimwiki_settings.extra_args = [
       \ '--shift-heading-level-by', '1',
       \ '--data-dir', s:wiki_1.template_path
       \ ]
-let g:wiki2pandoc_settings.format = 'docx'
+let g:panvimwiki_settings.format = 'docx'
 
 set loadplugins
 filetype plugin indent on

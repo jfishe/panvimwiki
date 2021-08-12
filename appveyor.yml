@@ -37,15 +37,15 @@ install:
   - conda info
   # this is to ensure dependencies
   - conda build conda.recipe --no-test
-  - conda install --use-local vimwiki_docx
+  - conda install --use-local panvimwiki
 
 
 # Not a .NET project, we build package in the install step instead
 build: false
 
 test_script:
-  - py.test --color=yes -v --cov vimwiki_docx --cov-report xml tests
+  - py.test --color=yes -v --cov panvimwiki --cov-report xml tests
 
 on_success:
   - conda install -c conda-forge codecov
-  - codecov --env PYTHON_VERSION --file C:\projects\vimwiki_docx\coverage.xml
+  - codecov --env PYTHON_VERSION --file C:\projects\panvimwiki\coverage.xml

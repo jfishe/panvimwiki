@@ -2,7 +2,7 @@
 {% set data = load_setup_py_data() %}
 
 package:
-  name: vimwiki_docx
+  name: panvimwiki
 
   version: {{ data['version'] }}
 
@@ -46,7 +46,7 @@ test:
     - pytest tests
 
 about:
-  home: https://github.com/jfishe/vimwiki_docx
+  home: https://github.com/jfishe/panvimwiki
   summary: Vimwiki Diary tools for conversion to Microsoft Word docx
   license: {{ data['license'] }}
   license_file: LICENSE

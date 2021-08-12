@@ -1,4 +1,4 @@
-# vimwiki_docx
+# panvimwiki
 
 Vimwiki Diary tools for conversion to Microsoft Word docx.
 

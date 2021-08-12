@@ -46,11 +46,11 @@ def convert(
 
     prefilters
           Selected Vimwiki stdio executable filters.  See `pydoc
-          vimwiki_docx.convert` for provided filters. Any executable that
+          panvimwiki.convert` for provided filters. Any executable that
           receives Vimwiki format as stdin and produces stdout should work.
 
     filters
-          Selected pandoc filters.  See `pydoc vimwiki_docx.convert` for
+          Selected pandoc filters.  See `pydoc panvimwiki.convert` for
           provided filters. Any valid `pandoc --filter <filter name>` should
           work.
 

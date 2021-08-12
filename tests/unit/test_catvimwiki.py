@@ -5,7 +5,7 @@ from typing import Tuple
 
 import pytest
 
-from vimwiki_docx.catvimwiki import catdiary, get_last_monday, get_last_thursday
+from panvimwiki.catvimwiki import catdiary, get_last_monday, get_last_thursday
 
 
 @pytest.mark.parametrize(
