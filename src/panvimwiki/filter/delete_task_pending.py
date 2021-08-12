@@ -10,13 +10,15 @@ Plain text filter
 
 Example
 _______
-bash> echo '1. [ ] Numbered list done0 item 0 should NOT appear\n' \
+.. code:: bash
 
-bash> '2. [.] Numbered list done1 item 1 should appear' |
+    echo '1. [ ] Numbered list done0 item 0 should NOT appear\n' \
+    '2. [.] Numbered list done1 item 1 should appear' |
+    delete_task_pending
 
-bash> delete_task_pending
+.. code:: none
 
-2. [.] Numbered list done1 item 1 should appear
+    2. [.] Numbered list done1 item 1 should appear
 
 """
 

@@ -33,17 +33,23 @@ build:
 doc/:
 	mkdir doc
 
-docsdir := docs/_build/text/api
+docsdir := docs/_build/markdown/api
 
-${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.filter.txt:
-		${MAKE} --directory=docs text
+${docsdir}/panvimwiki.md ${docsdir}/panvimwiki.filter.md:
+		${MAKE} --directory=docs markdown
 
-doc/panvimwiki.txt: README.md ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.filter.txt build/go/bin/md2vim | doc/
+doc/panvimwiki.txt: README.md ${docsdir}/panvimwiki.md ${docsdir}/panvimwiki.filter.md build/go/bin/md2vim | doc/
 		pandoc --from=markdown --to=markdown --shift-heading-level-by=-1 \
 			README.md --output=doc/tmp.md
-		cat ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.filter.txt | \
-			pandoc --from=rst --to=markdown \
-			>> doc/tmp.md
+		cat ${docsdir}/panvimwiki.md ${docsdir}/panvimwiki.filter.md | sed -E \
+			-e '/^### ([^(].*)\(/ {' -e "# match header 3 function signature" \
+			-e 'h' -e '# save the matched line to the hold space' \
+			-e 's/\(.*$$//' -e '# remove (args, kwargs)' \
+			-e 'p' -e '# print trimmed header 3' \
+			-e 'g' -e '# restore the matched line' \
+			-e 's/### //p' -e '# change from header 3 to paragraph text' \
+			-e '}' \
+		>> doc/tmp.md
 		build/go/bin/md2vim -cols 76 -tabs 2 -desc 'Filter and convert Vimwiki notes using pandoc.' \
 			doc/tmp.md doc/panvimwiki.txt
 		cat doc/panvimwiki.txt | sed -E \
@@ -57,7 +63,7 @@ doc/panvimwiki.txt: README.md ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.fi
 				-e 'g' -e '# restore the matched line' \
 				-e 's/^.*\.(\|[^|]*\|)$$/ \1/' -e '# make link' \
 				-e ':c' -e 's/^(.{1,77})$$/ \1/' -e 'tc' -e '# align right' \
-			-e '}' \
+				-e '}' \
 			-e '/^.{78,}\*$$/ {' -e '# wrap HEADINGS over 78' \
 				-e 'h' -e '# save the matched line to the hold space' \
 				-e 's/^(.*) (\*[^*]*\*)$$/\1/' -e '# make content title' \
@@ -65,25 +71,25 @@ doc/panvimwiki.txt: README.md ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.fi
 				-e 'g' -e '# restore the matched line' \
 				-e 's/^.*(\*[^*]*\*)$$/ \1/' -e '# make link' \
 				-e ':c' -e 's/^(.{1,77})$$/ \1/' -e 'tc' -e '# align right' \
-			-e '}' \
+				-e '}' \
 			-e '/^\*\s`[^`]*`:( |$$)/ {' \
 				-e "h" -e "# save the matched line to the hold space" \
 				-e 's/^\*\s`([^`]{3,})`:.*/ \*\1\*/' -e "# make command reference" \
 				-e 's/^\*\s`([^`]{1,2})`:.*/ \*panvimwiki-\1\*/' -e "# short command" \
 				-e ":a" -e "s/^(.{1,77})$$/ \1/" -e "ta" -e "# align right" \
 				-e "G" -e "# append the matched line after the command reference" \
-			-e "}" \
+				-e "}" \
 			-e '/^\*\s`g:panvimwiki_[[:alnum:]_]*`$$/ {' \
 				-e "h" -e "# save the matched line to the hold space" \
 				-e 's/^\*\s`([^`]*)`$$/ \*\1\*/' -e "# make global variable reference" \
 				-e ":g" -e "s/^(.{1,77})$$/ \1/" -e "tg" -e "# align right" \
 				-e "G" -e "# append the matched line after the global variable reference" \
-			-e "}" \
+				-e "}" \
 			> doc/tmp.md && cp -f doc/tmp.md doc/panvimwiki.txt && rm -f doc/tmp.md
 		echo -n "\n\n    vim:textwidth=78:tabstop=4:filetype=help:norightleft:" \
 			>> doc/panvimwiki.txt
 
-vimdoc: doc/panvimwiki.txt ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.filter.txt ## Convert Markdown documentation to Vim Help format in doc/panvimwiki.txt.
+vimdoc: doc/panvimwiki.txt ${docsdir}/panvimwiki.md ${docsdir}/panvimwiki.filter.md ## Convert Markdown documentation to Vim Help format in doc/panvimwiki.txt.
 
 .PHONY: vimdoc
 

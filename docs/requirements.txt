@@ -5,3 +5,8 @@ m2r
 recommonmark
 sphinx>=3.2.1
 sphinx_rtd_theme
+sphinx-markdown-builder
+python-dateutil >=2.8
+panflute
+pypandoc
+vim_bridge3

@@ -78,9 +78,12 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
+    "sphinx_markdown_builder",
 ]
 
 autodoc_mock_imports = ["vim", "vim_bridge"]
+autodoc_typehints = 'description'
+autodoc_preserve_defaults = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

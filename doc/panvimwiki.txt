@@ -21,30 +21,82 @@ CONTENTS                                                 *panvimwiki-contents*
   7.1. Subpackages....................................|panvimwiki-subpackages|
   7.2. Submodules......................................|panvimwiki-submodules|
   7.3. panvimwiki.catvimwiki module..|panvimwiki-panvimwiki.catvimwiki_module|
+    7.3.1. panvimwiki.catvimwiki.catdiary
+                                   |panvimwiki-panvimwiki.catvimwiki.catdiary|
+    7.3.2. panvimwiki.catvimwiki.del_empty_heading
+                          |panvimwiki-panvimwiki.catvimwiki.del_empty_heading|
+    7.3.3. panvimwiki.catvimwiki.del_taskwiki_heading
+                       |panvimwiki-panvimwiki.catvimwiki.del_taskwiki_heading|
+    7.3.4. panvimwiki.catvimwiki.get_last_monday
+                            |panvimwiki-panvimwiki.catvimwiki.get_last_monday|
+    7.3.5. panvimwiki.catvimwiki.get_last_thursday
+                          |panvimwiki-panvimwiki.catvimwiki.get_last_thursday|
   7.4. panvimwiki.convert module........|panvimwiki-panvimwiki.convert_module|
+    7.4.1. panvimwiki.convert.convert..|panvimwiki-panvimwiki.convert.convert|
   7.5. panvimwiki.vimwiki_week module
                                    |panvimwiki-panvimwiki.vimwiki_week_module|
+    7.5.1. panvimwiki.vimwiki_week.concatenate_diary
+                        |panvimwiki-panvimwiki.vimwiki_week.concatenate_diary|
   7.6. panvimwiki.wiki2pandoc module
                                     |panvimwiki-panvimwiki.wiki2pandoc_module|
+    7.6.1. panvimwiki.wiki2pandoc.wiki2pandoc
+                               |panvimwiki-panvimwiki.wiki2pandoc.wiki2pandoc|
   7.7. Module contents............................|panvimwiki-module_contents|
 8. panvimwiki.filter package............|panvimwiki-panvimwiki.filter_package|
   8.1. Submodules......................................|panvimwiki-submodules|
   8.2. panvimwiki.filter.delete_bullet_star module
                       |panvimwiki-panvimwiki.filter.delete_bullet_star_module|
+    8.2.1. Example........................................|panvimwiki-example|
+    8.2.2. panvimwiki.filter.delete_bullet_star.main
+                        |panvimwiki-panvimwiki.filter.delete_bullet_star.main|
   8.3. panvimwiki.filter.delete_empty_heading module
                     |panvimwiki-panvimwiki.filter.delete_empty_heading_module|
+    8.3.1. panvimwiki.filter.delete_empty_heading.action
+                    |panvimwiki-panvimwiki.filter.delete_empty_heading.action|
+    8.3.2. panvimwiki.filter.delete_empty_heading.finalize
+                  |panvimwiki-panvimwiki.filter.delete_empty_heading.finalize|
+    8.3.3. panvimwiki.filter.delete_empty_heading.main
+                      |panvimwiki-panvimwiki.filter.delete_empty_heading.main|
+    8.3.4. panvimwiki.filter.delete_empty_heading.prepare
+                   |panvimwiki-panvimwiki.filter.delete_empty_heading.prepare|
   8.4. panvimwiki.filter.delete_tag_lines module
                         |panvimwiki-panvimwiki.filter.delete_tag_lines_module|
+    8.4.1. panvimwiki.filter.delete_tag_lines.action
+                        |panvimwiki-panvimwiki.filter.delete_tag_lines.action|
+    8.4.2. panvimwiki.filter.delete_tag_lines.finalize
+                      |panvimwiki-panvimwiki.filter.delete_tag_lines.finalize|
+    8.4.3. panvimwiki.filter.delete_tag_lines.main
+                          |panvimwiki-panvimwiki.filter.delete_tag_lines.main|
+    8.4.4. panvimwiki.filter.delete_tag_lines.prepare
+                       |panvimwiki-panvimwiki.filter.delete_tag_lines.prepare|
   8.5. panvimwiki.filter.delete_task_pending module
                      |panvimwiki-panvimwiki.filter.delete_task_pending_module|
+    8.5.1. Example........................................|panvimwiki-example|
+    8.5.2. panvimwiki.filter.delete_task_pending.main
+                       |panvimwiki-panvimwiki.filter.delete_task_pending.main|
   8.6. panvimwiki.filter.delete_taskwiki_heading module
                  |panvimwiki-panvimwiki.filter.delete_taskwiki_heading_module|
+    8.6.1. Example........................................|panvimwiki-example|
   8.7. Taskwiki Viewports {#Taskwiki Viewports }
                         |panvimwiki-taskwiki_viewports_{#taskwiki_viewports_}|
+    8.7.1. panvimwiki.filter.delete_taskwiki_heading.action
+                 |panvimwiki-panvimwiki.filter.delete_taskwiki_heading.action|
+    8.7.2. panvimwiki.filter.delete_taskwiki_heading.finalize
+               |panvimwiki-panvimwiki.filter.delete_taskwiki_heading.finalize|
+    8.7.3. panvimwiki.filter.delete_taskwiki_heading.main
+                   |panvimwiki-panvimwiki.filter.delete_taskwiki_heading.main|
+    8.7.4. panvimwiki.filter.delete_taskwiki_heading.prepare
+                |panvimwiki-panvimwiki.filter.delete_taskwiki_heading.prepare|
   8.8. panvimwiki.filter.do_nothing module
                               |panvimwiki-panvimwiki.filter.do_nothing_module|
+    8.8.1. panvimwiki.filter.do_nothing.main
+                                |panvimwiki-panvimwiki.filter.do_nothing.main|
   8.9. panvimwiki.filter.prefilter module
                                |panvimwiki-panvimwiki.filter.prefilter_module|
+    8.9.1. panvimwiki.filter.prefilter.action
+                               |panvimwiki-panvimwiki.filter.prefilter.action|
+    8.9.2. panvimwiki.filter.prefilter.prefilter
+                            |panvimwiki-panvimwiki.filter.prefilter.prefilter|
   8.10. Module contents...........................|panvimwiki-module_contents|
 
 ============================================================================
@@ -252,177 +304,189 @@ PANVIMWIKI.CATVIMWIKI MODULE         *panvimwiki-panvimwiki.catvimwiki_module*
 
 Concatenate Vimwiki diary files.
 
-panvimwiki.catvimwiki.catdiary(startdate: datetime.date, enddate:
-datetime.date, wikidiary: Optional[pathlib.Path] = None) ->
-pathlib.Path
->
-  Concatenate Vimwiki diary files.
-  Assume diary wiki files are named using ISO date, e.g.,
-  2021-06-09.wiki.
-  Parameters:
-  :   -   startdate -- Starting date for Vimwiki diary entry.
-      -   enddate -- End date date for Vimwiki diary entry.
-      -   wikidiary -- Path to Vimwiki diary directory. Defaults to
-          \$HOME/vimwiki/diary.
-  Returns:
-  :   Path to concatenated Vimwiki diary entries from startdate to
-      enddate, inclusive of both.
-  Return type:
-  :   pathlib.Path
-  Raises:
-  :   ValueError -- If startdate is after enddate
-<
+PANVIMWIKI.CATVIMWIKI.CATDIARY     *panvimwiki-panvimwiki.catvimwiki.catdiary*
 
-panvimwiki.catvimwiki.del_empty_heading(wikifile: pathlib.Path,
-reheading: str = \'\^(=+).+\1\s+((\1[\^=])|\Z)\')
->
-  Remove empty headings from Vimwiki file.
-  Apply Regex until no empty headings remain.
-  Parameters:
-  :   -   wikifile -- Path to Vimwiki to modify.
-      -   reheading -- Regex to match empty headings. Substitute
-          the regex with capture group 2.
-  Returns: Return type: Path to modified Vimikwik file.
-<
+panvimwiki.catvimwiki.catdiary(startdate, enddate, wikidiary=None)
+panvimwiki.catvimwiki.catdiary(startdate, enddate, wikidiary=None)
+Concatenate Vimwiki diary files.
 
-panvimwiki.catvimwiki.del_taskwiki_heading(wikifile: pathlib.Path,
-reheading: str = \'\^(=+)([\^.+\s\1\$\')
+Assume diary wiki files are named using ISO date, e.g., 2021-06-09.wiki.
+
+* Parameters
+  * startdate (datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)) – Starting date for Vimwiki diary entry.
+  * enddate (datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)) – End date date for Vimwiki diary entry.
+  * wikidiary (*Optional*[pathlib.Path (https://docs.python.org/3.8/library/pathlib.html#pathlib.Path)]) – Path to Vimwiki diary directory. Defaults to $HOME/vimwiki/diary.
+* Returns
+  Path to concatenated Vimwiki diary entries from startdate to enddate,
+  inclusive of both.
+* Return type
+  pathlib.Path (https://docs.python.org/3.8/library/pathlib.html#pathlib.Path)
+* Raises
+  ValueError (https://docs.python.org/3.8/library/exceptions.html#ValueError) – If startdate is after enddate
+
+PANVIMWIKI.CATVIMWIKI.DEL_EMPTY_HEADING
+                          *panvimwiki-panvimwiki.catvimwiki.del_empty_heading*
+
+panvimwiki.catvimwiki.del_empty_heading(wikifile, reheading='^(=+).+\\1\\s+((\\1[^=])|\\Z)')
+panvimwiki.catvimwiki.del_empty_heading(wikifile, reheading='^(=+).+\\1\\s+((\\1[^=])|\\Z)')
+Remove empty headings from Vimwiki file.
+
+Apply Regex until no empty headings remain.
+
+* Parameters
+  * wikifile (pathlib.Path (https://docs.python.org/3.8/library/pathlib.html#pathlib.Path)) – Path to Vimwiki to modify.
+  * reheading (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Regex to match empty headings. Substitute the regex with capture group
+    2.
+* Returns
+* Return type
+  Path to modified Vimikwik file.
+
+PANVIMWIKI.CATVIMWIKI.DEL_TASKWIKI_HEADING
+                       *panvimwiki-panvimwiki.catvimwiki.del_taskwiki_heading*
+
+panvimwiki.catvimwiki.del_taskwiki_heading(wikifile, reheading='^(=+)([^|]+)\\s\\|.+\\s\\1$')
+panvimwiki.catvimwiki.del_taskwiki_heading(wikifile, reheading='^(=+)([^|]+)\\s\\|.+\\s\\1$')
+Remove taskwiki heading.
+
+wikifile : Path to Vimwiki to modify.
+
+reheading
 >
-  Remove taskwiki heading.
-  wikifile : Path to Vimwiki to modify.
-  reheading : Regex to match empty headings. Substitute the regex with
   capture group 2.
-  Returns: Return type: Path to modified Vimikwik file.
 <
 
-panvimwiki.catvimwiki.get_last_monday(today: Optional[datetime.date] =
-None) -> datetime.date
->
-  Return datetime for closest Monday before today.
-  Parameters:
-  :   today -- Any date object
-  Returns:
-  :   Previous Monday before today, unless today is Monday.
-  Return type:
-  :   datetime.date
-<
+* Returns
+* Return type
+  Path to modified Vimikwik file.
+* Parameters
+  * wikifile (pathlib.Path (https://docs.python.org/3.8/library/pathlib.html#pathlib.Path)) –
+  * reheading (str (https://docs.python.org/3.8/library/stdtypes.html#str)) –
 
-panvimwiki.catvimwiki.get_last_thursday(today: Optional[datetime.date]
-= None) -> datetime.date
->
-  Return datetime for closest Thursday before today.
-  Parameters:
-  :   today -- Any date object
-  Returns:
-  :   Previous Thursday before today, unless today is Thursday.
-  Return type:
-  :   datetime.date
-<
+PANVIMWIKI.CATVIMWIKI.GET_LAST_MONDAY
+                            *panvimwiki-panvimwiki.catvimwiki.get_last_monday*
+
+panvimwiki.catvimwiki.get_last_monday(today=None)
+panvimwiki.catvimwiki.get_last_monday(today=None)
+Return datetime for closest Monday before today.
+
+* Parameters
+  today (*Optional*[datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)]) – Any date object
+* Returns
+  Previous Monday before today, unless today is Monday.
+* Return type
+  datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)
+
+PANVIMWIKI.CATVIMWIKI.GET_LAST_THURSDAY
+                          *panvimwiki-panvimwiki.catvimwiki.get_last_thursday*
+
+panvimwiki.catvimwiki.get_last_thursday(today=None)
+panvimwiki.catvimwiki.get_last_thursday(today=None)
+Return datetime for closest Thursday before today.
+
+* Parameters
+  today (*Optional*[datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)]) – Any date object
+* Returns
+  Previous Thursday before today, unless today is Thursday.
+* Return type
+  datetime.date (https://docs.python.org/3.8/library/datetime.html#datetime.date)
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.CONVERT MODULE               *panvimwiki-panvimwiki.convert_module*
 
 Process filters and convert to output format using pandoc.
 
-panvimwiki.convert.convert(inputfile: str, outputfile: str, to: str =
-\'markdown\', prefilters: Tuple[str, ...] = (\'delete_bullet_star\',
-\'delete_task_pending\'), filters: Tuple[str, ...] =
-(\'delete_tag_lines\', \'delete_empty_heading\',
-\'delete_taskwiki_heading\'), extra_args: Tuple[str, ...] =
-(\'--shift-heading-level-by\', \'1\', \'--data-dir\',
-\'/home/jfishe/vimwiki_html/templates\')) -> None
->
-  Convert Vimwiki with pandoc after applying prefilters and pandoc
-  filters.
-  Parameters:
-  :   -   inputfile -- Vimwiki file absolute path
-      -   outputfile -- Converted file absolute path
-      -   to -- Pandoc output format. See pandoc
-          --list-output-formats
-      -   prefilters -- Selected Vimwiki stdio executable filters.
-          See pydoc panvimwiki.convert for provided filters. Any
-          executable that receives Vimwiki format as stdin and produces
-          stdout should work.
-      -   filters -- Selected pandoc filters. See pydoc
-          panvimwiki.convert for provided filters. Any valid pandoc
-          --filter <filter name> should work.
-      -   extra_args -- Additional pandoc arguments and parameters.
-          See pydoc pypandoc.convert_text for details and pandoc
-          --help for valid content.
-<
+PANVIMWIKI.CONVERT.CONVERT             *panvimwiki-panvimwiki.convert.convert*
+
+panvimwiki.convert.convert(inputfile, outputfile, to='markdown', prefilters=PREFILTER, filters=FILTER, extra_args=EXTRA_ARGS)
+panvimwiki.convert.convert(inputfile, outputfile, to='markdown', prefilters=PREFILTER, filters=FILTER, extra_args=EXTRA_ARGS)
+Convert Vimwiki with pandoc after applying prefilters and pandoc filters.
+
+* Parameters
+  * inputfile (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Vimwiki file absolute path
+  * outputfile (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Converted file absolute path
+  * to (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Pandoc output format. See pandoc –list-output-formats
+  * prefilters (*Tuple*[str (https://docs.python.org/3.8/library/stdtypes.html#str)*, ...]*) – Selected Vimwiki stdio executable filters.  See pydoc
+    panvimwiki.convert for provided filters. Any executable that
+    receives Vimwiki format as stdin and produces stdout should work.
+  * filters (*Tuple*[str (https://docs.python.org/3.8/library/stdtypes.html#str)*, ...]*) – Selected pandoc filters.  See pydoc panvimwiki.convert for
+    provided filters. Any valid pandoc –filter  should
+    work.
+  * extra_args (*Tuple*[str (https://docs.python.org/3.8/library/stdtypes.html#str)*, ...]*) – Additional pandoc arguments and parameters.  See pydoc
+    pypandoc.convert_text for details and pandoc –help for valid
+    content.
+* Return type
+  None (https://docs.python.org/3.8/library/constants.html#None)
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.VIMWIKI_WEEK MODULE     *panvimwiki-panvimwiki.vimwiki_week_module*
 
-Convert str dates to datetime and Path. Set default days for missing
-dates.
+Convert str dates to datetime and Path. Set default days for missing dates.
 
-panvimwiki.vimwiki_week.concatenate_diary(diary_path: str, start_date:
-Optional[str] = None, end_date: Optional[str] = None) ->
-pathlib.Path
->
-  Concatenate Vimwiki diary from start_date through end_date.
-  If the start and end dates are None, concatenate Vimwiki Diary from
-  Monday - Thursday. E.g., Thursday through Sunday returns this week.
-  Monday - Wednesday returns last week.
-  Parameters:
-  :   -   diary_path -- Vimwiki Diary absolute path
-      -   start_date -- ISO date, e.g., \'2017-10-10\', the same or
-          earlier than end_date. Defaults to the previous Monday
-          before end_date, unless end_date is Monday.
-      -   end_date -- ISO date, e.g., \'2017-10-10\', defaults to
-          the previous Thursday before today, unless today is Thursday.
-  Returns:
-  :   Path to concatenated Vimwiki diary file
-  Return type:
-  :   pathlib.Path
-  Raises:
-  :   ValueError -- catdiary() raises ValueError if start_date
-      is after end_date
-<
+PANVIMWIKI.VIMWIKI_WEEK.CONCATENATE_DIARY
+                        *panvimwiki-panvimwiki.vimwiki_week.concatenate_diary*
+
+panvimwiki.vimwiki_week.concatenate_diary(diary_path, start_date=None, end_date=None)
+panvimwiki.vimwiki_week.concatenate_diary(diary_path, start_date=None, end_date=None)
+Concatenate Vimwiki diary from start_date through end_date.
+
+If the start and end dates are None, concatenate Vimwiki Diary from
+Monday - Thursday. E.g., Thursday through Sunday returns this week.
+Monday - Wednesday returns last week.
+
+* Parameters
+  * diary_path (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Vimwiki Diary absolute path
+  * start_date (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – ISO date, e.g., ‘2017-10-10’, the same or earlier than end_date.
+    Defaults to the previous Monday before end_date, unless end_date is
+    Monday.
+  * end_date (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – ISO date, e.g., ‘2017-10-10’, defaults to the previous Thursday before
+    today, unless today is Thursday.
+* Returns
+  Path to concatenated Vimwiki diary file
+* Return type
+  pathlib.Path (https://docs.python.org/3.8/library/pathlib.html#pathlib.Path)
+* Raises
+  ValueError (https://docs.python.org/3.8/library/exceptions.html#ValueError) – catdiary() raises ValueError if start_date is after end_date
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.WIKI2PANDOC MODULE       *panvimwiki-panvimwiki.wiki2pandoc_module*
 
 Vim interface to convert Vimwiki to another format using pandoc.
 
-panvimwiki.wiki2pandoc.wiki2pandoc(is_diary: str, is_concatenate: str,
-to: str = \'docx\', end_date: Optional[str] = None, start_date:
-Optional[str] = None, extra_args=None) -> str
+PANVIMWIKI.WIKI2PANDOC.WIKI2PANDOC
+                               *panvimwiki-panvimwiki.wiki2pandoc.wiki2pandoc*
+
+panvimwiki.wiki2pandoc.wiki2pandoc(is_diary, is_concatenate, to='docx', end_date=None, start_date=None, extra_args=None)
+panvimwiki.wiki2pandoc.wiki2pandoc(is_diary, is_concatenate, to='docx', end_date=None, start_date=None, extra_args=None)
+Bridged to Vim function Wiki2pandoc.
+
+Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
+
+* Parameters
+  * is_diary (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – String containing a 0, False, or 1, True, whether current buffer is a
+    Vimwiki DiaryNote.
+  * is_concatenate (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – String containing a 0, False, or 1, True, whether multiple Vimwiki
+    DiaryNotes from start_date to end_date should concatenate before
+    conversion. Otherwise convert the current buffer only and ignore the
+    dates.
+  * to (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Output format (defaults to docx)
+  * end_date (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – Depending on is_concatenate, the end date for concatenating Vimwiki
+    DiaryNotes. Coerce an empty string, “”, to None.
+  * start_date (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – Depending on is_concatenate, the start date for concatenating Vimwiki
+    DiaryNotes. Coerce an empty string, “”, to None.
+  * extra_args (list (https://docs.python.org/3.8/library/stdtypes.html#list)* or *str (https://docs.python.org/3.8/library/stdtypes.html#str)) – “0” or a list of valid pandoc arguments, e.g.,
 >
-  Bridged to Vim function Wiki2pandoc.
-  Concatenate Diary Notes and/or convert Vimwiki Notes to selected
-  format.
-  Parameters:
-  :   -   is_diary -- String containing a 0, False, or 1, True,
-          whether current buffer is a Vimwiki DiaryNote.
+    [”–shift-heading-level-by”, “1”,
 >
-    -   **is_concatenate** \-- String containing a 0, False, or 1,
-        True, whether multiple Vimwiki DiaryNotes from start_date to
-        end_date should concatenate before conversion. Otherwise
-        convert the current buffer only and ignore the dates.
-    -   **to** \-- Output format (defaults to docx)
-    -   **end_date** \-- Depending on is_concatenate, the end date for
-        concatenating Vimwiki DiaryNotes. Coerce an empty string,
-        \"\", to None.
-    -   **start_date** \-- Depending on is_concatenate, the start date
-        for concatenating Vimwiki DiaryNotes. Coerce an empty string,
-        \"\", to None.
-    -   **extra_args** (*list*\* or \**str*) \--
-        \"0\" or a list of valid pandoc arguments, e.g.,
-        > \[\"\--shift-heading-level-by\", \"1\",
->
-        > :   \"\--data-dir\", \"vimwiki_html/templates\"
->
-        > \]
-        See *pydoc pypandoc.convert_text* for details and *pandoc
-        --help* for valid content.
+      ”–data-dir”, “vimwiki_html/templates”
 <
-  Returns:
-  :   Absolute path to converted Vimwiki file
-  Return type:
-  :   str
+    ]
 <
+  See pydoc pypandoc.convert_text for details and pandoc –help for
+  valid content.
+* Returns
+  Absolute path to converted Vimwiki file
+* Return type
+  str (https://docs.python.org/3.8/library/stdtypes.html#str)
 
 ----------------------------------------------------------------------------
 MODULE CONTENTS                                   *panvimwiki-module_contents*
@@ -439,17 +503,33 @@ PANVIMWIKI.FILTER.DELETE_BULLET_STAR MODULE
 
 Remove * bullet list items from unordered list.
 
-Plain text filter
+Plain text prefilter
 
+                                                          *delete_bullet_star*
+* `delete_bullet_star`: Remove unordered lists which use the star (asterisk)
+  bullet marker. The pre-filter does not remove task list items (see
+  |delete_task_pending|).
 * Read stdin.
-* Remove non-task * bullet lines, e.g., * [[URI|Description]]
-  or * Text.
+* Remove non-task * bullet lines, e.g., * [[URI|Description]] or * Text.
 * Write filtered result to stdout.
 
-panvimwiki.filter.delete_bullet_star.main()
+EXAMPLE                                                   *panvimwiki-example*
 >
-  Filter stdio with action().
+  echo <<EOF | delete_bullet_star
+  '- Bulleted list item 1 should appear'
+  '* Bulleted list item 6 should NOT appear'
+  EOF
 <
+>
+  - Bulleted list item 1 should appear
+<
+
+PANVIMWIKI.FILTER.DELETE_BULLET_STAR.MAIN
+                        *panvimwiki-panvimwiki.filter.delete_bullet_star.main*
+
+panvimwiki.filter.delete_bullet_star.main()
+panvimwiki.filter.delete_bullet_star.main()
+Filter stdio with action().
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING MODULE
@@ -457,31 +537,40 @@ PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING MODULE
 
 Remove empty headings from Vimwiki file.
 
-Headings are not empty if they contain tag lines. Execute
-delete_tag_lines.py first to empty such headings.
+Headings are not empty if they contain tag lines. Execute delete_tag_lines.py
+first to empty such headings.
 
 Pandoc filter using panflute
 
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.ACTION
+                    *panvimwiki-panvimwiki.filter.delete_empty_heading.action*
+
 panvimwiki.filter.delete_empty_heading.action(elem, doc)
->
-  Remove empty headings from Vimwiki file.
-<
+panvimwiki.filter.delete_empty_heading.action(elem, doc)
+Remove empty headings from Vimwiki file.
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.FINALIZE
+                  *panvimwiki-panvimwiki.filter.delete_empty_heading.finalize*
 
 panvimwiki.filter.delete_empty_heading.finalize(doc)
->
-  Post-filter.
-<
+panvimwiki.filter.delete_empty_heading.finalize(doc)
+Post-filter.
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.MAIN
+                      *panvimwiki-panvimwiki.filter.delete_empty_heading.main*
 
 panvimwiki.filter.delete_empty_heading.main(doc=None)
->
-  Remove empty headings from Vimwiki file.
-  Pandoc filter using panflute
-<
+panvimwiki.filter.delete_empty_heading.main(doc=None)
+Remove empty headings from Vimwiki file.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.PREPARE
+                   *panvimwiki-panvimwiki.filter.delete_empty_heading.prepare*
 
 panvimwiki.filter.delete_empty_heading.prepare(doc)
->
-  Pre-filter.
-<
+panvimwiki.filter.delete_empty_heading.prepare(doc)
+Pre-filter.
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.DELETE_TAG_LINES MODULE
@@ -491,28 +580,39 @@ Remove Vimwiki tag lines, e.g., :tag1:tag2:.
 
 Pandoc filter using panflute
 
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.ACTION
+                        *panvimwiki-panvimwiki.filter.delete_tag_lines.action*
+
 panvimwiki.filter.delete_tag_lines.action(elem, doc)
->
-  Remove Vimwiki tag lines, e.g., :tag1:tag2:.
-  Pandoc filter using panflute
-  In-line tags in paragraphs and lists remain.
-<
+panvimwiki.filter.delete_tag_lines.action(elem, doc)
+Remove Vimwiki tag lines, e.g., :tag1:tag2:.
+
+Pandoc filter using panflute
+
+In-line tags in paragraphs and lists remain.
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.FINALIZE
+                      *panvimwiki-panvimwiki.filter.delete_tag_lines.finalize*
 
 panvimwiki.filter.delete_tag_lines.finalize(doc)
->
-  Post-filter.
-<
+panvimwiki.filter.delete_tag_lines.finalize(doc)
+Post-filter.
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.MAIN
+                          *panvimwiki-panvimwiki.filter.delete_tag_lines.main*
 
 panvimwiki.filter.delete_tag_lines.main(doc=None)
->
-  Remove taskwiki heading.
-  Pandoc filter using panflute
-<
+panvimwiki.filter.delete_tag_lines.main(doc=None)
+Remove taskwiki heading.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.PREPARE
+                       *panvimwiki-panvimwiki.filter.delete_tag_lines.prepare*
 
 panvimwiki.filter.delete_tag_lines.prepare(doc)
->
-  Pre-filter.
-<
+panvimwiki.filter.delete_tag_lines.prepare(doc)
+Pre-filter.
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.DELETE_TASK_PENDING MODULE
@@ -527,20 +627,22 @@ Plain text filter
 * Change Start [S] task to [.].
 * Write filtered result to stdout.
 
--[ Example ]-
+EXAMPLE                                                   *panvimwiki-example*
+>
+  echo '1. [ ] Numbered list done0 item 0 should NOT appear\n' \
+  '2. [.] Numbered list done1 item 1 should appear' |
+  delete_task_pending
+<
+>
+  2. [.] Numbered list done1 item 1 should appear
+<
 
-bash> echo \'1. [ ] Numbered list done0 item 0 should NOT appearn\'
-
-bash> \'2. [.] Numbered list done1 item 1 should appear\' |
-
-bash> delete_task_pending
-
-1.   [.] Numbered list done1 item 1 should appear
+PANVIMWIKI.FILTER.DELETE_TASK_PENDING.MAIN
+                       *panvimwiki-panvimwiki.filter.delete_task_pending.main*
 
 panvimwiki.filter.delete_task_pending.main()
->
-  Filter stdio with action().
-<
+panvimwiki.filter.delete_task_pending.main()
+Filter stdio with action().
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING MODULE
@@ -550,38 +652,46 @@ Remove taskwiki heading.
 
 Pandoc filter using panflute
 
--[ Example ]-
+EXAMPLE                                                   *panvimwiki-example*
 
-bash> echo \'== Taskwiki Viewports | should not appear | should not
-appear ==\' |
+bash> echo ‘== Taskwiki Viewports | should not appear | should not appear ==’ |
+bash> echo ‘== Taskwiki Viewports | should not appear | should not appear ==’ |
 
-bash> pandoc --from=vimwiki --to=markdown
---filter=delete_taskwiki_heading
+bash> pandoc –from=vimwiki –to=markdown –filter=delete_taskwiki_heading
 
 ----------------------------------------------------------------------------
 TASKWIKI VIEWPORTS {#TASKWIKI VIEWPORTS }
                         *panvimwiki-taskwiki_viewports_{#taskwiki_viewports_}*
 
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.ACTION
+                 *panvimwiki-panvimwiki.filter.delete_taskwiki_heading.action*
+
 panvimwiki.filter.delete_taskwiki_heading.action(elem, doc)
->
-  Remove taskwiki heading.
-<
+panvimwiki.filter.delete_taskwiki_heading.action(elem, doc)
+Remove taskwiki heading.
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.FINALIZE
+               *panvimwiki-panvimwiki.filter.delete_taskwiki_heading.finalize*
 
 panvimwiki.filter.delete_taskwiki_heading.finalize(doc)
->
-  Post-filter---do nothing.
-<
+panvimwiki.filter.delete_taskwiki_heading.finalize(doc)
+Post-filter—do nothing.
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.MAIN
+                   *panvimwiki-panvimwiki.filter.delete_taskwiki_heading.main*
 
 panvimwiki.filter.delete_taskwiki_heading.main(doc=None)
->
-  Remove taskwiki heading.
-  Pandoc filter using panflute
-<
+panvimwiki.filter.delete_taskwiki_heading.main(doc=None)
+Remove taskwiki heading.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.PREPARE
+                *panvimwiki-panvimwiki.filter.delete_taskwiki_heading.prepare*
 
 panvimwiki.filter.delete_taskwiki_heading.prepare(doc)
->
-  Pre-filter---do nothing.
-<
+panvimwiki.filter.delete_taskwiki_heading.prepare(doc)
+Pre-filter—do nothing.
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.DO_NOTHING MODULE
@@ -591,10 +701,12 @@ Return the input with no changes.
 
 Plain text filter
 
+PANVIMWIKI.FILTER.DO_NOTHING.MAIN
+                                *panvimwiki-panvimwiki.filter.do_nothing.main*
+
 panvimwiki.filter.do_nothing.main()
->
-  Filter stdio with prefilter().
-<
+panvimwiki.filter.do_nothing.main()
+Filter stdio with prefilter().
 
 ----------------------------------------------------------------------------
 PANVIMWIKI.FILTER.PREFILTER MODULE
@@ -602,34 +714,36 @@ PANVIMWIKI.FILTER.PREFILTER MODULE
 
 Main function shared by prefilters.
 
-panvimwiki.filter.prefilter.action(line: str, delete: Optional[str] =
-None, replace: Optional[Tuple[str, str]] = None) -> Optional[str]
->
-  Filter Vimwiki text by deleting lines or replacing text in lines.
-  Parameters:
-  :   -   line -- Line from Vimwiki file.
-      -   delete -- Regex string matching all or part of line to be
-          deleted.
-      -   replace -- Regex re.search string and replacement string
-          for re.sub.
-  Returns:
-  :   Convert line matching replace[0] regex by substituting
-      replace[1]. To delete line matching delete regex, return None.
-      Otherwise return the original line. Replace precedes delete.
-  Return type:
-  :   str or None
-<
+PANVIMWIKI.FILTER.PREFILTER.ACTION
+                               *panvimwiki-panvimwiki.filter.prefilter.action*
 
-panvimwiki.filter.prefilter.prefilter(delete: Optional[str] = None,
-replace: Optional[Tuple[str, str]] = None) -> None
->
-  Read stdin, filter with action() to stdout.
-  Parameters:
-  :   -   delete -- Regex string matching all or part of line to be
-          deleted.
-      -   replace -- Regex re.search string and replacement string
-          for re.sub.
-<
+panvimwiki.filter.prefilter.action(line, delete=None, replace=None)
+panvimwiki.filter.prefilter.action(line, delete=None, replace=None)
+Filter Vimwiki text by deleting lines or replacing text in lines.
+
+* Parameters
+  * line (str (https://docs.python.org/3.8/library/stdtypes.html#str)) – Line from Vimwiki file.
+  * delete (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – Regex string matching all or part of line to be deleted.
+  * replace (*Optional[Tuple[str (https://docs.python.org/3.8/library/stdtypes.html#str)*, *str (https://docs.python.org/3.8/library/stdtypes.html#str)]]*) – Regex re.search string and replacement string for re.sub.
+* Returns
+  Convert line matching replace[0] regex by substituting replace[1].  To
+  delete line matching delete regex, return None.  Otherwise return the
+  original line. Replace precedes delete.
+* Return type
+  str (https://docs.python.org/3.8/library/stdtypes.html#str) or None (https://docs.python.org/3.8/library/constants.html#None)
+
+PANVIMWIKI.FILTER.PREFILTER.PREFILTER
+                            *panvimwiki-panvimwiki.filter.prefilter.prefilter*
+
+panvimwiki.filter.prefilter.prefilter(delete=None, replace=None)
+panvimwiki.filter.prefilter.prefilter(delete=None, replace=None)
+Read stdin, filter with action() to stdout.
+
+* Parameters
+  * delete (*Optional*[str (https://docs.python.org/3.8/library/stdtypes.html#str)]) – Regex string matching all or part of line to be deleted.
+  * replace (*Optional[Tuple[str (https://docs.python.org/3.8/library/stdtypes.html#str)*, *str (https://docs.python.org/3.8/library/stdtypes.html#str)]]*) – Regex re.search string and replacement string for re.sub.
+* Return type
+  None (https://docs.python.org/3.8/library/constants.html#None)
 
 ----------------------------------------------------------------------------
 MODULE CONTENTS                                   *panvimwiki-module_contents*
