@@ -50,17 +50,33 @@ doc/panvimwiki.txt: README.md ${docsdir}/panvimwiki.txt ${docsdir}/panvimwiki.fi
 			-e '1{s/([^[:space:]]+)/\*\1\*/}' \
 			-e 's/`\|/|/g' -e "# remove left backquote from link" \
 			-e 's/\|`/|/g' -e "# remove right backquote from link" \
+			-e '/^.{78,}\|$$/ {' -e '# wrap table of contents over 78' \
+				-e 'h' -e '# save the matched line to the hold space' \
+				-e 's/^(.*)\.(\|[^|]*\|)$$/\1/' -e '# make content title' \
+				-e 'p' -e '# print title' \
+				-e 'g' -e '# restore the matched line' \
+				-e 's/^.*\.(\|[^|]*\|)$$/ \1/' -e '# make link' \
+				-e ':c' -e 's/^(.{1,77})$$/ \1/' -e 'tc' -e '# align right' \
+			-e '}' \
+			-e '/^.{78,}\*$$/ {' -e '# wrap HEADINGS over 78' \
+				-e 'h' -e '# save the matched line to the hold space' \
+				-e 's/^(.*) (\*[^*]*\*)$$/\1/' -e '# make content title' \
+				-e 'p' -e '# print title' \
+				-e 'g' -e '# restore the matched line' \
+				-e 's/^.*(\*[^*]*\*)$$/ \1/' -e '# make link' \
+				-e ':c' -e 's/^(.{1,77})$$/ \1/' -e 'tc' -e '# align right' \
+			-e '}' \
 			-e '/^\*\s`[^`]*`:( |$$)/ {' \
 				-e "h" -e "# save the matched line to the hold space" \
 				-e 's/^\*\s`([^`]{3,})`:.*/ \*\1\*/' -e "# make command reference" \
 				-e 's/^\*\s`([^`]{1,2})`:.*/ \*panvimwiki-\1\*/' -e "# short command" \
-				-e ":a" -e "s/^(.{1,78})$$/ \1/" -e "ta" -e "# align right" \
+				-e ":a" -e "s/^(.{1,77})$$/ \1/" -e "ta" -e "# align right" \
 				-e "G" -e "# append the matched line after the command reference" \
 			-e "}" \
 			-e '/^\*\s`g:panvimwiki_[[:alnum:]_]*`$$/ {' \
 				-e "h" -e "# save the matched line to the hold space" \
 				-e 's/^\*\s`([^`]*)`$$/ \*\1\*/' -e "# make global variable reference" \
-				-e ":g" -e "s/^(.{1,78})$$/ \1/" -e "tg" -e "# align right" \
+				-e ":g" -e "s/^(.{1,77})$$/ \1/" -e "tg" -e "# align right" \
 				-e "G" -e "# append the matched line after the global variable reference" \
 			-e "}" \
 			> doc/tmp.md && cp -f doc/tmp.md doc/panvimwiki.txt && rm -f doc/tmp.md

@@ -1,95 +1,104 @@
-*vimwiki_pandoc.txt*            Filter and convert Vimwiki notes using pandoc.
+*panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
 
 
 ============================================================================
-CONTENTS                                             *vimwiki_pandoc-contents*
+CONTENTS                                                 *panvimwiki-contents*
 
-1. Introduction..................................|vimwiki_pandoc-introduction|
-2. Installation..................................|vimwiki_pandoc-installation|
-3. Commands..........................................|vimwiki_pandoc-commands|
-  3.1. Command Line Shell..................|vimwiki_pandoc-command_line_shell|
-    3.1.1. Pre-filters............................|vimwiki_pandoc-pre-filters|
-    3.1.2. Pandoc Filters......................|vimwiki_pandoc-pandoc_filters|
-  3.2. Local Commands..........................|vimwiki_pandoc-local_commands|
-    3.2.1. VimwikiConvert......................|vimwiki_pandoc-vimwikiconvert|
-    3.2.2. VimwikiConvertWeek..............|vimwiki_pandoc-vimwikiconvertweek|
-4. Options............................................|vimwiki_pandoc-options|
-  4.1. Settings......................................|vimwiki_pandoc-settings|
-5. Development and Testing............|vimwiki_pandoc-development_and_testing|
-6. Note..................................................|vimwiki_pandoc-note|
-7. vimwiki_docx package..................|vimwiki_pandoc-vimwiki_docx_package|
-  7.1. Subpackages................................|vimwiki_pandoc-subpackages|
-  7.2. Submodules..................................|vimwiki_pandoc-submodules|
-  7.3. vimwiki_docx.catvimwiki module.|vimwiki_pandoc-vimwiki_docx.catvimwiki_module|
-  7.4. vimwiki_docx.convert module.|vimwiki_pandoc-vimwiki_docx.convert_module|
-  7.5. vimwiki_docx.vimwiki_week module.|vimwiki_pandoc-vimwiki_docx.vimwiki_week_module|
-  7.6. vimwiki_docx.wiki2pandoc module.|vimwiki_pandoc-vimwiki_docx.wiki2pandoc_module|
-  7.7. Module contents........................|vimwiki_pandoc-module_contents|
-8. vimwiki_docx.filter package....|vimwiki_pandoc-vimwiki_docx.filter_package|
-  8.1. Submodules..................................|vimwiki_pandoc-submodules|
-  8.2. vimwiki_docx.filter.delete_bullet_star module.|vimwiki_pandoc-vimwiki_docx.filter.delete_bullet_star_module|
-  8.3. vimwiki_docx.filter.delete_empty_heading module.|vimwiki_pandoc-vimwiki_docx.filter.delete_empty_heading_module|
-  8.4. vimwiki_docx.filter.delete_tag_lines module.|vimwiki_pandoc-vimwiki_docx.filter.delete_tag_lines_module|
-  8.5. vimwiki_docx.filter.delete_task_pending module.|vimwiki_pandoc-vimwiki_docx.filter.delete_task_pending_module|
-  8.6. vimwiki_docx.filter.delete_taskwiki_heading module.|vimwiki_pandoc-vimwiki_docx.filter.delete_taskwiki_heading_module|
-  8.7. Taskwiki Viewports {#Taskwiki Viewports }.|vimwiki_pandoc-taskwiki_viewports_{#taskwiki_viewports_}|
-  8.8. vimwiki_docx.filter.do_nothing module.|vimwiki_pandoc-vimwiki_docx.filter.do_nothing_module|
-  8.9. vimwiki_docx.filter.prefilter module.|vimwiki_pandoc-vimwiki_docx.filter.prefilter_module|
-  8.10. Module contents.......................|vimwiki_pandoc-module_contents|
+1. Introduction......................................|panvimwiki-introduction|
+2. Installation......................................|panvimwiki-installation|
+3. Commands..............................................|panvimwiki-commands|
+  3.1. Command Line Shell......................|panvimwiki-command_line_shell|
+    3.1.1. Pre-filters................................|panvimwiki-pre-filters|
+    3.1.2. Pandoc Filters..........................|panvimwiki-pandoc_filters|
+  3.2. Local Commands..............................|panvimwiki-local_commands|
+    3.2.1. VimwikiConvert..........................|panvimwiki-vimwikiconvert|
+    3.2.2. VimwikiConvertWeek..................|panvimwiki-vimwikiconvertweek|
+4. Options................................................|panvimwiki-options|
+  4.1. Settings..........................................|panvimwiki-settings|
+5. Development and Testing................|panvimwiki-development_and_testing|
+6. Note......................................................|panvimwiki-note|
+7. panvimwiki package..........................|panvimwiki-panvimwiki_package|
+  7.1. Subpackages....................................|panvimwiki-subpackages|
+  7.2. Submodules......................................|panvimwiki-submodules|
+  7.3. panvimwiki.catvimwiki module..|panvimwiki-panvimwiki.catvimwiki_module|
+  7.4. panvimwiki.convert module........|panvimwiki-panvimwiki.convert_module|
+  7.5. panvimwiki.vimwiki_week module
+                                   |panvimwiki-panvimwiki.vimwiki_week_module|
+  7.6. panvimwiki.wiki2pandoc module
+                                    |panvimwiki-panvimwiki.wiki2pandoc_module|
+  7.7. Module contents............................|panvimwiki-module_contents|
+8. panvimwiki.filter package............|panvimwiki-panvimwiki.filter_package|
+  8.1. Submodules......................................|panvimwiki-submodules|
+  8.2. panvimwiki.filter.delete_bullet_star module
+                      |panvimwiki-panvimwiki.filter.delete_bullet_star_module|
+  8.3. panvimwiki.filter.delete_empty_heading module
+                    |panvimwiki-panvimwiki.filter.delete_empty_heading_module|
+  8.4. panvimwiki.filter.delete_tag_lines module
+                        |panvimwiki-panvimwiki.filter.delete_tag_lines_module|
+  8.5. panvimwiki.filter.delete_task_pending module
+                     |panvimwiki-panvimwiki.filter.delete_task_pending_module|
+  8.6. panvimwiki.filter.delete_taskwiki_heading module
+                 |panvimwiki-panvimwiki.filter.delete_taskwiki_heading_module|
+  8.7. Taskwiki Viewports {#Taskwiki Viewports }
+                        |panvimwiki-taskwiki_viewports_{#taskwiki_viewports_}|
+  8.8. panvimwiki.filter.do_nothing module
+                              |panvimwiki-panvimwiki.filter.do_nothing_module|
+  8.9. panvimwiki.filter.prefilter module
+                               |panvimwiki-panvimwiki.filter.prefilter_module|
+  8.10. Module contents...........................|panvimwiki-module_contents|
 
 ============================================================================
-INTRODUCTION                                     *vimwiki_pandoc-introduction*
+INTRODUCTION                                         *panvimwiki-introduction*
 
-Vimwiki_pandoc provides tools for conversion to Microsoft Word docx or
-other output formats supported by
+Panvimwiki provides tools for conversion to Microsoft Word docx or other
+output formats supported by
 Pandoc (https://pandoc.org/).
-Vimwiki_pandoc provides command line tools as well as Vim commands to
+Panvimwiki provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 
 ============================================================================
-INSTALLATION                                     *vimwiki_pandoc-installation*
+INSTALLATION                                         *panvimwiki-installation*
 
-Vimwiki_pandoc requires
+Panvimwiki requires
 Pandoc (https://pandoc.org/).
 Installation with conda is recommended because the system version, e.g.,
 with Ubuntu, may be too old. Or download from the website.
 
-Using the Vim 8 native packages, vimwiki_pandoc should install in
-`pack/*/opt/vimwiki_pandoc` because it depends on |python3| and
-requires installation of the python package vimwiki_pandoc.
+Using the Vim 8 native packages, panvimwiki should install in
+`pack/*/opt/panvimwiki` because it depends on |python3| and requires
+installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
 >
-  # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/vimwiki_pandoc
-  dest="$HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc"
-  git clone https://github.com/jfishe/vimwiki_docx.git "$dest"
+  # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
+  dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
+  git clone https://github.com/jfishe/panvimwiki.git "$dest"
   # Activate the python environment used by Vim.
-  # Then install vimwiki_docx in that python environment.
+  # Then install panvimwiki in that python environment.
   python -m pip install "$dest"
 <
 
-Vimwiki_pandoc requires Vim compiled with Python 3, so add the following
-to |vimrc| prior to |:filetype-plugin-on|. See |:packadd| for an
-explanation. Otherwise, install vimwiki_pandoc in
-`pack/*/start/vimwiki_pandoc`.
+Panvimwiki requires Vim compiled with Python 3, so add the following to
+|vimrc| prior to |:filetype-plugin-on|. See |:packadd| for an
+explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 >
   if has('python3')
-    packadd! vimwiki_docx
+    packadd! panvimwiki
   endif
 <
 
 ============================================================================
-COMMANDS                                             *vimwiki_pandoc-commands*
+COMMANDS                                                 *panvimwiki-commands*
 
 ----------------------------------------------------------------------------
-COMMAND LINE SHELL                         *vimwiki_pandoc-command_line_shell*
+COMMAND LINE SHELL                             *panvimwiki-command_line_shell*
 
-Vimwiki_pandoc provides plain text pre-filters and pandoc filters for
-use from the command line.
+Panvimwiki provides plain text pre-filters and pandoc filters for use
+from the command line.
 
-PRE-FILTERS                                       *vimwiki_pandoc-pre-filters*
+PRE-FILTERS                                           *panvimwiki-pre-filters*
 
-                                                           *delete_bullet_star*
+                                                          *delete_bullet_star*
 * `delete_bullet_star`: Remove unordered lists which use the star
   (asterisk) bullet marker. The pre-filter does not remove task list
   items (see |delete_task_pending|).
@@ -101,7 +110,7 @@ PRE-FILTERS                                       *vimwiki_pandoc-pre-filters*
 >
     - Bulleted list item 6 should NOT appear
 <
-                                                          *delete_task_pending*
+                                                         *delete_task_pending*
 * `delete_task_pending`: Delete pending tasks.
 >
     echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
@@ -112,31 +121,33 @@ PRE-FILTERS                                       *vimwiki_pandoc-pre-filters*
     - [.] Bulleted list done1 item 1 should appear
 <
 
-PANDOC FILTERS                                 *vimwiki_pandoc-pandoc_filters*
+PANDOC FILTERS                                     *panvimwiki-pandoc_filters*
 
-                                                             *delete_tag_lines*
+                                                            *delete_tag_lines*
 * `delete_tag_lines`: Delete lines which only contain Vimwiki tags,
   e.g., ':tag1:tag2:'
-                                                         *delete_empty_heading*
-* `delete_empty_heading`:
-                                                      *delete_taskwiki_heading*
+                                                        *delete_empty_heading*
+* `delete_empty_heading`: Remove headings that do not have any
+  children or paragraphs. Remove tag lines first
+  (|delete_tag_lines|) or the heading is not considered empty.
+                                                     *delete_taskwiki_heading*
 * `delete_taskwiki_heading`:
 
 ----------------------------------------------------------------------------
-LOCAL COMMANDS                                 *vimwiki_pandoc-local_commands*
+LOCAL COMMANDS                                     *panvimwiki-local_commands*
 
 These commands are only available (and meaningful) when you are
 currently in a Vimwiki file.
 
-VIMWIKICONVERT                                 *vimwiki_pandoc-vimwikiconvert*
+VIMWIKICONVERT                                     *panvimwiki-vimwikiconvert*
 
-                                                               *VimwikiConvert*
+                                                              *VimwikiConvert*
 * `VimwikiConvert`: Convert the current Vimwiki buffer
-                                                              *VimwikiConvert!*
+                                                             *VimwikiConvert!*
 * `VimwikiConvert!`: Convert and open with default viewer.
 
 Convert the current Vimwiki |buffer| to the selected output format
-(default: docx) specified in |g:vimwiki_pandoc_settings|.format.
+(default: docx) specified in |g:panvimwiki_settings|.format.
 
 Copy the path to the Word file to the clipboard register "+
 |quoteplus|. On Windows Subsystem for Linux (WSL), convert the path
@@ -150,12 +161,12 @@ Remove extraneous info:
   Text
 * Remove empty parent/child headings.
 
-VIMWIKICONVERTWEEK                         *vimwiki_pandoc-vimwikiconvertweek*
+VIMWIKICONVERTWEEK                             *panvimwiki-vimwikiconvertweek*
 
-                                                           *VimwikiConvertWeek*
+                                                          *VimwikiConvertWeek*
 * `VimwikiConvertWeek`: Concatentate DiaryNotes for Monday through
   current buffer and convert.
-                                                          *VimwikiConvertWeek!*
+                                                         *VimwikiConvertWeek!*
 * `VimwikiConvertWeek!`: Concatenate, convert and open in default
   viewer.
 
@@ -163,18 +174,18 @@ After concatenating DiaryNotes for the week, behave as
 |VimwikiConvert|.
 
 ============================================================================
-OPTIONS                                               *vimwiki_pandoc-options*
+OPTIONS                                                   *panvimwiki-options*
 
 ----------------------------------------------------------------------------
-SETTINGS                                             *vimwiki_pandoc-settings*
+SETTINGS                                                 *panvimwiki-settings*
 
-                                                    *g:vimwiki_pandoc_settings*
-* `g:vimwiki_pandoc_settings`
+                                                       *g:panvimwiki_settings*
+* `g:panvimwiki_settings`
   Optionally add the following to |vimrc| or, preferably,
-  '~/.vim/plugin/vimwiki.vim'. Vimwiki_pandoc defaults to docx
-  format, without extra_args.
+  '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format,
+  without extra_args.
 >
-    let g:vimwiki_pandoc_settings = {
+    let g:panvimwiki_settings = {
       \ 'extra_args': [ '--shift-heading-level-by', '1',
       \ '--data-dir', '~/vimwiki_html/templates/'
       \ ],
@@ -183,14 +194,14 @@ SETTINGS                                             *vimwiki_pandoc-settings*
 <
 
 ============================================================================
-DEVELOPMENT AND TESTING               *vimwiki_pandoc-development_and_testing*
+DEVELOPMENT AND TESTING                   *panvimwiki-development_and_testing*
 
 Because pandoc is required, a conda environment called `pyscaffold` is
 created. The default name may be overridden with the
 `--name <environment name>` parameter.
 >
-  git clone https://github.com/jfishe/vimwiki_docx.git
-  cd vimwiki_docx
+  git clone https://github.com/jfishe/panvimwiki.git
+  cd panvimwiki
   conda env create --file environment.yml --name pyscaffold
   conda activate pyscaffold
   pipx install covimerage
@@ -211,37 +222,37 @@ executable in `~/.local/bin`. You may want to run
 <
 
 ============================================================================
-NOTE                                                     *vimwiki_pandoc-note*
+NOTE                                                         *panvimwiki-note*
 
 This project has been set up using PyScaffold 4.0.1. For details and
 usage information on PyScaffold see https://pyscaffold.org/.
 
 ============================================================================
-VIMWIKI_DOCX PACKAGE                     *vimwiki_pandoc-vimwiki_docx_package*
+PANVIMWIKI PACKAGE                             *panvimwiki-panvimwiki_package*
 
 ----------------------------------------------------------------------------
-SUBPACKAGES                                       *vimwiki_pandoc-subpackages*
+SUBPACKAGES                                           *panvimwiki-subpackages*
 
-* vimwiki_docx.filter package
+* panvimwiki.filter package
   * Submodules
-  * vimwiki_docx.filter.delete_bullet_star module
-  * vimwiki_docx.filter.delete_empty_heading module
-  * vimwiki_docx.filter.delete_tag_lines module
-  * vimwiki_docx.filter.delete_task_pending module
-  * vimwiki_docx.filter.delete_taskwiki_heading module
-  * vimwiki_docx.filter.do_nothing module
-  * vimwiki_docx.filter.prefilter module
+  * panvimwiki.filter.delete_bullet_star module
+  * panvimwiki.filter.delete_empty_heading module
+  * panvimwiki.filter.delete_tag_lines module
+  * panvimwiki.filter.delete_task_pending module
+  * panvimwiki.filter.delete_taskwiki_heading module
+  * panvimwiki.filter.do_nothing module
+  * panvimwiki.filter.prefilter module
   * Module contents
 
 ----------------------------------------------------------------------------
-SUBMODULES                                         *vimwiki_pandoc-submodules*
+SUBMODULES                                             *panvimwiki-submodules*
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.CATVIMWIKI MODULE *vimwiki_pandoc-vimwiki_docx.catvimwiki_module*
+PANVIMWIKI.CATVIMWIKI MODULE         *panvimwiki-panvimwiki.catvimwiki_module*
 
 Concatenate Vimwiki diary files.
 
-vimwiki_docx.catvimwiki.catdiary(startdate: datetime.date, enddate:
+panvimwiki.catvimwiki.catdiary(startdate: datetime.date, enddate:
 datetime.date, wikidiary: Optional[pathlib.Path] = None) ->
 pathlib.Path
 >
@@ -262,7 +273,7 @@ pathlib.Path
   :   ValueError -- If startdate is after enddate
 <
 
-vimwiki_docx.catvimwiki.del_empty_heading(wikifile: pathlib.Path,
+panvimwiki.catvimwiki.del_empty_heading(wikifile: pathlib.Path,
 reheading: str = \'\^(=+).+\1\s+((\1[\^=])|\Z)\')
 >
   Remove empty headings from Vimwiki file.
@@ -274,7 +285,7 @@ reheading: str = \'\^(=+).+\1\s+((\1[\^=])|\Z)\')
   Returns: Return type: Path to modified Vimikwik file.
 <
 
-vimwiki_docx.catvimwiki.del_taskwiki_heading(wikifile: pathlib.Path,
+panvimwiki.catvimwiki.del_taskwiki_heading(wikifile: pathlib.Path,
 reheading: str = \'\^(=+)([\^.+\s\1\$\')
 >
   Remove taskwiki heading.
@@ -284,8 +295,8 @@ reheading: str = \'\^(=+)([\^.+\s\1\$\')
   Returns: Return type: Path to modified Vimikwik file.
 <
 
-vimwiki_docx.catvimwiki.get_last_monday(today: Optional[datetime.date]
-= None) -> datetime.date
+panvimwiki.catvimwiki.get_last_monday(today: Optional[datetime.date] =
+None) -> datetime.date
 >
   Return datetime for closest Monday before today.
   Parameters:
@@ -296,8 +307,8 @@ vimwiki_docx.catvimwiki.get_last_monday(today: Optional[datetime.date]
   :   datetime.date
 <
 
-vimwiki_docx.catvimwiki.get_last_thursday(today:
-Optional[datetime.date] = None) -> datetime.date
+panvimwiki.catvimwiki.get_last_thursday(today: Optional[datetime.date]
+= None) -> datetime.date
 >
   Return datetime for closest Thursday before today.
   Parameters:
@@ -309,11 +320,11 @@ Optional[datetime.date] = None) -> datetime.date
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.CONVERT MODULE       *vimwiki_pandoc-vimwiki_docx.convert_module*
+PANVIMWIKI.CONVERT MODULE               *panvimwiki-panvimwiki.convert_module*
 
 Process filters and convert to output format using pandoc.
 
-vimwiki_docx.convert.convert(inputfile: str, outputfile: str, to: str =
+panvimwiki.convert.convert(inputfile: str, outputfile: str, to: str =
 \'markdown\', prefilters: Tuple[str, ...] = (\'delete_bullet_star\',
 \'delete_task_pending\'), filters: Tuple[str, ...] =
 (\'delete_tag_lines\', \'delete_empty_heading\',
@@ -329,11 +340,11 @@ vimwiki_docx.convert.convert(inputfile: str, outputfile: str, to: str =
       -   to -- Pandoc output format. See pandoc
           --list-output-formats
       -   prefilters -- Selected Vimwiki stdio executable filters.
-          See pydoc vimwiki_docx.convert for provided filters. Any
+          See pydoc panvimwiki.convert for provided filters. Any
           executable that receives Vimwiki format as stdin and produces
           stdout should work.
       -   filters -- Selected pandoc filters. See pydoc
-          vimwiki_docx.convert for provided filters. Any valid pandoc
+          panvimwiki.convert for provided filters. Any valid pandoc
           --filter <filter name> should work.
       -   extra_args -- Additional pandoc arguments and parameters.
           See pydoc pypandoc.convert_text for details and pandoc
@@ -341,12 +352,12 @@ vimwiki_docx.convert.convert(inputfile: str, outputfile: str, to: str =
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.VIMWIKI_WEEK MODULE *vimwiki_pandoc-vimwiki_docx.vimwiki_week_module*
+PANVIMWIKI.VIMWIKI_WEEK MODULE     *panvimwiki-panvimwiki.vimwiki_week_module*
 
 Convert str dates to datetime and Path. Set default days for missing
 dates.
 
-vimwiki_docx.vimwiki_week.concatenate_diary(diary_path: str, start_date:
+panvimwiki.vimwiki_week.concatenate_diary(diary_path: str, start_date:
 Optional[str] = None, end_date: Optional[str] = None) ->
 pathlib.Path
 >
@@ -371,11 +382,11 @@ pathlib.Path
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.WIKI2PANDOC MODULE *vimwiki_pandoc-vimwiki_docx.wiki2pandoc_module*
+PANVIMWIKI.WIKI2PANDOC MODULE       *panvimwiki-panvimwiki.wiki2pandoc_module*
 
 Vim interface to convert Vimwiki to another format using pandoc.
 
-vimwiki_docx.wiki2pandoc.wiki2pandoc(is_diary: str, is_concatenate: str,
+panvimwiki.wiki2pandoc.wiki2pandoc(is_diary: str, is_concatenate: str,
 to: str = \'docx\', end_date: Optional[str] = None, start_date:
 Optional[str] = None, extra_args=None) -> str
 >
@@ -414,16 +425,17 @@ Optional[str] = None, extra_args=None) -> str
 <
 
 ----------------------------------------------------------------------------
-MODULE CONTENTS                               *vimwiki_pandoc-module_contents*
+MODULE CONTENTS                                   *panvimwiki-module_contents*
 
 ============================================================================
-VIMWIKI_DOCX.FILTER PACKAGE       *vimwiki_pandoc-vimwiki_docx.filter_package*
+PANVIMWIKI.FILTER PACKAGE               *panvimwiki-panvimwiki.filter_package*
 
 ----------------------------------------------------------------------------
-SUBMODULES                                         *vimwiki_pandoc-submodules*
+SUBMODULES                                             *panvimwiki-submodules*
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DELETE_BULLET_STAR MODULE *vimwiki_pandoc-vimwiki_docx.filter.delete_bullet_star_module*
+PANVIMWIKI.FILTER.DELETE_BULLET_STAR MODULE
+                      *panvimwiki-panvimwiki.filter.delete_bullet_star_module*
 
 Remove * bullet list items from unordered list.
 
@@ -434,13 +446,14 @@ Plain text filter
   or * Text.
 * Write filtered result to stdout.
 
-vimwiki_docx.filter.delete_bullet_star.main()
+panvimwiki.filter.delete_bullet_star.main()
 >
   Filter stdio with action().
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DELETE_EMPTY_HEADING MODULE *vimwiki_pandoc-vimwiki_docx.filter.delete_empty_heading_module*
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING MODULE
+                    *panvimwiki-panvimwiki.filter.delete_empty_heading_module*
 
 Remove empty headings from Vimwiki file.
 
@@ -449,59 +462,61 @@ delete_tag_lines.py first to empty such headings.
 
 Pandoc filter using panflute
 
-vimwiki_docx.filter.delete_empty_heading.action(elem, doc)
+panvimwiki.filter.delete_empty_heading.action(elem, doc)
 >
   Remove empty headings from Vimwiki file.
 <
 
-vimwiki_docx.filter.delete_empty_heading.finalize(doc)
+panvimwiki.filter.delete_empty_heading.finalize(doc)
 >
   Post-filter.
 <
 
-vimwiki_docx.filter.delete_empty_heading.main(doc=None)
+panvimwiki.filter.delete_empty_heading.main(doc=None)
 >
   Remove empty headings from Vimwiki file.
   Pandoc filter using panflute
 <
 
-vimwiki_docx.filter.delete_empty_heading.prepare(doc)
+panvimwiki.filter.delete_empty_heading.prepare(doc)
 >
   Pre-filter.
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DELETE_TAG_LINES MODULE *vimwiki_pandoc-vimwiki_docx.filter.delete_tag_lines_module*
+PANVIMWIKI.FILTER.DELETE_TAG_LINES MODULE
+                        *panvimwiki-panvimwiki.filter.delete_tag_lines_module*
 
 Remove Vimwiki tag lines, e.g., :tag1:tag2:.
 
 Pandoc filter using panflute
 
-vimwiki_docx.filter.delete_tag_lines.action(elem, doc)
+panvimwiki.filter.delete_tag_lines.action(elem, doc)
 >
   Remove Vimwiki tag lines, e.g., :tag1:tag2:.
   Pandoc filter using panflute
   In-line tags in paragraphs and lists remain.
 <
 
-vimwiki_docx.filter.delete_tag_lines.finalize(doc)
+panvimwiki.filter.delete_tag_lines.finalize(doc)
 >
   Post-filter.
 <
 
-vimwiki_docx.filter.delete_tag_lines.main(doc=None)
+panvimwiki.filter.delete_tag_lines.main(doc=None)
 >
   Remove taskwiki heading.
   Pandoc filter using panflute
 <
 
-vimwiki_docx.filter.delete_tag_lines.prepare(doc)
+panvimwiki.filter.delete_tag_lines.prepare(doc)
 >
   Pre-filter.
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DELETE_TASK_PENDING MODULE *vimwiki_pandoc-vimwiki_docx.filter.delete_task_pending_module*
+PANVIMWIKI.FILTER.DELETE_TASK_PENDING MODULE
+                     *panvimwiki-panvimwiki.filter.delete_task_pending_module*
 
 Remove Pending and Waiting tasks and set Start tasks to [.]{.done1}.
 
@@ -522,13 +537,14 @@ bash> delete_task_pending
 
 1.   [.] Numbered list done1 item 1 should appear
 
-vimwiki_docx.filter.delete_task_pending.main()
+panvimwiki.filter.delete_task_pending.main()
 >
   Filter stdio with action().
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DELETE_TASKWIKI_HEADING MODULE *vimwiki_pandoc-vimwiki_docx.filter.delete_taskwiki_heading_module*
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING MODULE
+                 *panvimwiki-panvimwiki.filter.delete_taskwiki_heading_module*
 
 Remove taskwiki heading.
 
@@ -543,49 +559,51 @@ bash> pandoc --from=vimwiki --to=markdown
 --filter=delete_taskwiki_heading
 
 ----------------------------------------------------------------------------
-TASKWIKI VIEWPORTS {#TASKWIKI VIEWPORTS } *vimwiki_pandoc-taskwiki_viewports_{#taskwiki_viewports_}*
+TASKWIKI VIEWPORTS {#TASKWIKI VIEWPORTS }
+                        *panvimwiki-taskwiki_viewports_{#taskwiki_viewports_}*
 
-vimwiki_docx.filter.delete_taskwiki_heading.action(elem, doc)
+panvimwiki.filter.delete_taskwiki_heading.action(elem, doc)
 >
   Remove taskwiki heading.
 <
 
-vimwiki_docx.filter.delete_taskwiki_heading.finalize(doc)
+panvimwiki.filter.delete_taskwiki_heading.finalize(doc)
 >
   Post-filter---do nothing.
 <
 
-vimwiki_docx.filter.delete_taskwiki_heading.main(doc=None)
+panvimwiki.filter.delete_taskwiki_heading.main(doc=None)
 >
   Remove taskwiki heading.
   Pandoc filter using panflute
 <
 
-vimwiki_docx.filter.delete_taskwiki_heading.prepare(doc)
+panvimwiki.filter.delete_taskwiki_heading.prepare(doc)
 >
   Pre-filter---do nothing.
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.DO_NOTHING MODULE *vimwiki_pandoc-vimwiki_docx.filter.do_nothing_module*
+PANVIMWIKI.FILTER.DO_NOTHING MODULE
+                              *panvimwiki-panvimwiki.filter.do_nothing_module*
 
 Return the input with no changes.
 
 Plain text filter
 
-vimwiki_docx.filter.do_nothing.main()
+panvimwiki.filter.do_nothing.main()
 >
   Filter stdio with prefilter().
 <
 
 ----------------------------------------------------------------------------
-VIMWIKI_DOCX.FILTER.PREFILTER MODULE *vimwiki_pandoc-vimwiki_docx.filter.prefilter_module*
+PANVIMWIKI.FILTER.PREFILTER MODULE
+                               *panvimwiki-panvimwiki.filter.prefilter_module*
 
 Main function shared by prefilters.
 
-vimwiki_docx.filter.prefilter.action(line: str, delete: Optional[str]
-= None, replace: Optional[Tuple[str, str]] = None) ->
-Optional[str]
+panvimwiki.filter.prefilter.action(line: str, delete: Optional[str] =
+None, replace: Optional[Tuple[str, str]] = None) -> Optional[str]
 >
   Filter Vimwiki text by deleting lines or replacing text in lines.
   Parameters:
@@ -602,7 +620,7 @@ Optional[str]
   :   str or None
 <
 
-vimwiki_docx.filter.prefilter.prefilter(delete: Optional[str] = None,
+panvimwiki.filter.prefilter.prefilter(delete: Optional[str] = None,
 replace: Optional[Tuple[str, str]] = None) -> None
 >
   Read stdin, filter with action() to stdout.
@@ -614,7 +632,7 @@ replace: Optional[Tuple[str, str]] = None) -> None
 <
 
 ----------------------------------------------------------------------------
-MODULE CONTENTS                               *vimwiki_pandoc-module_contents*
+MODULE CONTENTS                                   *panvimwiki-module_contents*
 
 
 
