@@ -1,12 +1,7 @@
 """Vim interface to convert Vimwiki to another format using pandoc."""
 
-try:
-    import vim
-    from vim_bridge import bridged
-except ModuleNotFoundError:  # pragma: no cover
-    def bridged(func):
-        """Mock vim_bridge bridged so Sphinx will work."""
-        return func
+import vim  # noqa
+from vim_bridge import bridged
 
 from pathlib import Path
 from vimwiki_docx.vimwiki_week import concatenate_diary
@@ -22,11 +17,47 @@ def wiki2pandoc(
     start_date: str = None,
     extra_args=None,
 ) -> str:
-    """Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
+    """Bridged to Vim function Wiki2pandoc.
+
+    Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
+
+    Parameters
+    __________
+    is_diary
+        String containing a 0, False, or 1, True, whether current buffer is a
+        Vimwiki DiaryNote.
+
+    is_concatenate
+        String containing a 0, False, or 1, True, whether multiple Vimwiki
+        DiaryNotes from start_date to end_date should concatenate before
+        conversion. Otherwise convert the current buffer only and ignore the
+        dates.
+
+    to
+        Output format (defaults to docx)
+
+    end_date
+        Depending on is_concatenate, the end date for concatenating Vimwiki
+        DiaryNotes. Coerce an empty string, "", to None.
+
+    start_date
+        Depending on is_concatenate, the start date for concatenating Vimwiki
+        DiaryNotes. Coerce an empty string, "", to None.
+
+    extra_args : list or str
+        "0" or a list of valid pandoc arguments, e.g.,
+
+            ["--shift-heading-level-by", "1",
+             "--data-dir", "vimwiki_html/templates"
+            ]
+
+        See `pydoc pypandoc.convert_text` for details and `pandoc –help` for
+        valid content.
 
     Returns
     -------
-    Absolute path to converted Vimwiki file
+    str
+        Absolute path to converted Vimwiki file
 
     """
     isdiary: bool = bool(int(is_diary))

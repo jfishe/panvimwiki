@@ -2,6 +2,15 @@
 """Remove taskwiki heading.
 
 Pandoc filter using panflute
+
+Example
+_______
+bash> echo '== Taskwiki Viewports | should not appear | should not appear ==' |
+
+bash> pandoc --from=vimwiki --to=markdown --filter=delete_taskwiki_heading
+
+## Taskwiki Viewports {#Taskwiki Viewports }
+
 """
 
 import re
@@ -9,7 +18,7 @@ import panflute as pf
 
 
 def prepare(doc):
-    """Pre-filter."""
+    """Pre-filter—do nothing."""
     pass
 
 
@@ -29,7 +38,7 @@ def action(elem, doc):
 
 
 def finalize(doc):
-    """Post-filter."""
+    """Post-filter—do nothing."""
     pass
 
 

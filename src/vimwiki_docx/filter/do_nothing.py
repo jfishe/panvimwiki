@@ -12,7 +12,7 @@ REPLACE = None
 
 
 def main():
-    """Filter stdio with action()."""
+    """Filter stdio with prefilter()."""
     prefilter(delete=DELETE, replace=REPLACE)
 
 

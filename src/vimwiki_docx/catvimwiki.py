@@ -13,11 +13,13 @@ def get_last_thursday(today: datetime.date = None) -> datetime.date:
 
     Parameters
     ----------
-    today : any date object
+    today
+        Any date object
 
     Returns
     -------
-    Previous Thursday before today, unless today is Thursday.
+    datetime.date
+        Previous Thursday before today, unless today is Thursday.
 
     """
     if today is None:
@@ -30,11 +32,13 @@ def get_last_monday(today: datetime.date = None) -> datetime.date:
 
     Parameters
     ----------
-    today : any date object
+    today
+        Any date object
 
     Returns
     -------
-    Previous Monday before today, unless today is Monday.
+    datetime.date
+        Previous Monday before today, unless today is Monday.
 
     """
     if today is None:
@@ -45,7 +49,7 @@ def get_last_monday(today: datetime.date = None) -> datetime.date:
 def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
-    wikidiary: Path = Path.home() / "vimwiki/diary",
+    wikidiary: Path = None,
 ) -> Path:
     """Concatenate Vimwiki diary files.
 
@@ -53,17 +57,20 @@ def catdiary(
 
     Parameters
     ----------
-    startdate : Starting date for Vimwiki diary entry.
+    startdate
+        Starting date for Vimwiki diary entry.
 
-    enddate : End date date for Vimwiki diary entry.
+    enddate
+        End date date for Vimwiki diary entry.
 
-    wikidiary : Path to Vimwiki diary directory. Defaults to
-                `$HOME/vimwiki/diary`.
+    wikidiary
+        Path to Vimwiki diary directory. Defaults to `$HOME/vimwiki/diary`.
 
     Returns
     -------
-    Path to concatenated Vimwiki diary entries from startdate to enddate,
-    inclusive of both.
+    pathlib.Path
+        Path to concatenated Vimwiki diary entries from startdate to enddate,
+        inclusive of both.
 
     Raises
     ______
@@ -71,6 +78,9 @@ def catdiary(
         If `startdate` is after `enddate`
 
     """
+    if wikidiary is None:
+        wikidiary = Path.home() / "vimwiki/diary"
+
     if startdate > enddate:
         errmsg = f"enddate {enddate} should not precede startdate {startdate}."
         raise ValueError(errmsg)
@@ -115,16 +125,20 @@ def del_empty_heading(
 
     Parameters
     ----------
-    wikifile : Path to Vimwiki to modify.
+    wikifile
+        Path to Vimwiki to modify.
 
-    reheading : Regex to match empty headings. Substitute the regex with
-                capture group 2.
+    reheading
+        Regex to match empty headings. Substitute the regex with capture group
+        2.
 
     Returns
     -------
     Path to modified Vimikwik file.
 
     """
+    # # TODO:  <10-08-21, jdfenw@gmail.com> #
+    # Remove del_empty_heading function and tests.
     with open(wikifile, "r", encoding="utf8") as fin:
         diary = fin.read()
 
@@ -173,6 +187,8 @@ def del_taskwiki_heading(
     Path to modified Vimikwik file.
 
     """
+    # # TODO:  <10-08-21, jdfenw@gmail.com> #
+    # Remove del_taskwiki_heading function and tests.
     with open(wikifile, "r", encoding="utf8") as fin:
         diary = fin.read()
 

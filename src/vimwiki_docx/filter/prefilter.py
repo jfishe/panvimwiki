@@ -2,25 +2,31 @@
 
 import re
 import fileinput
-from typing import Tuple
+from typing import Tuple, Optional
 
 
-def action(line: str, delete: str = None, replace: Tuple[str, str] = None):
+def action(
+    line: str, delete: str = None, replace: Tuple[str, str] = None
+) -> Optional[str]:
     """Filter Vimwiki text by deleting lines or replacing text in lines.
 
     Parameters
     ----------
-    line : Line from Vimwiki file.
+    line
+        Line from Vimwiki file.
 
-    delete : Regex string matching all or part of line to be deleted.
+    delete
+        Regex string matching all or part of line to be deleted.
 
-    replace : Regex re.search string and replacement string for re.sub.
+    replace
+        Regex re.search string and replacement string for re.sub.
 
     Returns
     -------
-    Convert lines matching replace[0] regex by substituting replace[1].
-    Lines that do not match delete regex.
-    Otherwise return the original line. Replace takes precedes delete.
+    str or None
+        Convert line matching replace[0] regex by substituting replace[1].  To
+        delete line matching delete regex, return None.  Otherwise return the
+        original line. Replace precedes delete.
 
     """
     if replace is not None:
@@ -45,9 +51,11 @@ def prefilter(delete: str = None, replace: Tuple[str, str] = None) -> None:
 
     Parameters
     ----------
-    delete : Regex string matching all or part of line to be deleted.
+    delete
+        Regex string matching all or part of line to be deleted.
 
-    replace : Regex re.search string and replacement string for re.sub.
+    replace
+        Regex re.search string and replacement string for re.sub.
 
     """
     for line in fileinput.input():

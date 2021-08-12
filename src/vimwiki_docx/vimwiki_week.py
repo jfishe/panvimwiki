@@ -18,18 +18,22 @@ def concatenate_diary(
 
     Parameters
     ----------
-    diary_path : Vimwiki Diary absolute path
+    diary_path
+        Vimwiki Diary absolute path
 
-    start_date : ISO date, e.g., '2017-10-10', the same or earlier than
-                 `end_date`. Defaults to the previous Monday before `end_date`,
-                 unless `end_date` is Monday.
+    start_date
+        ISO date, e.g., '2017-10-10', the same or earlier than `end_date`.
+        Defaults to the previous Monday before `end_date`, unless `end_date` is
+        Monday.
 
-    end_date : ISO date, e.g., '2017-10-10', defaults to the previous Thursday
-               before today, unless today is Thursday.
+    end_date
+        ISO date, e.g., '2017-10-10', defaults to the previous Thursday before
+        today, unless today is Thursday.
 
     Returns
     -------
-    Path to concatenated Vimwiki diary file
+    pathlib.Path
+        Path to concatenated Vimwiki diary file
 
     Raises
     ______

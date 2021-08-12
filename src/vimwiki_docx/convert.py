@@ -1,4 +1,4 @@
-"""Process filters."""
+"""Process filters and convert to output format using pandoc."""
 
 import subprocess
 from pathlib import Path
@@ -30,34 +30,34 @@ def convert(
     prefilters: Tuple[str, ...] = PREFILTER,
     filters: Tuple[str, ...] = FILTER,
     extra_args: Tuple[str, ...] = EXTRA_ARGS,
-):
+) -> None:
     """Convert Vimwiki with pandoc after applying prefilters and pandoc filters.
 
     Parameters
     ----------
-    inputfile : Vimwiki file absolute path
+    inputfile
+          Vimwiki file absolute path
 
-    outputfile : Converted file absolute path
+    outputfile
+          Converted file absolute path
 
-    to : Pandoc output format. See `pandoc --list-output-formats`
+    to
+          Pandoc output format. See `pandoc --list-output-formats`
 
-    prefilters : Selected Vimwiki stdio executable filters.
-                 See `pydoc vimwiki_docx.convert`
-                 for provided filters. Any executable that receives
-                 Vimwiki format as stdin and produces stdout should work.
+    prefilters
+          Selected Vimwiki stdio executable filters.  See `pydoc
+          vimwiki_docx.convert` for provided filters. Any executable that
+          receives Vimwiki format as stdin and produces stdout should work.
 
-    filters : Selected pandoc filters.
-              See `pydoc vimwiki_docx.convert`
-              for provided filters. Any valid
-              `pandoc --filter <filter name>` should work.
+    filters
+          Selected pandoc filters.  See `pydoc vimwiki_docx.convert` for
+          provided filters. Any valid `pandoc --filter <filter name>` should
+          work.
 
-    extra_args : Additional pandoc arguments and parameters.
-                 See `pydoc pypandoc.convert_text`
-                 for details and `pandoc --help` for valid content.
-
-    Returns
-    -------
-    None
+    extra_args
+        Additional pandoc arguments and parameters.  See `pydoc
+        pypandoc.convert_text` for details and `pandoc --help` for valid
+        content.
 
     """
     with open(inputfile, mode="r", encoding="utf8") as fin:
