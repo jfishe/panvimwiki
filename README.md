@@ -28,6 +28,7 @@ dest="$HOME/.vim/pack/vimwiki/opt/vimwiki_pandoc"
 git clone https://github.com/jfishe/vimwiki_docx.git "$dest"
 
 # Activate the python environment used by Vim.
+# Then install vimwiki_docx in that python environment.
 python -m pip install "$dest"
 ```
 
@@ -43,6 +44,50 @@ endif
 ```
 
 ## Commands
+
+### Command Line Shell
+
+Vimwiki_pandoc provides plain text pre-filters and pandoc filters for use from
+the command line.
+
+#### Pre-filters
+
+- `delete_bullet_star`: Remove unordered lists which use the star (asterisk)
+  bullet marker. The pre-filter does not remove task list items (see
+  `|delete_task_pending|`).
+
+```bash
+echo '- Bulleted list item 1 should appear\n' \
+     '* Bulleted list item 6 should NOT appear' |
+delete_bullet_star
+```
+
+```text
+- Bulleted list item 6 should NOT appear
+```
+
+- `delete_task_pending`: Delete pending tasks.
+
+```bash
+echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
+     '- [.] Bulleted list done1 item 1 should appear' |
+delete_task_pending
+```
+
+```text
+- [.] Bulleted list done1 item 1 should appear
+```
+
+#### Pandoc Filters
+
+- `delete_tag_lines`: Delete lines which only contain Vimwiki tags, e.g.,
+  ':tag1:tag2:'
+
+- `delete_empty_heading`: Remove headings that do not have any children or
+  paragraphs. Remove tag lines first (`|delete_tag_lines|`) or the heading is
+  not considered empty.
+
+- `delete_taskwiki_heading`:
 
 ### Local Commands
 

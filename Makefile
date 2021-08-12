@@ -30,12 +30,15 @@ ${bundledir}:
 build:
 	mkdir build
 
+doc/:
+	mkdir doc
+
 docsdir := docs/_build/text/api
 
 ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt:
 		${MAKE} --directory=docs text
 
-vimdoc: README.md ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt build/go/bin/md2vim ## Convert Markdown documentation to Vim Help format in doc/vimwiki_pandoc.txt.
+doc/vimwiki_pandoc.txt: README.md ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt build/go/bin/md2vim | doc/
 		pandoc --from=markdown --to=markdown --shift-heading-level-by=-1 \
 			README.md --output=doc/tmp.md
 		cat ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt | \
@@ -64,7 +67,9 @@ vimdoc: README.md ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt
 		echo -n "\n\n    vim:textwidth=78:tabstop=4:filetype=help:norightleft:" \
 			>> doc/vimwiki_pandoc.txt
 
-.PHONY: doc
+vimdoc: doc/vimwiki_pandoc.txt ${docsdir}/vimwiki_docx.txt ${docsdir}/vimwiki_docx.filter.txt ## Convert Markdown documentation to Vim Help format in doc/vimwiki_pandoc.txt.
+
+.PHONY: vimdoc
 
 # Prerequire go tool chain.
 # $ sudo apt-get install golang
