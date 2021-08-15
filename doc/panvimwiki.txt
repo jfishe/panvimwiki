@@ -27,7 +27,7 @@ the system version, e.g., with Ubuntu, may be too old. Or download from the
 website.
 
 Using the Vim 8 native packages, panvimwiki should install in
->pack/*/opt/panvimwiki< because it depends on |python3| and requires
+>pack/*/opt/panvimwiki< because it depends on |:python3| and requires
 installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
@@ -112,8 +112,8 @@ delete_tag_lines                       Delete lines which only contain Vimwiki
 
 delete_empty_heading                   Remove headings that do not have any
                                        children or paragraphs. Remove tag lines
-                                       first (|delete_tag_lines|) or the
-                                       heading is not considered empty.
+                                       first, |delete_tag_lines| or the heading
+                                       is not considered empty.
 
 
                                           *panvimwiki-delete_taskwiki_heading*
@@ -132,7 +132,7 @@ VimwikiConvert[!]                      Convert the current Vimwiki buffer. With
                                        !, open with default viewer.
 
 
-Convert the current Vimwiki |buffer| to the selected output format (default:
+Convert the current Vimwiki |:buffer| to the selected output format (default:
 docx) specified in |g:panvimwiki_settings|.format.
 
 Copy the path to the Word file to the clipboard register "+ |quoteplus|. On
@@ -221,6 +221,12 @@ information on PyScaffold see https://pyscaffold.org/.
 ==============================================================================
 Links                                                       *panvimwiki-links*
 
+- *quoteplus*                   https://vimhelp.org/gui_x11.txt.html#quoteplus
+- *vimrc*                          https://vimhelp.org/starting.txt.html#vimrc
+- *:buffer*                     https://vimhelp.org/windows.txt.html#%3Abuffer
+- *:filetype-plugin-on*    https://vimhelp.org/filetype.txt.html#%3Afiletype-plugin-on
 - *Pandoc*                                                 https://pandoc.org/
+- *:packadd*                    https://vimhelp.org/repeat.txt.html#%3Apackadd
+- *:python3*                      https://vimhelp.org/if_pyth.txt.html#python3
 
 vim:tw=78:ts=8:noet:ft=help:norl:

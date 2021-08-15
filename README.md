@@ -16,8 +16,8 @@ Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on |python3| and requires
-installation of the python package panvimwiki.
+`pack/*/opt/panvimwiki` because it depends on [:python3](https://vimhelp.org/if_pyth.txt.html#python3)
+and requires installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
 
@@ -33,9 +33,10 @@ python -m pip install "$dest"
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-|vimrc| prior to |:filetype-plugin-on|. See |:packadd| for an
-explanation. Otherwise, install panvimwiki in
-`pack/*/start/panvimwiki`.
+[vimrc](https://vimhelp.org/starting.txt.html#vimrc)
+prior to [:filetype-plugin-on](https://vimhelp.org/filetype.txt.html#%3Afiletype-plugin-on).
+See [:packadd](https://vimhelp.org/repeat.txt.html#%3Apackadd)
+for an explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 
 ```vim
 if has('python3')
@@ -53,7 +54,7 @@ the command line.
 #### delete_bullet_star
 
 Remove unordered lists which use the star (asterisk) bullet marker. The
-pre-filter does not remove task list items (see |delete_task_pending|).
+pre-filter does not remove task list items (see [delete_task_pending](#delete_task_pending)).
 
 ```bash
 echo '- Bulleted list item 1 should appear\n' \
@@ -88,7 +89,7 @@ Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 #### delete_empty_heading
 
 Remove headings that do not have any children or paragraphs. Remove tag lines
-first (|delete_tag_lines|) or the heading is not considered empty.
+first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered empty.
 
 #### delete_taskwiki_heading
 
@@ -103,12 +104,14 @@ Vimwiki file.
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki |buffer| to the selected output format (default:
-docx) specified in |g:panvimwiki_settings|.format.
+Convert the current Vimwiki [:buffer](https://vimhelp.org/windows.txt.html#%3Abuffer)
+to the selected output format (default: docx) specified in
+[g:panvimwiki_settings](#g%3Apanvimwiki_settings).format.
 
 Copy the path to the Word file to the clipboard register "+
-|quoteplus|. On Windows Subsystem for Linux (WSL), convert the path from
-POSIX to Windows before copying to clipboard.
+[quoteplus](https://vimhelp.org/gui_x11.txt.html#quoteplus).
+On Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
+before copying to clipboard.
 
 Remove extraneous info:
 
@@ -123,7 +126,7 @@ Remove extraneous info:
 Concatentate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
 
-After concatenating DiaryNotes for the week, behave as |VimwikiConvert|.
+After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert%5B%21%5D).
 
 ## Options
 
@@ -131,9 +134,9 @@ After concatenating DiaryNotes for the week, behave as |VimwikiConvert|.
 
 #### g:panvimwiki_settings
 
-Optionally add the following to |vimrc| or, preferably,
-'~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format, without
-extra_args.
+Optionally add the following to [vimrc](https://vimhelp.org/starting.txt.html#vimrc)
+or, preferably, '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx
+format, without extra_args.
 
 ```vim
 let g:panvimwiki_settings = {
