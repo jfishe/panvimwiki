@@ -1,0 +1,252 @@
+panvimwiki-package.txt  For VIM - Vi IMproved 8.2  Last change: 2021 August 15
+
+==============================================================================
+Table of Contents                       *panvimwiki-package-table-of-contents*
+
+1. panvimwiki package                  |panvimwiki-package-panvimwiki-package|
+
+==============================================================================
+1. panvimwiki package                  *panvimwiki-package-panvimwiki-package*
+
+SUBPACKAGES                                   *panvimwiki-package-subpackages*
+
+
+- panvimwiki.filter package
+    - Submodules
+    - panvimwiki.filter.delete_bullet_star module
+    - panvimwiki.filter.delete_empty_heading module
+    - panvimwiki.filter.delete_tag_lines module
+    - panvimwiki.filter.delete_task_pending module
+    - panvimwiki.filter.delete_taskwiki_heading module
+    - panvimwiki.filter.do_nothing module
+    - panvimwiki.filter.prefilter module
+    - Module contents
+
+
+SUBMODULES                                     *panvimwiki-package-submodules*
+
+PANVIMWIKI.CATVIMWIKI MODULE *panvimwiki-package-panvimwiki.catvimwiki-module*
+
+Concatenate Vimwiki diary files.
+
+*panvimwiki-package-panvimwiki.catvimwiki.catdiary(startdate, enddate, wikidiary=None)*
+
+panvimwiki.catvimwiki.catdiary(startdate, enddate, wikidiary=None) Concatenate
+                                       Vimwiki diary files.
+
+
+Assume diary wiki files are named using ISO date, e.g., 2021-06-09.wiki.
+
+
+- **Parameters**
+    - **startdate** (|_datetime.date_|) – Starting date for Vimwiki diary entry.
+    - **enddate** (|_datetime.date_|) – End date date for Vimwiki diary entry.
+    - **wikidiary** (*Optional**[_|_pathlib.Path_|_]*) – Path to Vimwiki diary
+        directory. Defaults to $HOME/vimwiki/diary.
+- **Returns**
+    Path to concatenated Vimwiki diary entries from startdate to enddate, inclusive
+    of both.
+- **Return type**
+    |pathlib.Path|
+- **Raises**
+    |**ValueError**| – If startdate is after enddate
+
+
+*panvimwiki-package-panvimwiki.catvimwiki.del_empty_heading(wikifile, reheading='^(=+).+\\1\\s+((\\1)|\\Z)')*
+
+panvimwiki.catvimwiki.del_empty_heading(wikifile, reheading='^(=+).+\\1\\s+((\\1[^=])|\\Z)')
+                                       Remove empty headings from Vimwiki file.
+
+
+Apply Regex until no empty headings remain.
+
+
+- **Parameters**
+    - **wikifile** (|_pathlib.Path_|) – Path to Vimwiki to modify.
+    - **reheading** (|_str_|) – Regex to match empty headings. Substitute the regex
+        with capture group
+    1. 
+- **Returns**
+- **Return type**
+    Path to modified Vimikwik file.
+
+
+*panvimwiki-package-panvimwiki.catvimwiki.del_taskwiki_heading(wikifile, reheading='^(=+)(+)\\s\\|.+\\s\\1$')*
+
+panvimwiki.catvimwiki.del_taskwiki_heading(wikifile, reheading='^(=+)([^|]+)\\s\\|.+\\s\\1$')
+                                       Remove taskwiki heading.
+
+
+wikifile : Path to Vimwiki to modify.
+
+reheading
+
+>
+    capture group 2.
+<
+
+
+
+- **Returns**
+- **Return type**
+    Path to modified Vimikwik file.
+- **Parameters**
+    - **wikifile** (|_pathlib.Path_|) –
+    - **reheading** (|_str_|) –
+
+
+        *panvimwiki-package-panvimwiki.catvimwiki.get_last_monday(today=None)*
+
+panvimwiki.catvimwiki.get_last_monday(today=None) Return datetime for closest
+                                       Monday before today.
+
+
+
+- **Parameters**
+    **today** (*Optional**[_|_datetime.date_|_]*) – Any date object
+- **Returns**
+    Previous Monday before today, unless today is Monday.
+- **Return type**
+    |datetime.date|
+
+
+      *panvimwiki-package-panvimwiki.catvimwiki.get_last_thursday(today=None)*
+
+panvimwiki.catvimwiki.get_last_thursday(today=None) Return datetime for closest
+                                       Thursday before today.
+
+
+
+- **Parameters**
+    **today** (*Optional**[_|_datetime.date_|_]*) – Any date object
+- **Returns**
+    Previous Thursday before today, unless today is Thursday.
+- **Return type**
+    |datetime.date|
+
+
+PANVIMWIKI.CONVERT MODULE       *panvimwiki-package-panvimwiki.convert-module*
+
+Process filters and convert to output format using pandoc.
+
+*panvimwiki-package-panvimwiki.convert.convert(inputfile, outputfile, to='markdown', prefilters=PREFILTER, filters=FILTER, extra_args=EXTRA_ARGS)*
+
+panvimwiki.convert.convert(inputfile, outputfile, to='markdown', prefilters=PREFILTER, filters=FILTER, extra_args=EXTRA_ARGS)
+                                       Convert Vimwiki with pandoc after
+                                       applying prefilters and pandoc filters.
+
+
+
+- **Parameters**
+    - **inputfile** (|_str_|) – Vimwiki file absolute path
+    - **outputfile** (|_str_|) – Converted file absolute path
+    - **to** (|_str_|) – Pandoc output format. See pandoc –list-output-formats
+    - **prefilters** (*Tuple**[_|_str_|_, **…**]*) – Selected Vimwiki stdio
+        executable filters. See pydoc panvimwiki.convert for provided filters. Any
+        executable that receives Vimwiki format as stdin and produces stdout should
+        work.
+    - **filters** (*Tuple**[_|_str_|_, **…**]*) – Selected pandoc filters. See
+        pydoc panvimwiki.convert for provided filters. Any valid pandoc –filter
+        <filter name> should work.
+    - **extra_args** (*Tuple**[_|_str_|_, **…**]*) – Additional pandoc arguments
+        and parameters. See pydoc pypandoc.convert_text for details and pandoc –help
+        for valid content.
+- **Return type**
+    |None|
+
+
+PANVIMWIKI.VIMWIKI_WEEK MODULE*panvimwiki-package-panvimwiki.vimwiki_week-module*
+
+Convert str dates to datetime and Path. Set default days for missing dates.
+
+*panvimwiki-package-panvimwiki.vimwiki_week.concatenate_diary(diary_path, start_date=None, end_date=None)*
+
+panvimwiki.vimwiki_week.concatenate_diary(diary_path, start_date=None, end_date=None)
+                                       Concatenate Vimwiki diary from
+                                       start_date through end_date.
+
+
+If the start and end dates are None, concatenate Vimwiki Diary from Monday -
+Thursday. E.g., Thursday through Sunday returns this week. Monday - Wednesday
+returns last week.
+
+
+- **Parameters**
+    - **diary_path** (|_str_|) – Vimwiki Diary absolute path
+    - **start_date** (*Optional**[_|_str_|_]*) – ISO date, e.g., '2017-10-10', the
+        same or earlier than end_date. Defaults to the previous Monday before end_date,
+        unless end_date is Monday.
+    - **end_date** (*Optional**[_|_str_|_]*) – ISO date, e.g., '2017-10-10',
+        defaults to the previous Thursday before today, unless today is Thursday.
+- **Returns**
+    Path to concatenated Vimwiki diary file
+- **Return type**
+    |pathlib.Path|
+- **Raises**
+    |**ValueError**| – catdiary() raises ValueError if start_date is after
+    end_date
+
+
+PANVIMWIKI.WIKI2PANDOC MODULE*panvimwiki-package-panvimwiki.wiki2pandoc-module*
+
+Vim interface to convert Vimwiki to another format using pandoc.
+
+*panvimwiki-package-panvimwiki.wiki2pandoc.wiki2pandoc(is_diary, is_concatenate, to='docx', end_date=None, start_date=None, extra_args=None)*
+
+panvimwiki.wiki2pandoc.wiki2pandoc(is_diary, is_concatenate, to='docx', end_date=None, start_date=None, extra_args=None)
+                                       Bridged to Vim function Wiki2pandoc.
+
+
+Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
+
+
+- **Parameters**
+    - **is_diary** (|_str_|) – String containing a 0, False, or 1, True, whether
+        current buffer is a Vimwiki DiaryNote.
+    - **is_concatenate** (|_str_|) – String containing a 0, False, or 1, True,
+        whether multiple Vimwiki DiaryNotes from start_date to end_date should
+        concatenate before conversion. Otherwise convert the current buffer only and
+        ignore the dates.
+    - **to** (|_str_|) – Output format (defaults to docx)
+    - **end_date** (*Optional**[_|_str_|_]*) – Depending on is_concatenate, the end
+        date for concatenating Vimwiki DiaryNotes. Coerce an empty string, “”, to
+        None.
+    - **start_date** (*Optional**[_|_str_|_]*) – Depending on is_concatenate, the
+        start date for concatenating Vimwiki DiaryNotes. Coerce an empty string,
+        “”, to None.
+    - **extra_args** (|_list_|* or *|_str_|) – "0" or a list of valid pandoc
+        arguments, e.g.,
+    >
+    [”–shift-heading-level-by”, "1",
+    <
+    >
+    >
+        ”–data-dir”, “vimwiki_html/templates”
+    <
+    <
+    >
+    ]
+    <
+    See pydoc pypandoc.convert_text for details and pandoc –help for valid
+    content.
+- **Returns**
+    Absolute path to converted Vimwiki file
+- **Return type**
+    |str|
+
+
+MODULE CONTENTS                           *panvimwiki-package-module-contents*
+==============================================================================
+Links                                               *panvimwiki-package-links*
+
+- *_str_*                https://docs.python.org/3.9/library/stdtypes.html#str
+- *None*               https://docs.python.org/3.9/library/constants.html#None
+- *pathlib.Path*    https://docs.python.org/3.9/library/pathlib.html#pathlib.Path
+- *datetime.date*    https://docs.python.org/3.9/library/datetime.html#datetime.date
+- *_datetime.date_*    https://docs.python.org/3.9/library/datetime.html#datetime.date
+- ***ValueError***    https://docs.python.org/3.9/library/exceptions.html#ValueError
+- *_pathlib.Path_*    https://docs.python.org/3.9/library/pathlib.html#pathlib.Path
+- *str*                  https://docs.python.org/3.9/library/stdtypes.html#str
+- *_list_*              https://docs.python.org/3.9/library/stdtypes.html#list
+
+vim:tw=78:ts=8:noet:ft=help:norl:

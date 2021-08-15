@@ -1,0 +1,236 @@
+panvimwiki-filter.txt  For VIM - Vi IMproved 8.2   Last change: 2021 August 15
+
+==============================================================================
+Table of Contents                        *panvimwiki-filter-table-of-contents*
+
+1. Submodules                                   |panvimwiki-filter-submodules|
+2. panvimwiki.filter.delete_bullet_star module|panvimwiki-filter-panvimwiki.filter.delete_bullet_star-module|
+3. panvimwiki.filter.delete_empty_heading module|panvimwiki-filter-panvimwiki.filter.delete_empty_heading-module|
+4. panvimwiki.filter.delete_tag_lines module|panvimwiki-filter-panvimwiki.filter.delete_tag_lines-module|
+5. panvimwiki.filter.delete_task_pending module|panvimwiki-filter-panvimwiki.filter.delete_task_pending-module|
+6. panvimwiki.filter.delete_taskwiki_heading module|panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading-module|
+7. Taskwiki Viewports {#Taskwiki Viewports }|panvimwiki-filter-taskwiki-viewports-{#taskwiki-viewports-}|
+8. panvimwiki.filter.do_nothing module|panvimwiki-filter-panvimwiki.filter.do_nothing-module|
+9. panvimwiki.filter.prefilter module|panvimwiki-filter-panvimwiki.filter.prefilter-module|
+10. Module contents                        |panvimwiki-filter-module-contents|
+
+==============================================================================
+1. Submodules                                   *panvimwiki-filter-submodules*
+
+==============================================================================
+2. panvimwiki.filter.delete_bullet_star module*panvimwiki-filter-panvimwiki.filter.delete_bullet_star-module*
+
+Remove * bullet list items from unordered list.
+
+Plain text prefilter
+
+
+- >delete_bullet_star<: Remove unordered lists which use the star (asterisk)
+    bullet marker. The pre-filter does not remove task list items (see
+    |delete_task_pending|).
+- Read stdin.
+- Remove non-task * bullet lines, e.g., * [[URI|Description]] or * Text.
+- Write filtered result to stdout.
+
+
+EXAMPLE                                            *panvimwiki-filter-example*
+
+>
+    echo <<EOF | delete_bullet_star
+    '- Bulleted list item 1 should appear'
+    '* Bulleted list item 6 should NOT appear'
+    EOF
+<
+
+
+>
+    - Bulleted list item 1 should appear
+<
+
+
+PANVIMWIKI.FILTER.DELETE_BULLET_STAR.MAIN()*panvimwiki-filter-panvimwiki.filter.delete_bullet_star.main()*
+
+Filter stdio with action().
+
+==============================================================================
+3. panvimwiki.filter.delete_empty_heading module*panvimwiki-filter-panvimwiki.filter.delete_empty_heading-module*
+
+Remove empty headings from Vimwiki file.
+
+Headings are not empty if they contain tag lines. Execute delete_tag_lines.py
+first to empty such headings.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.ACTION(ELEM, DOC)*panvimwiki-filter-panvimwiki.filter.delete_empty_heading.action(elem,-doc)*
+
+Remove empty headings from Vimwiki file.
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.FINALIZE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_empty_heading.finalize(doc)*
+
+Post-filter.
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.MAIN(DOC=NONE)*panvimwiki-filter-panvimwiki.filter.delete_empty_heading.main(doc=none)*
+
+Remove empty headings from Vimwiki file.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_EMPTY_HEADING.PREPARE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_empty_heading.prepare(doc)*
+
+Pre-filter.
+
+==============================================================================
+4. panvimwiki.filter.delete_tag_lines module*panvimwiki-filter-panvimwiki.filter.delete_tag_lines-module*
+
+Remove Vimwiki tag lines, e.g., :tag1:tag2:.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.ACTION(ELEM, DOC)*panvimwiki-filter-panvimwiki.filter.delete_tag_lines.action(elem,-doc)*
+
+Remove Vimwiki tag lines, e.g., :tag1:tag2:.
+
+Pandoc filter using panflute
+
+In-line tags in paragraphs and lists remain.
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.FINALIZE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_tag_lines.finalize(doc)*
+
+Post-filter.
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.MAIN(DOC=NONE)*panvimwiki-filter-panvimwiki.filter.delete_tag_lines.main(doc=none)*
+
+Remove taskwiki heading.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_TAG_LINES.PREPARE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_tag_lines.prepare(doc)*
+
+Pre-filter.
+
+==============================================================================
+5. panvimwiki.filter.delete_task_pending module*panvimwiki-filter-panvimwiki.filter.delete_task_pending-module*
+
+Remove Pending and Waiting tasks and set Start tasks to ..
+
+Plain text filter
+
+
+- Read stdin.
+- Remove Pending [ ] and Waiting [W] tasks.
+- Change Start [S] task to [.].
+- Write filtered result to stdout.
+
+
+EXAMPLE                                            *panvimwiki-filter-example*
+
+>
+    echo '1. [ ] Numbered list done0 item 0 should NOT appear\n' \
+    '2. [.] Numbered list done1 item 1 should appear' |
+    delete_task_pending
+<
+
+
+>
+    2. [.] Numbered list done1 item 1 should appear
+<
+
+
+PANVIMWIKI.FILTER.DELETE_TASK_PENDING.MAIN()*panvimwiki-filter-panvimwiki.filter.delete_task_pending.main()*
+
+Filter stdio with action().
+
+==============================================================================
+6. panvimwiki.filter.delete_taskwiki_heading module*panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading-module*
+
+Remove taskwiki heading.
+
+Pandoc filter using panflute
+
+EXAMPLE                                            *panvimwiki-filter-example*
+
+bash> echo '== Taskwiki Viewports | should not appear | should not appear ==' |
+
+bash> pandoc –from=vimwiki –to=markdown –filter=delete_taskwiki_heading
+
+==============================================================================
+7. Taskwiki Viewports {#Taskwiki Viewports }*panvimwiki-filter-taskwiki-viewports-{#taskwiki-viewports-}*
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.ACTION(ELEM, DOC)*panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading.action(elem,-doc)*
+
+Remove taskwiki heading.
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.FINALIZE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading.finalize(doc)*
+
+Post-filter—do nothing.
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.MAIN(DOC=NONE)*panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading.main(doc=none)*
+
+Remove taskwiki heading.
+
+Pandoc filter using panflute
+
+PANVIMWIKI.FILTER.DELETE_TASKWIKI_HEADING.PREPARE(DOC)*panvimwiki-filter-panvimwiki.filter.delete_taskwiki_heading.prepare(doc)*
+
+Pre-filter—do nothing.
+
+==============================================================================
+8. panvimwiki.filter.do_nothing module*panvimwiki-filter-panvimwiki.filter.do_nothing-module*
+
+Return the input with no changes.
+
+Plain text filter
+
+PANVIMWIKI.FILTER.DO_NOTHING.MAIN()*panvimwiki-filter-panvimwiki.filter.do_nothing.main()*
+
+Filter stdio with prefilter().
+
+==============================================================================
+9. panvimwiki.filter.prefilter module*panvimwiki-filter-panvimwiki.filter.prefilter-module*
+
+Main function shared by prefilters.
+
+PANVIMWIKI.FILTER.PREFILTER.ACTION(LINE, DELETE=NONE, REPLACE=NONE)*panvimwiki-filter-panvimwiki.filter.prefilter.action(line,-delete=none,-replace=none)*
+
+Filter Vimwiki text by deleting lines or replacing text in lines.
+
+
+- **Parameters**
+    - **line** (|_str_|) – Line from Vimwiki file.
+    - **delete** (*Optional**[_|_str_|_]*) – Regex string matching all or part of
+        line to be deleted.
+    - **replace** (*Optional**[**Tuple**[_|_str_|_, _|_str_|_]**]*) – Regex
+        re.search string and replacement string for re.sub.
+- **Returns**
+    Convert line matching replace[0] regex by substituting replace[1]. To delete
+    line matching delete regex, return None. Otherwise return the original line.
+    Replace precedes delete.
+- **Return type**
+    |str| or |None|
+
+
+PANVIMWIKI.FILTER.PREFILTER.PREFILTER(DELETE=NONE, REPLACE=NONE)*panvimwiki-filter-panvimwiki.filter.prefilter.prefilter(delete=none,-replace=none)*
+
+Read stdin, filter with action() to stdout.
+
+
+- **Parameters**
+    - **delete** (*Optional**[_|_str_|_]*) – Regex string matching all or part of
+        line to be deleted.
+    - **replace** (*Optional**[**Tuple**[_|_str_|_, _|_str_|_]**]*) – Regex
+        re.search string and replacement string for re.sub.
+- **Return type**
+    |None|
+
+
+==============================================================================
+10. Module contents                        *panvimwiki-filter-module-contents*
+==============================================================================
+Links                                                *panvimwiki-filter-links*
+
+- *None*               https://docs.python.org/3.9/library/constants.html#None
+- *_str_*                https://docs.python.org/3.9/library/stdtypes.html#str
+- *str*                  https://docs.python.org/3.9/library/stdtypes.html#str
+
+vim:tw=78:ts=8:noet:ft=help:norl:

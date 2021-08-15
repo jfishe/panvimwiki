@@ -16,7 +16,7 @@ Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on `|python3|` and requires
+`pack/*/opt/panvimwiki` because it depends on |python3| and requires
 installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
@@ -33,7 +33,7 @@ python -m pip install "$dest"
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-`|vimrc|` prior to `|:filetype-plugin-on|`. See `|:packadd|` for an
+|vimrc| prior to |:filetype-plugin-on|. See |:packadd| for an
 explanation. Otherwise, install panvimwiki in
 `pack/*/start/panvimwiki`.
 
@@ -43,18 +43,17 @@ if has('python3')
 endif
 ```
 
-## Commands
+## Command Line Shell
 
-### Command Line Shell
+### Pre-Filters
 
 Panvimwiki provides plain text pre-filters and pandoc filters for use from
 the command line.
 
-#### Pre-filters
+#### delete_bullet_star
 
-- `delete_bullet_star`: Remove unordered lists which use the star (asterisk)
-  bullet marker. The pre-filter does not remove task list items (see
-  `|delete_task_pending|`).
+Remove unordered lists which use the star (asterisk) bullet marker. The
+pre-filter does not remove task list items (see |delete_task_pending|).
 
 ```bash
 echo '- Bulleted list item 1 should appear\n' \
@@ -66,7 +65,9 @@ delete_bullet_star
 - Bulleted list item 6 should NOT appear
 ```
 
-- `delete_task_pending`: Delete pending tasks.
+#### delete_task_pending
+
+Delete pending tasks.
 
 ```bash
 echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
@@ -78,32 +79,35 @@ delete_task_pending
 - [.] Bulleted list done1 item 1 should appear
 ```
 
-#### Pandoc Filters
+### Pandoc Filters
 
-- `delete_tag_lines`: Delete lines which only contain Vimwiki tags, e.g.,
-  ':tag1:tag2:'
+#### delete_tag_lines
 
-- `delete_empty_heading`: Remove headings that do not have any children or
-  paragraphs. Remove tag lines first (`|delete_tag_lines|`) or the heading is
-  not considered empty.
+Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 
-- `delete_taskwiki_heading`:
+#### delete_empty_heading
+
+Remove headings that do not have any children or paragraphs. Remove tag lines
+first (|delete_tag_lines|) or the heading is not considered empty.
+
+#### delete_taskwiki_heading
+
+## Commands
 
 ### Local Commands
 
 These commands are only available (and meaningful) when you are currently in a
 Vimwiki file.
 
-#### VimwikiConvert
+#### VimwikiConvert[!]
 
-- `VimwikiConvert`: Convert the current Vimwiki buffer
-- `VimwikiConvert!`: Convert and open with default viewer.
+Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki `|buffer|` to the selected output format (default:
-docx) specified in `|g:panvimwiki_settings|`.format.
+Convert the current Vimwiki |buffer| to the selected output format (default:
+docx) specified in |g:panvimwiki_settings|.format.
 
 Copy the path to the Word file to the clipboard register "+
-`|quoteplus|`. On Windows Subsystem for Linux (WSL), convert the path from
+|quoteplus|. On Windows Subsystem for Linux (WSL), convert the path from
 POSIX to Windows before copying to clipboard.
 
 Remove extraneous info:
@@ -114,22 +118,22 @@ Remove extraneous info:
   Text
 - Remove empty parent/child headings.
 
-#### VimwikiConvertWeek
+#### VimwikiConvertWeek[!]
 
-- `VimwikiConvertWeek`: Concatentate DiaryNotes for Monday through current
-  buffer and convert.
-- `VimwikiConvertWeek!`: Concatenate, convert and open in default viewer.
+Concatentate DiaryNotes for Monday through current buffer and convert.
+With !, open in default viewer.
 
-After concatenating DiaryNotes for the week, behave as `|VimwikiConvert|`.
+After concatenating DiaryNotes for the week, behave as |VimwikiConvert|.
 
 ## Options
 
-### Settings
+### Global Settings
 
-- `g:panvimwiki_settings`
+#### g:panvimwiki_settings
 
-  Optionally add the following to `|vimrc|` or, preferably,
-  '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format, without extra_args.
+Optionally add the following to |vimrc| or, preferably,
+'~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format, without
+extra_args.
 
 ```vim
 let g:panvimwiki_settings = {
