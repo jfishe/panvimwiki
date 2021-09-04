@@ -4,6 +4,12 @@
 1. [ ] Numbered list done0 item 0 should NOT appear
 2. [.] Numbered list done1 item 1 should appear
 3. [o] Numbered list done2 item 2 should appear
+  a) [ ] Numbered list done0 item 0 should NOT appear
+  b) [.] Numbered list done1 item 1 should appear
+  c) [o] Numbered list done2 item 2 should appear
+  d) [O] Numbered list done3 item 3 should appear
+  e) [X] Numbered list done4 item 4 should appear
+  f) [-] Numbered list doneX item 5 should appear
 4. [O] Numbered list done3 item 3 should appear
 5. [X] Numbered list done4 item 4 should appear
 6. [-] Numbered list doneX item 5 should appear
@@ -12,6 +18,12 @@
 - [ ] Bulleted list done0 item 0 should NOT appear
 - [.] Bulleted list done1 item 1 should appear
 - [o] Bulleted list done2 item 2 should appear
+  - [ ] Bulleted list done0 item 0 should NOT appear
+  - [.] Bulleted list done1 item 1 should appear
+  - [o] Bulleted list done2 item 2 should appear
+  - [O] Bulleted list done3 item 3 should appear
+  - [X] Bulleted list done4 item 4 should appear
+  - [-] Bulleted list doneX item 5 should appear
 - [O] Bulleted list done3 item 3 should appear
 - [X] Bulleted list done4 item 4 should appear
 - [-] Bulleted list doneX item 5 should appear
