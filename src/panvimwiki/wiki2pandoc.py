@@ -38,20 +38,22 @@ def wiki2pandoc(
 
     end_date
         Depending on is_concatenate, the end date for concatenating Vimwiki
-        DiaryNotes. Coerce an empty string, "", to None.
+        DiaryNotes. Coerce an empty string to None.
 
     start_date
         Depending on is_concatenate, the start date for concatenating Vimwiki
-        DiaryNotes. Coerce an empty string, "", to None.
+        DiaryNotes. Coerce an empty string to None.
 
     extra_args : list or str
         "0" or a list of valid pandoc arguments, e.g.,
 
-            ["--shift-heading-level-by", "1",
-             "--data-dir", "vimwiki_html/templates"
-            ]
+        .. code:: python
 
-        See `pydoc pypandoc.convert_text` for details and `pandoc –help` for
+           ["--shift-heading-level-by", "1",
+            "--data-dir", "vimwiki_html/templates"
+           ]
+
+        See `pydoc pypandoc.convert_text` for details and `pandoc --help` for
         valid content.
 
     Returns

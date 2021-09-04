@@ -10,8 +10,6 @@ Plain text prefilter
 - Remove non-task * bullet lines, e.g., * [[URI|Description]] or * Text.
 - Write filtered result to stdout.
 
-Example
-_______
 .. code:: bash
 
     echo <<EOF | delete_bullet_star
@@ -19,7 +17,7 @@ _______
     '* Bulleted list item 6 should NOT appear'
     EOF
 
-.. code:: none
+.. code:: markdown
 
     - Bulleted list item 1 should appear
 
