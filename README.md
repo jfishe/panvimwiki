@@ -46,10 +46,52 @@ endif
 
 ## Command Line Shell
 
-### Pre-Filters
-
 Panvimwiki provides plain text pre-filters and pandoc filters for use from
 the command line.
+
+For example from a bash prompt:
+
+```bash
+cat $HOME/vimwiki/diary |
+    delete_bullet_star |
+    delete_task_pending |
+pandoc --from=vimwiki --to=markdown \
+    --filter=delete_tag_lines \
+    --filter=delete_taskwiki_heading \
+    --filter=delete_empty_heading
+```
+
+From python:
+
+```python
+from pathlib import Path
+from panvimwiki.convert import convert
+
+PREFILTER = (
+    "delete_bullet_star",
+    "delete_task_pending",
+)
+FILTER = (
+    "delete_tag_lines",
+    "delete_empty_heading",
+    "delete_taskwiki_heading",
+)
+EXTRA_ARGS = (
+    "--shift-heading-level-by", "1",
+    "--data-dir", str(Path.home() / "vimwiki_html/templates"),
+)
+
+convert(
+    inputfile=str(Path.home() / "vimwiki/index.wiki"),
+    outputfile=str(Path.home() / "vimwiki_html/markdown/index.md"),
+    to="markdown",
+    prefilters=PREFILTER,
+    filters=FILTER,
+    extra_args=EXTRA_ARGS,
+)
+```
+
+### Pre-Filters
 
 #### delete_bullet_star
 
@@ -82,6 +124,9 @@ delete_task_pending
 
 ### Pandoc Filters
 
+Panvimwiki provides plain text pre-filters and pandoc filters for use from
+the command line.
+
 #### delete_tag_lines
 
 Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
@@ -106,7 +151,7 @@ Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki [:buffer](https://vimhelp.org/windows.txt.html#%3Abuffer)
 to the selected output format (default: docx) specified in
-[g:panvimwiki_settings](#g%3Apanvimwiki_settings).format.
+[g:panvimwiki_settings](#gpanvimwiki_settings).format.
 
 Copy the path to the Word file to the clipboard register "+
 [quoteplus](https://vimhelp.org/gui_x11.txt.html#quoteplus).
@@ -117,8 +162,7 @@ Remove extraneous info:
 
 - Vimwiki tag lines, e.g., :tag1:tag2:
 - Not started tasks, e.g., - [ ] Task1
-- Non-task _ bullet lines, e.g., _ [[URI|Description]] or \*
-  Text
+- Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
 #### VimwikiConvertWeek[!]
@@ -126,9 +170,9 @@ Remove extraneous info:
 Concatentate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
 
-After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert%5B%21%5D).
+After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert).
 
-## Options
+## Settings
 
 ### Global Settings
 
