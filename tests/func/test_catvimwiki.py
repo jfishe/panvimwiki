@@ -8,11 +8,7 @@ from typing import List, Tuple
 
 import pytest
 
-from panvimwiki.catvimwiki import (
-    catdiary,
-    del_empty_heading,
-    del_taskwiki_heading,
-)
+from panvimwiki.catvimwiki import catdiary
 
 
 def search_not(diaryout: Path) -> Tuple[List[str], ...]:
@@ -71,89 +67,4 @@ def test_catdiary(catdiary_fixture):
     assert len(containsshould) == 24, containsshould
 
 
-def test_del_empty_heading(catdiary_fixture):
-    """Test del_empty_heading removes all but 1 `not`.
 
-    Remove `should NOT appear` empty headings.
-
-    Parameters
-    ----------
-    catdiary_fixture : Path
-        Concatenated Vimwiki diary entries
-
-    Returns
-    -------
-    None
-
-    """
-    diaryout = del_empty_heading(catdiary_fixture)
-    containsnot, containsshould = search_not(diaryout)
-    assert len(containsnot) == 15, containsnot
-    assert len(containsshould) == 24, containsshould
-
-
-def test_no_del_empty_heading():
-    """Test del_empty_heading does not modify Vimwiki file.
-
-    Given the file does not contain empty headings, do not modify the file.
-
-    Returns
-    -------
-    None
-
-    """
-    test_input = "2017-04-26"
-    wikidiary: Path = Path(__file__).parents[0] / "vimwiki/diary"
-    enddate: datetime.date = datetime.date.fromisoformat(test_input)
-    startdate: datetime.date = enddate
-
-    diaryout: Path = catdiary(startdate, enddate, wikidiary)
-    modified = diaryout.stat().st_mtime
-
-    diaryout = del_empty_heading(diaryout)
-
-    assert modified == diaryout.stat().st_mtime
-
-
-@pytest.mark.parametrize(
-    "reheading, not_count, should_count",
-    [
-        pytest.param(
-            (
-                # Match start of line with one or more heading delimeters.
-                # Group 1 captures the number of heading delimeters.
-                r"^(=+)"
-                # Match any characters, except pipe, the taskwiki delimeter.
-                # Group 2 captures the heading we're keeping.
-                r"([^|]+)"
-                # Match space pipe, which starts taskwiki heading.
-                r"\s\|.+"
-                # Match space followed by Group 1.
-                r"\s\1$"
-            ),
-            19,
-            24,
-            id="default regex",
-        ),
-        pytest.param(r"bB", 21, 24, id="Non-matching regex"),
-    ],
-)
-def test_del_taskwiki_heading(reheading, not_count, should_count, catdiary_fixture):
-    """Test del_taskwiki_heading removes all but 1 `not`.
-
-    Remove `should NOT appear` empty headings.
-
-    Parameters
-    ----------
-    catdiary_fixture : Path
-        Concatenated Vimwiki diary entries
-
-    Returns
-    -------
-    None
-
-    """
-    diaryout = del_taskwiki_heading(catdiary_fixture, reheading=reheading)
-    containsnot, containsshould = search_not(diaryout)
-    assert len(containsnot) == not_count, containsnot
-    assert len(containsshould) == should_count, containsshould
