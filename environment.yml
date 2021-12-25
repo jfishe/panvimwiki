@@ -1,4 +1,4 @@
-name: pyscaffold
+name: panvimwiki
 channels:
   - conda-forge
   - defaults
@@ -7,12 +7,11 @@ dependencies:
   - pandoc
   - panflute
   - importlib_metadata
-  - python <3.9
+  # - python[version='>=3.10']
+  - python[version='<3.10'] # Should match vim --version | grep python3
   - pip
   - pre-commit
   - pypandoc
-  - pyscaffold
-  - pyscaffoldext-markdown
   - pytest
   - pytest-cov
   - pytest-freezegun
@@ -23,8 +22,10 @@ dependencies:
   - tox
   - virtualenv
   - pip:
+    - .
     - pipx
     # - vim-tools
     - vim_bridge3
     # - covimerage dependencies conflict with pytest. `pipx install covimerage` works.
     - sphinx-markdown-builder
+    - pytest-pretty-terminal
