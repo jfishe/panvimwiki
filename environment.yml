@@ -7,7 +7,6 @@ dependencies:
   - pandoc
   - panflute
   - importlib_metadata
-  # - python[version='>=3.10']
   - python[version='<3.10'] # Should match vim --version | grep python3
   - pip
   - pre-commit
@@ -22,7 +21,7 @@ dependencies:
   - tox
   - virtualenv
   - pip:
-    - .
+    - -e .
     - pipx
     # - vim-tools
     - vim_bridge3
