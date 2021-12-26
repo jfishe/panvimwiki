@@ -85,13 +85,15 @@ def catdiary(
         errmsg = f"enddate {enddate} should not precede startdate {startdate}."
         raise ValueError(errmsg)
 
-    diaryin = wikidiary.glob("[0-9]*.wiki")
-    diaryin = (
-        day
-        for day in diaryin
-        if startdate <= datetime.date.fromisoformat(day.stem) <= enddate
+    diaryin = sorted(
+        (
+            day
+            for day in wikidiary.glob("[0-9]*.wiki")
+            if startdate <= datetime.date.fromisoformat(day.stem) <= enddate
+        )
     )
 
+    print(f"{diaryin=}")
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"
 
