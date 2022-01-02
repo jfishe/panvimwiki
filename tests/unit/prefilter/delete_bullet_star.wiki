@@ -14,12 +14,6 @@
 * [ ] Bulleted list item 8 should NOT appear  #f2fbeb1b
 * [.] Bulleted list item 9 should appear  #4a7369ae
 * [S] Bulleted list item 10 should convert  #d6198091
-* [W] Bulleted list item 11 should NOT appear  #2da7eb9b
+* [W] Bulleted list item 11 should appear  #2da7eb9b
 * [[file:URI|Bulleted list item 12 should NOT appear]]
 * [[d|Bulleted list item 13 should NOT appear]]
-* Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  Should NOT appear
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

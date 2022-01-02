@@ -93,7 +93,6 @@ def catdiary(
         )
     )
 
-    print(f"{diaryin=}")
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"
 

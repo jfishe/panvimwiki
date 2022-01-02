@@ -15,4 +15,4 @@
 -   \[-\] Bulleted list doneX item 5 should appear
 -   []{.done1}Bulleted list item 9 should appear #4a7369ae
 -   \[S\] Bulleted list item 10 should convert #d6198091
--   \[W\] Bulleted list item 11 should NOT appear #2da7eb9b
+-   \[W\] Bulleted list item 11 should appear #2da7eb9b
