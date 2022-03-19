@@ -17,7 +17,7 @@ def prepare(doc):
 
 def action(elem, doc):
     """Remove empty headings from Vimwiki file."""
-    if isinstance(elem. pf.ListItem):
+    if isinstance(elem, pf.ListItem):
         elem.walk(start2done1)
     if isinstance(elem, pf.BulletList) or isinstance(elem, pf.OrderedList):
         # pf.debug(elem)
