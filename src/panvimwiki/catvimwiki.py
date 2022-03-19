@@ -92,6 +92,8 @@ def catdiary(
             if startdate <= datetime.date.fromisoformat(day.stem) <= enddate
         )
     )
+    if not diaryin:
+        raise OSError(f"Diary not found at {wikidiary=}")
 
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"

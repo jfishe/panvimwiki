@@ -51,6 +51,9 @@ def concatenate_diary(
     else:
         startdate = datetime.date.fromisoformat(start_date)
 
-    wikidiary: Path = Path(diary_path)
+    if diary_path:
+        wikidiary: Path = Path(diary_path)
+    else:
+        raise ValueError(f"{diary_path=}. A valid diary path is required.")
 
     return catdiary(startdate=startdate, enddate=enddate, wikidiary=wikidiary)
