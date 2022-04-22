@@ -20,6 +20,7 @@ Vimwiki Diary tools for conversion to Microsoft Word docx.
 * [License](license)
 * [Authors](authors)
 * [Changelog](changelog)
+* [Contributing](contributing)
 * [Module Reference](api/modules)
 
 
