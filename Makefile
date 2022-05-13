@@ -144,5 +144,6 @@ clean: ## Remove build, dist, tests/vim/bundle and docs/_build
 	${MAKE} --directory=docs clean
 	rm -rf ${bundledir}
 	rm -f doc/*
+	rm tests/vim/prepm.docx
 
 .PHONY: clean
