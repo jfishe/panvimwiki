@@ -19,6 +19,7 @@ dependencies:
   - mypy
   - sphinx
   - tox
+  - tox-conda
   - virtualenv
   - pip:
     - -e .
