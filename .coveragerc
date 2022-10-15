@@ -1,13 +1,13 @@
 # .coveragerc to control coverage.py
 [run]
 branch = True
-source = vimwiki_docx
+source = panvimwiki
 include =
     autoload/*.vim
     plugin/*.vim
     after/*/*.vim
 # plugins = covimerage
-# data_file = .coverage_covimerage
+data_file = .coverage_covimerage
 # omit =
 disable_warnings = include-ignored
 
