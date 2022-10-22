@@ -6,7 +6,6 @@ dependencies:
   - black
   - pandoc
   - panflute
-  - importlib_metadata
   - python[version='<3.11'] # Should match vim --version | grep python3
   - pip
   - pre-commit
