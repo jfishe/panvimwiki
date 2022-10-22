@@ -72,7 +72,6 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
-    "sphinx_markdown_builder",
 ]
 
 autodoc_mock_imports = ["vim", "vim_bridge"]
@@ -83,25 +82,15 @@ autodoc_preserve_defaults = True
 templates_path = ["_templates"]
 
 
-# Configure AutoStructify
-# https://recommonmark.readthedocs.io/en/latest/auto_structify.html
-def setup(app):
-    from recommonmark.transform import AutoStructify
-
-    params = {
-        "enable_auto_toc_tree": True,
-        "auto_toc_tree_section": "Contents",
-        "auto_toc_maxdepth": 2,
-        "enable_eval_rst": True,
-        "enable_math": True,
-        "enable_inline_math": True,
-    }
-    app.add_config_value("recommonmark_config", params, True)
-    app.add_transform(AutoStructify)
-
-
-# Enable markdown
-extensions.append("recommonmark")
+# Enable ist",
+    "dollarmath",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "substitution",
+    "tasklist",
+]
 
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]
@@ -184,7 +173,10 @@ html_theme = "alabaster"
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-html_theme_options = {"sidebar_width": "300px", "page_width": "1200px"}
+html_theme_options = {
+    "sidebar_width": "300px",
+    "page_width": "1200px"
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
@@ -307,4 +299,3 @@ intersphinx_mapping = {
 }
 
 print(f"loading configurations for {project} {version} ...", file=sys.stderr)
-
