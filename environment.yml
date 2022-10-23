@@ -26,5 +26,5 @@ dependencies:
     # - vim-tools
     - vim_bridge3
     # - covimerage dependencies conflict with pytest. `pipx install covimerage` works.
-    - sphinx-markdown-builder
+    # - sphinx-markdown-builder
     - pytest-pretty-terminal

@@ -82,7 +82,14 @@ autodoc_preserve_defaults = True
 templates_path = ["_templates"]
 
 
-# Enable ist",
+# Enable markdown
+extensions.append("myst_parser")
+
+# Configure MyST-Parser
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
     "dollarmath",
     "html_image",
     "linkify",

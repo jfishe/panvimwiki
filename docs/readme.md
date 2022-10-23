@@ -1,1 +1,4 @@
-../README.md
+```{include} ../README.md
+:relative-docs: docs/
+:relative-images:
+```
