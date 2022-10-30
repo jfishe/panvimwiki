@@ -1,3 +1,9 @@
+---
+project: panvimwiki
+vimversion: Vim v8.2
+toc: true
+description: Filter and convert Vimwiki notes using pandoc.
+---
 <!-- These are examples of badges you might want to add to your README:
      please update the URLs accordingly
 
@@ -27,7 +33,7 @@ Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on [:python3](https://vimhelp.org/if_pyth.txt.html#python3)
+`pack/*/opt/panvimwiki` because it depends on [:python3](https://neovim.io/doc/user/if_pyth.html#%3Apython3)
 and requires installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
@@ -44,9 +50,9 @@ python -m pip install "$dest"
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-[vimrc](https://vimhelp.org/starting.txt.html#vimrc)
-prior to [:filetype-plugin-on](https://vimhelp.org/filetype.txt.html#%3Afiletype-plugin-on).
-See [:packadd](https://vimhelp.org/repeat.txt.html#%3Apackadd)
+[vimrc](https://neovim.io/doc/user/starting)
+prior to [:filetype-plugin-on](https://neovim.io/doc/user/filetype.html#%3Afiletype-plugin-on).
+See [:packadd](https://neovim.io/doc/user/repeat.html#%3Apackadd)
 for an explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 
 ```vim
@@ -55,7 +61,9 @@ if has('python3')
 endif
 ```
 
-## Command Line Shell
+## Usage
+
+### Command Line Shell
 
 Panvimwiki provides plain text pre-filters and pandoc filters for use from
 the command line.
@@ -102,27 +110,28 @@ convert(
 )
 ```
 
-### Pre-Filters
+#### Pre-Filters
 
-#### delete_bullet_star
+##### delete_bullet_star
 
-Remove unordered lists which use the star (asterisk) bullet marker. The
-pre-filter does not remove task list items (see [delete_task_pending](#delete_task_pending)).
-The pre-filter does not handle wrapped bullets--i.e., it will delete the
-bulleted-line and leave the wrapped lines. I haven't figured out a good regex
-for wrapped lines.
+Remove unordered lists which use the star (asterisk) bullet marker.
+
+The pre-filter does not remove task list items (see
+[delete_task_pending](#delete_task_pending)). The pre-filter does not handle
+wrapped bullets--i.e., it will delete the bulleted-line and leave the wrapped
+lines. I haven't figured out a good regex for wrapped lines.
 
 ```bash
-echo '- Bulleted list item 1 should appear\n' \
+echo '- Bulleted list item 1 should appear' \
      '* Bulleted list item 6 should NOT appear' |
 delete_bullet_star
 ```
 
 ```text
-- Bulleted list item 6 should NOT appear
+- Bulleted list item 1 should appear
 ```
 
-#### delete_task_pending
+##### delete_task_pending
 
 Delete pending tasks.
 
@@ -136,39 +145,39 @@ delete_task_pending
 - [.] Bulleted list done1 item 1 should appear
 ```
 
-### Pandoc Filters
+#### Pandoc Filters
 
 Panvimwiki provides plain text pre-filters and pandoc filters for use from
 the command line.
 
-#### delete_tag_lines
+##### delete_tag_lines
 
 Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 
-#### delete_empty_heading
+##### delete_empty_heading
 
 Remove headings that do not have any children or paragraphs. Remove tag lines
 first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered empty.
 
-#### delete_taskwiki_heading
+##### delete_taskwiki_heading
 
-## Commands
+### Commands
 
-### Local Commands
+#### Local Commands
 
 These commands are only available (and meaningful) when you are currently in a
 Vimwiki file.
 
-#### VimwikiConvert[!]
+##### VimwikiConvert[!]
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki [:buffer](https://vimhelp.org/windows.txt.html#%3Abuffer)
+Convert the current Vimwiki [:buffer](https://neovim.io/doc/user/windows.html#%3Abuffer)
 to the selected output format (default: docx) specified in
 [g:panvimwiki_settings](#gpanvimwiki_settings).format.
 
 Copy the path to the Word file to the clipboard register "+
-[quoteplus](https://vimhelp.org/gui_x11.txt.html#quoteplus).
+[quoteplus](https://neovim.io/doc/user/provider.html#quoteplus).
 On Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
 before copying to clipboard.
 
@@ -179,20 +188,20 @@ Remove extraneous info:
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
-#### VimwikiConvertWeek[!]
+##### VimwikiConvertWeek[!]
 
 Concatentate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
 
 After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert).
 
-## Settings
+### Settings
 
-### Global Settings
+#### Global Settings
 
-#### g:panvimwiki_settings
+##### g:panvimwiki_settings
 
-Optionally add the following to [vimrc](https://vimhelp.org/starting.txt.html#vimrc)
+Optionally add the following to [vimrc](https://neovim.io/doc/user/starting)
 or, preferably, '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx
 format, without extra_args.
 
