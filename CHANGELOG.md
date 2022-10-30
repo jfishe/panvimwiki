@@ -3,7 +3,7 @@
 ## Version 0.4
 
 - Rename project and package: panvimwiki
-- Add Makefile to build Vim help from Markdown and Sphinx documentation.
+- Add Makefile to build Vim help from Markdown using `panvimdoc`.
 - Pass `$TMP` in tox.ini, so concatenated diary files do not clutter project
   tree, because when `$TMP` does not exist, use the current working directory.
 - Wiki2pandoc replicates relative path in out—i.e.,
