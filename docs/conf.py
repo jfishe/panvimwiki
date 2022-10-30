@@ -86,6 +86,7 @@ templates_path = ["_templates"]
 extensions.append("myst_parser")
 
 # Configure MyST-Parser
+myst_heading_anchors = 4
 myst_enable_extensions = [
     "amsmath",
     "colon_fence",

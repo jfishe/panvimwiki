@@ -3,28 +3,35 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - argcomplete
+  - userpath
+  - docutils
   - black
+  - flake8
+  - html2text
+  - linkify-it-py[version'~=1.0'] #  myst-parser
+  - myst-parser
+  - mypy
   - pandoc
   - panflute
-  - python[version='<3.11'] # Should match vim --version | grep python3
   - pip
+  - pipx
   - pre-commit
+  - pydash
+  - pydocstyle
   - pypandoc
   - pytest
   - pytest-cov
   - pytest-freezegun
-  - pydocstyle
-  - flake8
-  - mypy
+  - python[version='<3.10'] # Should match vim --version | grep python3
   - sphinx
   - tox
   - tox-conda
-  - virtualenv
+  - unify
+  - yapf
   - pip:
-    - -e .
-    - pipx
+    # - -e .
     # - vim-tools
     - vim_bridge3
     # - covimerage dependencies conflict with pytest. `pipx install covimerage` works.
-    # - sphinx-markdown-builder
     - pytest-pretty-terminal

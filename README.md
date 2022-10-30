@@ -63,7 +63,7 @@ the command line.
 For example from a bash prompt:
 
 ```bash
-cat $HOME/vimwiki/diary |
+cat $HOME/vimwiki/diary/* |
     delete_bullet_star |
     delete_task_pending |
 pandoc --from=vimwiki --to=markdown \
@@ -108,6 +108,9 @@ convert(
 
 Remove unordered lists which use the star (asterisk) bullet marker. The
 pre-filter does not remove task list items (see [delete_task_pending](#delete_task_pending)).
+The pre-filter does not handle wrapped bullets--i.e., it will delete the
+bulleted-line and leave the wrapped lines. I haven't figured out a good regex
+for wrapped lines.
 
 ```bash
 echo '- Bulleted list item 1 should appear\n' \

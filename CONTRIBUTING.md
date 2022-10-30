@@ -69,17 +69,16 @@ and use Python's built-in web server for a preview in your web browser
 (`http://localhost:8000`):
 
 ```
-python3 -m http.server --directory 'docs/_build/html'
+python3 -m http.server --directory 'docs/_build/html' --bind localhost
 ```
 
 ## Code Contributions
 
-```{todo} Please include a reference or explanation about the internals of the project.
+Pandoc filters rely on [Panflute](http://scorreia.com/software/panflute/) and
+use the template
+[located here](https://github.com/sergiocorreia/panflute/tree/master/docs/source/_static/template.py).
 
-   An architecture description, design principles or at least a summary of the
-   main concepts will make it easy for potential contributors to get started
-   quickly.
-```
+Plain text pre-filters follow a similar format but does not use panflute.
 
 ### Submit an issue
 
@@ -264,12 +263,6 @@ package:
 ## Maintainer tasks
 
 ### Releases
-
-```{todo} This section assumes you are using PyPI to publicly release your package.
-
-   If instead you are using a different/private package index, please update
-   the instructions accordingly.
-```
 
 If you are part of the group of maintainers and have correct user permissions
 on [PyPI], the following steps can be used to release a new version for
