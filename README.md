@@ -1,6 +1,6 @@
 ---
 project: panvimwiki
-vimversion: Vim v8.2
+vimversion: Vim v9.0
 toc: true
 description: Filter and convert Vimwiki notes using pandoc.
 ---
@@ -11,6 +11,9 @@ description: Filter and convert Vimwiki notes using pandoc.
 [![ReadTheDocs](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io/en/stable/)
 [![Coveralls](https://img.shields.io/coveralls/github/<USER>/panvimwiki/main.svg)](https://coveralls.io/r/<USER>/panvimwiki)
 [![PyPI-Server](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki/)
+[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/panvimwiki.svg)](https://anaconda.org/conda-forge/panvimwiki)
+[![Monthly Downloads](https://pepy.tech/badge/panvimwiki/month)](https://pepy.tech/project/panvimwiki)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
 -->
 
 [![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
@@ -33,7 +36,7 @@ Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on [:python3](https://neovim.io/doc/user/if_pyth.html#%3Apython3)
+`pack/*/opt/panvimwiki` because it depends on [:python3](https://vimhelp.org/if_pyth.txt.html#%3Apython3)
 and requires installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
@@ -50,9 +53,9 @@ python -m pip install "$dest"
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-[vimrc](https://neovim.io/doc/user/starting)
-prior to [:filetype-plugin-on](https://neovim.io/doc/user/filetype.html#%3Afiletype-plugin-on).
-See [:packadd](https://neovim.io/doc/user/repeat.html#%3Apackadd)
+[vimrc](https://vimhelp.org/starting.txt.html)
+prior to [:filetype-plugin-on](https://vimhelp.org/filetype.txt.html#%3Afiletype-plugin-on).
+See [:packadd](https://vimhelp.org/repeat.txt.html#%3Apackadd)
 for an explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 
 ```vim
@@ -168,16 +171,17 @@ first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered em
 These commands are only available (and meaningful) when you are currently in a
 Vimwiki file.
 
+(vimwikiconvert)=
 ##### VimwikiConvert[!]
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki [:buffer](https://neovim.io/doc/user/windows.html#%3Abuffer)
+Convert the current Vimwiki [:buffer](https://vimhelp.org/windows.txt.html#%3Abuffer)
 to the selected output format (default: docx) specified in
 [g:panvimwiki_settings](#gpanvimwiki_settings).format.
 
 Copy the path to the Word file to the clipboard register "+
-[quoteplus](https://neovim.io/doc/user/provider.html#quoteplus).
+[quoteplus](https://vimhelp.org/gui_x11.txt.html#quoteplus).
 On Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
 before copying to clipboard.
 
@@ -199,9 +203,10 @@ After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwiki
 
 #### Global Settings
 
+(gpanvimwiki_settings)=
 ##### g:panvimwiki_settings
 
-Optionally add the following to [vimrc](https://neovim.io/doc/user/starting)
+Optionally add the following to [vimrc](https://vimhelp.org/starting.txt.html)
 or, preferably, '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx
 format, without extra_args.
 
@@ -244,5 +249,5 @@ vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 
 ## Note
 
-This project has been set up using PyScaffold 4.3. For details and usage
+This project has been set up using PyScaffold 4.5. For details and usage
 information on PyScaffold see https://pyscaffold.org/.

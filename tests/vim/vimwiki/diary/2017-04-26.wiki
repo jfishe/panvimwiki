@@ -1,0 +1,4 @@
+= Journal 2017-04-26 =
+
+Should concatenate non-contiguous Monday and Wednesday and ignore missing
+Tuesday and Thursday. Spurious not for test validation.

@@ -9,7 +9,6 @@ dependencies:
   - black
   - flake8
   - html2text
-  - linkify-it-py[version'~=1.0'] #  myst-parser
   - myst-parser
   - mypy
   - pandoc
@@ -23,7 +22,7 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-freezegun
-  - python[version='<3.10'] # Should match vim --version | grep python3
+  - python  # [version='<3.12'] # Should match vim --version | grep python3
   - sphinx
   - tox
   - tox-conda

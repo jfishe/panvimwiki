@@ -74,9 +74,9 @@ python3 -m http.server --directory 'docs/_build/html' --bind localhost
 
 ## Code Contributions
 
-Pandoc filters rely on [Panflute](http://scorreia.com/software/panflute/) and
+Pandoc filters rely on [Panflute](https://scorreia.com/software/panflute/) and
 use the template
-[located here](https://github.com/sergiocorreia/panflute/tree/master/docs/source/_static/template.py).
+[located here](https://github.com/sergiocorreia/panflute/blob/master/docs/source/_static/template.py).
 
 Plain text pre-filters follow a similar format but does not use panflute.
 
@@ -203,9 +203,9 @@ conda activate panvimwiki
 2. Go to the web page of your fork and click "Create pull request"
    to send your changes for review.
 
-      Find more detailed information in [creating a PR]. You might also want to open
-      the PR as a draft first and mark it as ready for review after the feedbacks
-      from the continuous integration (CI) system or any required fixes.
+   Find more detailed information in [creating a PR]. You might also want to open
+   the PR as a draft first and mark it as ready for review after the feedbacks
+   from the continuous integration (CI) system or any required fixes.
 
 ### Troubleshooting
 
@@ -290,14 +290,14 @@ on [PyPI], the following steps can be used to release a new version for
 
 [black]: https://pypi.org/project/black/
 [commonmark]: https://commonmark.org/
-[contribution-guide.org]: http://www.contribution-guide.org/
+[contribution-guide.org]: https://www.contribution-guide.org/
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
-[descriptive commit message]: https://chris.beams.io/posts/git-commit
+[descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 [first-contributions tutorial]: https://github.com/firstcontributions/first-contributions
 [flake8]: https://flake8.pycqa.org/en/stable/
 [git]: https://git-scm.com
-[github web interface]: https://docs.github.com/en/github/managing-files-in-a-repository/managing-files-on-github/editing-files-in-your-repository
+[github web interface]:  https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
 [github's code editor]: https://docs.github.com/en/github/managing-files-in-a-repository/managing-files-on-github/editing-files-in-your-repository
 [github's fork and pull request workflow]: https://guides.github.com/activities/forking/
 [guide created by freecodecamp]: https://github.com/freecodecamp/how-to-contribute-to-open-source
@@ -307,7 +307,7 @@ on [PyPI], the following steps can be used to release a new version for
 [pre-commit]: https://pre-commit.com/
 [pypi]: https://pypi.org/
 [pyscaffold's contributor's guide]: https://pyscaffold.org/en/stable/contributing.html
-[pytest can drop you]: https://docs.pytest.org/en/stable/usage.html#dropping-to-pdb-python-debugger-at-the-start-of-a-test
+[pytest can drop you]: https://docs.pytest.org/en/stable/how-to/failures.html#dropping-to-pdb-on-failures
 [python software foundation's code of conduct]: https://www.python.org/psf/conduct/
 [restructuredtext]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/
 [sphinx]: https://www.sphinx-doc.org/en/master/
