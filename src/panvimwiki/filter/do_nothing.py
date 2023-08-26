@@ -6,7 +6,6 @@ Plain text filter
 
 from panvimwiki.filter.prefilter import prefilter
 
-
 DELETE = None
 REPLACE = None
 

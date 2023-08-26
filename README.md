@@ -99,8 +99,10 @@ FILTER = (
     "delete_taskwiki_heading",
 )
 EXTRA_ARGS = (
-    "--shift-heading-level-by", "1",
-    "--data-dir", str(Path.home() / "vimwiki_html/templates"),
+    "--shift-heading-level-by",
+    "1",
+    "--data-dir",
+    str(Path.home() / "vimwiki_html/templates"),
 )
 
 convert(

@@ -1,14 +1,9 @@
 """Functional Tests concatenate Vimwiki diary files."""
 
-import datetime
 import fileinput
 import re
 from pathlib import Path
 from typing import List, Tuple
-
-import pytest
-
-from panvimwiki.catvimwiki import catdiary
 
 
 def search_not(diaryout: Path) -> Tuple[List[str], ...]:
@@ -65,6 +60,3 @@ def test_catdiary(catdiary_fixture):
     containsnot, containsshould = search_not(catdiary_fixture)
     assert len(containsnot) == 21, containsnot
     assert len(containsshould) == 24, containsshould
-
-
-

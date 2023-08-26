@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout
 
-      
+
       # - restore_cache:
       #     keys:
       #     - v1-dependencies-{{ checksum "environment.yml" }}
       #     - v1-dependencies-
-      
+
 
       - run:
           name: install dependencies
@@ -27,12 +27,12 @@ jobs:
             conda build conda.recipe --no-test
             conda install --use-local vimwiki_docx
 
-      
+
       # - save_cache:
       #     paths:
       #       - /opt/conda
       #     key: v1-dependencies-{{ checksum "environment.yml" }}
-      
+
 
       - run:
           name: run tests

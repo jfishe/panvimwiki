@@ -30,7 +30,7 @@ def pandoc_filter_fixture():
         filter = str(wiki_input.stem)
 
         if prefilter_input == wiki_input.parent:
-            with open(wiki_input, mode="r") as fin:
+            with open(wiki_input) as fin:
                 filter_out = subprocess.run(
                     filter, capture_output=True, encoding="utf8", stdin=fin, check=True
                 )
@@ -46,7 +46,7 @@ def pandoc_filter_fixture():
             filter = "pandoc_filter/" + filter
 
         markdown_output = wiki_input.with_suffix(".out.md")
-        with open(markdown_output, mode="r") as f:
+        with open(markdown_output) as f:
             expected = f.read()
 
         yield pytest.param(test_input, expected, id=filter)

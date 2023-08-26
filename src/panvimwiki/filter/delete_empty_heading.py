@@ -12,7 +12,6 @@ import panflute as pf
 
 def prepare(doc):
     """Pre-filter."""
-    pass
 
 
 def action(elem, doc):
@@ -30,7 +29,6 @@ def action(elem, doc):
 
 def finalize(doc):
     """Post-filter."""
-    pass
 
 
 def main(doc=None):

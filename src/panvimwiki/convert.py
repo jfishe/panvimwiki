@@ -60,7 +60,7 @@ def convert(
         content.
 
     """
-    with open(inputfile, mode="r", encoding="utf8") as fin:
+    with open(inputfile, encoding="utf8") as fin:
         source = fin.read()
 
     # Prefilter

@@ -1,9 +1,10 @@
 """Conftest.py for panvimwiki."""
 
 import datetime
-import pytest
-from typing import Generator
 from pathlib import Path
+from typing import Generator
+
+import pytest
 
 from panvimwiki.catvimwiki import catdiary, get_last_monday
 

@@ -74,10 +74,6 @@ extensions = [
     "sphinx.ext.napoleon",
 ]
 
-autodoc_mock_imports = ["vim", "vim_bridge"]
-autodoc_typehints = "description"
-autodoc_preserve_defaults = True
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
@@ -86,7 +82,6 @@ templates_path = ["_templates"]
 extensions.append("myst_parser")
 
 # Configure MyST-Parser
-myst_heading_anchors = 4
 myst_enable_extensions = [
     "amsmath",
     "colon_fence",
@@ -111,7 +106,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "panvimwiki"
-copyright = "2022, John D. Fisher"
+copyright = "2023, John D. Fisher"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

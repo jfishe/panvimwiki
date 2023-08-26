@@ -1,8 +1,8 @@
 """Main function shared by prefilters."""
 
-import re
 import fileinput
-from typing import Tuple, Optional
+import re
+from typing import Optional, Tuple
 
 
 def action(

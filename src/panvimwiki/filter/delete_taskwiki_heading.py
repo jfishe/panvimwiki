@@ -14,12 +14,12 @@ bash> pandoc --from=vimwiki --to=markdown --filter=delete_taskwiki_heading
 """
 
 import re
+
 import panflute as pf
 
 
 def prepare(doc):
     """Pre-filter—do nothing."""
-    pass
 
 
 def action(elem, doc):
@@ -39,7 +39,6 @@ def action(elem, doc):
 
 def finalize(doc):
     """Post-filter—do nothing."""
-    pass
 
 
 def main(doc=None):

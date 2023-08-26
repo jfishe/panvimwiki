@@ -1,4 +1,12 @@
-import sys
+"""Pandoc filters and Vim plugin VimwikiConvert from Vimwiki to Docx.
+
+Panvimwiki provides tools for conversion to Microsoft Word docx or other
+output formats supported by
+[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
+Panvimwiki provides command line tools as well as Vim commands to
+concatenate and convert Diary Notes or convert any Vimwiki note.
+"""
+
 
 from importlib.metadata import PackageNotFoundError, version  # pragma: no cover
 

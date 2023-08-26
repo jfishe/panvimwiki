@@ -3,8 +3,8 @@
 import datetime
 import fileinput
 import os
-import re
 from pathlib import Path
+
 from dateutil.relativedelta import MO, TH, relativedelta
 
 
@@ -86,11 +86,9 @@ def catdiary(
         raise ValueError(errmsg)
 
     diaryin = sorted(
-        (
-            day
-            for day in wikidiary.glob("[0-9]*.wiki")
-            if startdate <= datetime.date.fromisoformat(day.stem) <= enddate
-        )
+        day
+        for day in wikidiary.glob("[0-9]*.wiki")
+        if startdate <= datetime.date.fromisoformat(day.stem) <= enddate
     )
     if not diaryin:
         raise OSError(f"Diary not found at {wikidiary=}")

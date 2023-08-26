@@ -25,7 +25,6 @@ Plain text prefilter
 
 from panvimwiki.filter.prefilter import prefilter
 
-
 DELETE = r"^\s{0,}\*\s((?!\[\S\]\s).)*$"
 REPLACE = None
 

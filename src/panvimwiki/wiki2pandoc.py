@@ -1,11 +1,12 @@
 """Vim interface to convert Vimwiki to another format using pandoc."""
 
+from pathlib import Path
+
 import vim  # noqa
 from vim_bridge import bridged
 
-from pathlib import Path
-from panvimwiki.vimwiki_week import concatenate_diary
 from panvimwiki.convert import convert
+from panvimwiki.vimwiki_week import concatenate_diary
 
 
 @bridged
@@ -49,9 +50,7 @@ def wiki2pandoc(
 
         .. code:: python
 
-           ["--shift-heading-level-by", "1",
-            "--data-dir", "vimwiki_html/templates"
-           ]
+           ["--shift-heading-level-by", "1", "--data-dir", "vimwiki_html/templates"]
 
         See `pydoc pypandoc.convert_text` for details and `pandoc --help` for
         valid content.
@@ -84,7 +83,7 @@ def wiki2pandoc(
             end_date=end_date,
             diary_path=diary_path,
         )
-        outputfile: Path = inputfile.with_suffix(("." + to))
+        outputfile: Path = inputfile.with_suffix("." + to)
     else:
         inputfile = Path(vim.eval(r"expand('%:p')"))
         wiki_path = Path(
@@ -94,7 +93,7 @@ def wiki2pandoc(
         path_html = Path(
             vim.eval(r"vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html'))")
         )
-        outputfile = inputfile.with_suffix(("." + to))
+        outputfile = inputfile.with_suffix("." + to)
         outputfile = path_html.parent / Path(to) / outputfile.relative_to(wiki_path)
         outputfile.parent.mkdir(parents=True, exist_ok=True)
 

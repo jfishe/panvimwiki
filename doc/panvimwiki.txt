@@ -43,9 +43,9 @@ From a bash shell, enter the following:
 >
     # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
     dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
-    
+
     git clone https://github.com/jfishe/panvimwiki.git "$dest"
-    
+
     # Activate the python environment used by Vim.
     # Then install panvimwiki in that python environment.
     python -m pip install "$dest"
@@ -89,7 +89,7 @@ From python:
 >
     from pathlib import Path
     from panvimwiki.convert import convert
-    
+
     PREFILTER = (
         "delete_bullet_star",
         "delete_task_pending",
@@ -103,7 +103,7 @@ From python:
         "--shift-heading-level-by", "1",
         "--data-dir", str(Path.home() / "vimwiki_html/templates"),
     )
-    
+
     convert(
         inputfile=str(Path.home() / "vimwiki/index.wiki"),
         outputfile=str(Path.home() / "vimwiki_html/markdown/index.md"),
