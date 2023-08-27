@@ -75,7 +75,7 @@ python3 -m http.server --directory 'docs/_build/html' --bind localhost
 
 ## Code Contributions
 
-Pandoc filters rely on [Panflute](https://scorreia.com/software/panflute/) and
+Pandoc filters rely on [Panflute](http://scorreia.com/software/panflute/) and
 use the template
 [located here](https://github.com/sergiocorreia/panflute/blob/master/docs/source/_static/template.py).
 
