@@ -36,7 +36,7 @@ Installation with conda is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on [:python3](https://vimhelp.org/if_pyth.txt.html#%3Apython3)
+`pack/*/opt/panvimwiki` because it depends on [:python3](https://neovim.io/doc/user/if_pyth.html#python3)
 and requires installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
@@ -53,9 +53,9 @@ python -m pip install "$dest"
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-[vimrc](https://vimhelp.org/starting.txt.html)
-prior to [:filetype-plugin-on](https://vimhelp.org/filetype.txt.html#%3Afiletype-plugin-on).
-See [:packadd](https://vimhelp.org/repeat.txt.html#%3Apackadd)
+[vimrc](https://neovim.io/doc/user/starting.html)
+prior to [:filetype-plugin-on](https://neovim.io/doc/user/filetype.html#filetype).
+See [:packadd](https://neovim.io/doc/user/repeat.html#%3Apackadd)
 for an explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 
 ```vim
@@ -162,7 +162,8 @@ Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 ##### delete_empty_heading
 
 Remove headings that do not have any children or paragraphs. Remove tag lines
-first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered empty.
+first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered
+empty.
 
 ##### delete_taskwiki_heading
 
@@ -173,17 +174,16 @@ first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered em
 These commands are only available (and meaningful) when you are currently in a
 Vimwiki file.
 
-(vimwikiconvert)=
 ##### VimwikiConvert[!]
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki [:buffer](https://vimhelp.org/windows.txt.html#%3Abuffer)
+Convert the current Vimwiki [:buffer](https://neovim.io/doc/user/windows.html#%3Abuffer)
 to the selected output format (default: docx) specified in
 [g:panvimwiki_settings](#gpanvimwiki_settings).format.
 
 Copy the path to the Word file to the clipboard register "+
-[quoteplus](https://vimhelp.org/gui_x11.txt.html#quoteplus).
+[quoteplus](https://neovim.io/doc/user/provider.html#quoteplus).
 On Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
 before copying to clipboard.
 
@@ -196,7 +196,7 @@ Remove extraneous info:
 
 ##### VimwikiConvertWeek[!]
 
-Concatentate DiaryNotes for Monday through current buffer and convert.
+Concatenate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
 
 After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert).
@@ -205,12 +205,10 @@ After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwiki
 
 #### Global Settings
 
-(gpanvimwiki_settings)=
 ##### g:panvimwiki_settings
 
-Optionally add the following to [vimrc](https://vimhelp.org/starting.txt.html)
-or, preferably, '~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx
-format, without extra_args.
+Optionally add the following to or, preferably, '~/.vim/plugin/vimwiki.vim'.
+Panvimwiki defaults to docx format, without extra_args.
 
 ```vim
 let g:panvimwiki_settings = {
@@ -248,8 +246,7 @@ vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 ```
 
 <!-- pyscaffold-notes -->
-
 ## Note
 
 This project has been set up using PyScaffold 4.5. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
+information on PyScaffold see <https://pyscaffold.org/>.

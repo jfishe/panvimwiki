@@ -5,9 +5,9 @@ Welcome to `panvimwiki` contributor's guide.
 This document focuses on getting any potential contributor familiarized with
 the development processes, but [other kinds of contributions] are also appreciated.
 
-If you are new to using [git] or have never collaborated in a project previously,
-please have a look at [contribution-guide.org]. Other resources are also
-listed in the excellent [guide created by FreeCodeCamp] [^contrib1].
+If you are new to using [git] or have never collaborated in a project
+previously, please have a look at [contribution-guide.org]. Other resources are
+also listed in the excellent [guide created by FreeCodeCamp] [^contrib1].
 
 Please notice, all users and contributors are expected to be **open,
 considerate, reasonable, and respectful**. When in doubt,
@@ -17,8 +17,8 @@ behavior guidelines.
 ## Issue Reports
 
 If you experience bugs or general issues with `panvimwiki`, please have a look
-on the [issue tracker].
-If you don't see anything useful there, please feel free to fire an issue report.
+on the [issue tracker]. If you don't see anything useful there, please feel
+free to fire an issue report.
 
 :::{tip}
 Please don't forget to include the closed issues in your search.
@@ -34,14 +34,15 @@ you help us to identify the root cause of the issue.
 
 ## Documentation Improvements
 
-You can help improve `panvimwiki` docs by making them more readable and coherent, or
-by adding missing information and correcting mistakes.
+You can help improve `panvimwiki` docs by making them more readable and
+coherent, or by adding missing information and correcting mistakes.
 
 `panvimwiki` documentation uses [Sphinx] as its main documentation compiler.
 This means that the docs are kept in the same repository as the project code, and
-that any documentation update is done in the same way was a code contribution.
-e.g.,  [reStructuredText] or [CommonMark] with [MyST] extensions.
+that any documentation update is done in the same way was a code contribution,
+e.g., [CommonMark] with [MyST] extensions.
 
+[Panvimdoc] converts the README to Vim help format.
 
    :::{tip}
       Please notice that the [GitHub web interface] provides a quick way of
@@ -61,14 +62,14 @@ e.g.,  [reStructuredText] or [CommonMark] with [MyST] extensions.
 When working on documentation changes in your local machine, you can
 compile them using [tox] :
 
-```
+```bash
 tox -e docs
 ```
 
 and use Python's built-in web server for a preview in your web browser
 (`http://localhost:8000`):
 
-```
+```bash
 python3 -m http.server --directory 'docs/_build/html' --bind localhost
 ```
 
@@ -92,14 +93,14 @@ Before you start coding, we recommend creating an isolated [virtual environment]
 to avoid any problems with your installed Python packages.
 This can easily be done via either [virtualenv]:
 
-```
+```bash
 virtualenv <PATH TO VENV>
 source <PATH TO VENV>/bin/activate
 ```
 
 or [Miniconda]:
 
-```
+```bash
 conda create -n panvimwiki python=3 six virtualenv pytest pytest-cov
 conda activate panvimwiki
 ```
@@ -113,23 +114,22 @@ conda activate panvimwiki
 
 3. Clone this copy to your local disk:
 
-   ```
+   ```bash
    git clone https://github.com/jfishe/panvimwiki.git
    cd panvimwiki
    ```
 
 4. You should run:
 
-   ```
+   ```bash
    pip install -U pip setuptools -e .
    ```
 
    to be able to import the package under development in the Python REPL.
 
-
 5. Install [pre-commit]:
 
-   ```
+   ```bash
    pip install pre-commit
    pre-commit install
    ```
@@ -141,7 +141,7 @@ conda activate panvimwiki
 
 1. Create a branch to hold your changes:
 
-   ```
+   ```bash
    git checkout -b my-feature
    ```
 
@@ -154,13 +154,12 @@ conda activate panvimwiki
 
 4. When you’re done editing, do:
 
-   ```
+   ```bash
    git add <MODIFIED FILES>
    git commit
    ```
 
    to record your changes in [git].
-
 
    Please make sure to see the validation messages from [pre-commit] and fix
    any eventual issues.
@@ -174,7 +173,7 @@ conda activate panvimwiki
    Moreover, writing a [descriptive commit message] is highly recommended.
    In case of doubt, you can check the commit history with:
 
-   ```
+   ```bash
    git log --graph --decorate --pretty=oneline --abbrev-commit --all
    ```
 
@@ -183,7 +182,7 @@ conda activate panvimwiki
 
 5. Please check that your changes don't break any unit tests with:
 
-   ```
+   ```bash
    tox
    ```
 
@@ -196,7 +195,7 @@ conda activate panvimwiki
 
 1. If everything works fine, push your local branch to the remote server with:
 
-   ```
+   ```bash
    git push -u origin my-feature
    ```
 
@@ -225,20 +224,20 @@ package:
    missing dependencies when running a command with [tox], try to recreate the
    `tox` environment using the `-r` flag. For example, instead of:
 
-   ```
+   ```bash
    tox -e docs
    ```
 
    Try running:
 
-   ```
+   ```bash
    tox -r -e docs
    ```
 
 3. Make sure to have a reliable [tox] installation that uses the correct
    Python version (e.g., 3.7+). When in doubt you can run:
 
-   ```
+   ```bash
    tox --version
    # OR
    which tox
@@ -248,7 +247,7 @@ package:
    also try to create a dedicated [virtual environment] with a [tox] binary
    freshly installed. For example:
 
-   ```
+   ```bash
    virtualenv .venv
    source .venv/bin/activate
    .venv/bin/pip install tox
@@ -287,29 +286,24 @@ on [PyPI], the following steps can be used to release a new version for
     to collectively create software are general and can be applied to all sorts
     of environments, including private companies and proprietary code bases.
 
-
 [black]: https://pypi.org/project/black/
 [commonmark]: https://commonmark.org/
 [contribution-guide.org]: https://www.contribution-guide.org/
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
-[first-contributions tutorial]: https://github.com/firstcontributions/first-contributions
 [flake8]: https://flake8.pycqa.org/en/stable/
 [git]: https://git-scm.com
 [github web interface]:  https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
-[github's code editor]: https://docs.github.com/en/github/managing-files-in-a-repository/managing-files-on-github/editing-files-in-your-repository
-[github's fork and pull request workflow]: https://guides.github.com/activities/forking/
 [guide created by freecodecamp]: https://github.com/freecodecamp/how-to-contribute-to-open-source
 [miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [myst]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
 [other kinds of contributions]: https://opensource.guide/how-to-contribute
+[panvimdoc]: https://github.com/kdheepak/panvimdoc
 [pre-commit]: https://pre-commit.com/
 [pypi]: https://pypi.org/
-[pyscaffold's contributor's guide]: https://pyscaffold.org/en/stable/contributing.html
 [pytest can drop you]: https://docs.pytest.org/en/stable/how-to/failures.html#dropping-to-pdb-on-failures
 [python software foundation's code of conduct]: https://www.python.org/psf/conduct/
-[restructuredtext]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/
 [sphinx]: https://www.sphinx-doc.org/en/master/
 [tox]: https://tox.readthedocs.io/en/stable/
 [virtual environment]: https://realpython.com/python-virtual-environments-a-primer/

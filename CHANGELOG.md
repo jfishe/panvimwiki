@@ -1,6 +1,13 @@
 # Changelog
 
-## Version 0.4 (development)
+## Version 0.5 (development)
+
+- Upgrade to `pyscaffold` v4.5.
+- Add `pre-commit`.
+- DOCS: add contributing guide.
+- BUILD: update `panvimdoc` and build Vim help file with tox.
+
+## Version 0.4 (2022-10-30)
 
 - Rename project and package: panvimwiki
 - Add Makefile to build Vim help from Markdown using `panvimdoc`.

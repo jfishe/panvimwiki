@@ -3,9 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - argcomplete
-  - userpath
-  - docutils
   - black
   - flake8
   - html2text

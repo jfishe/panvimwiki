@@ -78,6 +78,10 @@ extensions = [
 templates_path = ["_templates"]
 
 
+# Configure autodoc.
+autodoc_mock_imports = ["vim", "vim_bridge"]
+
+
 # Enable markdown
 extensions.append("myst_parser")
 
@@ -94,6 +98,9 @@ myst_enable_extensions = [
     "substitution",
     "tasklist",
 ]
+
+# myst-anchors -l 5 README.md
+myst_heading_anchors = 5
 
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]

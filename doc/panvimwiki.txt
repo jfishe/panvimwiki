@@ -11,13 +11,10 @@ Table of Contents                               *panvimwiki-table-of-contents*
   - Settings                                             |panvimwiki-settings|
 4. Development and Testing                |panvimwiki-development-and-testing|
 5. Note                                                      |panvimwiki-note|
-
-
-
-<img src='https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold'
-title=''/> <https://pyscaffold.org/>
+<https://pyscaffold.org/>
 
 Filter and convert Vimwiki notes using pandoc
+
 
 ==============================================================================
 1. Introduction                                      *panvimwiki-introduction*
@@ -26,6 +23,7 @@ Panvimwiki provides tools for conversion to Microsoft Word docx or other output
 formats supported by Pandoc <https://pandoc.org/>. Panvimwiki provides command
 line tools as well as Vim commands to concatenate and convert Diary Notes or
 convert any Vimwiki note.
+
 
 ==============================================================================
 2. Installation                                      *panvimwiki-installation*
@@ -40,7 +38,7 @@ installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
 
->
+>bash
     # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
     dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
 
@@ -51,12 +49,11 @@ From a bash shell, enter the following:
     python -m pip install "$dest"
 <
 
-
 Panvimwiki requires Vim compiled with Python 3, so add the following to |vimrc|
 prior to |:filetype-plugin-on|. See |:packadd| for an explanation. Otherwise,
 install panvimwiki in `pack/*/start/panvimwiki`.
 
->
+>vim
     if has('python3')
       packadd! panvimwiki
     endif
@@ -66,6 +63,7 @@ install panvimwiki in `pack/*/start/panvimwiki`.
 ==============================================================================
 3. Usage                                                    *panvimwiki-usage*
 
+
 COMMAND LINE SHELL                             *panvimwiki-command-line-shell*
 
 Panvimwiki provides plain text pre-filters and pandoc filters for use from the
@@ -73,7 +71,7 @@ command line.
 
 For example from a bash prompt:
 
->
+>bash
     cat $HOME/vimwiki/diary/* |
         delete_bullet_star |
         delete_task_pending |
@@ -83,10 +81,9 @@ For example from a bash prompt:
         --filter=delete_empty_heading
 <
 
-
 From python:
 
->
+>python
     from pathlib import Path
     from panvimwiki.convert import convert
 
@@ -100,8 +97,10 @@ From python:
         "delete_taskwiki_heading",
     )
     EXTRA_ARGS = (
-        "--shift-heading-level-by", "1",
-        "--data-dir", str(Path.home() / "vimwiki_html/templates"),
+        "--shift-heading-level-by",
+        "1",
+        "--data-dir",
+        str(Path.home() / "vimwiki_html/templates"),
     )
 
     convert(
@@ -117,42 +116,38 @@ From python:
 
 PRE-FILTERS ~
 
-                                               *panvimwiki-delete_bullet_star*
 
-delete_bullet_star                     Remove unordered lists which use the
-                                       star (asterisk) bullet marker.
+delete_bullet_star                             *panvimwiki-delete_bullet_star*
 
+Remove unordered lists which use the star (asterisk) bullet marker.
 
 The pre-filter does not remove task list items (see
 |panvimwiki-delete_task_pending|). The pre-filter does not handle wrapped
 bullets–i.e., it will delete the bulleted-line and leave the wrapped lines. I
 haven’t figured out a good regex for wrapped lines.
 
->
+>bash
     echo '- Bulleted list item 1 should appear' \
          '* Bulleted list item 6 should NOT appear' |
     delete_bullet_star
 <
 
-
->
+>text
     - Bulleted list item 1 should appear
 <
 
 
-                                              *panvimwiki-delete_task_pending*
+delete_task_pending                           *panvimwiki-delete_task_pending*
 
-delete_task_pending                    Delete pending tasks.
+Delete pending tasks.
 
-
->
+>bash
     echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
          '- [.] Bulleted list done1 item 1 should appear' |
     delete_task_pending
 <
 
-
->
+>text
     - [.] Bulleted list done1 item 1 should appear
 <
 
@@ -162,34 +157,33 @@ PANDOC FILTERS ~
 Panvimwiki provides plain text pre-filters and pandoc filters for use from the
 command line.
 
-                                                 *panvimwiki-delete_tag_lines*
 
-delete_tag_lines                       Delete lines which only contain Vimwiki
-                                       tags, e.g., ':tag1:tag2:'
+delete_tag_lines                                 *panvimwiki-delete_tag_lines*
 
-
-                                             *panvimwiki-delete_empty_heading*
-
-delete_empty_heading                   Remove headings that do not have any
-                                       children or paragraphs. Remove tag lines
-                                       first, |panvimwiki-delete_tag_lines| or
-                                       the heading is not considered empty.
+Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 
 
-                                          *panvimwiki-delete_taskwiki_heading*
+delete_empty_heading                         *panvimwiki-delete_empty_heading*
+
+Remove headings that do not have any children or paragraphs. Remove tag lines
+first, |panvimwiki-delete_tag_lines| or the heading is not considered empty.
+
+
+delete_taskwiki_heading                   *panvimwiki-delete_taskwiki_heading*
+
 
 COMMANDS                                                 *panvimwiki-commands*
+
 
 LOCAL COMMANDS ~
 
 These commands are only available (and meaningful) when you are currently in a
 Vimwiki file.
 
-                                                   *panvimwiki-VimwikiConvert*
 
-VimwikiConvert[!]                      Convert the current Vimwiki buffer. With
-                                       !, open with default viewer.
+VimwikiConvert[!]                                  *panvimwiki-VimwikiConvert*
 
+Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki |:buffer| to the selected output format (default:
 docx) specified in |panvimwiki-g:panvimwiki_settings|.format.
@@ -200,37 +194,33 @@ before copying to clipboard.
 
 Remove extraneous info:
 
-
 - Vimwiki tag lines, e.g., :tag1:tag2:
 - Not started tasks, e.g., - [ ] Task1
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
 
-                                               *panvimwiki-VimwikiConvertWeek*
+VimwikiConvertWeek[!]                          *panvimwiki-VimwikiConvertWeek*
 
-VimwikiConvertWeek[!]                  Concatentate DiaryNotes for Monday
-                                       through current buffer and convert. With
-                                       !, open in default viewer.
-
+Concatenate DiaryNotes for Monday through current buffer and convert. With !,
+open in default viewer.
 
 After concatenating DiaryNotes for the week, behave as
 |panvimwiki-vimwikiconvert|.
 
+
 SETTINGS                                                 *panvimwiki-settings*
+
 
 GLOBAL SETTINGS ~
 
-                                            *panvimwiki-g:panvimwiki_settings*
 
-g:panvimwiki_settings                  Optionally add the following to |vimrc|
-                                       or, preferably,
-                                       '~/.vim/plugin/vimwiki.vim'. Panvimwiki
-                                       defaults to docx format, without
-                                       extra_args.
+g:panvimwiki_settings                       *panvimwiki-g:panvimwiki_settings*
 
+Optionally add the following to or, preferably, '~/.vim/plugin/vimwiki.vim'.
+Panvimwiki defaults to docx format, without extra_args.
 
->
+>vim
     let g:panvimwiki_settings = {
           \ 'extra_args': [ '--shift-heading-level-by', '1',
           \ '--data-dir', '~/vimwiki_html/templates/'
@@ -247,7 +237,7 @@ Because pandoc is required, a conda environment called `pyscaffold` is created.
 The default name may be overridden with the `--name <environment name>`
 parameter.
 
->
+>bash
     git clone https://github.com/jfishe/panvimwiki.git
     cd panvimwiki
     conda env create --file environment.yml --name pyscaffold
@@ -255,12 +245,11 @@ parameter.
     pipx install covimerage
 <
 
-
 Covimerage has conflicting dependencies, so pipx creates an isolated executable
 in `~/.local/bin`. You may want to run `pipx uninstall covimerage` to avoid
 cluttering `$PATH`.
 
->
+>bash
     tox -av # List tox commands and descriptions.
     tox --recreate # Build the package and run tests with python and Vader.
     tox -e vim # Run Vader tests and generate coverage report.
@@ -269,13 +258,16 @@ cluttering `$PATH`.
 <
 
 
-
-
 ==============================================================================
 5. Note                                                      *panvimwiki-note*
 
-This project has been set up using PyScaffold 4.3. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
+This project has been set up using PyScaffold 4.5. For details and usage
+information on PyScaffold see <https://pyscaffold.org/>.
+
+==============================================================================
+6. Links                                                    *panvimwiki-links*
+
+1. *Project generated with PyScaffold*: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 

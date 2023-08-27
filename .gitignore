@@ -40,6 +40,7 @@ junit*.xml
 coverage.xml
 .pytest_cache/
 tests/vim/bundle
+Session.vim
 prepm.wiki
 
 # Build and docs folder/files
