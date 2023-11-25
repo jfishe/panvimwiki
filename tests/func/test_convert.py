@@ -103,3 +103,38 @@ def test_convert(
 
     # Teardown
     outputfile.unlink()
+
+
+def test_convert_postfilter():
+    r"""Given Markdown with pandoc citeproc references,
+
+    When pypandoc.convert_text and postfilter reference_citation applied,
+    Then return expected references as reference links.
+
+    pandoc --from=biblatex --to=markdown default.bib --standalone
+    pandoc --citeproc \
+      --from=markdown+wikilinks_title_after_pipe \
+      --standalone \
+      --to=markdown-citations \
+      --wrap=none
+    """
+    convert_expected = RESULT_PATH / "reference_citation.out.md"
+    inputfile = RESULT_PATH / "reference_citation.md"
+    with convert_expected.open() as f:
+        expected = f.read()
+    test_input = convert(
+        inputfile=inputfile,
+        outputfile=None,
+        format="markdown+wikilinks_title_after_pipe",
+        to="markdown-citations",
+        prefilters=(),
+        filters=None,
+        extra_args=(
+            "--citeproc",
+            "--standalone",
+            "--wrap",
+            "none",
+        ),
+    )
+    print(test_input)
+    assert test_input == expected

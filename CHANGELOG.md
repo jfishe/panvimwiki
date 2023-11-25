@@ -4,6 +4,8 @@
 
 - Upgrade to `pyscaffold` v4.5.
 - Add `pre-commit`.
+- Add `reference_citation` to expand `citeproc` entries in markdown with
+  [vim-zettel](https://github.com/michal-h21/vim-zettel)
 - DOCS: add contributing guide.
 - BUILD: update `panvimdoc` and build Vim help file with tox.
 

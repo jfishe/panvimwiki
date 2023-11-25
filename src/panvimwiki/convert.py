@@ -26,6 +26,7 @@ EXTRA_ARGS = (
 def convert(
     inputfile: str,
     outputfile: str,
+    format: str = "vimwiki",
     to: str = "markdown",
     prefilters: Tuple[str, ...] = PREFILTER,
     filters: Tuple[str, ...] = FILTER,
@@ -43,6 +44,9 @@ def convert(
 
     to
           Pandoc output format. See `pandoc --list-output-formats`
+
+    format
+          Pandoc input format. See `pandoc --list-input-formats`
 
     prefilters
           Selected Vimwiki stdio executable filters.  See `pydoc
@@ -80,10 +84,10 @@ def convert(
     else:
         extraargs = extra_args
 
-    pypandoc.convert_text(
+    return pypandoc.convert_text(
         source=source,
         to=to,
-        format="vimwiki",
+        format=format,
         filters=filters,
         outputfile=outputfile,
         extra_args=extraargs,

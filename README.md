@@ -150,6 +150,38 @@ delete_task_pending
 - [.] Bulleted list done1 item 1 should appear
 ```
 
+##### reference_citation
+
+Convert citations to a reference list.
+
+`Example.md`:
+
+```markdown
+::: {#refs .references .csl-bib-body .hanging-indent}
+::: {#ref-bloggs-jones .csl-entry}
+Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title
+Title Title Title Title." *Journal Journal Journal*.
+:::
+
+::: {#ref-chomsky-73 .csl-entry}
+Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris
+Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart &
+Winston.
+:::
+:::
+```
+
+`reference_citation < Example.md` produces:
+
+```markdown
+[#bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title
+    Title Title Title Title Title Title." *Journal Journal Journal*.
+
+[#chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In *A
+    Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky.
+    New York: Holt, Rinehart & Winston.
+```
+
 #### Pandoc Filters
 
 Panvimwiki provides plain text pre-filters and pandoc filters for use from

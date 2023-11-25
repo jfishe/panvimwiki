@@ -41,7 +41,7 @@ coverage.xml
 .pytest_cache/
 tests/vim/bundle
 Session.vim
-prepm.wiki
+prepm.*
 
 # Build and docs folder/files
 build/*
