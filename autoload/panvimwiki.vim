@@ -69,10 +69,12 @@ function! panvimwiki#convert(bang, ...) abort "{{{
     let l:output = Wiki2pandoc(l:is_diary, l:is_concatenate, l:format, l:end_date, '', l:extra_args)[1:-2]
 
     " Copy path to MS Word file to clipboard.
-    if has('win32') || has('win64')
-        let @+ = l:output
-    elseif executable('wslpath')
-        let @+ = system('wslpath -w '..shellescape(l:output))
+    if has('clipboard')
+        if has('win32') || has('win64')
+            let @+ = l:output
+        elseif executable('wslpath')
+            let @+ = system('wslpath -w '..shellescape(l:output))
+        endif
     endif
 
     " Open in MS Word.
