@@ -42,6 +42,11 @@ Execute (wiki2pandoc concatenate start/end dates):
   Log Wiki2pandoc("1", "1", "docx", "2017-04-26", "2017-04-24", "0")
   Assert filereadable(g:vimdir .. '/prepm.docx')
 
+Execute (wiki2pandoc concatenate without end date):
+  edit vimwiki/diary/2017-04-24.wiki
+  Log Wiki2pandoc("1", "1", "docx", "", "2017-04-24", "0")
+  Assert filereadable(g:vimdir .. '/prepm.docx')
+
 Execute (VimwikiConvertWeek without g:panvimwiki_settings):
   unlet g:panvimwiki_settings
   edit vimwiki/diary/2017-04-26.wiki

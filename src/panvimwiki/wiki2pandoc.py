@@ -1,12 +1,50 @@
 """Vim interface to convert Vimwiki to another format using pandoc."""
 
+from __future__ import annotations
+
 from pathlib import Path
+from typing import Literal
 
 import vim  # noqa
 from vim_bridge import bridged
 
 from panvimwiki.convert import convert
+from panvimwiki.filter.reference_citation import filter_reference
 from panvimwiki.vimwiki_week import concatenate_diary
+
+
+@bridged
+def expand_citeproc(path: str) -> str | None:
+    # def expand_citeproc(path: str | list[str]) -> str:
+    """Pandoc returns expanded citeproc references.
+
+    Parameters
+    ----------
+    path : TODO
+
+    Returns
+    -------
+    TODO
+
+    """
+    reference = filter_reference(
+        convert(
+            inputfile=str(path),
+            outputfile=None,
+            format="markdown+wikilinks_title_after_pipe",
+            to="markdown-citations",
+            prefilters=None,
+            filters=None,
+            extra_args=(
+                "--citeproc",
+                "--standalone",
+                "--wrap",
+                "none",
+            ),
+        )
+    )
+    vim.command(f"let @x = '{reference}'")
+    vim.command("$put x")
 
 
 @bridged
@@ -14,9 +52,9 @@ def wiki2pandoc(
     is_diary: str,
     is_concatenate: str,
     to: str = "docx",
-    end_date: str = None,
-    start_date: str = None,
-    extra_args=None,
+    end_date: str | None = "",
+    start_date: str | None = "",
+    extra_args: Literal["0"] | list[str] = "0",
 ) -> str:
     """Bridged to Vim function Wiki2pandoc.
 
@@ -52,6 +90,7 @@ def wiki2pandoc(
 
            ["--shift-heading-level-by", "1", "--data-dir", "vimwiki_html/templates"]
 
+        Coerce "0" to an empty list.
         See `pydoc pypandoc.convert_text` for details and `pandoc --help` for
         valid content.
 

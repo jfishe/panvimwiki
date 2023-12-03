@@ -83,17 +83,30 @@ import re
 import sys
 
 
-def main():
+def filter_reference(source: str | None = None) -> str | None:
     """Convert pandoc citeproc CSL references to explicit reference links.
 
     `Reference links <https://pandoc.org/MANUAL.html#reference-links>`_.
     """
-    for result in re.findall("::: {#ref-(.*?):::", sys.stdin.read(), re.S):
+    if source is None:
+        source = sys.stdin.read()
+        isstdio = True
+    else:
+        isstdio = False
+
+    lines = []
+    for result in re.findall("::: {#ref-(.*?):::", source, re.S):
         entry = result.split("\n")
         reference = f"[#{entry[0].split()[0]}]:"
         citation = "\n".join(entry[1:])
-        print(f"{reference} {citation}")
+        lines.append(f"{reference} {citation}")
+    lines = "\n".join(lines)
+
+    if isstdio:
+        print(lines)
+        return None
+    return lines
 
 
 if __name__ == "__main__":
-    main()
+    filter_reference()

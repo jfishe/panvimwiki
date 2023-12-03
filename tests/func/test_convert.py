@@ -123,11 +123,11 @@ def test_convert_postfilter():
     with convert_expected.open() as f:
         expected = f.read()
     test_input = convert(
-        inputfile=inputfile,
+        inputfile=str(inputfile),
         outputfile=None,
         format="markdown+wikilinks_title_after_pipe",
         to="markdown-citations",
-        prefilters=(),
+        prefilters=None,
         filters=None,
         extra_args=(
             "--citeproc",

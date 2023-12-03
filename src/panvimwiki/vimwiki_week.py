@@ -7,7 +7,9 @@ from panvimwiki.catvimwiki import catdiary, get_last_monday, get_last_thursday
 
 
 def concatenate_diary(
-    diary_path: str, start_date: str = None, end_date: str = None
+    diary_path: str,
+    start_date: str | None = None,
+    end_date: str | None = None,
 ) -> Path:
     """Concatenate Vimwiki diary from start_date through end_date.
 
