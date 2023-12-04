@@ -2,7 +2,7 @@
 " Description: Concatenate, filter and convert Vimwiki Diary using Pandoc
 " Home: https://github.com/jfishe/panvimwiki
 " Maintainer: John D. Fisher <jdfenw@gmail.com>
-" Last Change: 2021-01-29
+" Last Change: 2023-12-03
 
 if exists('g:loaded_panvimwiki_auto') || !has('python3') || &compatible
             \ || !executable('pandoc') || !has('patch-8.2.0578h')

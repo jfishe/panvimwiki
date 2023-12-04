@@ -233,6 +233,13 @@ With !, open in default viewer.
 
 After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert).
 
+##### VimwikiReference
+
+If in markdown format, pandoc reads the current buffer, with citeproc
+references to a BibLaTeX or other supported database, and appends references
+links and the complete citation, according to the default citation style
+language (CSL).
+
 ### Settings
 
 #### Global Settings

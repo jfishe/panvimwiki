@@ -1,13 +1,17 @@
 # Changelog
 
-## Version 0.5 (development)
+## Version 0.6 (development)
 
-- Upgrade to `pyscaffold` v4.5.
-- Add `pre-commit`.
+## Version 0.5 (2023-12-04)
+
+- Vim command `:VimwikiReference` converts `citeproc` entries and appends to
+  current buffer.
 - Add `reference_citation` to expand `citeproc` entries in markdown with
   [vim-zettel](https://github.com/michal-h21/vim-zettel)
 - DOCS: add contributing guide.
-- BUILD: update `panvimdoc` and build Vim help file with tox.
+- BUILD: Update `panvimdoc` and build Vim help file with tox.
+- BUILD: Upgrade to `pyscaffold` v4.5.
+- BUILD: Add `pre-commit`.
 
 ## Version 0.4 (2022-10-30)
 

@@ -1,10 +1,15 @@
 Before (Setup conversion output vimwiki/html, etc.):
   call chdir(g:vimdir)
+  let s:tmpdir = tempname()
+  let g:mddir = s:tmpdir .. '/markdown'
+  execute '! mkdir -p ' .. g:mddir
+  Log resolve(g:mddir)
 
 Execute (ExpandCiteproc):
   let g:vimwiki_autowriteall = 0
   edit reference_citation.md
-  call panvimwiki#expand_citeproc()
+  execute 'saveas ' .. g:mddir .. '/reference_citation.md'
+  VimwikiReference
 
 Expect (Append references):
   ---

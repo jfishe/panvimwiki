@@ -15,7 +15,6 @@ from panvimwiki.vimwiki_week import concatenate_diary
 
 @bridged
 def expand_citeproc(path: str) -> str | None:
-    # def expand_citeproc(path: str | list[str]) -> str:
     """Pandoc returns expanded citeproc references.
 
     Parameters
