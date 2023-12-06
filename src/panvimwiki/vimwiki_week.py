@@ -1,5 +1,7 @@
 """Convert str dates to datetime and Path. Set default days for missing dates."""
 
+from __future__ import annotations
+
 import datetime
 from pathlib import Path
 

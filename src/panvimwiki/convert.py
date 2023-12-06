@@ -1,5 +1,7 @@
 """Process filters and convert to output format using pandoc."""
 
+from __future__ import annotations
+
 import subprocess
 from pathlib import Path
 

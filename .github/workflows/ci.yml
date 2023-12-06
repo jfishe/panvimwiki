@@ -69,6 +69,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
+      - uses: nikeee/setup-pandoc@v1
       - uses: actions/setup-python@v5
         id: setup-python
         with:
