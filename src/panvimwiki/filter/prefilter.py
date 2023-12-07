@@ -1,13 +1,14 @@
 """Main function shared by prefilters."""
 
+from __future__ import annotations
+
 import fileinput
 import re
-from typing import Optional, Tuple
 
 
 def action(
-    line: str, delete: str = None, replace: Tuple[str, str] = None
-) -> Optional[str]:
+    line: str, delete: str | None = None, replace: tuple[str, str] | None = None
+) -> str | None:
     """Filter Vimwiki text by deleting lines or replacing text in lines.
 
     Parameters
@@ -46,7 +47,9 @@ def action(
     return line
 
 
-def prefilter(delete: str = None, replace: Tuple[str, str] = None) -> None:
+def prefilter(
+    delete: str | None = None, replace: tuple[str, str] | None = None
+) -> None:
     """Read stdin, filter with action() to stdout.
 
     Parameters

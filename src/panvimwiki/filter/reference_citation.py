@@ -79,6 +79,8 @@ format.
 
 """  # noqa: E501
 
+from __future__ import annotations
+
 import re
 import sys
 
