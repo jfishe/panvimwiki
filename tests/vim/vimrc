@@ -1,22 +1,6 @@
 set noloadplugins
 filetype off
 
-if !has('nvim') && !empty($CONDA_PREFIX) && has('python3_dynamic')
-  " Do not depend on stacked environment. Both should work:
-  " Enter-CondaEnvironment -Name vim_python &&
-  "   Enter-CondaEnvironment -Stack -Name venv
-  " Enter-CondaEnvironment -Name vim_python
-  let s:conda_env = '/miniconda3/envs/panvimwiki'
-  if isdirectory(expand("$LOCALAPPDATA" .. s:conda_env))
-    let &pythonthreehome = expand("$LOCALAPPDATA" .. s:conda_env)
-  elseif isdirectory(expand("$HOME" .. s:conda_env))
-    let &pythonthreehome = expand("$HOME" .. s:conda_env)
-  endif
-  if has('linux')
-    let &pythonthreedll=expand(&pythonthreehome .. "/lib/libpython3.so")
-  endif
-endif
-
 " Absolute path to this vimrc file.
 let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Default parent directory for Vimwiki files, converted output and templates.
