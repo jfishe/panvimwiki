@@ -106,10 +106,31 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
 
+  publish-to-testpypi:
+    name: Publish Python 🐍 distribution 📦 to TestPyPI
+    needs: finalize
+    runs-on: ubuntu-latest
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/panvimwiki
+
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+      - name: Retrieve pre-built distribution files
+        uses: actions/download-artifact@v3
+        with: { name: python-distribution-files, path: dist/ }
+      - name: Publish distribution 📦 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
   publish-to-pypi:
     name: >-
       Publish Python 🐍 distribution 📦 to PyPI
-    needs: finalize
+    needs: [finalize, publish-to-testpypi]
     if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
     environment:
@@ -136,27 +157,6 @@ jobs:
       #     TWINE_USERNAME: __token__
       #     TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       #   run: pipx run tox -e publish
-
-  publish-to-testpypi:
-    name: Publish Python 🐍 distribution 📦 to TestPyPI
-    needs: finalize
-    runs-on: ubuntu-latest
-
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/panvimwiki
-
-    permissions:
-      id-token: write # IMPORTANT: mandatory for trusted publishing
-
-    steps:
-      - name: Retrieve pre-built distribution files
-        uses: actions/download-artifact@v3
-        with: { name: python-distribution-files, path: dist/ }
-      - name: Publish distribution 📦 to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
 
   github-release:
     name: >-
