@@ -16,6 +16,8 @@ description: Filter and convert Vimwiki notes using pandoc.
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
 -->
 
+[![PyPI-Server](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki/)
+[![Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml)
 [![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
 
 # Filter and convert Vimwiki notes using pandoc
