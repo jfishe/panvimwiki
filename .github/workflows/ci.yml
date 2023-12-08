@@ -76,6 +76,7 @@ jobs:
         id: setup-python
         with:
           python-version: ${{ matrix.python }}
+      - uses: rhysd/action-setup-vim@v1
       - name: Retrieve pre-built distribution files
         uses: actions/download-artifact@v3
         with: { name: python-distribution-files, path: dist/ }
