@@ -14,35 +14,30 @@ from panvimwiki.vimwiki_week import concatenate_diary
 
 
 @bridged
-def expand_citeproc(path: str) -> str | None:
-    """Pandoc returns expanded citeproc references.
+def expand_citeproc(path: str | Path) -> None:
+    """Append pandoc expanded citeproc references at EOF.
 
     Parameters
     ----------
-    path : TODO
-
-    Returns
-    -------
-    TODO
+    path :
+        Path to markdown input file.
 
     """
-    reference = filter_reference(
-        convert(
-            inputfile=str(path),
-            outputfile=None,
-            format="markdown+wikilinks_title_after_pipe",
-            to="markdown-citations",
-            prefilters=None,
-            filters=None,
-            extra_args=(
-                "--citeproc",
-                "--standalone",
-                "--wrap",
-                "none",
-            ),
-        )
+    reference = convert(
+        inputfile=str(path),
+        outputfile=None,
+        format="markdown+wikilinks_title_after_pipe",
+        to="markdown-citations",
+        prefilters=None,
+        filters=None,
+        extra_args=(
+            "--citeproc",
+            "--standalone",
+            "--wrap",
+            "none",
+        ),
     )
-    vim.command(f"let @x = '{reference}'")
+    vim.command(f"let @x = '{filter_reference(reference)}'")
     vim.command("$put x")
 
 
