@@ -105,7 +105,7 @@ def test_convert(
     outputfile.unlink()
 
 
-def test_convert_postfilter():
+def test_convert_postfilter(tmp_path):
     r"""Given Markdown with pandoc citeproc references,
 
     When pypandoc.convert_text and postfilter reference_citation applied,
@@ -135,6 +135,7 @@ def test_convert_postfilter():
             "--wrap",
             "none",
         ),
+        postfilters=("reference_citation",),
     )
     print(test_input)
     assert test_input == expected

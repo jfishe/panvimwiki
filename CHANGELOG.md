@@ -2,6 +2,9 @@
 
 ## Version 0.6 (development)
 
+- Use pandoc `citeproc` to convert reference citations, replacing the anchor
+  links.
+
 ## Version 0.5 (2023-12-04)
 
 - Vim command `:VimwikiReference` converts `citeproc` entries and appends to

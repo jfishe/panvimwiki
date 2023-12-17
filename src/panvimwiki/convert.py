@@ -31,6 +31,7 @@ def convert(
     to: str = "markdown",
     prefilters: tuple[str, ...] | None = PREFILTER,
     filters: tuple[str, ...] | None = FILTER,
+    postfilters: tuple[str, ...] | None = None,
     extra_args: tuple[str, ...] = EXTRA_ARGS,
 ) -> str | None:
     """Convert Vimwiki with pandoc after applying prefilters and pandoc filters.
@@ -91,11 +92,40 @@ def convert(
     else:
         extraargs = extra_args
 
-    return pypandoc.convert_text(
-        source=source,
-        to=to,
-        format=format,
-        filters=filters,
-        outputfile=outputfile,
-        extra_args=extraargs,
-    )
+    try:
+        source = pypandoc.convert_text(
+            source=source,
+            to=to,
+            format=format,
+            filters=filters,
+            outputfile=None,
+            extra_args=extraargs,
+        )
+    except RuntimeError:
+        return pypandoc.convert_text(
+            source=source,
+            to=to,
+            format=format,
+            filters=filters,
+            outputfile=outputfile,
+            extra_args=extraargs,
+        )
+
+    # Postfilter
+    if postfilters is not None:
+        for cmd in postfilters:
+            filter_out = subprocess.run(
+                cmd,
+                input=source,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            source = filter_out.stdout
+
+    if outputfile is None:
+        return source
+    else:
+        with open(outputfile, mode="w") as f:
+            f.write(source)
+        return None
