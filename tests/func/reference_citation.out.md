@@ -46,8 +46,6 @@ Bloggs and Jones ([1959](#ref-bloggs-jones))
 
 ([Chomsky 1973](#ref-chomsky-73))
 
-[@chomsky-73](Chomsky 1973 "wikilink")
-
 ------------------------------------------------------------------------
 
 House of Dude

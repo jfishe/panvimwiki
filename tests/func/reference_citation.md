@@ -44,7 +44,5 @@ Hey [Adding to the House of Dude](230916-1043)
 
 [@chomsky-73]
 
-[[Chomsky 1973|@chomsky-73]]
-
 ----
 House of Dude

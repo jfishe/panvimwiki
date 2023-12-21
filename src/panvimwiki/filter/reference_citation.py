@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 r"""
-Convert citations to a reference list.
+Convert pandoc citeproc bibliography to reference links.
 
 Plain text filter
 
 Pandoc reads a markdown file with citeproc references to a BibLaTeX or other
-supported database. The markdown output conflicts with Markdownlint.
-`reference_citation` converts the reference list to
+supported database and returns citations and a reference list. See
+`Pandoc Citations <https://pandoc.org/MANUAL.html#citations>`_ for details.
+
+Assume the default CSL citation style. `reference_citation` converts the
+reference list to
 `Reference links <https://pandoc.org/MANUAL.html#reference-links>`_.
+
+The markdown output may conflict with Markdownlint.
 
 .. code-block:: bash
 
@@ -29,9 +34,9 @@ Create a Pandoc markdown file, e.g., `example.md`, with citeproc references.
 
   @bloggs-jones
 
-  [@chomsky-73]
+  Blah blah [@bloggs-jones; @chomsky-73]
 
-  [[Chomsky 1973|@chomsky-73]]
+  [@chomsky-73]
 
 A citeproc compatible database, e.g., BibLaTeX `default.bib`.
 
@@ -73,9 +78,9 @@ format.
 
 .. code-block:: markdown
 
-  [#bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title Title Title Title Title." *Journal Journal Journal*.
+  [#ref-bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title Title Title Title Title." *Journal Journal Journal*.
 
-  [#chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
+  [#ref-chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
 
 """  # noqa: E501
 
@@ -107,7 +112,9 @@ def main():
     )
     if m is not None:
         print(source[: m.start()])
-        print(filter_reference(source))
+        print(filter_reference(source), end="")
+    else:
+        print(source, end="")
     return None
 
 

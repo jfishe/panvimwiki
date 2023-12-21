@@ -1,8 +1,9 @@
 """Test stdio prefilters and pandoc filters for Markdown and Docx conversion."""
 
+from __future__ import annotations
+
 import filecmp
 from pathlib import Path
-from typing import Tuple
 
 import pypandoc
 import pytest
@@ -37,27 +38,41 @@ FILTER_WITH_WRONG_ORDER = (
 
 
 @pytest.mark.parametrize(
-    "convert_expected, to, extra_args, filters",
+    "convert_expected, to, extra_args, filters, postfilters",
     [
         pytest.param(
-            RESULT_PATH / "convert.md", "markdown", None, FILTER, id="markdown"
+            RESULT_PATH / "convert.md",
+            "markdown",
+            None,
+            FILTER,
+            None,
+            id="markdown",
         ),
         pytest.param(
             RESULT_PATH / "convert.md",
             "markdown",
             None,
             FILTER_WITH_WRONG_ORDER,
+            None,
             id="filter_disorder",
             marks=pytest.mark.xfail(
                 reason="delete_empty_heading before delete_tag_lines",
             ),
         ),
-        pytest.param(RESULT_PATH / "convert.docx", "docx", None, FILTER, id="docx"),
+        pytest.param(
+            RESULT_PATH / "convert.docx",
+            "docx",
+            None,
+            FILTER,
+            None,
+            id="docx",
+        ),
         pytest.param(
             RESULT_PATH / "convert_shift.md",
             "markdown",
             EXTRA_ARGS,
             FILTER,
+            None,
             id="markdown_extra_args",
         ),
         pytest.param(
@@ -65,7 +80,16 @@ FILTER_WITH_WRONG_ORDER = (
             "docx",
             EXTRA_ARGS,
             FILTER,
+            None,
             id="docx_extra_args",
+        ),
+        pytest.param(
+            RESULT_PATH / "convert_shift.md",
+            "markdown",
+            EXTRA_ARGS,
+            FILTER,
+            ("reference_citation",),
+            id="markdown_extra_args_no_citeproc",
         ),
     ],
 )
@@ -73,8 +97,9 @@ def test_convert(
     catdiary_fixture: Path,
     convert_expected: Path,
     to: str,
-    extra_args: Tuple,
-    filters: Tuple,
+    extra_args: tuple,
+    filters: tuple,
+    postfilters: tuple | None,
 ):
     """Test prefilters and filters in series against expected output."""
     # Setup
@@ -87,6 +112,7 @@ def test_convert(
         to=to,
         prefilters=PREFILTER,
         filters=filters,
+        postfilters=postfilters,
         extra_args=extra_args,
     )
 
