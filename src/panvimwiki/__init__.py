@@ -2,7 +2,7 @@
 
 Panvimwiki provides tools for conversion to Microsoft Word docx or other
 output formats supported by
-[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
+`Pandoc a universal document converter <https://pandoc.org/>`_.
 Panvimwiki provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 """

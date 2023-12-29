@@ -152,7 +152,7 @@ def test_convert_postfilter(tmp_path):
         inputfile=str(inputfile),
         outputfile=None,
         format="markdown+wikilinks_title_after_pipe",
-        to="markdown-citations",
+        to="markdown-citations+wikilinks_title_after_pipe",
         prefilters=None,
         filters=None,
         extra_args=(

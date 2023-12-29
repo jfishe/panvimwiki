@@ -32,9 +32,11 @@ def convert(
     prefilters: tuple[str, ...] | None = PREFILTER,
     filters: tuple[str, ...] | None = FILTER,
     postfilters: tuple[str, ...] | None = None,
-    extra_args: tuple[str, ...] = EXTRA_ARGS,
+    extra_args: tuple[str, ...] | None = EXTRA_ARGS,
 ) -> str | None:
-    """Convert Vimwiki with pandoc after applying prefilters and pandoc filters.
+    """Convert Vimwiki with pandoc, applying selected filters.
+
+    :py:mod:`panvimwiki.filter` lists provided pre-, post- and pandoc-filters.
 
     Parameters
     ----------
@@ -45,31 +47,40 @@ def convert(
           Converted file absolute path or None to return a string.
 
     format
-          Pandoc input format. See `pandoc --list-input-formats`
+          Pandoc input format. See ``pandoc --list-input-formats``
 
     to
-          Pandoc output format. See `pandoc --list-output-formats`
+          Pandoc output format. See ``pandoc --list-output-formats``
 
     prefilters
-          Selected Vimwiki stdio executable filters.  See `pydoc
-          panvimwiki.convert` for provided filters. Any executable that
-          receives Vimwiki format as stdin and produces stdout should work.
-          An empty tuple will skip prefilters.
+          Selected Vimwiki stdio executable filters. Any executable that
+          receives input ``format`` as stdin and produces stdout should work.
+          `None` skips prefilters.
 
     filters
-          Selected pandoc filters.  See `pydoc panvimwiki.convert` for
-          provided filters. Any valid `pandoc --filter <filter name>` should
-          work.
+          Selected pandoc filters.  Any valid ``pandoc --filter <filter name>``
+          should work. None skips filters but still runs pandoc.
+
+    postfilters
+          Selected Vimwiki stdio executable filters. Any executable that
+          receives pandoc ``to`` format as stdin and produces stdout should
+          work. None skips postfilters.
 
     extra_args
-        Additional pandoc arguments and parameters.  See `pydoc
-        pypandoc.convert_text` for details and `pandoc --help` for valid
-        content.
+          Additional pandoc arguments and parameters to pass to
+          :py:func:`pypandoc.convert_text`. Refer to ``pandoc --help``
+          for valid content.
+
+    Raises
+    ------
+    RuntimeError
+          Output to docx only works by using a outputfile. Pandoc requires an
+          outputfile for binary document formats.
 
     Returns
     -------
     str or None
-        Converted string, if outputfile is None, or None.
+          Converted string, if outputfile is None, or None.
     """
     with open(inputfile, encoding="utf8") as fin:
         source = fin.read()

@@ -34,8 +34,10 @@ concatenate and convert Diary Notes or convert any Vimwiki note.
 
 Panvimwiki requires
 [Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
-Installation with conda is recommended because the system version, e.g., with
+Installation with `conda` is recommended because the system version, e.g., with
 Ubuntu, may be too old. Or download from the website.
+[Pypandoc](https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip)
+supports binary installation of pandoc using `pip`.
 
 Using the Vim 8 native packages, panvimwiki should install in
 `pack/*/opt/panvimwiki` because it depends on [:python3](https://neovim.io/doc/user/if_pyth.html#python3)
@@ -52,6 +54,8 @@ git clone https://github.com/jfishe/panvimwiki.git "$dest"
 # Activate the python environment used by Vim.
 # Then install panvimwiki in that python environment.
 python -m pip install "$dest"
+# Or to install from pypi:
+python -m pip install panvimwiki
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
@@ -152,6 +156,25 @@ delete_task_pending
 - [.] Bulleted list done1 item 1 should appear
 ```
 
+#### Pandoc Filters
+
+Panvimwiki provides plain text pre-filters, pandoc filters and post-filters for
+use from the command line.
+
+##### delete_tag_lines
+
+Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
+
+##### delete_empty_heading
+
+Remove headings that do not have any children or paragraphs. Remove tag lines
+first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered
+empty.
+
+##### delete_taskwiki_heading
+
+#### Post-Filters
+
 ##### reference_citation
 
 Convert citations to a reference list.
@@ -159,6 +182,7 @@ Convert citations to a reference list.
 `Example.md`:
 
 ```markdown
+
 ::: {#refs .references .csl-bib-body .hanging-indent}
 ::: {#ref-bloggs-jones .csl-entry}
 Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title
@@ -183,23 +207,6 @@ Winston.
     Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky.
     New York: Holt, Rinehart & Winston.
 ```
-
-#### Pandoc Filters
-
-Panvimwiki provides plain text pre-filters and pandoc filters for use from
-the command line.
-
-##### delete_tag_lines
-
-Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
-
-##### delete_empty_heading
-
-Remove headings that do not have any children or paragraphs. Remove tag lines
-first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered
-empty.
-
-##### delete_taskwiki_heading
 
 ### Commands
 
@@ -240,7 +247,10 @@ After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwiki
 If in markdown format, pandoc reads the current buffer, with citeproc
 references to a BibLaTeX or other supported database, and appends references
 links and the complete citation, according to the default citation style
-language (CSL).
+language (CSL). Pandoc also converts the citeproc style references to markdown
+links. `VimwikiReference` overwrites the file, so Vim may prompt to reload the
+buffer (cf. `:h W12`). If you choose not to reload the buffer, `:h :DiffOrig`
+allows review of the changes.
 
 ### Settings
 

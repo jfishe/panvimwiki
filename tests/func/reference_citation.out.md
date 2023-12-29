@@ -32,19 +32,27 @@ title: Try ZettelNew
 type: note
 ---
 
-```{=html}
-<!-- pandoc --from=biblatex --to=markdown default.bib --standalone
+Hey [Adding to the House of Dude](230916-1043)
+
+``` bash
+# To convert BibLaTeX to Markdown Yaml Header above:
+pandoc --from=biblatex --to=markdown default.bib --standalone
+
+# To convert this file to expected output:
 pandoc --citeproc \
   --from=markdown+wikilinks_title_after_pipe \
   --standalone \
-  --to=markdown-citations \
-  --wrap=none -->
+  --to=markdown-citations+wikilinks_title_after_pipe  \
+  --wrap=none \
+  tests/func/reference_citation.md |
+  reference_citation > tests/func/reference_citation.out.md
 ```
-Hey [Adding to the House of Dude](230916-1043)
 
 Bloggs and Jones ([1959](#ref-bloggs-jones))
 
 ([Chomsky 1973](#ref-chomsky-73))
+
+[[vimwiki]]
 
 ------------------------------------------------------------------------
 

@@ -9,13 +9,15 @@ import vim  # noqa
 from vim_bridge import bridged
 
 from panvimwiki.convert import convert
-from panvimwiki.filter.reference_citation import filter_reference
 from panvimwiki.vimwiki_week import concatenate_diary
 
 
 @bridged
 def expand_citeproc(path: str | Path) -> None:
-    """Append pandoc expanded citeproc references at EOF.
+    """Expand pandoc citeproc references to reference links.
+
+    Vimwiki [URL|Description] style links are preserved with the pandoc format
+    `markdown+wikilinks_title_after_pipe`.
 
     Parameters
     ----------
@@ -23,13 +25,14 @@ def expand_citeproc(path: str | Path) -> None:
         Path to markdown input file.
 
     """
-    reference = convert(
+    convert(
         inputfile=str(path),
-        outputfile=None,
+        outputfile=str(path),
         format="markdown+wikilinks_title_after_pipe",
-        to="markdown-citations",
+        to="markdown-citations+wikilinks_title_after_pipe",
         prefilters=None,
         filters=None,
+        postfilters=("reference_citation",),
         extra_args=(
             "--citeproc",
             "--standalone",
@@ -37,8 +40,6 @@ def expand_citeproc(path: str | Path) -> None:
             "none",
         ),
     )
-    vim.command(f"let @x = '{filter_reference(reference)}'")
-    vim.command("$put x")
 
 
 @bridged

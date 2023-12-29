@@ -11,8 +11,9 @@ Table of Contents                               *panvimwiki-table-of-contents*
   - Settings                                             |panvimwiki-settings|
 4. Development and Testing                |panvimwiki-development-and-testing|
 5. Note                                                      |panvimwiki-note|
+<https://pypi.org/project/panvimwiki/>
 <https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml>
-<https://pypi.org/project/panvimwiki/> <https://pyscaffold.org/>
+<https://pyscaffold.org/>
 
 Filter and convert Vimwiki notes using pandoc
 
@@ -29,9 +30,11 @@ convert any Vimwiki note.
 ==============================================================================
 2. Installation                                      *panvimwiki-installation*
 
-Panvimwiki requires Pandoc <https://pandoc.org/>. Installation with conda is
+Panvimwiki requires Pandoc <https://pandoc.org/>. Installation with `conda` is
 recommended because the system version, e.g., with Ubuntu, may be too old. Or
-download from the website.
+download from the website. Pypandoc
+<https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip>
+supports binary installation of pandoc using `pip`.
 
 Using the Vim 8 native packages, panvimwiki should install in
 `pack/*/opt/panvimwiki` because it depends on |:python3| and requires
@@ -48,6 +51,8 @@ From a bash shell, enter the following:
     # Activate the python environment used by Vim.
     # Then install panvimwiki in that python environment.
     python -m pip install "$dest"
+    # Or to install from pypi:
+    python -m pip install panvimwiki
 <
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to |vimrc|
@@ -153,6 +158,29 @@ Delete pending tasks.
 <
 
 
+PANDOC FILTERS ~
+
+Panvimwiki provides plain text pre-filters, pandoc filters and post-filters for
+use from the command line.
+
+
+delete_tag_lines                                 *panvimwiki-delete_tag_lines*
+
+Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
+
+
+delete_empty_heading                         *panvimwiki-delete_empty_heading*
+
+Remove headings that do not have any children or paragraphs. Remove tag lines
+first, |panvimwiki-delete_tag_lines| or the heading is not considered empty.
+
+
+delete_taskwiki_heading                   *panvimwiki-delete_taskwiki_heading*
+
+
+POST-FILTERS ~
+
+
 reference_citation                             *panvimwiki-reference_citation*
 
 Convert citations to a reference list.
@@ -160,6 +188,7 @@ Convert citations to a reference list.
 `Example.md`:
 
 >markdown
+
     ::: {#refs .references .csl-bib-body .hanging-indent}
     ::: {#ref-bloggs-jones .csl-entry}
     Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title
@@ -184,26 +213,6 @@ Convert citations to a reference list.
         Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky.
         New York: Holt, Rinehart & Winston.
 <
-
-
-PANDOC FILTERS ~
-
-Panvimwiki provides plain text pre-filters and pandoc filters for use from the
-command line.
-
-
-delete_tag_lines                                 *panvimwiki-delete_tag_lines*
-
-Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
-
-
-delete_empty_heading                         *panvimwiki-delete_empty_heading*
-
-Remove headings that do not have any children or paragraphs. Remove tag lines
-first, |panvimwiki-delete_tag_lines| or the heading is not considered empty.
-
-
-delete_taskwiki_heading                   *panvimwiki-delete_taskwiki_heading*
 
 
 COMMANDS                                                 *panvimwiki-commands*
@@ -248,7 +257,10 @@ VimwikiReference                                 *panvimwiki-VimwikiReference*
 If in markdown format, pandoc reads the current buffer, with citeproc
 references to a BibLaTeX or other supported database, and appends references
 links and the complete citation, according to the default citation style
-language (CSL).
+language (CSL). Pandoc also converts the citeproc style references to markdown
+links. `VimwikiReference` overwrites the file, so Vim may prompt to reload the
+buffer (cf. |W12|). If you choose not to reload the buffer, |:DiffOrig| allows
+review of the changes.
 
 
 SETTINGS                                                 *panvimwiki-settings*
@@ -309,8 +321,8 @@ information on PyScaffold see <https://pyscaffold.org/>.
 ==============================================================================
 6. Links                                                    *panvimwiki-links*
 
-1. *Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI*: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
-2. *PyPI-Server*: https://img.shields.io/pypi/v/panvimwiki.svg
+1. *PyPI-Server*: https://img.shields.io/pypi/v/panvimwiki.svg
+2. *Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI*: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
 3. *Project generated with PyScaffold*: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>

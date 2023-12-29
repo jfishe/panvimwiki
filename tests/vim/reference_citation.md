@@ -32,19 +32,27 @@ references:
     type: paper-conference
 ---
 
-<!-- pandoc --from=biblatex --to=markdown default.bib --standalone
+Hey [Adding to the House of Dude](230916-1043)
+
+```bash
+# To convert BibLaTeX to Markdown Yaml Header above:
+pandoc --from=biblatex --to=markdown default.bib --standalone
+
+# To convert this file to expected output:
 pandoc --citeproc \
   --from=markdown+wikilinks_title_after_pipe \
   --standalone \
-  --to=markdown-citations \
-  --wrap=none -->
-Hey [Adding to the House of Dude](230916-1043)
+  --to=markdown-citations+wikilinks_title_after_pipe  \
+  --wrap=none \
+  tests/func/reference_citation.md |
+  reference_citation > tests/func/reference_citation.out.md
+```
 
 @bloggs-jones
 
 [@chomsky-73]
 
-[[Chomsky 1973|@chomsky-73]]
+[[vimwiki]]
 
 ----
 House of Dude
