@@ -13,27 +13,29 @@ let b:did_ftplugin_panvimwiki = 1  " Don't load another plugin for this buffer
 let s:save_cpo = &cpo
 set cpo&vim
 
+let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
+if !empty('b:undo_ftplugin')
+  let b:undo_ftplugin ..=  " | unlet b:did_ftplugin_panvimwiki"
+else
+  let b:undo_ftplugin = "unlet b:did_ftplugin_panvimwiki"
+endif
+
 if !exists(":VimwikiConvert")
   command -buffer -bang -nargs=0 VimwikiConvert
         \ call panvimwiki#convert(<bang>0)
+  let b:undo_ftplugin ..= " | delcommand VimwikiConvert"
 endif
 if !exists(":VimwikiConvertWeek")
   command -buffer -bang -nargs=0 VimwikiConvertWeek
         \ call panvimwiki#convert(<bang>0, 1)
+  let b:undo_ftplugin ..= " | delcommand VimwikiConvertWeek"
 endif
+
 if vimwiki#vars#get_wikilocal('syntax') ==# 'markdown' && !exists(":VimwikiReference")
   command -buffer -nargs=0 VimwikiReference
         \ call panvimwiki#expand_citeproc()
-else
-
+  let b:undo_ftplugin ..= " | delcommand VimwikiReference"
 endif
-let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
-if !empty('b:undo_ftplugin')
-  let b:undo_ftplugin ..= " | "
-endif
-let b:undo_ftplugin ..= "delcommand VimwikiConvertWeek"
-      \ .. " | delcommand VimwikiConvert"
-      \ .. " | unlet b:did_ftplugin_panvimwiki"
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
