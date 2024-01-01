@@ -1,11 +1,12 @@
 " Panvimwiki ftplugin
 " File: vimwiki.vim
 " Description: Panvimwiki additions to filetype vimwiki
-" Maintainer: John D. Fisher
-" Last Change: 2023-12-03
+" Home: https://github.com/jfishe/panvimwiki
+" Maintainer: John D. Fisher <jdfenw@gmail.com>
+" Last Change: 2024-01-01
 
 if exists('b:did_ftplugin_panvimwiki') || &compatible
-            \ || !executable('pandoc') || !has('patch-8.2.0578h')
+      \ || !executable('pandoc') || !has('patch-8.2.0578h')
   finish
 endif
 let b:did_ftplugin_panvimwiki = 1  " Don't load another plugin for this buffer
@@ -39,4 +40,4 @@ endif
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
-" vim:tabstop=4:shiftwidth=4:expandtab:textwidth=99:foldmethod=marker
+" vim:tabstop=2:shiftwidth=2:expandtab:textwidth=99:foldmethod=marker

@@ -1,8 +1,9 @@
-" vim: set fdm=marker et ts=4 sw=4 sts=4:
-
+" Panvimwiki plugin
 " File: panvimwiki.vim
 " Description: Convert Vimwiki to other formats using pandoc
-" Author: John D. Fisher
+" Home: https://github.com/jfishe/panvimwiki
+" Maintainer: John D. Fisher <jdfenw@gmail.com>
+" Last Change: 2024-01-01
 
 " Should we load? {{{1
 if exists('g:panvimwiki_loaded') || !has("python3") || &compatible
@@ -35,3 +36,4 @@ let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Restore Vim compatibility options.
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
+" vim:tabstop=2:shiftwidth=2:expandtab:textwidth=99:foldmethod=marker

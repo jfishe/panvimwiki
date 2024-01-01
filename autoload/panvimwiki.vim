@@ -1,8 +1,9 @@
 " Panvimwiki autoload
+" File: panvimwiki.vim
 " Description: Concatenate, filter and convert Vimwiki Diary using Pandoc
 " Home: https://github.com/jfishe/panvimwiki
 " Maintainer: John D. Fisher <jdfenw@gmail.com>
-" Last Change: 2023-12-03
+" Last Change: 2024-01-01
 
 if exists('g:loaded_panvimwiki_auto') || !has('python3') || &compatible
             \ || !executable('pandoc') || !has('patch-8.2.0578h')
@@ -40,10 +41,10 @@ function! panvimwiki#convert(bang, ...) abort "{{{
     endif
 
     let l:diary_path = vimwiki#path#path_norm(
-        \ vimwiki#path#join_path(
-        \ vimwiki#vars#get_wikilocal('path'),
-        \ vimwiki#vars#get_wikilocal('diary_rel_path')
-        \ ))
+                \ vimwiki#path#join_path(
+                \ vimwiki#vars#get_wikilocal('path'),
+                \ vimwiki#vars#get_wikilocal('diary_rel_path')
+                \ ))
     let l:current_path = vimwiki#path#path_norm(expand('%:p:h')..'/')
 
     if a:0 > 0
@@ -94,4 +95,4 @@ endfunction "}}}
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
-" vim:tabstop=4:shiftwidth=4:expandtab:textwidth=99:foldmethod=marker
+" vim:tabstop=2:shiftwidth=2:expandtab:textwidth=99:foldmethod=marker

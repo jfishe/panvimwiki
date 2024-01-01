@@ -1,11 +1,14 @@
 # Changelog
 
-## Version 0.6 (development)
+## Version 0.7 (development)
+
+## Version 0.6 (2024-01-01)
 
 - Vim command `:VimwikiReference` converts
   [Pandoc Citations](https://pandoc.org/MANUAL.html#citation-syntax)
   to [reference links](https://pandoc.org/MANUAL.html#reference-links),
   e.g.,`[anchor:]`, replacing the current file.
+- DOCS: Update `:help`.
 - BUILD: Use pre-commit to remove trailing spaces from Vim help.
 
 ## Version 0.5 (2023-12-04)
