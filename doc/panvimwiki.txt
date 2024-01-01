@@ -254,13 +254,16 @@ After concatenating DiaryNotes for the week, behave as
 
 VimwikiReference                                 *panvimwiki-VimwikiReference*
 
-If in markdown format, pandoc reads the current buffer, with citeproc
-references to a BibLaTeX or other supported database, and appends references
-links and the complete citation, according to the default citation style
-language (CSL). Pandoc also converts the citeproc style references to markdown
-links. `VimwikiReference` overwrites the file, so Vim may prompt to reload the
-buffer (cf. |W12|). If you choose not to reload the buffer, |:DiffOrig| allows
-review of the changes.
+If in markdown format, convert Pandoc Citations
+<https://pandoc.org/MANUAL.html#citation-syntax> in the current file to
+reference links <https://pandoc.org/MANUAL.html#reference-links> and append to
+the end of the file. The Yaml metadata should specify the bibliographic data
+<https://pandoc.org/MANUAL.html#specifying-bibliographic-data>.
+
+The reference link conversion assumes Pandoc’s default citation style
+language (CSL). `VimwikiReference` overwrites the file, so Vim may prompt to
+reload the buffer (cf. Warning |W12|). If you choose not to reload the buffer,
+|:DiffOrig| allows review of the changes.
 
 
 SETTINGS                                                 *panvimwiki-settings*

@@ -2,8 +2,11 @@
 
 ## Version 0.6 (development)
 
-- Use pandoc `citeproc` to convert reference citations, replacing the anchor
-  links.
+- Vim command `:VimwikiReference` converts
+  [Pandoc Citations](https://pandoc.org/MANUAL.html#citation-syntax)
+  to [reference links](https://pandoc.org/MANUAL.html#reference-links),
+  e.g.,`[anchor:]`, replacing the current file.
+- BUILD: Use pre-commit to remove trailing spaces from Vim help.
 
 ## Version 0.5 (2023-12-04)
 

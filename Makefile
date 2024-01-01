@@ -60,8 +60,9 @@ ${vimdoc_targets}: | ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua
 		--lua-filter=${lua-filter}/include-files.lua \
 		--lua-filter=${lua-filter}/skip-blocks.lua \
 		--to=${lua-filter}/panvimdoc.lua \
-		--output=doc/panvimwiki.txt \
+		--output=$@ \
 		$<
+	pipx run pre-commit run --files $@
 
 ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua ${lua-filter}/skip-blocks.lua: | build/
 	cd build && \

@@ -23,22 +23,86 @@ execute 'set rtp+=' .. panvimwiki_path .. '/after'
 execute 'set rtp-=' .. expand("~/.vim")
 execute 'set rtp-=' .. expand("~/.vim/after")
 
-" Configure Vimwiki
-let s:wiki_1 = {}
-let s:wiki_1.path = g:my_wiki . '/vimwiki/'
-let s:wiki_1.path_html = g:my_wiki . '/vimwiki_html/html'
-let s:wiki_1.template_path = g:my_wiki . '/vimwiki_html/templates/'
-let g:vimwiki_list = [ s:wiki_1 ]
+" Wikis configuration {{{
+  " Declare default syntax {{{
+  let vimwiki_default = {}
+  let vimwiki_default.path = g:my_wiki .. '/vimwiki/'
+  let vimwiki_default.path_html = g:my_wiki .. '/vimwiki_html/html'
+  let vimwiki_default.template_path = g:my_wiki .. '/vimwiki_html/templates/'
+  let vimwiki_default.syntax = 'default'
+  let vimwiki_default.ext = '.wiki'
+  let vimwiki_default.name = 'DefaultSyntax'
+  " }}}
+  " Declare markdown syntax - https://github.github.com/gfm/ {{{
+  let vimwiki_markdown = {}
+  let vimwiki_markdown.path = g:my_wiki .. '/vimwiki/'
+  let vimwiki_markdown.path_html = g:my_wiki .. '/vimwiki_html/html'
+  let vimwiki_markdown.syntax = 'markdown'
+  let vimwiki_markdown.ext = '.md'
+  let vimwiki_markdown.name = 'MarkdownSyntax'
+  " }}}
+
+let g:vimwiki_list = [vimwiki_default, vimwiki_markdown]
+let g:vimwiki_list_vimrc = [vimwiki_default, vimwiki_markdown]
+" }}}
+
 
 " Configure Panvimwiki
 let g:panvimwiki_settings = {}
 let g:panvimwiki_settings.extra_args = [
       \ '--shift-heading-level-by', '1',
-      \ '--data-dir', s:wiki_1.template_path
+      \ '--data-dir', vimwiki_default.template_path
       \ ]
 let g:panvimwiki_settings.format = 'docx'
 
 set loadplugins
 filetype plugin indent on
 syntax enable
+
+function! SetSyntax(vw_syn)
+  " Change the syntax using a temporary wiki
+  " Change extension and wiki_nr
+  let index=0
+  if a:vw_syn ==# 'default'
+    let ext = 'wiki'
+    let index=0
+  elseif a:vw_syn ==# 'markdown'
+    let ext = 'md'
+    let index=1
+  else
+    Log 'ERROR: Invalid syntax "' . a:vw_syn . '" in SetSyntax()'
+    Log 'NOTE: function only accepts "media" for setting mediawiki syntax'
+    return
+  endif
+
+  " Change temporary wiki
+  let path = expand('%:p:h')
+  let new_temp_wiki_settings = {
+        \ 'path': path,
+        \ 'ext': ext,
+        \ 'syntax': a:vw_syn,
+        \ 'bullet_types': g:vimwiki_wikilocal_vars[index]['bullet_types'],
+        \ }
+
+  " Remove any temporary wikis each time this function is called.
+  " This is necessary to ensure syntax is properly set when running multiple tests
+  " NOTE: this assumes there are 3 defined wikis in the vimrc. The last wiki
+  " contains default settings for temporary wikis (so there are always
+  " num wikis in vimrc + 1)
+  let num_wikis = len(g:vimwiki_wikilocal_vars)
+  while  num_wikis > 3
+    call remove(g:vimwiki_wikilocal_vars, num_wikis - 1)
+    let num_wikis = num_wikis - 1
+  endwhile
+
+  " Add the new wiki
+  call vimwiki#vars#add_temporary_wiki(new_temp_wiki_settings)
+  call vimwiki#vars#set_bufferlocal('wiki_nr', 2)
+
+  " Verify syntax was set correctly
+  Assert vimwiki#vars#get_wikilocal('syntax') ==# a:vw_syn,
+        \ 'ERROR: Vimwiki syntax not set correctly: '
+        \ . 'Want: ' . a:vw_syn . ' '
+        \ . 'Have: ' . vimwiki#vars#get_wikilocal('syntax')
+endfunction
 " vim:tabstop=2:shiftwidth=2:expandtab:foldmethod=marker:textwidth=79
