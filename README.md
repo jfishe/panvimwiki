@@ -16,6 +16,7 @@ description: Filter and convert Vimwiki notes using pandoc.
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
 -->
 
+[![Documentation Status](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io/en/latest/?badge=latest)
 [![PyPI-Server](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki/)
 [![Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml)
 [![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
@@ -244,17 +245,16 @@ After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwiki
 
 ##### VimwikiReference
 
-If in markdown format, convert
+If in markdown format, expand
 [Pandoc Citations](https://pandoc.org/MANUAL.html#citation-syntax)
-in the current file to
-[reference links](https://pandoc.org/MANUAL.html#reference-links)
-and append to the end of the file. The Yaml metadata should
-[specify the bibliographic data](https://pandoc.org/MANUAL.html#specifying-bibliographic-data).
+in the current file and append to the end of the file. The Yaml metadata should
+[specify the bibliographic data](https://pandoc.org/MANUAL.html#specifying-bibliographic-data)
+and the
+[Citation Style Language (CSL)](https://pandoc.org/MANUAL.html#specifying-a-citation-style).
 
-The reference link conversion assumes Pandoc's default citation style
-language (CSL). `VimwikiReference` overwrites the file, so Vim may prompt to
+`VimwikiReference` overwrites the file, so Vim may prompt to
 reload the buffer (cf. Warning `:h W12`). If you choose not to reload the
-buffer, `:h :DiffOrig` allows review of the changes.
+buffer, `:h :DiffOrig` facilitate review of the changes.
 
 ### Settings
 
@@ -276,21 +276,16 @@ let g:panvimwiki_settings = {
 
 ## Development and Testing
 
-Because pandoc is required, a conda environment called `pyscaffold` is created.
+Because pandoc is required, a conda environment called `panvimwiki` is created.
 The default name may be overridden with the `--name <environment name>`
 parameter.
 
 ```bash
 git clone https://github.com/jfishe/panvimwiki.git
 cd panvimwiki
-conda env create --file environment.yml --name pyscaffold
-conda activate pyscaffold
-pipx install covimerage
+conda env create --file environment.yml
+conda activate panvimwiki
 ```
-
-Covimerage has conflicting dependencies, so pipx creates an isolated
-executable in `~/.local/bin`. You may want to run `pipx uninstall covimerage`
-to avoid cluttering `$PATH`.
 
 ```bash
 tox -av # List tox commands and descriptions.

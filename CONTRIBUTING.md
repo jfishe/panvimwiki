@@ -73,13 +73,21 @@ and use Python's built-in web server for a preview in your web browser
 python3 -m http.server --directory 'docs/_build/html' --bind localhost
 ```
 
+Tox runs `make` and `pre-commit` to build Vim help documentation in
+`doc/panvimwiki.txt`; you may need to run tox twice to resolve the following
+`pre-commit` error message:
+
+:::{error}
+trim trailing whitespace.................................................Failed
+:::
+
 ## Code Contributions
 
 Pandoc filters rely on [Panflute](http://scorreia.com/software/panflute/) and
 use the template
 [located here](https://github.com/sergiocorreia/panflute/blob/master/docs/source/_static/template.py).
 
-Plain text pre-filters follow a similar format but does not use panflute.
+Plain text pre-filters follow a similar format but do not use panflute.
 
 ### Submit an issue
 
@@ -150,7 +158,7 @@ conda activate panvimwiki
 2. Start your work on this branch. Don't forget to add [docstrings] to new
    functions, modules and classes, especially if they are part of public APIs.
 
-3. Add yourself to the list of contributors in `AUTHORS.rst`.
+3. Add yourself to the list of contributors in `AUTHORS.md`.
 
 4. When you’re done editing, do:
 
@@ -268,9 +276,8 @@ on [PyPI], the following steps can be used to release a new version for
 `panvimwiki`:
 
 1. Make sure all unit tests are successful.
-2. Tag the current commit on the main branch with a release tag, e.g., `v1.2.3`.
-3. Push the new tag to the upstream [repository],
-   e.g., `git push upstream v1.2.3`
+2. Make sure Vim help is up to date, e.g., `tox -e docs`
+3. Tag the current commit on the main branch with a release tag, e.g., `v1.2.3`.
 4. Clean up the `dist` and `build` folders with `tox -e clean`
    (or `rm -rf dist build`)
    to avoid confusion with old builds and Sphinx docs.
@@ -278,8 +285,10 @@ on [PyPI], the following steps can be used to release a new version for
    the correct version (no `.dirty` or [git] hash) according to the [git] tag.
    Also check the sizes of the distributions, if they are too big (e.g., >
    500KB), unwanted clutter may have been accidentally included.
-6. Run `tox -e publish -- --repository pypi` and check that everything was
-   uploaded to [PyPI] correctly.
+6. Push the new tag to the upstream [repository],
+   e.g., `git push upstream v1.2.3`
+7. [GitHub Actions] should run tests, upload to TestPyPI and [PyPI], and create
+   a signed [release][releases].
 
 [^contrib1]: Even though, these resources focus on open source projects and
     communities, the general ideas behind collaborating with other developers
@@ -310,3 +319,5 @@ on [PyPI], the following steps can be used to release a new version for
 [virtualenv]: https://virtualenv.pypa.io/en/stable/
 [repository]: https://github.com/jfishe/panvimwiki
 [issue tracker]: https://github.com/jfishe/panvimwiki/issues
+[gitHub actions]: https://github.com/jfishe/panvimwiki/actions
+[releases]: https://github.com/jfishe/panvimwiki/releases

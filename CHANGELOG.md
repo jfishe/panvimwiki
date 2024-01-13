@@ -2,6 +2,11 @@
 
 ## Version 0.7 (development)
 
+- `:VimwikiReference` no longer converts to reference-links, preferring
+  compatibility with pandoc conversion to `HTML`.
+- DOCS: Update `:help panvimwiki`.
+- DOCS: Host at http://panvimwiki.readthedocs.io/
+
 ## Version 0.6 (2024-01-01)
 
 - Vim command `:VimwikiReference` converts

@@ -14,7 +14,7 @@ from panvimwiki.vimwiki_week import concatenate_diary
 
 @bridged
 def expand_citeproc(path: str | Path) -> None:
-    """Expand pandoc citeproc references to reference links.
+    """Resolve pandoc citeproc references.
 
     Vimwiki [URL|Description] style links are preserved with the pandoc format
     `markdown+wikilinks_title_after_pipe`.
@@ -32,7 +32,6 @@ def expand_citeproc(path: str | Path) -> None:
         to="markdown-citations+wikilinks_title_after_pipe",
         prefilters=None,
         filters=None,
-        postfilters=("reference_citation",),
         extra_args=(
             "--citeproc",
             "--standalone",

@@ -44,8 +44,7 @@ pandoc --citeproc \
   --standalone \
   --to=markdown-citations+wikilinks_title_after_pipe  \
   --wrap=none \
-  tests/func/reference_citation.md |
-  reference_citation > tests/func/reference_citation.out.md
+  tests/vim/reference_citation.md
 ```
 
 @bloggs-jones
