@@ -1,6 +1,8 @@
 # Changelog
 
-## Version 0.7 (development)
+## Version 0.8 (development)
+
+## Version 0.7 (2024-01-13)
 
 - `:VimwikiReference` no longer converts to reference-links, preferring
   compatibility with pandoc conversion to `HTML`.

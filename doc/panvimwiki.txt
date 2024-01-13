@@ -302,10 +302,6 @@ parameter.
     conda activate panvimwiki
 <
 
-Covimerage has conflicting dependencies, so pipx creates an isolated executable
-in `~/.local/bin`. You may want to run `pipx uninstall covimerage` to avoid
-cluttering `$PATH`.
-
 >bash
     tox -av # List tox commands and descriptions.
     tox --recreate # Build the package and run tests with python and Vader.
