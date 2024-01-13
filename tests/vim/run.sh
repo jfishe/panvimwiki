@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-covimerage -v run vim -Nu vimrc -Es -c 'Vader! *.vader'
+pipx run covimerage run --report-options '--show-missing' vim -Nu vimrc -Es -c 'Vader! *.vader'

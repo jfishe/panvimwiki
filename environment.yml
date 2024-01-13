@@ -29,5 +29,5 @@ dependencies:
     # - -e .
     # - vim-tools
     - vim_bridge3
-    # - covimerage dependencies conflict with pytest. `pipx install covimerage` works.
+    # - covimerage dependencies conflict with pytest. `pipx run covimerage` works.
     - pytest-pretty-terminal
