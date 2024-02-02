@@ -23,9 +23,12 @@ def pandoc_filter_fixture():
     """
     prefilter_input: Path = Path(__file__).parents[0] / "prefilter"
     filter_input: Path = Path(__file__).parents[0] / "filter"
+    postfilter_input: Path = Path(__file__).parents[0] / "postfilter"
 
     for wiki_input in chain(
-        prefilter_input.glob("*.wiki"), filter_input.glob("*.wiki")
+        prefilter_input.glob("*.wiki"),
+        filter_input.glob("*.wiki"),
+        postfilter_input.glob("*.inmd"),
     ):
         filter = str(wiki_input.stem)
 
@@ -39,16 +42,33 @@ def pandoc_filter_fixture():
                 str(filter_out.stdout), to="markdown", format="vimwiki"
             )
             filter = "plain_text_pre_filter/" + filter
-        else:
+        elif filter_input == wiki_input.parent:
             test_input = pypandoc.convert_file(
                 str(wiki_input), to="markdown", format="vimwiki", filters=[filter]
             )
             filter = "pandoc_filter/" + filter
+        elif postfilter_input == wiki_input.parent:
+            stdin = pypandoc.convert_file(
+                source_file=wiki_input,
+                format="markdown+wikilinks_title_after_pipe-task_lists",
+                to="markdown",
+                extra_args=("--standalone", "--wrap", "none"),
+            )
+            filter_out = subprocess.run(
+                filter, capture_output=True, encoding="utf8", input=stdin, check=True
+            )
+
+            test_input = filter_out.stdout
+            filter = "plain_text_post_filter/" + filter
+            __import__("pprint").pprint(test_input)
+        else:
+            continue
 
         markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output) as f:
             expected = f.read()
 
+        __import__("pprint").pprint(expected)
         yield pytest.param(test_input, expected, id=filter)
 
 

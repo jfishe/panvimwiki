@@ -1,9 +1,10 @@
 ---
-project: panvimwiki
-vimversion: Vim v9.0
-toc: true
 description: Filter and convert Vimwiki notes using pandoc.
+project: panvimwiki
+toc: true
+vimversion: Vim v9.0
 ---
+
 <!-- These are examples of badges you might want to add to your README:
      please update the URLs accordingly
 
@@ -16,33 +17,29 @@ description: Filter and convert Vimwiki notes using pandoc.
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
 -->
 
-[![Documentation Status](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io/en/latest/?badge=latest)
-[![PyPI-Server](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki/)
-[![Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml)
-[![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
+[![Documentation Status][]][1] [![PyPI-Server][]][2] [![Test and Publish
+Python 🐍 distribution 📦 to PyPI and TestPyPI][]][3] [![Project
+generated with PyScaffold]][4]
 
 # Filter and convert Vimwiki notes using pandoc
 
 ## Introduction
 
 Panvimwiki provides tools for conversion to Microsoft Word docx or other
-output formats supported by
-[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
-Panvimwiki provides command line tools as well as Vim commands to
-concatenate and convert Diary Notes or convert any Vimwiki note.
+output formats supported by [Pandoc] Panvimwiki provides command line
+tools as well as Vim commands to concatenate and convert Diary Notes or
+convert any Vimwiki note.
 
 ## Installation
 
-Panvimwiki requires
-[Pandoc](https://pandoc.org/ "Pandoc a universal document converter").
-Installation with `conda` is recommended because the system version, e.g., with
-Ubuntu, may be too old. Or download from the website.
-[Pypandoc](https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip)
-supports binary installation of pandoc using `pip`.
+Panvimwiki requires [Pandoc] Installation with `conda` is recommended
+because the system version, e.g., with Ubuntu, may be too old. Or
+download from the website. [Pypandoc] supports binary installation of
+pandoc using `pip`.
 
 Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on [:python3](https://neovim.io/doc/user/if_pyth.html#python3)
-and requires installation of the python package panvimwiki.
+`pack/*/opt/panvimwiki` because it depends on [:python3] and requires
+installation of the python package panvimwiki.
 
 From a bash shell, enter the following:
 
@@ -60,10 +57,8 @@ python -m pip install panvimwiki
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
-[vimrc](https://neovim.io/doc/user/starting.html)
-prior to [:filetype-plugin-on](https://neovim.io/doc/user/filetype.html#filetype).
-See [:packadd](https://neovim.io/doc/user/repeat.html#%3Apackadd)
-for an explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
+[vimrc] prior to [:filetype-plugin-on]. See [:packadd] for an
+explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 
 ```vim
 if has('python3')
@@ -75,8 +70,8 @@ endif
 
 ### Command Line Shell
 
-Panvimwiki provides plain text pre-filters and pandoc filters for use from
-the command line.
+Panvimwiki provides plain text pre-filters and pandoc filters for use
+from the command line.
 
 For example from a bash prompt:
 
@@ -129,8 +124,8 @@ convert(
 Remove unordered lists which use the star (asterisk) bullet marker.
 
 The pre-filter does not remove task list items (see
-[delete_task_pending](#delete_task_pending)). The pre-filter does not handle
-wrapped bullets--i.e., it will delete the bulleted-line and leave the wrapped
+[delete_task_pending]). The pre-filter does not handle wrapped
+bullets--i.e., it will delete the bulleted-line and leave the wrapped
 lines. I haven't figured out a good regex for wrapped lines.
 
 ```bash
@@ -159,8 +154,8 @@ delete_task_pending
 
 #### Pandoc Filters
 
-Panvimwiki provides plain text pre-filters, pandoc filters and post-filters for
-use from the command line.
+Panvimwiki provides plain text pre-filters, pandoc filters and
+post-filters for use from the command line.
 
 ##### delete_tag_lines
 
@@ -168,9 +163,8 @@ Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 
 ##### delete_empty_heading
 
-Remove headings that do not have any children or paragraphs. Remove tag lines
-first, [delete_tag_lines](#delete_tag_lines) or the heading is not considered
-empty.
+Remove headings that do not have any children or paragraphs. Remove tag
+lines first, [delete_tag_lines] or the heading is not considered empty.
 
 ##### delete_taskwiki_heading
 
@@ -183,16 +177,15 @@ Convert citations to a reference list.
 `Example.md`:
 
 ```markdown
-
 ::: {#refs .references .csl-bib-body .hanging-indent}
 ::: {#ref-bloggs-jones .csl-entry}
 Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title
-Title Title Title Title." *Journal Journal Journal*.
+Title Title Title Title." _Journal Journal Journal_.
 :::
 
 ::: {#ref-chomsky-73 .csl-entry}
-Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris
-Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart &
+Chomsky, N. 1973. "Conditions on Transformations." In _A Festschrift for Morris
+Halle_, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart &
 Winston.
 :::
 :::
@@ -202,59 +195,59 @@ Winston.
 
 ```markdown
 [#bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title
-    Title Title Title Title Title Title." *Journal Journal Journal*.
+Title Title Title Title Title Title." _Journal Journal Journal_.
 
-[#chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In *A
-    Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky.
-    New York: Holt, Rinehart & Winston.
+[#chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In _A
+Festschrift for Morris Halle_, edited by S. R. Anderson and P. Kiparsky.
+New York: Holt, Rinehart & Winston.
 ```
+
+###### wikilink_markdown
+
+Convert [Pandoc] markdown tasks and wikilinks to `:h vimwiki-todo-lists`
+and markdown links compatible with `:h vimwiki-syntax-links`.
 
 ### Commands
 
 #### Local Commands
 
-These commands are only available (and meaningful) when you are currently in a
-Vimwiki file.
+These commands are only available (and meaningful) when you are
+currently in a Vimwiki file.
 
-##### VimwikiConvert[!]
+##### VimwikiConvert\[!\]
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki [:buffer](https://neovim.io/doc/user/windows.html#%3Abuffer)
-to the selected output format (default: docx) specified in
-[g:panvimwiki_settings](#gpanvimwiki_settings).format.
+Convert the current Vimwiki [:buffer] to the selected output format
+(default: docx) specified in [g:panvimwiki_settings].format.
 
-Copy the path to the Word file to the clipboard register "+
-[quoteplus](https://neovim.io/doc/user/provider.html#quoteplus).
-On Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
-before copying to clipboard.
+Copy the path to the Word file to the clipboard register "+ [quoteplus].
+On Windows Subsystem for Linux (WSL), convert the path from POSIX to
+Windows before copying to clipboard.
 
 Remove extraneous info:
 
 - Vimwiki tag lines, e.g., :tag1:tag2:
-- Not started tasks, e.g., - [ ] Task1
+- Not started tasks, e.g., - \[ \] Task1
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
-##### VimwikiConvertWeek[!]
+##### VimwikiConvertWeek\[!\]
 
 Concatenate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
 
-After concatenating DiaryNotes for the week, behave as [VimwikiConvert](#vimwikiconvert).
+After concatenating DiaryNotes for the week, behave as [VimwikiConvert].
 
 ##### VimwikiReference
 
-If in markdown format, expand
-[Pandoc Citations](https://pandoc.org/MANUAL.html#citation-syntax)
-in the current file and append to the end of the file. The Yaml metadata should
-[specify the bibliographic data](https://pandoc.org/MANUAL.html#specifying-bibliographic-data)
-and the
-[Citation Style Language (CSL)](https://pandoc.org/MANUAL.html#specifying-a-citation-style).
+If in markdown format, expand [Pandoc Citations] in the current file and
+append to the end of the file. The Yaml metadata should [specify the
+bibliographic data] and the [Citation Style Language (CSL)].
 
-`VimwikiReference` overwrites the file, so Vim may prompt to
-reload the buffer (cf. Warning `:h W12`). If you choose not to reload the
-buffer, `:h :DiffOrig` facilitate review of the changes.
+`VimwikiReference` overwrites the file, so Vim may prompt to reload the
+buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
+`:h :DiffOrig` facilitate review of the changes.
 
 ### Settings
 
@@ -262,8 +255,9 @@ buffer, `:h :DiffOrig` facilitate review of the changes.
 
 ##### g:panvimwiki_settings
 
-Optionally add the following to or, preferably, '~/.vim/plugin/vimwiki.vim'.
-Panvimwiki defaults to docx format, without extra_args.
+Optionally add the following to or, preferably,
+'\~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format,
+without extra_args.
 
 ```vim
 let g:panvimwiki_settings = {
@@ -276,9 +270,9 @@ let g:panvimwiki_settings = {
 
 ## Development and Testing
 
-Because pandoc is required, a conda environment called `panvimwiki` is created.
-The default name may be overridden with the `--name <environment name>`
-parameter.
+Because pandoc is required, a conda environment called `panvimwiki` is
+created. The default name may be overridden with the
+`--name <environment name>` parameter.
 
 ```bash
 git clone https://github.com/jfishe/panvimwiki.git
@@ -296,7 +290,34 @@ vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 ```
 
 <!-- pyscaffold-notes -->
+
 ## Note
 
 This project has been set up using PyScaffold 4.5. For details and usage
 information on PyScaffold see <https://pyscaffold.org/>.
+
+<!-- References -->
+
+[Documentation Status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
+[1]: https://panvimwiki.readthedocs.io/en/latest/?badge=latest
+[PyPI-Server]: https://img.shields.io/pypi/v/panvimwiki.svg
+[2]: https://pypi.org/project/panvimwiki/
+[Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
+[3]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml
+[Project generated with PyScaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+[4]: https://pyscaffold.org/
+[Pandoc]: https://pandoc.org/
+[Pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
+[:python3]: https://neovim.io/doc/user/if_pyth.html#python3
+[vimrc]: https://neovim.io/doc/user/starting.html
+[:filetype-plugin-on]: https://neovim.io/doc/user/filetype.html#filetype
+[:packadd]: https://neovim.io/doc/user/repeat.html#%3Apackadd
+[delete_task_pending]: #delete_task_pending
+[delete_tag_lines]: #delete_tag_lines
+[:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
+[g:panvimwiki_settings]: #gpanvimwiki_settings
+[quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
+[VimwikiConvert]: #vimwikiconvert
+[Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
+[specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
+[Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style

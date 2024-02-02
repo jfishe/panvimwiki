@@ -2,6 +2,10 @@
 
 ## Version 0.8 (development)
 
+## Version 0.7.1 (2024-01-28)
+
+- Add post-filter `wikilink_markdown` to convert pandoc markdown tasks to Vimwiki todo lists and markdown "wikilinks" to Vimwiki compatible links.
+
 ## Version 0.7 (2024-01-13)
 
 - `:VimwikiReference` no longer converts to reference-links, preferring
