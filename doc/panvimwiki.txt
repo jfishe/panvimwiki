@@ -272,6 +272,20 @@ Style Language (CSL)
 facilitate review of the changes.
 
 
+VimwikiMarkdownFormat                       *panvimwiki-VimwikiMarkdownFormat*
+
+If in markdown format, convert |vimwiki-syntax-links|
+wikilinks_title_after_pipe
+<https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe> to Inline
+links <https://pandoc.org/MANUAL.html#inline-links>, without the "wikilink"
+title that pandoc adds by default. Preserve |vimwiki-todo-lists|, using
+task_lists <https://pandoc.org/MANUAL.html#inline-linksInline>.
+
+`VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
+buffer (cf. Warning |W12|). If you choose not to reload the buffer,
+|:DiffOrig| facilitate review of the changes.
+
+
 SETTINGS                                                 *panvimwiki-settings*
 
 

@@ -249,6 +249,18 @@ bibliographic data] and the [Citation Style Language (CSL)].
 buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
 `:h :DiffOrig` facilitate review of the changes.
 
+##### VimwikiMarkdownFormat
+
+If in markdown format, convert `:h vimwiki-syntax-links`
+[wikilinks_title_after_pipe](https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe)
+to [Inline links](https://pandoc.org/MANUAL.html#inline-links), without the
+"wikilink" title that pandoc adds by default. Preserve `:h vimwiki-todo-lists`,
+using [task_lists](https://pandoc.org/MANUAL.html#inline-linksInline).
+
+`VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
+buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
+`:h :DiffOrig` facilitate review of the changes.
+
 ### Settings
 
 #### Global Settings

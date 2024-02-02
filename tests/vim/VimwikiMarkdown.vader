@@ -1,17 +1,21 @@
-Before (Setup conversion output vimwiki/html, etc.):
+Execute (Setup conversion output vimwiki/html, etc.):
   call chdir(g:vimdir)
   let s:tmpdir = tempname()
   let g:mddir = s:tmpdir .. '/markdown'
   execute '! mkdir -p ' .. g:mddir
   Log resolve(g:mddir)
   let g:vimwiki_autowriteall = 0
-  edit reference_citation.md
-  execute 'saveas ' .. g:mddir .. '/reference_citation.md'
-  Log 'Default Filetype: ' .. string(&filetype)
-  set filetype=vimwiki
-  Log 'Edit Filetype: ' .. string(&filetype)
+  for s:file in ['wikilink_markdown.md', 'reference_citation.md']
+    execute 'edit ' .. s:file
+    execute 'saveas ' .. g:mddir .. '/' .. s:file
+    Log resolve(expand('%'))
+    Log 'Default Filetype: ' .. string(&filetype)
+    set filetype=vimwiki
+    Log 'Edit Filetype: ' .. string(&filetype)
+  endfor
 
 Execute (VimwikiReference):
+  execute 'buffer ' .. g:mddir .. '/' .. 'reference_citation.md'
   VimwikiReference
   edit!
 
@@ -84,3 +88,24 @@ Expect (Append references):
   Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
   :::
   :::
+
+Execute (VimwikiMarkdownFormat):
+  execute 'buffer ' .. g:mddir .. '/' .. 'wikilink_markdown.md'
+  VimwikiMarkdownFormat
+  edit!
+
+Expect (WikilinkMarkdown):
+  -   [ ] task 1
+  -   [X] task 2
+  -   [.] task 3
+      -   [.] task 3.1
+      -   [.] task 3.2
+  -   [Wiki Internal Link](20231106-1619)
+  -   [Another's wiki cross-reference](wn.home:index)
+
+  ``` bash
+  pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \
+    --standalone \
+    --wrap=none \
+    --to=markdown | wikilink_markdown
+  ```

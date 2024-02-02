@@ -32,10 +32,17 @@ if !exists(":VimwikiConvertWeek")
   let b:undo_ftplugin ..= " | delcommand VimwikiConvertWeek"
 endif
 
-if vimwiki#vars#get_wikilocal('syntax') ==# 'markdown' && !exists(":VimwikiReference")
-  command -buffer -nargs=0 VimwikiReference
-        \ call panvimwiki#expand_citeproc()
-  let b:undo_ftplugin ..= " | delcommand VimwikiReference"
+if vimwiki#vars#get_wikilocal('syntax') ==# 'markdown'
+  if !exists(":VimwikiReference")
+    command -buffer -nargs=0 VimwikiReference
+          \ call panvimwiki#expand_citeproc()
+    let b:undo_ftplugin ..= " | delcommand VimwikiReference"
+  endif
+  if !exists(":VimwikiMarkdownFormat")
+    command -buffer -nargs=0 VimwikiMarkdownFormat
+          \ call panvimwiki#vimwiki_task_link()
+    let b:undo_ftplugin ..= " | delcommand VimwikiMarkdownFormat"
+  endif
 endif
 
 let &cpo = s:save_cpo
