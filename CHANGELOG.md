@@ -4,8 +4,12 @@
 
 ## Version 0.7.1 (2024-01-28)
 
-- Add `:VimwikiMarkdownFormat` to convert `:h vimwiki-syntax-links` to markdown and preserve any `:h vimwiki-todo-lists`.
-- Add post-filter `wikilink_markdown` to convert pandoc markdown tasks to Vimwiki todo lists and markdown "wikilinks" to Vimwiki compatible links.
+- Add `:VimwikiMarkdownFormat` to convert `:h vimwiki-syntax-links` to markdown
+  and preserve any `:h vimwiki-todo-lists`.
+- Add post-filter `wikilink_markdown` to convert pandoc markdown tasks to
+  Vimwiki Todo lists and markdown "wikilinks" to Vimwiki compatible links.
+- Remove intermediary autoload functions. Call Python 3 functions directly from
+  `:VimwikiReference` and `:VimwikiTaskLink`.
 
 ## Version 0.7 (2024-01-13)
 
