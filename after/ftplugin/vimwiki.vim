@@ -34,13 +34,15 @@ endif
 
 if vimwiki#vars#get_wikilocal('syntax') ==# 'markdown'
   if !exists(":VimwikiReference")
+    python3 from panvimwiki.wiki2pandoc import expand_citeproc
     command -buffer -nargs=0 VimwikiReference
-          \ call panvimwiki#expand_citeproc()
+          \ call ExpandCiteproc()
     let b:undo_ftplugin ..= " | delcommand VimwikiReference"
   endif
   if !exists(":VimwikiMarkdownFormat")
+    python3 from panvimwiki.wiki2pandoc import vimwiki_task_link
     command -buffer -nargs=0 VimwikiMarkdownFormat
-          \ call panvimwiki#vimwiki_task_link()
+          \ call VimwikiTaskLink()
     let b:undo_ftplugin ..= " | delcommand VimwikiMarkdownFormat"
   endif
 endif

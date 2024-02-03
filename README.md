@@ -194,10 +194,10 @@ Winston.
 `reference_citation < Example.md` produces:
 
 ```markdown
-[#bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title
+[#ref-bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title
 Title Title Title Title Title Title." _Journal Journal Journal_.
 
-[#chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In _A
+[#ref-chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In _A
 Festschrift for Morris Halle_, edited by S. R. Anderson and P. Kiparsky.
 New York: Holt, Rinehart & Winston.
 ```

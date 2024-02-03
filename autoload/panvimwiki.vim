@@ -14,15 +14,10 @@ let g:loaded_panvimwiki_auto = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! panvimwiki#expand_citeproc() abort
-    python3 from panvimwiki.wiki2pandoc import expand_citeproc
-    call ExpandCiteproc(expand('%f'))
-endfunction
-
-function! panvimwiki#vimwiki_task_link() abort
-    python3 from panvimwiki.wiki2pandoc import vimwiki_task_link
-    call VimwikiTaskLink(expand('%f'))
-endfunction
+" function! panvimwiki#expand_citeproc() abort
+"     python3 from panvimwiki.wiki2pandoc import expand_citeproc
+"     call ExpandCiteproc(expand('%f'))
+" endfunction
 
 function! panvimwiki#convert(bang, ...) abort "{{{
     " Convert the current Vimwiki buffer to docx and copy path to "+ register.

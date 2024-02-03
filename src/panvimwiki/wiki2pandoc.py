@@ -13,7 +13,7 @@ from panvimwiki.vimwiki_week import concatenate_diary
 
 
 @bridged
-def vimwiki_task_link(path: str | Path) -> None:
+def vimwiki_task_link() -> None:
     r"""Convert pandoc tasks and wikilinks to Vimwiki markdown.
 
     Example
@@ -27,13 +27,8 @@ def vimwiki_task_link(path: str | Path) -> None:
               --wrap=none \
               --to=markdown | wikilink_markdown
 
-
-    Parameters
-    ----------
-    path :
-        Path to markdown input file.
-
     """
+    path = Path(vim.eval("expand('%f')"))
     convert(
         inputfile=str(path),
         outputfile=str(path),
@@ -52,18 +47,14 @@ def vimwiki_task_link(path: str | Path) -> None:
 
 
 @bridged
-def expand_citeproc(path: str | Path) -> None:
+def expand_citeproc() -> None:
     """Resolve pandoc citeproc references.
 
     Vimwiki [URL|Description] style links are preserved with the pandoc format
     `markdown+wikilinks_title_after_pipe`.
 
-    Parameters
-    ----------
-    path :
-        Path to markdown input file.
-
     """
+    path = Path(vim.eval("expand('%f')"))
     convert(
         inputfile=str(path),
         outputfile=str(path),
