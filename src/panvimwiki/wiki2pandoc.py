@@ -33,7 +33,7 @@ def vimwiki_task_link() -> None:
         inputfile=str(path),
         outputfile=str(path),
         format="markdown+wikilinks_title_after_pipe-task_lists",
-        to="markdown",
+        to="markdown-citations",
         prefilters=None,
         filters=None,
         extra_args=(

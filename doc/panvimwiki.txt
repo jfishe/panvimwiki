@@ -11,12 +11,12 @@ Table of Contents                               *panvimwiki-table-of-contents*
   - Settings                                             |panvimwiki-settings|
 4. Development and Testing                |panvimwiki-development-and-testing|
 5. Note                                                      |panvimwiki-note|
+Filter and convert Vimwiki notes using pandoc
+
 <https://panvimwiki.readthedocs.io/en/latest/?badge=latest>
 <https://pypi.org/project/panvimwiki/>
 <https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml>
 <https://pyscaffold.org/>
-
-Filter and convert Vimwiki notes using pandoc
 
 
 ==============================================================================
@@ -235,7 +235,7 @@ VimwikiConvert[!]                                  *panvimwiki-VimwikiConvert*
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki |:buffer| to the selected output format (default:
-docx) specified in |panvimwiki-g:panvimwiki_settings|.format.
+docx) specified in |panvimwiki-g:panvimwiki_settings.format|.
 
 Copy the path to the Word file to the clipboard register “+ |quoteplus|. On
 Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows

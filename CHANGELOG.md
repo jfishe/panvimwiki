@@ -2,6 +2,16 @@
 
 ## Version 0.8 (development)
 
+### Added
+
+- Markdowlint `YAML` configuration.
+- `pre-commit` `markdownlint-cli`
+
+### Changed
+
+- Preserve citations when converting `:h vimwiki-syntax-links`.
+- Copyright date
+
 ## Version 0.7.1 (2024-01-28)
 
 - Add `:VimwikiMarkdownFormat` to convert `:h vimwiki-syntax-links` to markdown
@@ -16,7 +26,7 @@
 - `:VimwikiReference` no longer converts to reference-links, preferring
   compatibility with pandoc conversion to `HTML`.
 - DOCS: Update `:help panvimwiki`.
-- DOCS: Host at http://panvimwiki.readthedocs.io/
+- DOCS: Host at <http://panvimwiki.readthedocs.io/>
 
 ## Version 0.6 (2024-01-01)
 
