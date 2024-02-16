@@ -17,11 +17,11 @@ vimversion: Vim v9.0
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
 -->
 
+# Filter and convert Vimwiki notes using pandoc
+
 [![Documentation Status][]][1] [![PyPI-Server][]][2] [![Test and Publish
 Python 🐍 distribution 📦 to PyPI and TestPyPI][]][3] [![Project
 generated with PyScaffold]][4]
-
-# Filter and convert Vimwiki notes using pandoc
 
 ## Introduction
 
@@ -218,8 +218,8 @@ currently in a Vimwiki file.
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
-Convert the current Vimwiki [:buffer] to the selected output format
-(default: docx) specified in [g:panvimwiki_settings].format.
+Convert the current Vimwiki [:buffer] to the selected output format (default:
+docx) specified in [g:panvimwiki_settings.format][g:panvimwiki_settings].
 
 Copy the path to the Word file to the clipboard register "+ [quoteplus].
 On Windows Subsystem for Linux (WSL), convert the path from POSIX to
@@ -327,9 +327,10 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [delete_task_pending]: #delete_task_pending
 [delete_tag_lines]: #delete_tag_lines
 [:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
-[g:panvimwiki_settings]: #gpanvimwiki_settings
 [quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
 [VimwikiConvert]: #vimwikiconvert
 [Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
+<!-- markdownlint-disable MD051 -->
+[g:panvimwiki_settings]: #g-panvimwiki-settings

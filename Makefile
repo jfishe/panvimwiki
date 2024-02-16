@@ -42,7 +42,7 @@ vimdoc: ${vimdoc_targets} ## Convert Markdown documentation to Vim Help format i
 
 doc/panvimwiki.txt: README.md
 
-# Receipe for converting Markdown to Vim help, based on build/panvimdoc/panvimdoc.sh
+# Recipe for converting Markdown to Vim help, based on build/panvimdoc/panvimdoc.sh
 ${vimdoc_targets}: | ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua ${lua-filter}/skip-blocks.lua doc/
 	pandoc \
 		--citeproc \

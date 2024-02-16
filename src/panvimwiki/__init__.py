@@ -7,7 +7,6 @@ Panvimwiki provides command line tools as well as Vim commands to
 concatenate and convert Diary Notes or convert any Vimwiki note.
 """
 
-
 from importlib.metadata import PackageNotFoundError, version  # pragma: no cover
 
 try:

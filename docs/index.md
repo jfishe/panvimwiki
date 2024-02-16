@@ -2,7 +2,6 @@
 
 Vimwiki tools for conversion to Microsoft Word docx.
 
-
 <!-- ## Note
 
 > This is the main page of your project's [Sphinx] documentation. It is
@@ -32,8 +31,3 @@ Module Reference <api/modules>
 * {ref}`genindex`
 * {ref}`modindex`
 * {ref}`search`
-
-[Sphinx]: http://www.sphinx-doc.org/
-[Markdown]: https://daringfireball.net/projects/markdown/
-[reStructuredText]: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-[MyST]: https://myst-parser.readthedocs.io/en/latest/
