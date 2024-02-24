@@ -9,6 +9,10 @@
 
 ### Changed
 
+- `VimwikiReference` and `expand_citeproc()` reference anchors use GitHub
+  Flavored Markdown (gfm) to minimize `markdownlint` errors:
+  - Fix `MD051/link-fragments`
+  - Accept `MD033/no-inline-html`.
 - Preserve citations when converting `:h vimwiki-syntax-links`.
 - Copyright date
 

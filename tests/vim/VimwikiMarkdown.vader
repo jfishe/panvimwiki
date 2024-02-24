@@ -62,11 +62,12 @@ Expect (Append references):
 
   # To convert this file to expected output:
   pandoc --citeproc \
-    --from=markdown+wikilinks_title_after_pipe \
+    --from=markdown+wikilinks_title_after_pipe-task_lists \
     --standalone \
-    --to=markdown-citations+wikilinks_title_after_pipe  \
+    --to=gfm+wikilinks_title_after_pipe  \
     --wrap=none \
-    tests/vim/reference_citation.md
+    tests/func/reference_citation.md |
+    wikilink_markdown > tests/func/reference_citation.out.md
   ```
 
   Bloggs and Jones ([1959](#ref-bloggs-jones))
@@ -75,19 +76,41 @@ Expect (Append references):
 
   [[vimwiki]]
 
+  - [ ] task 1
+  - [X] task 2
+  - [.] task 3
+    - [.] task 3.1
+    - [.] task 3.2
+  - [[20231106-1619|Wiki Internal Link]]
+  - [[wn.home:index|Another's wiki cross-reference]]
+  - [S] Taskwiki task \#aa945200
+
+  ``` bash
+  pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \
+    --standalone \
+    --wrap=none \
+    --to=markdown
+  ```
+
   ------------------------------------------------------------------------
 
   House of Dude
 
-  ::: {#refs .references .csl-bib-body .hanging-indent}
-  ::: {#ref-bloggs-jones .csl-entry}
-  Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title Title Title Title Title." *Journal Journal Journal*.
-  :::
+  <div id="refs" class="references csl-bib-body hanging-indent">
 
-  ::: {#ref-chomsky-73 .csl-entry}
-  Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
-  :::
-  :::
+  <div id="ref-bloggs-jones" class="csl-entry">
+
+  Bloggs, A. J., and X. Y. Jones. 1959. “Title Title Title Title Title Title Title Title Title Title.” *Journal Journal Journal*.
+
+  </div>
+
+  <div id="ref-chomsky-73" class="csl-entry">
+
+  Chomsky, N. 1973. “Conditions on Transformations.” In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
+
+  </div>
+
+  </div>
 
 Execute (VimwikiMarkdownFormat):
   execute 'buffer ' .. g:mddir .. '/' .. 'wikilink_markdown.md'

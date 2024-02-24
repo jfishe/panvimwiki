@@ -245,6 +245,18 @@ If in markdown format, expand [Pandoc Citations] in the current file and
 append to the end of the file. The Yaml metadata should [specify the
 bibliographic data] and the [Citation Style Language (CSL)].
 
+Add the following to `.markdownlint.yml` to suppress `MD033`:
+
+```yaml
+# MD033/no-inline-html : Inline HTML :
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/md033.md
+MD033:
+  # MD033/no-inline-html Inline HTML [Element: div]
+  # Allowed elements
+  allowed_elements:
+    - 'div'
+```
+
 `VimwikiReference` overwrites the file, so Vim may prompt to reload the
 buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
 `:h :DiffOrig` facilitate review of the changes.
@@ -333,4 +345,4 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
 <!-- markdownlint-disable MD051 -->
-[g:panvimwiki_settings]: #g-panvimwiki-settings
+[g:panvimwiki_settings]: #gpanvimwiki-settings

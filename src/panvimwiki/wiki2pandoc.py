@@ -48,18 +48,21 @@ def vimwiki_task_link() -> None:
 
 @bridged
 def expand_citeproc() -> None:
-    """Resolve pandoc citeproc references.
+    """Resolve pandoc citeproc references to GFM div anchors.
 
-    Vimwiki [URL|Description] style links are preserved with the pandoc format
-    `markdown+wikilinks_title_after_pipe`.
+    Preserve Vimwiki [[URL|Description]] style links with
+    `gfm+wikilinks_title_after_pipe`.
+
+    `wikilink_markdown` removes backslash-escapes from `task_lists` for
+    compatibility with Vimwiki and Taskwiki `vimwiki-todo-lists`.
 
     """
     path = Path(vim.eval("expand('%f')"))
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format="markdown+wikilinks_title_after_pipe",
-        to="markdown-citations+wikilinks_title_after_pipe",
+        format="markdown+wikilinks_title_after_pipe-task_lists",
+        to="gfm+wikilinks_title_after_pipe",
         prefilters=None,
         filters=None,
         extra_args=(
@@ -68,6 +71,7 @@ def expand_citeproc() -> None:
             "--wrap",
             "none",
         ),
+        postfilters=("wikilink_markdown",),
     )
 
 

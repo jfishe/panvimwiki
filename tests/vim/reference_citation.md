@@ -40,11 +40,12 @@ pandoc --from=biblatex --to=markdown default.bib --standalone
 
 # To convert this file to expected output:
 pandoc --citeproc \
-  --from=markdown+wikilinks_title_after_pipe \
+  --from=markdown+wikilinks_title_after_pipe-task_lists \
   --standalone \
-  --to=markdown-citations+wikilinks_title_after_pipe  \
+  --to=gfm+wikilinks_title_after_pipe  \
   --wrap=none \
-  tests/vim/reference_citation.md
+  tests/func/reference_citation.md |
+  wikilink_markdown > tests/func/reference_citation.out.md
 ```
 
 @bloggs-jones
@@ -52,6 +53,22 @@ pandoc --citeproc \
 [@chomsky-73]
 
 [[vimwiki]]
+
+- [ ] task 1
+- [X] task 2
+- [.] task 3
+  - [.] task 3.1
+  - [.] task 3.2
+- [[20231106-1619|Wiki Internal Link]]
+- [[wn.home:index|Another's wiki cross-reference]]
+* [S] Taskwiki task  #aa945200
+
+```bash
+pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \
+  --standalone \
+  --wrap=none \
+  --to=markdown
+```
 
 ----
 House of Dude
