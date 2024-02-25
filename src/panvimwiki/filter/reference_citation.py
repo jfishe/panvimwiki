@@ -107,9 +107,7 @@ def filter_reference(source: str) -> str | None:
 def main():
     """Echo stdin and append filtered references."""
     source = sys.stdin.read()
-    m = re.search(
-        r"::: {#refs \.references \.csl-bib-body \.hanging-indent}", string=source
-    )
+    m = re.search(r"::: {#refs \.references .*}", string=source)
     if m is not None:
         print(source[: m.start()])
         print(filter_reference(source), end="")
