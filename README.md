@@ -219,7 +219,7 @@ currently in a Vimwiki file.
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki [:buffer] to the selected output format (default:
-docx) specified in [g:panvimwiki_settings.format][g:panvimwiki_settings].
+docx) specified in [g:panvimwiki_settings].
 
 Copy the path to the Word file to the clipboard register "+ [quoteplus].
 On Windows Subsystem for Linux (WSL), convert the path from POSIX to
@@ -345,4 +345,4 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
 <!-- markdownlint-disable MD051 -->
-[g:panvimwiki_settings]: #gpanvimwiki-settings
+[g:panvimwiki_settings]: #g-panvimwiki-settings

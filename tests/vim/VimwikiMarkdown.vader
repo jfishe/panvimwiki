@@ -83,7 +83,7 @@ Expect (Append references):
     - [.] task 3.2
   - [[20231106-1619|Wiki Internal Link]]
   - [[wn.home:index|Another's wiki cross-reference]]
-  - [S] Taskwiki task \#aa945200
+  * [S] Taskwiki task #aa945200
 
   ``` bash
   pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \

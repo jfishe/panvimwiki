@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""
-Convert pandoc markdown tasks and wikilinks.
+r"""
+Convert GitHub Flavored Markdown (gfm) to Vimwiki/Taskwiki syntax.
 
-Use Vimwiki markdown tasks and links. Remove "wikilink" link-title.
+- Remove backslashes from [ ] tasks
+- Remove backslashes from apostrophe-s, \`s.
+- Remove link title "wikilink".
+- Unescape taskwiki octothorpe and use asterisk-marker.
 
 Plain text prefilter or post filter
 """
@@ -13,6 +16,7 @@ import re
 import sys
 
 DELETE = None
+
 REPLACE = (
     # Remove backslashes from [ ] tasks.
     dict(
@@ -28,6 +32,11 @@ REPLACE = (
     dict(
         pattern=r" \"wikilink\"\)",
         repl=r")",
+    ),
+    # Unescape taskwiki octothorpe and use asterisk-marker.
+    dict(
+        pattern=r"(^\s{0,})-(\s\[.*)\\(#[0-9A-Fa-f]{8})$",
+        repl=r"\1*\2\3",
     ),
 )
 

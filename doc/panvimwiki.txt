@@ -235,7 +235,7 @@ VimwikiConvert[!]                                  *panvimwiki-VimwikiConvert*
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki |:buffer| to the selected output format (default:
-docx) specified in |panvimwiki-g:panvimwiki_settings.format|.
+docx) specified in |panvimwiki-g:panvimwiki_settings|.
 
 Copy the path to the Word file to the clipboard register “+ |quoteplus|. On
 Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
@@ -266,6 +266,18 @@ to the end of the file. The Yaml metadata should specify the bibliographic data
 <https://pandoc.org/MANUAL.html#specifying-bibliographic-data> and the Citation
 Style Language (CSL)
 <https://pandoc.org/MANUAL.html#specifying-a-citation-style>.
+
+Add the following to `.markdownlint.yml` to suppress `MD033`:
+
+>yaml
+    # MD033/no-inline-html : Inline HTML :
+    # https://github.com/DavidAnson/markdownlint/blob/main/doc/md033.md
+    MD033:
+      # MD033/no-inline-html Inline HTML [Element: div]
+      # Allowed elements
+      allowed_elements:
+        - 'div'
+<
 
 `VimwikiReference` overwrites the file, so Vim may prompt to reload the buffer
 (cf. Warning |W12|). If you choose not to reload the buffer, |:DiffOrig|
