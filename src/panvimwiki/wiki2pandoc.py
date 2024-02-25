@@ -22,25 +22,25 @@ def vimwiki_task_link() -> None:
     pandoc link title, "wikilink", for compatibility with Vimiwki markdown
     syntax, equivalent to: ::
 
-        $ pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \
-              --standalone \
-              --wrap=none \
-              --to=markdown | wikilink_markdown
+        $ pandoc \
+            --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
+            --standalone \
+            --wrap=none \
+            --to=gfm | wikilink_markdown
 
     """
     path = Path(vim.eval("expand('%f')"))
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format="markdown+wikilinks_title_after_pipe-task_lists",
-        to="markdown-citations",
+        format="markdown+wikilinks_title_after_pipe-task_lists-citations",
+        to="gfm",
         prefilters=None,
         filters=None,
         extra_args=(
-            "--citeproc",
             "--standalone",
             "--wrap",
-            "none",
+            "auto",
         ),
         postfilters=("wikilink_markdown",),
     )
