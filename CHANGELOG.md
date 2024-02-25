@@ -1,5 +1,7 @@
 # Changelog
 
+<!-- markdownlint-disable MD024 -->
+
 All notable changes to this project will be documented in this file.
 
 The format is based on
@@ -8,6 +10,14 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+
+### Changed
+
+### Removed
+
+## [0.8.0] - 2024-02-24
 
 ### Added
 
@@ -24,8 +34,6 @@ and this project adheres to
 - Preserve citations when converting `:h vimwiki-syntax-links`.
 - Copyright date
 - Adopt [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
-
-### Removed
 
 ## [0.7.1] - 2024-01-28
 
@@ -94,7 +102,8 @@ and this project adheres to
 
 - Switch build to flit.
 
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.7.1...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.8.0...HEAD
+[0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
 [0.7]: https://github.com/jfishe/panvimwiki/compare/0.6...0.7
 [0.6]: https://github.com/jfishe/panvimwiki/compare/0.5...0.6
