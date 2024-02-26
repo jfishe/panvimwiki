@@ -66,10 +66,12 @@ def expand_citeproc() -> None:
         prefilters=None,
         filters=None,
         extra_args=(
+            "--metadata",
+            "link-citations:true",
             "--citeproc",
             "--standalone",
             "--wrap",
-            "none",
+            "auto",
         ),
         postfilters=("wikilink_markdown",),
     )
