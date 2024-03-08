@@ -64,6 +64,9 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
+        args:
+          - "--ignore-regex"
+          - "eference|reate|rocess"
   ## Markdown Lint
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.39.0

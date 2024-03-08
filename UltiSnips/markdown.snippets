@@ -1,3 +1,7 @@
 snippet "^type:" "Zettelkasten YAML type. Type first letter to pick: note, literature, reference, or index" Arb
 type: $1${1/^( )|(l)|(r)|(n)|(i)$|.*/(?2:iterature)(?3:eference)(?4:ote)(?5:ndex)/}
 endsnippet
+
+snippet "^status:" "Zettelkasten YAML Status. Type first letter to pick: Create, Process, or Reviewed" Arb
+status: $1${1/^( )|(C)|(P)|(R)$|.*/(?2:reate)(?3:rocess)(?4:eviewed)/}
+endsnippet
