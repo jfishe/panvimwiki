@@ -96,7 +96,7 @@ def filter_reference(source: str) -> str | None:
     `Reference links <https://pandoc.org/MANUAL.html#reference-links>`_.
     """
     lines = []
-    for result in re.findall("::: {#ref-(.*?):::", source, re.S):
+    for result in re.findall("::: {#ref-(.*?):::", source, re.DOTALL):
         entry = result.split("\n")
         reference = f"[#ref-{entry[0].split()[0]}]:"
         citation = "\n".join(entry[1:])
@@ -107,7 +107,7 @@ def filter_reference(source: str) -> str | None:
 def main():
     """Echo stdin and append filtered references."""
     source = sys.stdin.read()
-    m = re.search(r"::: {#refs \.references .*}", string=source)
+    m = re.search(r":{3,5} {#refs \.references .*}", string=source)
     if m is not None:
         print(source[: m.start()])
         print(filter_reference(source), end="")
