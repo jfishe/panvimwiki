@@ -11,9 +11,26 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.9.0] - 2024-03-24
+
 ### Added
 
+- UltiSnips Snippets for Zettelkasten YAML:
+  - `type:` Type first letter to pick: note, literature, reference, or index.
+  - `status:` Type first letter to pick: Create, Process, or Reviewed.
+
 ### Changed
+
+- `:VimwikiMarkdownFormat` converts to GitHub Flavored Markdown (gfm) preferred
+  by Vimwiki.
+- `:VimwikiMarkdownFormat` preserves citations and does not process through
+  citeproc to separate concerns from `:VimwikiReference`.
+- Post-filter `reference_citation` supports pandoc v3.1.3 and v3.1.12.3
+  `markdown-citations`. `pandoc --citeproc` default markdown-citations format
+  changed from `:::` to `:::::` before and after citations. However, tests only
+  support v3.1.12.3.
+- `:VimwikiReference` defaults to link-citations=true and autowrap=auto.
+- GitHub Actions updated to pandoc-version 3.1.12.3.
 
 ### Removed
 
@@ -102,7 +119,8 @@ and this project adheres to
 
 - Switch build to flit.
 
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.8.0...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.9.0...HEAD
+[0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
 [0.7]: https://github.com/jfishe/panvimwiki/compare/0.6...0.7
