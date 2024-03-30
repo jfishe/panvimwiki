@@ -11,6 +11,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Conquer of Completion (CoC) source *\[Zettelkasten\]* for YAML header fields.
+  - `type:` note, literature, reference, or index.
+  - `status:` Create, Process, or Reviewed.
+
+### Removed
+
+- Replace UltiSnips Snippets for Zettelkasten YAML with Conquer of Completion
+  (CoC) source *\[Zettelkasten\]*.
+
 ## [0.9.0] - 2024-03-24
 
 ### Added

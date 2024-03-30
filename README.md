@@ -66,7 +66,16 @@ if has('python3')
 endif
 ```
 
+Install [Conquer of Completion (CoC)] to use CoC source *\[Zettelkasten\]*.
+
 ## Usage
+
+### Completion
+
+- Conquer of Completion (CoC) source *\[Zettelkasten\]* for YAML header fields
+  completes:
+  - `type:` note, literature, reference, or index.
+  - `status:` Create, Process, or Reviewed.
 
 ### Command Line Shell
 
@@ -343,5 +352,6 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
+[Conquer of Completion (CoC)]: https://github.com/neoclide/coc.nvim
 <!-- markdownlint-disable MD051 -->
 [g:panvimwiki_settings]: #g-panvimwiki-settings
