@@ -272,10 +272,9 @@ buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
 ##### VimwikiMarkdownFormat
 
 If in markdown format, convert `:h vimwiki-syntax-links`
-[wikilinks_title_after_pipe](https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe)
-to [Inline links](https://pandoc.org/MANUAL.html#inline-links), without the
-"wikilink" title that pandoc adds by default. Preserve `:h vimwiki-todo-lists`,
-using [task_lists](https://pandoc.org/MANUAL.html#inline-linksInline).
+[wikilinks_title_after_pipe] to [Inline links],
+without the "wikilink" title that pandoc adds by default.
+Preserve `:h vimwiki-todo-lists`, using [task_lists].
 
 `VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
 buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
@@ -330,28 +329,31 @@ information on PyScaffold see <https://pyscaffold.org/>.
 
 <!-- References -->
 
-[Documentation Status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
 [1]: https://panvimwiki.readthedocs.io/en/latest/?badge=latest
-[PyPI-Server]: https://img.shields.io/pypi/v/panvimwiki.svg
 [2]: https://pypi.org/project/panvimwiki/
-[Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
 [3]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml
-[Project generated with PyScaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
 [4]: https://pyscaffold.org/
-[Pandoc]: https://pandoc.org/
-[Pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
-[:python3]: https://neovim.io/doc/user/if_pyth.html#python3
-[vimrc]: https://neovim.io/doc/user/starting.html
+[:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
 [:filetype-plugin-on]: https://neovim.io/doc/user/filetype.html#filetype
 [:packadd]: https://neovim.io/doc/user/repeat.html#%3Apackadd
-[delete_task_pending]: #delete_task_pending
-[delete_tag_lines]: #delete_tag_lines
-[:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
-[quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
-[VimwikiConvert]: #vimwikiconvert
-[Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
-[specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
+[:python3]: https://neovim.io/doc/user/if_pyth.html#python3
 [Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
 [Conquer of Completion (CoC)]: https://github.com/neoclide/coc.nvim
+[Documentation Status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
+[Inline links]: https://pandoc.org/MANUAL.html#inline-links
+[Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
+[Pandoc]: https://pandoc.org/
+[Project generated with PyScaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+[PyPI-Server]: https://img.shields.io/pypi/v/panvimwiki.svg
+[Pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
+[Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
+[VimwikiConvert]: #vimwikiconvert
+[delete_tag_lines]: #delete_tag_lines
+[delete_task_pending]: #delete_task_pending
+[quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
+[specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
+[task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
+[vimrc]: https://neovim.io/doc/user/starting.html
+[wikilinks_title_after_pipe]: https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe
 <!-- markdownlint-disable MD051 -->
 [g:panvimwiki_settings]: #g-panvimwiki-settings

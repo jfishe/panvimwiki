@@ -19,14 +19,14 @@ repos:
 
   ## If you want to automatically "modernize" your Python code:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.15.2
     hooks:
       - id: pyupgrade
         args: ["--py37-plus"]
 
   ## If you want to avoid flake8 errors due to unused vars or imports:
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.2.1
+    rev: v2.3.1
     hooks:
       - id: autoflake
         args:
@@ -40,7 +40,7 @@ repos:
       - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 24.2.0
+    rev: 24.3.0
     hooks:
       - id: black
         language_version: python3
@@ -75,3 +75,8 @@ repos:
         args:
           - "--ignore"
           - "tests/**/*.md"
+  ## Vint Vim script linting
+  - repo: https://github.com/Vimjas/vint
+    rev: v0.4a3
+    hooks:
+      - id: vint

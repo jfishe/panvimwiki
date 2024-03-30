@@ -6,6 +6,7 @@ Table of Contents                               *panvimwiki-table-of-contents*
 1. Introduction                                      |panvimwiki-introduction|
 2. Installation                                      |panvimwiki-installation|
 3. Usage                                                    |panvimwiki-usage|
+  - Completion                                         |panvimwiki-completion|
   - Command Line Shell                         |panvimwiki-command-line-shell|
   - Commands                                             |panvimwiki-commands|
   - Settings                                             |panvimwiki-settings|
@@ -66,9 +67,20 @@ install panvimwiki in `pack/*/start/panvimwiki`.
     endif
 <
 
+Install Conquer of Completion (CoC) <https://github.com/neoclide/coc.nvim> to
+use CoC source _[Zettelkasten]_.
+
 
 ==============================================================================
 3. Usage                                                    *panvimwiki-usage*
+
+
+COMPLETION                                             *panvimwiki-completion*
+
+- Conquer of Completion (CoC) source _[Zettelkasten]_ for YAML header fields
+    completes:
+    - `type:` note, literature, reference, or index.
+    - `status:` Create, Process, or Reviewed.
 
 
 COMMAND LINE SHELL                             *panvimwiki-command-line-shell*
@@ -290,7 +302,7 @@ wikilinks_title_after_pipe
 <https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe> to Inline
 links <https://pandoc.org/MANUAL.html#inline-links>, without the "wikilink"
 title that pandoc adds by default. Preserve |vimwiki-todo-lists|, using
-task_lists <https://pandoc.org/MANUAL.html#inline-linksInline>.
+task_lists <https://pandoc.org/MANUAL.html#extension-task_lists>.
 
 `VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
 buffer (cf. Warning |W12|). If you choose not to reload the buffer,

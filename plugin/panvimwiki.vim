@@ -6,7 +6,7 @@
 " Last Change: 2024-01-01
 
 " Should we load? {{{1
-if exists('g:panvimwiki_loaded') || !has("python3") || &compatible
+if exists('g:panvimwiki_loaded') || !has('python3') || &compatible
     finish
 endif
 let g:panvimwiki_loaded = 1

@@ -16,6 +16,7 @@ and this project adheres to
 - Conquer of Completion (CoC) source *\[Zettelkasten\]* for YAML header fields.
   - `type:` note, literature, reference, or index.
   - `status:` Create, Process, or Reviewed.
+- Pre-commit with [Vimjas/vint](https://github.com/Vimjas/vint).
 
 ### Removed
 
@@ -77,7 +78,7 @@ and this project adheres to
 - `:VimwikiReference` no longer converts to reference-links, preferring
   compatibility with pandoc conversion to `HTML`.
 - DOCS: Update `:help panvimwiki`.
-- DOCS: Host at <http://panvimwiki.readthedocs.io/>
+- DOCS: Host at <https://panvimwiki.readthedocs.io/>
 
 ## [0.6] - 2024-01-01
 
