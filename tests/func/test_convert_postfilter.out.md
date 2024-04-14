@@ -40,25 +40,52 @@ pandoc --from=biblatex --to=markdown default.bib --standalone
 
 # To convert this file to expected output:
 pandoc --citeproc \
-  --from=markdown+wikilinks_title_after_pipe \
+  --from=markdown+wikilinks_title_after_pipe-task_lists \
   --standalone \
-  --to=markdown-citations+wikilinks_title_after_pipe  \
+  --to=gfm+wikilinks_title_after_pipe  \
   --wrap=none \
   tests/func/reference_citation.md |
-  reference_citation > tests/func/reference_citation.out.md
+  wikilink_markdown > tests/func/reference_citation.out.md
 ```
 
 Bloggs and Jones ([1959](#ref-bloggs-jones))
 
 ([Chomsky 1973](#ref-chomsky-73))
 
-[[vimwiki]]
+[vimwiki](vimwiki)
+
+- [ ] task 1
+- [X] task 2
+- [.] task 3
+  - [.] task 3.1
+  - [.] task 3.2
+- [Wiki Internal Link](20231106-1619)
+- [Another's wiki cross-reference](wn.home:index)
+* [S] Taskwiki task #aa945200
+
+``` bash
+pandoc --from=markdown+wikilinks_title_after_pipe-task_lists \
+  --standalone \
+  --wrap=none \
+  --to=markdown
+```
 
 ------------------------------------------------------------------------
 
 House of Dude
 
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 
-[#ref-bloggs-jones]: Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title Title Title Title Title." *Journal Journal Journal*.
+<div id="ref-bloggs-jones" class="csl-entry">
 
-[#ref-chomsky-73]: Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
+Bloggs, A. J., and X. Y. Jones. 1959. “Title Title Title Title Title Title Title Title Title Title.” *Journal Journal Journal*.
+
+</div>
+
+<div id="ref-chomsky-73" class="csl-entry">
+
+Chomsky, N. 1973. “Conditions on Transformations.” In *A Festschrift for Morris Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart & Winston.
+
+</div>
+
+</div>

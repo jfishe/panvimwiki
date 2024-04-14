@@ -6,9 +6,16 @@ help: ## Prints help for targets with comments
 # testing.
 bundledir := tests/vim/bundle
 
-vader: ${bundledir}/vader.vim ${bundledir}/vimwiki ${bundledir}/panvimwiki | ${bundledir}  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
+VADER_DIR := tests/vim
+VADER_INPUT := $(VADER_DIR)/reference_citation.md
+
+vader: $(VADER_INPUT) ${bundledir}/vader.vim ${bundledir}/vimwiki ${bundledir}/panvimwiki | ${bundledir}  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
 
 .PHONY: vader
+
+# $(VADER_INPUT): tests/func/reference_citation.md
+tests/vim/%.md: tests/func/%.md
+	cp $< $@
 
 ${bundledir}/vader.vim: | ${bundledir}
 	git clone https://github.com/junegunn/vader.vim.git ${bundledir}/vader.vim

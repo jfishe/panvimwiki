@@ -139,20 +139,22 @@ def test_convert_postfilter(tmp_path):
 
     pandoc --from=biblatex --to=markdown default.bib --standalone
     pandoc --citeproc \
-      --from=markdown+wikilinks_title_after_pipe \
+      --from=markdown+wikilinks_title_after_pipe-task_lists \
+      --to=gfm \
       --standalone \
-      --to=markdown-citations \
-      --wrap=none
+      --wrap=none \
+      tests/func/reference_citation.md |
+      wikilink_markdown > tests/func/test_convert_postfilter.out.md
     """
-    convert_expected = RESULT_PATH / "reference_citation.out.md"
+    convert_expected = RESULT_PATH / "test_convert_postfilter.out.md"
     inputfile = RESULT_PATH / "reference_citation.md"
     with convert_expected.open() as f:
         expected = f.read()
     test_input = convert(
         inputfile=str(inputfile),
         outputfile=None,
-        format="markdown+wikilinks_title_after_pipe",
-        to="markdown-citations+wikilinks_title_after_pipe",
+        format="markdown+wikilinks_title_after_pipe-task_lists",
+        to="gfm",
         prefilters=None,
         filters=None,
         extra_args=(
@@ -161,7 +163,65 @@ def test_convert_postfilter(tmp_path):
             "--wrap",
             "none",
         ),
-        postfilters=("reference_citation",),
+        postfilters=("wikilink_markdown",),
     )
     print(test_input)
+    assert test_input == expected
+
+
+def test_convert_syntax_markdown(tmp_path):
+    r"""Given Markdown with citeproc references, wikilinks and task_lists,
+
+    When converting to docx with default prefilters and filters,
+    Then pandoc can convert back to expected Markdown.
+
+    pandoc --from=biblatex --to=markdown default.bib --standalone
+    cat tests/func/reference_citation.md |
+    delete_bullet_star |
+    delete_task_pending |
+    pandoc --citeproc \
+      --from=markdown+wikilinks_title_after_pipe-task_lists \
+      --to=docx \
+      --filter=delete_tag_lines \
+      --filter=delete_empty_heading \
+      --filter=delete_taskwiki_heading \
+      --standalone \
+      --wrap=none \
+      --shift-heading-level-by 1 \
+      --data-dir=tests/func/vimwiki_html/templates \
+      --output=tests/func/test_convert_syntax_markdown.out.docx
+    """
+    convert_expected = RESULT_PATH / "test_convert_syntax_markdown.out.docx"
+    inputfile = RESULT_PATH / "reference_citation.md"
+    outputfile = tmp_path / convert_expected.name
+
+    convert(
+        inputfile=str(inputfile),
+        outputfile=outputfile,
+        format="markdown+wikilinks_title_after_pipe-task_lists",
+        to="docx",
+        prefilters=PREFILTER,
+        filters=FILTER,
+        extra_args=(
+            "--shift-heading-level-by",
+            "1",
+            "--data-dir",
+            str(DATA_DIR),
+            "--verbose",
+            "--standalone",
+            "--wrap",
+            "auto",
+            "--citeproc",
+        ),
+    )
+    test_input = pypandoc.convert_file(
+        str(outputfile),
+        to="markdown",
+        format="docx",
+    )
+    expected = pypandoc.convert_file(
+        str(convert_expected),
+        to="markdown",
+        format="docx",
+    )
     assert test_input == expected

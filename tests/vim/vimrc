@@ -55,6 +55,9 @@ let g:panvimwiki_settings.extra_args = [
       \ ]
 let g:panvimwiki_settings.format = 'docx'
 
+" Disable taskwiki to prevent changes to task hashes.
+let taskwiki_disable = 'off'
+
 set loadplugins
 filetype plugin indent on
 syntax enable

@@ -1,19 +1,20 @@
 # Temporary and binary files
-*~
-*.py[cod]
-*.so
-*.cfg
 !.isort.cfg
 !setup.cfg
-*.orig
+*.cfg
 *.log
+*.orig
 *.pot
-__pycache__/*
-.cache/*
-.*.swp
+*.py[cod]
+*.so
 */.ipynb_checkpoints/*
+*~
+.*.swp
 .DS_Store
+.cache/*
 .task/
+__pycache__/*
+tmp/
 
 # Project files
 .ropeproject
@@ -31,17 +32,18 @@ tags
 *.egg-info
 
 # Unittest and coverage
-htmlcov/*
 .coverage
 .coverage.*
 .coverage_*
-.tox
-junit*.xml
-coverage.xml
 .pytest_cache/
-tests/vim/bundle
+.tox
 Session.vim
+coverage.xml
+htmlcov/*
+junit*.xml
 prepm.*
+tests/vim/bundle
+tests/vim/reference_citation.md
 
 # Build and docs folder/files
 build/*
