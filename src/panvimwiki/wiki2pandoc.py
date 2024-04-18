@@ -11,6 +11,8 @@ from vim_bridge import bridged
 from panvimwiki.convert import convert
 from panvimwiki.vimwiki_week import concatenate_diary
 
+FORMAT = "markdown+wikilinks_title_after_pipe-task_lists"
+
 
 @bridged
 def vimwiki_task_link() -> None:
@@ -33,7 +35,7 @@ def vimwiki_task_link() -> None:
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format="markdown+wikilinks_title_after_pipe-task_lists-citations",
+        format=FORMAT + "-citations",
         to="gfm",
         prefilters=None,
         filters=None,
@@ -61,7 +63,7 @@ def expand_citeproc() -> None:
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format="markdown+wikilinks_title_after_pipe-task_lists",
+        format=FORMAT,
         to="gfm+wikilinks_title_after_pipe",
         prefilters=None,
         filters=None,
@@ -166,9 +168,15 @@ def wiki2pandoc(
         outputfile = path_html.parent / Path(to) / outputfile.relative_to(wiki_path)
         outputfile.parent.mkdir(parents=True, exist_ok=True)
 
+    if vim.eval("vimwiki#vars#get_wikilocal('syntax')") == "markdown":
+        local_format: str = FORMAT + "-citations"
+    else:
+        local_format = "vimwiki"
+
     convert(
         inputfile=str(inputfile),
         outputfile=str(outputfile),
+        format=local_format,
         to=to,
         extra_args=tuple(extra_args),
     )
