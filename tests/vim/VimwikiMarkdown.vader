@@ -4,7 +4,17 @@ Execute (Setup conversion output vimwiki/html, etc.):
   let g:mddir = s:tmpdir .. '/markdown'
   execute '! mkdir -p ' .. g:mddir
   Log resolve(g:mddir)
+
+  let g:html = s:tmpdir .. '/vimwiki_html/html'
+  execute '! mkdir -p ' .. g:html
+  Log resolve(g:html)
+
+  let g:docx = s:tmpdir .. '/vimwiki_html/docx'
+  execute '! mkdir -p ' .. g:docx
+  Log resolve(g:docx)
+
   let g:vimwiki_autowriteall = 0
+
   for s:file in ['wikilink_markdown.md', 'reference_citation.md']
     execute 'edit ' .. s:file
     execute 'saveas ' .. g:mddir .. '/' .. s:file
@@ -157,3 +167,14 @@ Expect (WikilinkMarkdown):
   </div>
 
   </div>
+
+Execute (VimwikiConvertMarkdownFormat):
+  execute 'buffer ' .. g:mddir .. '/' .. 'reference_citation.md'
+  edit!
+
+  call SetSyntax('markdown')
+  call vimwiki#vars#set_wikilocal('path_html', g:html)
+  Log resolve(vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path_html')))
+
+  VimwikiConvert
+  Assert filereadable(g:docx .. '/reference_citation.docx')
