@@ -30,11 +30,11 @@ def pandoc_filter_fixture():
     for wiki_input in chain(
         prefilter_input.glob("*.wiki"),
         filter_input.glob("*.wiki"),
-        postfilter_input.glob("*.inmd"),
+        postfilter_input.glob("*.md"),
     ):
         filters = str(wiki_input.stem)
-        markdown_output: str = wiki_input.parent / "out" / wiki_input.name
-        markdown_output = markdown_output.with_suffix(".out.md")
+        markdown_output: Path = wiki_input.parent / "out" / wiki_input.name
+        markdown_output = markdown_output.with_suffix(".md")
 
         if prefilter_input == wiki_input.parent:
             with open(wiki_input) as fin:
