@@ -7,7 +7,7 @@
     []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
     .tag}
 -   Bulleted list item 3 should appear
--   []{.done0}Bulleted list done0 item 0 should NOT appear
+-   []{.done0}Bulleted list done0 item 0 should appear
 -   []{.done1}Bulleted list done1 item 1 should appear
 -   []{.done2}Bulleted list done2 item 2 should appear
 -   []{.done3}Bulleted list done3 item 3 should appear

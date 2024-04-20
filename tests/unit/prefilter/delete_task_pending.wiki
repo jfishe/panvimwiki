@@ -1,5 +1,11 @@
 = Vimwiki Remove Pending and Waiting tasks and set Start tasks to [.] =
 
+{{{bash
+cat delete_task_pending.wiki | delete_task_pending |
+  pandoc --from=vimwiki \
+  --to=markdown > out/delete_task_pending.wiki.md
+}}}
+
 == Vimwiki Tasks Ordered List ==
 1. [ ] Numbered list done0 item 0 should NOT appear
 2. [.] Numbered list done1 item 1 should appear

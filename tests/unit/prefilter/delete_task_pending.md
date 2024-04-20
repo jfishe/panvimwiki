@@ -1,6 +1,13 @@
-= Vimwiki Remove Pending and Waiting tasks and set Start tasks to [.] =
+# Vimwiki Remove Pending and Waiting tasks and set Start tasks to [.]
 
-== Vimwiki Tasks Ordered List ==
+``` bash
+cat delete_task_pending.md | delete_task_pending |
+  pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
+  --to=markdown > out/delete_task_pending.md.md
+```
+
+## Vimwiki Tasks Ordered List
+
 1. [ ] Numbered list done0 item 0 should NOT appear
 2. [.] Numbered list done1 item 1 should appear
 3. [o] Numbered list done2 item 2 should appear
@@ -14,7 +21,7 @@
 5. [X] Numbered list done4 item 4 should appear
 6. [-] Numbered list doneX item 5 should appear
 
-== Vimwiki Tasks Unordered List ==
+## Vimwiki Tasks Unordered List
 - [ ] Bulleted list done0 item 0 should NOT appear
 - [.] Bulleted list done1 item 1 should appear
 - [o] Bulleted list done2 item 2 should appear
@@ -28,7 +35,7 @@
 - [X] Bulleted list done4 item 4 should appear
 - [-] Bulleted list doneX item 5 should appear
 
-== Taskwiki Unordered List ==
+## Taskwiki Unordered List
 * [ ] Bulleted list item 0 should NOT appear  #f2fbeb1b
 * [.] Bulleted list item 1 should appear  #4a7369ae
 * [S] Bulleted list item 2 should convert to [.] done1 #d6198091

@@ -4,7 +4,7 @@
 -   Bulleted list item 2 should appear
     :InlineTagShouldAppear:InlineTagShouldAppear:
 -   Bulleted list item 3 should appear
--   \[ \] Bulleted list done0 item 0 should NOT appear
+-   \[ \] Bulleted list done0 item 0 should appear
 -   \[.\] Bulleted list done1 item 1 should appear
 -   \[o\] Bulleted list done2 item 2 should appear
 -   \[O\] Bulleted list done3 item 3 should appear
