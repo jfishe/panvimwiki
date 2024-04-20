@@ -7,6 +7,8 @@ from pathlib import Path
 import pypandoc
 import pytest
 
+FORMAT = "markdown+wikilinks_title_after_pipe-task_lists-citations"
+
 
 def pandoc_filter_fixture():
     """Parameterize panflute filter script input and expected output.
@@ -30,46 +32,65 @@ def pandoc_filter_fixture():
         filter_input.glob("*.wiki"),
         postfilter_input.glob("*.inmd"),
     ):
-        filter = str(wiki_input.stem)
+        filters = str(wiki_input.stem)
+        markdown_output: str = wiki_input.parent / "out" / wiki_input.name
+        markdown_output = markdown_output.with_suffix(".out.md")
 
         if prefilter_input == wiki_input.parent:
             with open(wiki_input) as fin:
                 filter_out = subprocess.run(
-                    filter, capture_output=True, encoding="utf8", stdin=fin, check=True
+                    filters,
+                    capture_output=True,
+                    encoding="utf8",
+                    stdin=fin,
+                    check=True,
                 )
 
-            test_input = pypandoc.convert_text(
-                str(filter_out.stdout), to="markdown", format="vimwiki"
-            )
-            filter = "plain_text_pre_filter/" + filter
+            if wiki_input.suffix == ".wiki":
+                test_input = pypandoc.convert_text(
+                    str(filter_out.stdout),
+                    to="markdown",
+                    format="vimwiki",
+                )
+            else:
+                test_input = pypandoc.convert_text(
+                    str(filter_out.stdout),
+                    to="markdown",
+                    format=FORMAT,
+                )
+            filters = "plain_text_pre_filter/" + filters
         elif filter_input == wiki_input.parent:
             test_input = pypandoc.convert_file(
-                str(wiki_input), to="markdown", format="vimwiki", filters=[filter]
+                str(wiki_input),
+                to="markdown",
+                format="vimwiki",
+                filters=[filters],
             )
-            filter = "pandoc_filter/" + filter
+            filters = "pandoc_filter/" + filters
         elif postfilter_input == wiki_input.parent:
             stdin = pypandoc.convert_file(
                 source_file=wiki_input,
-                format="markdown+wikilinks_title_after_pipe-task_lists",
+                format=FORMAT,
                 to="markdown",
                 extra_args=("--standalone", "--wrap", "none"),
             )
             filter_out = subprocess.run(
-                filter, capture_output=True, encoding="utf8", input=stdin, check=True
+                filters,
+                capture_output=True,
+                encoding="utf8",
+                input=stdin,
+                check=True,
             )
 
             test_input = filter_out.stdout
-            filter = "plain_text_post_filter/" + filter
-            __import__("pprint").pprint(test_input)
+            filters = "plain_text_post_filter/" + filters
         else:
             continue
 
-        markdown_output = wiki_input.with_suffix(".out.md")
         with open(markdown_output) as f:
             expected = f.read()
 
-        __import__("pprint").pprint(expected)
-        yield pytest.param(test_input, expected, id=filter)
+        yield pytest.param(test_input, expected, id=filters)
 
 
 @pytest.mark.parametrize(
