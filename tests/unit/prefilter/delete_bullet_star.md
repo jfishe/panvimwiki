@@ -1,4 +1,4 @@
-= Vimwiki Unordered Lists / Bulleted Lists Asterisk/Star =
+# Vimwiki Unordered Lists / Bulleted Lists Asterisk/Star
 
 - Bulleted list item 1 should appear
 - Bulleted list item 2 should appear :InlineTagShouldAppear:InlineTagShouldAppear:
@@ -18,8 +18,8 @@
 * [[file:URI|Bulleted list item 12 should NOT appear]]
 * [[d|Bulleted list item 13 should NOT appear]]
 
-{{{ bash
-cat delete_bullet_star.wiki | delete_bullet_star |
-  pandoc --from=vimwiki \
-  --to=markdown > out/delete_bullet_star.wiki.md
-}}}
+``` bash
+cat delete_bullet_star.md | delete_bullet_star |
+  pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
+  --to=markdown > out/delete_bullet_star.md.md
+```

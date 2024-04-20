@@ -28,13 +28,13 @@ def pandoc_filter_fixture():
     postfilter_input: Path = Path(__file__).parents[0] / "postfilter"
 
     for wiki_input in chain(
-        prefilter_input.glob("*.wiki"),
+        prefilter_input.glob("*.*"),
         filter_input.glob("*.wiki"),
         postfilter_input.glob("*.md"),
     ):
         filters = str(wiki_input.stem)
         markdown_output: Path = wiki_input.parent / "out" / wiki_input.name
-        markdown_output = markdown_output.with_suffix(".md")
+        markdown_output = markdown_output.with_suffix(markdown_output.suffix + ".md")
 
         if prefilter_input == wiki_input.parent:
             with open(wiki_input) as fin:
@@ -58,7 +58,7 @@ def pandoc_filter_fixture():
                     to="markdown",
                     format=FORMAT,
                 )
-            filters = "plain_text_pre_filter/" + filters
+            filters = "plain_text_pre_filter/" + filters + str(wiki_input.suffix)
         elif filter_input == wiki_input.parent:
             test_input = pypandoc.convert_file(
                 str(wiki_input),

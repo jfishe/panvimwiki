@@ -1,4 +1,8 @@
-exclude: "^docs/conf.py"
+exclude: |
+  (?x)(
+    ^docs/conf.py|
+    ^.*/out/.*$
+  )
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

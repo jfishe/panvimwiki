@@ -16,3 +16,9 @@
 -   []{.done1}Bulleted list item 9 should appear #4a7369ae
 -   \[S\] Bulleted list item 10 should convert #d6198091
 -   \[W\] Bulleted list item 11 should appear #2da7eb9b
+
+``` 
+cat delete_bullet_star.wiki | delete_bullet_star |
+  pandoc --from=vimwiki \
+  --to=markdown > out/delete_bullet_star.wiki.md
+```
