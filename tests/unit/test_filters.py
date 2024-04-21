@@ -29,8 +29,8 @@ def pandoc_filter_fixture():
 
     for wiki_input in chain(
         prefilter_input.glob("*.*"),
-        filter_input.glob("*.wiki"),
-        postfilter_input.glob("*.md"),
+        filter_input.glob("*.*"),
+        postfilter_input.glob("*.*"),
     ):
         filters = str(wiki_input.stem)
         markdown_output: Path = wiki_input.parent / "out" / wiki_input.name
@@ -60,13 +60,25 @@ def pandoc_filter_fixture():
                 )
             filters = "plain_text_pre_filter/" + filters + str(wiki_input.suffix)
         elif filter_input == wiki_input.parent:
-            test_input = pypandoc.convert_file(
-                str(wiki_input),
-                to="markdown",
-                format="vimwiki",
-                filters=[filters],
-            )
-            filters = "pandoc_filter/" + filters
+            if wiki_input.suffix == ".wiki":
+                test_input = pypandoc.convert_file(
+                    str(wiki_input),
+                    to="markdown",
+                    format="vimwiki",
+                    filters=[
+                        filters,
+                    ],
+                )
+            else:
+                test_input = pypandoc.convert_file(
+                    str(wiki_input),
+                    to="markdown",
+                    format=FORMAT,
+                    filters=[
+                        filters,
+                    ],
+                )
+            filters = "pandoc_filter/" + filters + str(wiki_input.suffix)
         elif postfilter_input == wiki_input.parent:
             stdin = pypandoc.convert_file(
                 source_file=wiki_input,
@@ -83,14 +95,21 @@ def pandoc_filter_fixture():
             )
 
             test_input = filter_out.stdout
-            filters = "plain_text_post_filter/" + filters
+            filters = "plain_text_post_filter/" + filters + str(wiki_input.suffix)
         else:
             continue
 
         with open(markdown_output) as f:
             expected = f.read()
 
-        yield pytest.param(test_input, expected, id=filters)
+        if filters in [
+            "pandoc_filter/delete_tag_lines.md",
+            "pandoc_filter/delete_taskwiki_heading.md",
+        ]:
+            marks = pytest.mark.xfail(reason=f"{filters} not implemented")
+            yield pytest.param(test_input, expected, id=filters, marks=marks)
+        else:
+            yield pytest.param(test_input, expected, id=filters)
 
 
 @pytest.mark.parametrize(

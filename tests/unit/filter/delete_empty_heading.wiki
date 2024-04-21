@@ -2,6 +2,14 @@
 
 == Text ==
 
+
+{{{bash
+cat delete_empty_heading.wiki |
+  pandoc --from=vimwiki \
+  --filter=delete_empty_heading \
+  --to=markdown > out/delete_empty_heading.wiki.md
+}}}
+
 Normal text should appear with only one blank line preceding next heading.
 
 

@@ -18,6 +18,13 @@ and this project adheres to
   - `status:` Create, Process, or Reviewed.
 - Pre-commit with [Vimjas/vint](https://github.com/Vimjas/vint).
 
+### Changed
+
+- `VimwikiConvert` supports Vimwiki Markdown syntax (Issue #2).
+- Duplicate unit tests for Vimwiki default and markdown syntax. Include in the
+  input file a command line invocation to produce expected output.
+- XFAIL filters that do not support markdown.
+
 ### Removed
 
 - Replace UltiSnips Snippets for Zettelkasten YAML with Conquer of Completion

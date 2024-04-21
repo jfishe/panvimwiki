@@ -1,5 +1,12 @@
 # Vimwiki Tag Lines and In-line Tags {#Vimwiki Tag Lines and In-line Tags}
 
+``` bash
+cat delete_tag_lines.wiki |
+  pandoc --from=vimwiki \
+  --filter=delete_tag_lines \
+  --to=markdown > out/delete_tag_lines.wiki.md
+```
+
 In normal paragraphs
 []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
 .tag}
@@ -19,6 +26,11 @@ In normal paragraphs
     .tag}
     []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
     .tag}
+    -   Bulleted list item 2 should appear
+        []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
+        .tag}
+        []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
+        .tag}
 
 Multiple rows of tags should be deleted, when not part of a paragraph.
 
@@ -30,4 +42,4 @@ Multiple rows of tags should be deleted, when not part of a paragraph.
 
 ## Tag Lines without hard breaks {#Tag Lines without hard breaks}
 
--   []{.done0}Taskwiki item
+-   []{.done0}Taskwiki item #3304a5c9
