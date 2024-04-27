@@ -42,7 +42,7 @@ def vimwiki_task_link() -> None:
         extra_args=(
             "--standalone",
             "--wrap",
-            "auto",
+            "none",
         ),
         postfilters=("wikilink_markdown",),
     )
@@ -73,7 +73,7 @@ def expand_citeproc() -> None:
             "--citeproc",
             "--standalone",
             "--wrap",
-            "auto",
+            "none",
         ),
         postfilters=("wikilink_markdown",),
     )
