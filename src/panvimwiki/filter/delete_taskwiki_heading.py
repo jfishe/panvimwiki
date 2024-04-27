@@ -24,13 +24,22 @@ def prepare(doc):
 
 def action(elem, doc):
     """Remove taskwiki heading."""
-    regex = re.compile(r"\|.*$", re.MULTILINE)
+    regex = re.compile(r"(\\\||\{#).*$", re.MULTILINE)
     subst = ""
 
     if isinstance(elem, pf.Header):
-        result = re.sub(regex, subst, elem.identifier, 0)
+        result = re.sub(
+            regex,
+            subst,
+            pf.convert_text(
+                text=elem,
+                input_format="panflute",
+                output_format="markdown",
+            ),
+            0,
+        )
         elem.content = pf.convert_text(result)[0].content
-        elem.identifier = result
+        elem.identifier = ""
         return elem
     # return None -> element unchanged
     # return [] -> delete element
@@ -46,7 +55,12 @@ def main(doc=None):
 
     Pandoc filter using panflute
     """
-    return pf.run_filter(action, prepare=prepare, finalize=finalize, doc=doc)
+    return pf.run_filter(
+        action,
+        prepare=prepare,
+        finalize=finalize,
+        doc=doc,
+    )
 
 
 if __name__ == "__main__":

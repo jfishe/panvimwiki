@@ -104,7 +104,6 @@ def pandoc_filter_fixture():
 
         if filters in [
             "pandoc_filter/delete_tag_lines.md",
-            "pandoc_filter/delete_taskwiki_heading.md",
         ]:
             marks = pytest.mark.xfail(reason=f"{filters} not implemented")
             yield pytest.param(test_input, expected, id=filters, marks=marks)

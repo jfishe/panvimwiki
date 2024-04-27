@@ -1,6 +1,6 @@
-# Journal 2017-04-24 {#Journal 2017-04-24}
+# Journal 2017-04-24
 
-## Ordered List {#Ordered List}
+## Ordered List
 
 1.  []{.done4}OrderedList done4 should appear
     []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
@@ -13,7 +13,7 @@
 6.  OrderedList should appear
     1.  OrderedList a) should appear
 
-### Definition List {#Definition List}
+### Definition List
 
 Term 1
 :   Definition 1 should appear
@@ -23,7 +23,7 @@ Term 2
 :   Definition 2 should appear
 :   Definition 3 should appear
 
-### Unordered lists {#Unordered lists}
+### Unordered lists
 
 -   Bulleted list item 1 should appear
 -   Bulleted list item 1 should appear
@@ -41,18 +41,18 @@ Term 2
 Del_empty_heading will remove the following, but del_taskwiki_heading
 will only remove the taskwiki heading:
 
-### Text {#Text}
+### Text
 
 Normal text should appear with only one blank line preceding next
 heading.
 
-## Empty Parent Heading with Non-Empty Child should appear {#Empty Parent Heading with Non-Empty Child should appear}
+## Empty Parent Heading with Non-Empty Child should appear
 
-### Non-Empty Child Heading should appear {#Non-Empty Child Heading should appear}
+### Non-Empty Child Heading should appear
 
 Non-Empty Child text should appear.
 
-# Journal 2017-04-26 {#Journal 2017-04-26}
+# Journal 2017-04-26
 
 Should concatenate non-contiguous Monday and Wednesday and ignore
 missing Tuesday and Thursday. Spurious not for test validation.
