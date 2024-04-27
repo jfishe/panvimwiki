@@ -1,26 +1,14 @@
 {
-  "python.formatting.provider": "black",
-  "python.formatting.blackPath": "black",
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
-  "python.linting.mypyPath": "mypy",
   "python.linting.pydocstyleEnabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.pylintArgs": [
-    "-d",
-    "C0411"
-  ],
-  "python.linting.pylintPath": "pylint",
   "python.sortImports.args": [
     "--multi-line=VERTICAL_HANGING_INDENT",
     "--trailing-comma",
     "--line-length=88"
   ],
-  "python.sortImports.path": "isort",
   "python.linting.mypyArgs": [
     "--no-pretty",
-    "--ignore-missing-imports",
     "--follow-imports=silent",
     "--show-column-numbers",
     "--check_untyped_defs"

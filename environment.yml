@@ -3,8 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - black
-  - flake8
+  - ruff
   - html2text
   - myst-parser
   - mypy
@@ -19,14 +18,14 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-freezegun
-  - python  # [version='<3.12'] # Should match vim --version | grep python3
+  - python [version='<3.12'] # Should match vim --version | grep python3
   - sphinx
   - tox
   - tox-conda
   - unify
   - yapf
   - pip:
-    # - -e .
+    - -e .
     # - vim-tools
     - vim_bridge3
     # - covimerage dependencies conflict with pytest. `pipx run covimerage` works.

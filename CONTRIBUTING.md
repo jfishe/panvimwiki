@@ -99,17 +99,18 @@ This often provides additional considerations and avoids unnecessary work.
 
 Before you start coding, we recommend creating an isolated [virtual environment]
 to avoid any problems with your installed Python packages.
-This can easily be done via either [virtualenv]:
+This can easily be done via either [uv]:
 
 ```bash
-virtualenv <PATH TO VENV>
+uv venv <PATH TO VENV>
 source <PATH TO VENV>/bin/activate
+uv pip install --requirement requirements-dev.txt
 ```
 
 or [Miniconda]:
 
 ```bash
-conda create -n panvimwiki python=3 six virtualenv pytest pytest-cov
+conda env create --file=environment.yml
 conda activate panvimwiki
 ```
 
@@ -130,7 +131,7 @@ conda activate panvimwiki
 4. You should run:
 
    ```bash
-   pip install -U pip setuptools -e .
+   uv pip install --upgrade --editable .
    ```
 
    to be able to import the package under development in the Python REPL.
@@ -138,7 +139,7 @@ conda activate panvimwiki
 5. Install [pre-commit]:
 
    ```bash
-   pip install pre-commit
+   pipx install pre-commit
    pre-commit install
    ```
 
@@ -171,7 +172,7 @@ conda activate panvimwiki
 
    Please make sure to see the validation messages from [pre-commit] and fix
    any eventual issues.
-   This should automatically use [flake8]/[black] to check/fix the code style
+   This should automatically use [ruff] to check/fix the code style
    in a way that is compatible with the project.
 
    :::{important}
@@ -194,7 +195,7 @@ conda activate panvimwiki
    tox
    ```
 
-   (after having installed [tox] with `pip install tox` or `pipx`).
+   (after having installed [tox] with `pipx`).
 
    You can also use [tox] to run several other pre-configured tasks in the
    repository. Try `tox -av` to see a list of the available checks.
@@ -256,9 +257,9 @@ package:
    freshly installed. For example:
 
    ```bash
-   virtualenv .venv
+   uv venv
    source .venv/bin/activate
-   .venv/bin/pip install tox
+   uv pip install tox tox-uv
    .venv/bin/tox -e all
    ```
 
@@ -295,16 +296,16 @@ on [PyPI], the following steps can be used to release a new version for
     to collectively create software are general and can be applied to all sorts
     of environments, including private companies and proprietary code bases.
 
-[black]: https://pypi.org/project/black/
 [commonmark]: https://commonmark.org/
 [contribution-guide.org]: https://www.contribution-guide.org/
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
-[flake8]: https://flake8.pycqa.org/en/stable/
+[gitHub actions]: https://github.com/jfishe/panvimwiki/actions
 [git]: https://git-scm.com
 [github web interface]:  https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
 [guide created by freecodecamp]: https://github.com/freecodecamp/how-to-contribute-to-open-source
+[issue tracker]: https://github.com/jfishe/panvimwiki/issues
 [miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [myst]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
 [other kinds of contributions]: https://opensource.guide/how-to-contribute
@@ -313,11 +314,10 @@ on [PyPI], the following steps can be used to release a new version for
 [pypi]: https://pypi.org/
 [pytest can drop you]: https://docs.pytest.org/en/stable/how-to/failures.html#dropping-to-pdb-on-failures
 [python software foundation's code of conduct]: https://www.python.org/psf/conduct/
-[sphinx]: https://www.sphinx-doc.org/en/master/
-[tox]: https://tox.readthedocs.io/en/stable/
-[virtual environment]: https://realpython.com/python-virtual-environments-a-primer/
-[virtualenv]: https://virtualenv.pypa.io/en/stable/
-[repository]: https://github.com/jfishe/panvimwiki
-[issue tracker]: https://github.com/jfishe/panvimwiki/issues
-[gitHub actions]: https://github.com/jfishe/panvimwiki/actions
 [releases]: https://github.com/jfishe/panvimwiki/releases
+[repository]: https://github.com/jfishe/panvimwiki
+[ruff]: https://github.com/astral-sh/ruff
+[sphinx]: https://www.sphinx-doc.org/en/master/
+[tox]: https://tox.wiki/
+[uv]: https://github.com/astral-sh/uv
+[virtual environment]: https://realpython.com/python-virtual-environments-a-primer/

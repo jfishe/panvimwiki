@@ -22,6 +22,7 @@ vimversion: Vim v9.0
 [![Documentation Status][]][1] [![PyPI-Server][]][2] [![Test and Publish
 Python 🐍 distribution 📦 to PyPI and TestPyPI][]][3] [![Project
 generated with PyScaffold]][4]
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 ## Introduction
 
