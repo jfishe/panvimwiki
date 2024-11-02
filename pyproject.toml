@@ -7,3 +7,37 @@ build-backend = "setuptools.build_meta"
 # For smarter version schemes and other configuration options,
 # check out https://github.com/pypa/setuptools_scm
 version_scheme = "no-guess-dev"
+
+[tool.ruff]
+extend-exclude = ["docs/conf.py"]
+
+[tool.ruff.lint]
+select = [
+  # pydocstyle
+  "D",
+  # Augment the convention by requiring an imperative mood for all
+  # docstrings.
+  "D401",
+  # pycodestyle
+  "E",
+  # trailing-whitespace (W291)
+  # missing-newline-at-end-of-file (W292)
+  "W",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort
+  "I",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 20

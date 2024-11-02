@@ -6,14 +6,12 @@ exclude: |
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
-      - id: check-case-conflict
       - id: check-json
       - id: check-merge-conflict
-      - id: check-symlinks
       - id: check-xml
       - id: check-yaml
       - id: debug-statements
@@ -25,74 +23,37 @@ repos:
       - id: requirements-txt-fixer
       - id: trailing-whitespace
 
-  ## If you want to automatically "modernize" your Python code:
-  # - repo: https://github.com/asottile/pyupgrade
-  #   rev: v3.15.2
-  #   hooks:
-  #     - id: pyupgrade
-  #       args: ["--py37-plus"]
-
+  ## ruff-pre-commit
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.4.2
+    rev: v0.7.2
     hooks:
       # Run the linter.
       - id: ruff
+        types_or: [python, pyi]
         args: ["--fix", "--show-fixes"]
       # Run the formatter.
       - id: ruff-format
-
-  ## If you want to avoid flake8 errors due to unused vars or imports:
-  # - repo: https://github.com/PyCQA/autoflake
-  #   rev: v2.3.1
-  #   hooks:
-  #     - id: autoflake
-  #       args:
-  #         - "--in-place"
-  #         - "--remove-all-unused-imports"
-  #         - "--remove-unused-variables"
-
-  # - repo: https://github.com/PyCQA/isort
-  #   rev: 5.13.2
-  #   hooks:
-  #     - id: isort
-
-  # - repo: https://github.com/psf/black
-  #   rev: 24.4.2
-  #   hooks:
-  #     - id: black
-  #       language_version: python3
-
-  ## If like to embrace black styles even in the docs:
-  - repo: https://github.com/asottile/blacken-docs
-    rev: 1.16.0
-    hooks:
-      - id: blacken-docs
-        additional_dependencies: [black]
-
-  # - repo: https://github.com/PyCQA/flake8
-  #   rev: 7.0.0
-  #   hooks:
-  #     - id: flake8
-  #     ## You can add flake8 plugins via `additional_dependencies`:
-  #     #  additional_dependencies: [flake8-bugbear]
+        types_or: [python, pyi]
 
   ## Check for misspells in documentation files:
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         # args:
         #   - "--ignore-regex"
         #   - "eference|reate|rocess"
+
   ## Markdown Lint
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.39.0
+    rev: v0.42.0
     hooks:
       - id: markdownlint-fix
         args:
           - "--ignore"
           - "tests/**/*.md"
+
   ## Vint Vim script linting
   - repo: https://github.com/Vimjas/vint
     rev: v0.4a3
