@@ -1,4 +1,5 @@
 srcdir := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+tmpdir := $(srcdir)/tmp
 
 help: ## Prints help for targets with comments
 	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -9,7 +10,7 @@ bundledir := tests/vim/bundle
 VADER_DIR := tests/vim
 VADER_INPUT := $(VADER_DIR)/reference_citation.md
 
-vader: $(VADER_INPUT) ${bundledir}/vader.vim ${bundledir}/vimwiki ${bundledir}/panvimwiki | ${bundledir}  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
+vader: $(VADER_INPUT) ${bundledir}/vader.vim ${bundledir}/vimwiki ${bundledir}/panvimwiki | ${bundledir}/ ${tmpdir}/  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
 
 .PHONY: vader
 
@@ -17,21 +18,21 @@ vader: $(VADER_INPUT) ${bundledir}/vader.vim ${bundledir}/vimwiki ${bundledir}/p
 tests/vim/%.md: tests/func/%.md
 	cp $< $@
 
-${bundledir}/vader.vim: | ${bundledir}
+${bundledir}/vader.vim: | ${bundledir}/
 	git clone https://github.com/junegunn/vader.vim.git ${bundledir}/vader.vim
 
-${bundledir}/vimwiki: | ${bundledir}
+${bundledir}/vimwiki: | ${bundledir}/
 	git clone https://github.com/vimwiki/vimwiki.git ${bundledir}/vimwiki
 
-${bundledir}/panvimwiki: | ${bundledir}
+${bundledir}/panvimwiki: | ${bundledir}/
 	mkdir ${bundledir}/panvimwiki
 	ln -s ${srcdir}/after ${bundledir}/panvimwiki/after
 	ln -s ${srcdir}/autoload ${bundledir}/panvimwiki/autoload
 	ln -s ${srcdir}/plugin ${bundledir}/panvimwiki/plugin
 	ln -s ${srcdir}/doc ${bundledir}/panvimwiki/doc
 
-${bundledir}:
-	mkdir ${bundledir}
+${bundledir}/ ${tmpdir}/:
+	mkdir -p $@
 
 # https://raw.githubusercontent.com/plasticboy/vim-markdown/master/Makefile
 build/:
@@ -78,8 +79,8 @@ ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua ${lua-filter}/skip-b
 clean: ## Remove build, dist, tests/vim/bundle and docs/_build
 	tox -e clean
 	${MAKE} --directory=docs clean
-	rm -rf ${bundledir}
+	rm -rf ${bundledir} $(tmpdir)
 	rm -f doc/*
-	rm tests/vim/prepm.docx
+	# rm tests/vim/prepm.docx
 
 .PHONY: clean

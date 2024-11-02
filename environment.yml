@@ -3,27 +3,19 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - ruff
-  - html2text
-  - myst-parser
-  - mypy
-  - pandoc
-  - panflute
+  # - html2text
+  - pandoc [version='>=3.5']
+  - panflute [version='<2.1']
   - pip
   - pipx
   - pre-commit
-  - pydash
-  - pydocstyle
   - pypandoc
   - pytest
   - pytest-cov
   - pytest-freezegun
   - python [version='<3.12'] # Should match vim --version | grep python3
   - sphinx
-  - tox
-  - tox-conda
-  - unify
-  - yapf
+  - tox [version='>=4.23.2']
   - pip:
     - -e .
     # - vim-tools
