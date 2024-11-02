@@ -7,6 +7,9 @@ Before (Setup conversion output vimwiki/html, etc.):
 
   let g:docx = s:tmpdir .. '/vimwiki_html/docx'
   Log resolve(g:docx)
+  call delete($TMP .. "/prepm.docx")
+  call delete($TMP .. "/prepm.wiki")
+  call delete($TMP .. "/prepm.md")
 
 Execute (VimwikiConvert):
   edit vimwiki/diary/2017-04-24.wiki
@@ -25,7 +28,7 @@ Execute (VimwikiConvertWeek non-diary):
 Execute (VimwikiConvertWeek):
   edit vimwiki/diary/2017-04-26.wiki
   VimwikiConvertWeek
-  Assert filereadable(g:vimdir .. '/prepm.docx')
+  Assert filereadable($TMP .. "/prepm.docx")
 
 Execute (extra_args is empty):
   unlet g:panvimwiki_settings.extra_args
@@ -40,15 +43,15 @@ Execute (wiki2pandoc concatenate no dates):
 Execute (wiki2pandoc concatenate start/end dates):
   edit vimwiki/diary/2017-04-24.wiki
   Log Wiki2pandoc("1", "1", "docx", "2017-04-26", "2017-04-24", "0")
-  Assert filereadable(g:vimdir .. '/prepm.docx')
+  Assert filereadable($TMP .. "/prepm.docx")
 
 Execute (wiki2pandoc concatenate without end date):
   edit vimwiki/diary/2017-04-24.wiki
   Log Wiki2pandoc("1", "1", "docx", "", "2017-04-24", "0")
-  Assert filereadable(g:vimdir .. '/prepm.docx')
+  Assert filereadable($TMP .. "/prepm.docx")
 
 Execute (VimwikiConvertWeek without g:panvimwiki_settings):
   unlet g:panvimwiki_settings
   edit vimwiki/diary/2017-04-26.wiki
   VimwikiConvertWeek
-  Assert filereadable(g:vimdir .. '/prepm.docx')
+  Assert filereadable($TMP .. "/prepm.docx")
