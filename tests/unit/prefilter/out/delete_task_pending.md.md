@@ -11,18 +11,16 @@ cat delete_task_pending.md | delete_task_pending |
 2.  \[.\] Numbered list done1 item 1 should appear
 3.  \[o\] Numbered list done2 item 2 should appear
 
-```{=html}
 <!-- -->
-```
+
 b)  \[.\] Numbered list done1 item 1 should appear
 c)  \[o\] Numbered list done2 item 2 should appear
 d)  \[O\] Numbered list done3 item 3 should appear
 e)  \[X\] Numbered list done4 item 4 should appear
 f)  \[-\] Numbered list doneX item 5 should appear
 
-```{=html}
 <!-- -->
-```
+
 4.  \[O\] Numbered list done3 item 3 should appear
 5.  \[X\] Numbered list done4 item 4 should appear
 6.  \[-\] Numbered list doneX item 5 should appear
