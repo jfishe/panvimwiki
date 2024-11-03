@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  # - html2text
   - pandoc [version='>=3.5']
   - panflute [version='<2.1']
   - pip
@@ -18,7 +17,5 @@ dependencies:
   - tox [version='>=4.23.2']
   - pip:
     - -e .
-    # - vim-tools
     - vim_bridge3
-    # - covimerage dependencies conflict with pytest. `pipx run covimerage` works.
     - pytest-pretty-terminal
