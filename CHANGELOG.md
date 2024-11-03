@@ -13,7 +13,9 @@ and this project adheres to
 
 ### Added
 
-- Conquer of Completion (CoC) source *\[Zettelkasten\]* for YAML header fields.
+- Conquer of Completion (CoC) can complete
+  [Vim-Zettel](https://github.com/michal-h21/vim-zettel) YAML front_matter
+  fields:
   - `type:` note, literature, reference, or index.
   - `status:` Create, Process, or Reviewed.
 - Pre-commit with [Vimjas/vint](https://github.com/Vimjas/vint).
@@ -23,12 +25,24 @@ and this project adheres to
 - `VimwikiConvert` supports Vimwiki Markdown syntax (Issue #2).
 - Duplicate unit tests for Vimwiki default and markdown syntax. Include in the
   input file a command line invocation to produce expected output.
-- XFAIL filters that do not support markdown.
+- Fix Issue #2. Change `delete_taskwiki_heading` to remove anchors and work for
+  markdown and vimwiki syntax.
+- `wiki2pandoc` (`:VimwikiReference` and `:VimwikiMarkdownFormat`) from
+  `--wrap=auto` to None because Vimwiki syntax does not allow wrapping in
+  links, unlike pandoc.
+- Fix `tox -e linkcheck` errors.
+- Pre-commit replace python pyupgrade, flake8, isort, black, and
+  blacken-docs with `ruff` and fix `ruff` and `PyRight` errors.
+- Move `ruff` and `markdownlint-cli` configuration to `pyproject.toml`.
+- GitHub Actions update versions.
+- Pandoc update to v3.5.
+- Conda remove tox-conda and unused packages.
+- Tox update to v4.23.2.
 
 ### Removed
 
 - Replace UltiSnips Snippets for Zettelkasten YAML with Conquer of Completion
-  (CoC) source *\[Zettelkasten\]*.
+  (CoC).
 
 ## [0.9.0] - 2024-03-24
 

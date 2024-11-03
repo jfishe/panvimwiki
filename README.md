@@ -67,16 +67,18 @@ if has('python3')
 endif
 ```
 
-Install [Conquer of Completion (CoC)] to use CoC source *\[Zettelkasten\]*.
+Install [Conquer of Completion (CoC)] to use [Zettelkasten completion](#completion).
 
 ## Usage
 
 ### Completion
 
-- Conquer of Completion (CoC) source *\[Zettelkasten\]* for YAML header fields
-  completes:
-  - `type:` note, literature, reference, or index.
-  - `status:` Create, Process, or Reviewed.
+Conquer of Completion (CoC) can complete [Vim-Zettel] YAML header fields:
+
+- `type:` note, literature, reference, or index.
+- `status:` Create, Process, or Reviewed.
+
+Refer to `:h vim-zettel.txt`, especially `:h g:zettel_options`.
 
 ### Command Line Shell
 
@@ -190,11 +192,11 @@ Convert citations to a reference list.
 ::::: {#refs .references .csl-bib-body .hanging-indent entry-spacing="0"}
 ::: {#ref-bloggs-jones .csl-entry}
 Bloggs, A. J., and X. Y. Jones. 1959. "Title Title Title Title Title Title
-Title Title Title Title." *Journal Journal Journal*. :::
+Title Title Title Title." _Journal Journal Journal_. :::
 
 ::: {#ref-chomsky-73 .csl-entry}
-Chomsky, N. 1973. "Conditions on Transformations." In *A Festschrift for Morris
-Halle*, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart &
+Chomsky, N. 1973. "Conditions on Transformations." In _A Festschrift for Morris
+Halle_, edited by S. R. Anderson and P. Kiparsky. New York: Holt, Rinehart &
 Winston.
 :::
 :::::
@@ -263,7 +265,7 @@ MD033:
   # MD033/no-inline-html Inline HTML [Element: div]
   # Allowed elements
   allowed_elements:
-    - 'div'
+    - "div"
 ```
 
 `VimwikiReference` overwrites the file, so Vim may prompt to reload the
@@ -355,6 +357,9 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
 [vimrc]: https://neovim.io/doc/user/starting.html
+[Vim-Zettel]: https://github.com/michal-h21/vim-zettel
 [wikilinks_title_after_pipe]: https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe
+
 <!-- markdownlint-disable MD051 -->
+
 [g:panvimwiki_settings]: #g-panvimwiki-settings

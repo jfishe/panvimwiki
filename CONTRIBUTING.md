@@ -87,7 +87,7 @@ Pandoc filters rely on [Panflute](https://scorreia.com/software/panflute/) and
 use the template
 [located here](https://github.com/sergiocorreia/panflute/blob/master/docs/source/_static/template.py).
 
-Plain text pre-filters follow a similar format but do not use panflute.
+Plain text pre-filters follow a similar format but do not use `panflute`.
 
 ### Submit an issue
 
@@ -195,7 +195,7 @@ conda activate panvimwiki
    tox
    ```
 
-   (after having installed [tox] with `pipx`).
+   (after having installed [tox] with `uv tool install tox --with tox-uv`).
 
    You can also use [tox] to run several other pre-configured tasks in the
    repository. Try `tox -av` to see a list of the available checks.
