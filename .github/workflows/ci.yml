@@ -84,8 +84,8 @@ jobs:
       - name: Run tests
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
-          tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}' '${{ matrix.python }}'
-          -- -rFEx --durations 10 --color yes -vv # pytest args
+          tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
+          -e '${{ matrix.python }}' -- -rFEx --durations 10 --color yes -vv # pytest args
       - name: Generate coverage report
         run: pipx run coverage lcov -o coverage.lcov
       - name: Coveralls GitHub Action
