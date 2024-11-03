@@ -101,6 +101,11 @@ myst_enable_extensions = [
 
 # myst-anchors -l 5 README.md
 myst_heading_anchors = 5
+linkcheck_anchors_ignore_for_url = [
+    "https://github.com/JessicaTegner/pypandoc",
+    "https://neovim.io/doc/user/repeat.html",
+    "https://neovim.io/doc/user/windows.html",
+]
 
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]
