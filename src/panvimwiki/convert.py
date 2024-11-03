@@ -98,9 +98,8 @@ def convert(
             source = filter_out.stdout
 
     # Pandoc Filter
-    if extra_args is None:
-        extraargs = ()
-    else:
+    extraargs = ()
+    if extra_args is not None:
         extraargs = extra_args
 
     try:

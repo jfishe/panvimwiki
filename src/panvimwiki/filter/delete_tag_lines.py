@@ -23,15 +23,15 @@ def action(elem, doc):
         if (
             isinstance(elem, pf.Para)
             and isinstance(elem.content[0], pf.Span)
-            and elem.content[-1].classes == ["tag"]
+            and elem.content[-1].classes == ["tag"]  # pyright: ignore [ reportAttributeAccessIssue ]
         ):
             return []
-    except AttributeError:
+    except AttributeError as err:
         pf.debug(elem.content)
         raise AttributeError(
             "Vimwiki tagline should follow the item tagged. "
             "Try moving the tagline below the paragraph."
-        )
+        ) from err
     # return None -> element unchanged
     # return [] -> delete element
     return None

@@ -28,17 +28,17 @@ def action(elem, doc):
     subst = ""
 
     if isinstance(elem, pf.Header):
-        result = re.sub(
-            regex,
-            subst,
-            pf.convert_text(
+        result = re.sub(  # pyright: ignore [ reportCallIssue ]
+            pattern=regex,
+            repl=subst,
+            string=pf.convert_text(  # pyright: ignore [ reportArgumentType ]
                 text=elem,
                 input_format="panflute",
                 output_format="markdown",
             ),
-            0,
+            count=0,
         )
-        elem.content = pf.convert_text(result)[0].content
+        elem.content = pf.convert_text(result)[0].content  # pyright: ignore [ reportAttributeAccessIssue, reportIndexIssue ]
         elem.identifier = ""
         return elem
     # return None -> element unchanged

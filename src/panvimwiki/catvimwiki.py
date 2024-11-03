@@ -73,7 +73,7 @@ def catdiary(
         inclusive of both.
 
     Raises
-    ______
+    ------
     ValueError
         If `startdate` is after `enddate`
 

@@ -37,7 +37,7 @@ def main(doc=None):
     Pandoc filter using panflute
     """
     newdoc = pf.load()
-    for i in range(5):
+    for _ in range(5):
         newdoc = pf.run_filter(action, prepare=prepare, finalize=finalize, doc=newdoc)
 
     return pf.dump(newdoc)

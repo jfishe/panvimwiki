@@ -132,7 +132,7 @@ def test_convert(
 
 
 def test_convert_postfilter(tmp_path):
-    r"""Given Markdown with pandoc citeproc references,
+    r"""Given Markdown with pandoc citeproc references.
 
     When pypandoc.convert_text and postfilter reference_citation applied,
     Then return expected references as reference links.
@@ -170,7 +170,7 @@ def test_convert_postfilter(tmp_path):
 
 
 def test_convert_syntax_markdown(tmp_path):
-    r"""Given Markdown with citeproc references, wikilinks and task_lists,
+    r"""Given Markdown with citeproc references, wikilinks and task_lists.
 
     When converting to docx with default prefilters and filters,
     Then pandoc can convert back to expected Markdown.

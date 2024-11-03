@@ -61,7 +61,8 @@ def prefilter(
         Regex re.search string and replacement string for re.sub.
 
     """
-    for line in fileinput.input():
-        lineout = action(line, delete, replace)
-        if lineout is not None:
-            print(lineout.rstrip("\n"))
+    with fileinput.input() as f:
+        for line in f:
+            lineout = action(line, delete, replace)
+            if lineout is not None:
+                print(lineout.rstrip("\n"))

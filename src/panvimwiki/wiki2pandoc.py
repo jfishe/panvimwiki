@@ -93,7 +93,7 @@ def wiki2pandoc(
     Concatenate Diary Notes and/or convert Vimwiki Notes to selected format.
 
     Parameters
-    __________
+    ----------
     is_diary
         String containing a 0, False, or 1, True, whether current buffer is a
         Vimwiki DiaryNote.

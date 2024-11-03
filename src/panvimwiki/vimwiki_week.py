@@ -39,7 +39,7 @@ def concatenate_diary(
         Path to concatenated Vimwiki diary file
 
     Raises
-    ______
+    ------
     ValueError
         `catdiary()` raises ValueError if `start_date` is after `end_date`
 
