@@ -12,7 +12,7 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-freezegun
-  - python[version='<3.12'] # Should match vim --version | grep python3
+  - python[version='<3.11']
   - sphinx
   - tox[version='>=4.23.2']
   - pip:
