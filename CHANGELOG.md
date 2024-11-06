@@ -13,6 +13,14 @@ and this project adheres to
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [0.10.0] - 2024-11-06
+
+### Added
+
 - Conquer of Completion (CoC) can complete
   [Vim-Zettel](https://github.com/michal-h21/vim-zettel) YAML front_matter
   fields:
@@ -152,7 +160,8 @@ and this project adheres to
 
 - Switch build to flit.
 
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.9.0...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.0...HEAD
+[0.10.0]: https://github.com/jfishe/panvimwiki/compare/0.9.0...HEAD
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
