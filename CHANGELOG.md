@@ -17,7 +17,7 @@ and this project adheres to
 
 ### Removed
 
-## [0.10.0] - 2024-11-06
+## [0.10.1] - 2024-11-06
 
 ### Added
 
@@ -160,8 +160,8 @@ and this project adheres to
 
 - Switch build to flit.
 
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.0...HEAD
-[0.10.0]: https://github.com/jfishe/panvimwiki/compare/0.9.0...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.1...HEAD
+[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1

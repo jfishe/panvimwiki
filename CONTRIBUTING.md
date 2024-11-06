@@ -287,7 +287,7 @@ on [PyPI], the following steps can be used to release a new version for
    Also check the sizes of the distributions, if they are too big (e.g., >
    500KB), unwanted clutter may have been accidentally included.
 6. Push the new tag to the upstream [repository],
-   e.g., `git push upstream v1.2.3`
+   e.g., `git push --tags`
 7. [GitHub Actions] should run tests, upload to TestPyPI and [PyPI], and create
    a signed [release][releases].
 
