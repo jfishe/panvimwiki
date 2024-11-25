@@ -15,7 +15,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 let b:undo_ftplugin = get(b:, 'undo_ftplugin', '')
-if !empty('b:undo_ftplugin')
+if ! empty(b:undo_ftplugin)
   let b:undo_ftplugin ..=  ' | unlet b:did_ftplugin_panvimwiki'
 else
   let b:undo_ftplugin = 'unlet b:did_ftplugin_panvimwiki'
