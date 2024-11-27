@@ -85,7 +85,8 @@ jobs:
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
-          -e '${{ matrix.python }}' -- -rFEx --durations 10 --color yes -vv # pytest args
+          -e '${{ matrix.python }}'
+          -- -rFEx --durations 10 --color yes -vv # pytest args
       - name: Generate coverage report
         run: pipx run coverage lcov -o coverage.lcov
       - name: Coveralls GitHub Action
@@ -146,9 +147,11 @@ jobs:
         with: { name: python-distribution-files, path: dist/ }
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
   github-release:
     name: >-
-      Sign the Python 🐍 distribution 📦 with Sigstore
+      Sign the Python 🐍 distribution 📦 with Sigstore,
+      create release notes from ChangeLog,
       and upload them to GitHub Release
     needs:
       - publish-to-pypi
@@ -159,6 +162,8 @@ jobs:
       id-token: write # IMPORTANT: mandatory for sigstore
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: CSchoel/release-notes-from-changelog@v1
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with: { name: python-distribution-files, path: dist/ }
@@ -176,6 +181,16 @@ jobs:
           '${{ github.ref_name }}'
           --repo '${{ github.repository }}'
           --notes ""
+          --draft
+      - name: Update release notes from changelog
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release edit
+          '${{ github.ref_name }}'
+          --notes-file RELEASE.md
+          --title "Version $RELEASE_VERSION"
+          --draft=false
       - name: Upload artifact signatures to GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
