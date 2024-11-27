@@ -13,6 +13,13 @@ and this project adheres to
 
 ### Added
 
+- GitHub Action `CSchoel/release-notes-from-changelog`
+
+### Fixed
+
+- Stop clobbering `b:undo_ftplugin`, when not empty, in
+  `after/ftplugin/vimwiki.vim`.
+
 ### Changed
 
 ### Removed
@@ -28,17 +35,21 @@ and this project adheres to
   - `status:` Create, Process, or Reviewed.
 - Pre-commit with [Vimjas/vint](https://github.com/Vimjas/vint).
 
+### Fixed
+
+- Issue #2. Change `delete_taskwiki_heading` to remove anchors and work for
+  markdown and vimwiki syntax.
+- `tox -e linkcheck` errors.
+- v0.10.0, fix incorrect version of `pypa/gh-action-pypi-publish`.
+
 ### Changed
 
 - `VimwikiConvert` supports Vimwiki Markdown syntax (Issue #2).
 - Duplicate unit tests for Vimwiki default and markdown syntax. Include in the
   input file a command line invocation to produce expected output.
-- Fix Issue #2. Change `delete_taskwiki_heading` to remove anchors and work for
-  markdown and vimwiki syntax.
 - `wiki2pandoc` (`:VimwikiReference` and `:VimwikiMarkdownFormat`) from
   `--wrap=auto` to None because Vimwiki syntax does not allow wrapping in
   links, unlike pandoc.
-- Fix `tox -e linkcheck` errors.
 - Pre-commit replace python pyupgrade, flake8, isort, black, and
   blacken-docs with `ruff` and fix `ruff` and `PyRight` errors.
 - Move `ruff` and `markdownlint-cli` configuration to `pyproject.toml`.
