@@ -14,11 +14,13 @@ and this project adheres to
 ### Added
 
 - GitHub Action `CSchoel/release-notes-from-changelog`
+- Adopt [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+  via `pre-commit` with `gitlint`.
 
 ### Fixed
 
-- Stop clobbering `b:undo_ftplugin`, when not empty, in
-  `after/ftplugin/vimwiki.vim`.
+- `after/ftplugin/vimwiki.vim` clobbers `b:undo_ftplugin`.
+- `reference_citation` output should not include leading `#`.
 
 ### Changed
 

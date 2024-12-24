@@ -139,8 +139,10 @@ conda activate panvimwiki
 5. Install [pre-commit]:
 
    ```bash
-   pipx install pre-commit
-   pre-commit install
+   uv tool install pre-commit
+   pre-commit autoupdate
+   pre-commit install --install-hooks
+   pre-commit install --hook-type commit-msg
    ```
 
    `panvimwiki` comes with a lot of hooks configured to automatically help the
@@ -169,6 +171,17 @@ conda activate panvimwiki
    ```
 
    to record your changes in [git].
+
+   This project adheres to [Conventional Commits][conventional commits].
+   The commit message should be structured as follows:
+
+   ```text
+   <type>[optional scope]: <description>
+
+   [optional body]
+
+   [optional footer(s)]
+   ```
 
    Please make sure to see the validation messages from [pre-commit] and fix
    any eventual issues.
@@ -298,6 +311,7 @@ on [PyPI], the following steps can be used to release a new version for
 
 [commonmark]: https://commonmark.org/
 [contribution-guide.org]: https://www.contribution-guide.org/
+[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html

@@ -98,7 +98,7 @@ def filter_reference(source: str) -> str | None:
     lines = []
     for result in re.findall("::: {#ref-(.*?):::", source, re.DOTALL):
         entry = result.split("\n")
-        reference = f"[#ref-{entry[0].split()[0]}]:"
+        reference = f"[ref-{entry[0].split()[0]}]:"
         citation = "\n".join(entry[1:])
         lines.append(f"{reference} {citation}")
     return "\n".join(lines)
