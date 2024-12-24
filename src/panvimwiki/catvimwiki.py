@@ -8,7 +8,7 @@ from pathlib import Path
 from dateutil.relativedelta import MO, TH, relativedelta
 
 
-def get_last_thursday(today: datetime.date = None) -> datetime.date:
+def get_last_thursday(today: datetime.date | None = None) -> datetime.date:
     """Return datetime for closest Thursday before today.
 
     Parameters
@@ -27,7 +27,7 @@ def get_last_thursday(today: datetime.date = None) -> datetime.date:
     return today + relativedelta(weekday=TH(-1))
 
 
-def get_last_monday(today: datetime.date = None) -> datetime.date:
+def get_last_monday(today: datetime.date | None = None) -> datetime.date:
     """Return datetime for closest Monday before today.
 
     Parameters
@@ -49,7 +49,7 @@ def get_last_monday(today: datetime.date = None) -> datetime.date:
 def catdiary(
     startdate: datetime.date,
     enddate: datetime.date,
-    wikidiary: Path = None,
+    wikidiary: Path | None = None,
 ) -> Path:
     """Concatenate Vimwiki diary files.
 
@@ -96,9 +96,10 @@ def catdiary(
     tmppath: str = os.getenv("TMP", os.getcwd())
     diaryout: Path = Path(tmppath) / "prepm.wiki"
 
-    with open(diaryout, "w", encoding="utf8") as fout, fileinput.input(
-        files=diaryin, openhook=fileinput.hook_encoded("utf-8")
-    ) as fin:
+    with (
+        open(diaryout, "w", encoding="utf8") as fout,
+        fileinput.input(files=diaryin, openhook=fileinput.hook_encoded("utf-8")) as fin,
+    ):
         for line in fin:
             fout.write(line)
 

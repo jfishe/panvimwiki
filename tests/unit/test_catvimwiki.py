@@ -1,7 +1,6 @@
 """Unit Tests concatenate Vimwiki diary files."""
 
 import datetime
-from typing import Tuple
 
 import pytest
 
@@ -56,7 +55,7 @@ def test_get_last_monday(test_input: str, expected: str):
         ("2017-04-27", "2017-04-26"),
     ],
 )
-def test_catdiary_start_gt_end(test_input: Tuple[str, str]):
+def test_catdiary_start_gt_end(test_input: tuple[str, str]):
     """Given startdate after enddate, catdiary should raise ValueError.
 
     Parameters

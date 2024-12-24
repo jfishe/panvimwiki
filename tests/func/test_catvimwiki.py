@@ -3,10 +3,9 @@
 import fileinput
 import re
 from pathlib import Path
-from typing import List, Tuple
 
 
-def search_not(diaryout: Path) -> Tuple[List[str], ...]:
+def search_not(diaryout: Path) -> tuple[list[str], ...]:
     """Regex search for not & should appear, case-insensitive.
 
     Parameters

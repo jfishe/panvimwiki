@@ -1,8 +1,8 @@
 """Conftest.py for panvimwiki."""
 
 import datetime
+from collections.abc import Generator
 from pathlib import Path
-from typing import Generator
 
 import pytest
 
