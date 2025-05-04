@@ -21,8 +21,15 @@ and this project adheres to
 
 - `after/ftplugin/vimwiki.vim` clobbers `b:undo_ftplugin`.
 - `reference_citation` output should not include leading `#`.
+- Neovim does not load plugin: Remove check for 'patch-8.2.0578h'.
 
 ### Changed
+
+- Support [Semantic Line Breaks](https://sembr.org/) by changing default [pandoc](https://pandoc.org/)
+  default from `--wrap=none` to `--wrap=preserve` in `:he
+  VimwikiMarkdownFormat` and `:he VimwikiReference`.
+- Constrain conda `environment.yml`, pandoc versions and vim to match Github
+  Actions default Ubuntu.
 
 ### Removed
 

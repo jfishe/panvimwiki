@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - pandoc[version='>=3.5']
+  - pandoc[version='>=3.5,<3.6']
   - panflute[version='<2.1']
   - pip
   - pipx
@@ -15,6 +15,7 @@ dependencies:
   - python[version='<3.12'] # Should match vim --version | grep python3
   - sphinx
   - tox[version='>=4.23.2']
+  - vim
   - pip:
     - -e .
     - vim_bridge3

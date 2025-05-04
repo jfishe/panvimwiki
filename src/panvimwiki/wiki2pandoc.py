@@ -27,7 +27,7 @@ def vimwiki_task_link() -> None:
         $ pandoc \
             --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
             --standalone \
-            --wrap=none \
+            --wrap=preserve \
             --to=gfm | wikilink_markdown
 
     """
@@ -42,7 +42,7 @@ def vimwiki_task_link() -> None:
         extra_args=(
             "--standalone",
             "--wrap",
-            "none",
+            "preserve",
         ),
         postfilters=("wikilink_markdown",),
     )
@@ -73,7 +73,7 @@ def expand_citeproc() -> None:
             "--citeproc",
             "--standalone",
             "--wrap",
-            "none",
+            "preserve",
         ),
         postfilters=("wikilink_markdown",),
     )

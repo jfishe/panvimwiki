@@ -22,7 +22,7 @@ The markdown output may conflict with Markdownlint.
     --from=markdown+wikilinks_title_after_pipe \
     --standalone \
     --to=markdown-citations \
-    --wrap=none \
+    --wrap=preserve \
     example.md |
   reference_citation
 
