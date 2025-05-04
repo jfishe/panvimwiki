@@ -3,10 +3,9 @@
 " Description: Panvimwiki additions to filetype vimwiki
 " Home: https://github.com/jfishe/panvimwiki
 " Maintainer: John D. Fisher <jdfenw@gmail.com>
-" Last Change: 2024-01-01
+" Last Change: 2025-02-21
 
-if exists('b:did_ftplugin_panvimwiki') || &compatible
-      \ || !executable('pandoc') || !has('patch-8.2.0578h')
+if exists('b:did_ftplugin_panvimwiki') || &compatible || !executable('pandoc')
   finish
 endif
 let b:did_ftplugin_panvimwiki = 1  " Don't load another plugin for this buffer
