@@ -18,25 +18,37 @@ FORMAT = "markdown+wikilinks_title_after_pipe-task_lists"
 def vimwiki_task_link() -> None:
     r"""Convert pandoc tasks and wikilinks to Vimwiki markdown.
 
+    Recommended `mdformat` extensions:
+
+        - mdformat_wikilink: wikilink
+        - mdformat_myst: myst installs,
+        - mdformat_simple_breaks: simple_breaks
+
     Example
     -------
     Call pandoc to convert vimwiki-syntax-links to pandoc markdown. Remove
     pandoc link title, "wikilink", for compatibility with Vimiwki markdown
     syntax, equivalent to: ::
 
-        $ pandoc \
-            --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
+        $ cat wikilink_markdown.md |
+          pandoc \
+            --from=commonmark_x+wikilinks_title_after_pipe \
             --standalone \
             --wrap=preserve \
-            --to=gfm | wikilink_markdown
+            --to=commonmark_x |
+          mdformat --number \
+            --extensions=wikilink \
+            --extensions=myst \
+            --extensions=simple_breaks - |
+          wikilink_markdown
 
     """
     path = Path(vim.eval("expand('%f')"))
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format=FORMAT + "-citations",
-        to="gfm",
+        format=FORMAT,
+        to="commonmark_x",
         prefilters=None,
         filters=None,
         extra_args=(

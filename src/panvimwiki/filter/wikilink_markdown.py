@@ -15,6 +15,8 @@ from __future__ import annotations
 import re
 import sys
 
+import mdformat
+
 DELETE = None
 
 REPLACE = (
@@ -33,6 +35,10 @@ REPLACE = (
         pattern=r" \"wikilink\"\)",
         repl=r")",
     ),
+    dict(
+        pattern=r"\{\.wikilink\}",
+        repl=r"",
+    ),
     # Unescape taskwiki octothorpe and use asterisk-marker.
     dict(
         pattern=r"(^\s{0,})-(\s\[.*)\\(#[0-9A-Fa-f]{8})$",
@@ -46,7 +52,17 @@ def main():
     lines = sys.stdin.read()
     for subst in REPLACE:
         lines = re.sub(**subst, string=lines, flags=re.MULTILINE)
-    print(lines.rstrip("\n"))
+    print(
+        mdformat.text(
+            lines.rstrip("\n"),
+            options={"number": True},
+            extensions=(
+                "myst",
+                "simple_breaks",
+                "wikilink",
+            ),
+        ),
+    )
 
 
 if __name__ == "__main__":
