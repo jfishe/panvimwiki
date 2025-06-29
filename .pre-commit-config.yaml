@@ -1,7 +1,9 @@
 exclude: |
   (?x)(
     ^docs/conf.py|
-    ^.*/out/.*$
+    ^.*/out/.*$|
+    ^.*\.out\..*$|
+    ^.*\.vader$
   )
 
 repos:
@@ -26,7 +28,7 @@ repos:
   ## ruff-pre-commit
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.8.4
+    rev: v0.12.1
     hooks:
       # Run the linter.
       - id: ruff
@@ -38,16 +40,21 @@ repos:
 
   ## Check for misspells in documentation files:
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
+        args:
+          - "--skip"
+          - ".git/*"
+        additional_dependencies:
+          - tomli
         # args:
         #   - "--ignore-regex"
         #   - "eference|reate|rocess"
 
   ## Markdown Lint
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.43.0
+    rev: v0.45.0
     hooks:
       - id: markdownlint-fix
         args:

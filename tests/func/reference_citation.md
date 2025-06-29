@@ -1,6 +1,6 @@
 ---
 title: Try ZettelNew
-date: 2023-09-16 07:36
+date: 2023-09-16
 tags: Zettelkasten
 type: note
 link-citations: true
