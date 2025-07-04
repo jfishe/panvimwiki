@@ -11,7 +11,10 @@ from vim_bridge import bridged
 from panvimwiki.convert import convert
 from panvimwiki.vimwiki_week import concatenate_diary
 
-FORMAT = "markdown+wikilinks_title_after_pipe-task_lists"
+FORMAT = "commonmark_x+wikilinks_title_after_pipe"
+"""Pandoc commonmark_x to hopefully maximize MyST compatibility."""
+FROMCITE = "markdown+wikilinks_title_after_pipe-task_lists"
+"""Pandoc commonmark_x does not support citeproc yet."""
 
 
 @bridged
@@ -75,8 +78,8 @@ def expand_citeproc() -> None:
     convert(
         inputfile=str(path),
         outputfile=str(path),
-        format=FORMAT,
-        to="gfm+wikilinks_title_after_pipe",
+        format=FROMCITE,
+        to=FORMAT,
         prefilters=None,
         filters=None,
         extra_args=(
@@ -181,7 +184,7 @@ def wiki2pandoc(
         outputfile.parent.mkdir(parents=True, exist_ok=True)
 
     if vim.eval("vimwiki#vars#get_wikilocal('syntax')") == "markdown":
-        local_format: str = FORMAT + "-citations"
+        local_format: str = FORMAT
     else:
         local_format = "vimwiki"
 
