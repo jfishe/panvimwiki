@@ -42,7 +42,7 @@ pandoc --from=biblatex --to=markdown default.bib --standalone
 pandoc --citeproc \
   --from=markdown+wikilinks_title_after_pipe-task_lists \
   --standalone \
-  --to=gfm+wikilinks_title_after_pipe  \
+  --to=commonmark_x+wikilinks_title_after_pipe  \
   --wrap=none \
   tests/func/reference_citation.md |
   wikilink_markdown > tests/func/reference_citation.out.md

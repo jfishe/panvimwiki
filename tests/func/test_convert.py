@@ -140,7 +140,7 @@ def test_convert_postfilter(tmp_path):
     pandoc --from=biblatex --to=markdown default.bib --standalone
     pandoc --citeproc \
       --from=markdown+wikilinks_title_after_pipe-task_lists \
-      --to=gfm \
+      --to=commonmark_x \
       --standalone \
       --wrap=none \
       tests/func/reference_citation.md |
@@ -154,7 +154,7 @@ def test_convert_postfilter(tmp_path):
         inputfile=str(inputfile),
         outputfile=None,
         format="markdown+wikilinks_title_after_pipe-task_lists",
-        to="gfm",
+        to="commonmark_x",
         prefilters=None,
         filters=None,
         extra_args=(
