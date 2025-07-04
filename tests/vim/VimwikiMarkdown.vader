@@ -122,7 +122,7 @@ Expect markdown (Append references):
   </div>
 
   </div>
-
+  
 
 Execute (VimwikiMarkdownFormat):
   execute 'buffer ' .. g:mddir .. '/' .. 'wikilink_markdown.md'
