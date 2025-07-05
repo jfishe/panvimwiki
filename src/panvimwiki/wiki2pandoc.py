@@ -68,7 +68,7 @@ def expand_citeproc() -> None:
     """Resolve pandoc citeproc references to GFM div anchors.
 
     Preserve Vimwiki [[URL|Description]] style links with
-    `gfm+wikilinks_title_after_pipe`.
+    `commonmark_x+wikilinks_title_after_pipe`.
 
     `wikilink_markdown` removes backslash-escapes from `task_lists` for
     compatibility with Vimwiki and Taskwiki `vimwiki-todo-lists`.

@@ -1,20 +1,22 @@
+---
+reference-links: true
+---
+
 # Changelog
 
 <!-- markdownlint-disable MD024 -->
 
 All notable changes to this project will be documented in this file.
 
-The format is based on
-[Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to
-[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog], and this project adheres to
+[Semantic Versioning].
 
 ## [Unreleased]
 
 ### Added
 
 - GitHub Action `CSchoel/release-notes-from-changelog`
-- Adopt [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Adopt [Conventional Commits]
   via `pre-commit` with `gitlint`.
 
 ### Fixed
@@ -25,9 +27,18 @@ and this project adheres to
 
 ### Changed
 
-- Support [Semantic Line Breaks](https://sembr.org/) by changing default [pandoc](https://pandoc.org/)
-  default from `--wrap=none` to `--wrap=preserve` in `:he
-  VimwikiMarkdownFormat` and `:he VimwikiReference`.
+- For compatibility with [MyST], replace `gfm` with `commonmark_x` for
+  Markdown output, when:
+  - Converting vimwiki-syntax-links and
+  - Expanding citations.
+- For [MyST] compatibility, `wikilink_markdown` formats pandoc Markdown
+  output with [mdformat] including:
+  - [mdformat_myst],
+  - [mdformat_simple_breaks], and
+  - [mdformat-wikilink].
+- Support [Semantic Line Breaks] by changing default [pandoc]
+  default from `--wrap=none` to `--wrap=preserve` in
+  `:he VimwikiMarkdownFormat` and `:he VimwikiReference`.
 - Constrain conda `environment.yml`, pandoc versions and vim to match Github
   Actions default Ubuntu.
 
@@ -38,11 +49,11 @@ and this project adheres to
 ### Added
 
 - Conquer of Completion (CoC) can complete
-  [Vim-Zettel](https://github.com/michal-h21/vim-zettel) YAML front_matter
+  [Vim-Zettel] YAML front_matter
   fields:
   - `type:` note, literature, reference, or index.
   - `status:` Create, Process, or Reviewed.
-- Pre-commit with [Vimjas/vint](https://github.com/Vimjas/vint).
+- Pre-commit with [Vimjas/vint].
 
 ### Fixed
 
@@ -111,7 +122,7 @@ and this project adheres to
 - `wikilink_markdown` filter converts pandoc tasks to `taskwiki` format.
 - Preserve citations when converting `:h vimwiki-syntax-links`.
 - Copyright date
-- Adopt [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+- Adopt [Keep a Changelog].
 
 ## [0.7.1] - 2024-01-28
 
@@ -132,8 +143,8 @@ and this project adheres to
 ## [0.6] - 2024-01-01
 
 - Vim command `:VimwikiReference` converts
-  [Pandoc Citations](https://pandoc.org/MANUAL.html#citation-syntax)
-  to [reference links](https://pandoc.org/MANUAL.html#reference-links),
+  [Pandoc Citations]
+  to [reference links],
   e.g.,`[anchor:]`, replacing the current file.
 - DOCS: Update `:help`.
 - BUILD: Use pre-commit to remove trailing spaces from Vim help.
@@ -143,7 +154,7 @@ and this project adheres to
 - Vim command `:VimwikiReference` converts `citeproc` entries and appends to
   current buffer.
 - Add `reference_citation` to expand `citeproc` entries in markdown with
-  [vim-zettel](https://github.com/michal-h21/vim-zettel)
+  [vim-zettel]
 - DOCS: add contributing guide.
 - BUILD: Update `panvimdoc` and build Vim help file with tox.
 - BUILD: Upgrade to `pyscaffold` v4.5.
@@ -155,7 +166,7 @@ and this project adheres to
 - Add Makefile to build Vim help from Markdown using `panvimdoc`.
 - Pass `$TMP` in tox.ini, so concatenated diary files do not clutter project
   tree, because when `$TMP` does not exist, use the current working directory.
-- Wiki2pandoc replicates relative path in out—i.e.,
+- Wiki2pandoc replicates relative path in out---i.e.,
   `~/vimwiki/diary/2017-04-04.wiki` becomes
   `~/vimwiki_html/docx/diary/2017-04-04.docx`.
 - Use covimerage to provide coverage for vader tests.
@@ -180,15 +191,29 @@ and this project adheres to
 
 - Switch build to flit.
 
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.1...HEAD
-[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
-[0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
-[0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
-[0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
-[0.7]: https://github.com/jfishe/panvimwiki/compare/0.6...0.7
-[0.6]: https://github.com/jfishe/panvimwiki/compare/0.5...0.6
-[0.5]: https://github.com/jfishe/panvimwiki/compare/0.4.0...0.5
-[0.4.0]: https://github.com/jfishe/panvimwiki/compare/0.3.0...0.4.0
-[0.3.0]: https://github.com/jfishe/panvimwiki/compare/0.2.0...0.3.0
-[0.2.0]: https://github.com/jfishe/panvimwiki/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
+[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
+[0.2.0]: https://github.com/jfishe/panvimwiki/compare/0.1.0...0.2.0
+[0.3.0]: https://github.com/jfishe/panvimwiki/compare/0.2.0...0.3.0
+[0.4.0]: https://github.com/jfishe/panvimwiki/compare/0.3.0...0.4.0
+[0.5]: https://github.com/jfishe/panvimwiki/compare/0.4.0...0.5
+[0.6]: https://github.com/jfishe/panvimwiki/compare/0.5...0.6
+[0.7]: https://github.com/jfishe/panvimwiki/compare/0.6...0.7
+[0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
+[0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
+[0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
+[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+[keep a changelog]: https://keepachangelog.com/en/1.0.0/
+[mdformat]: https://pypi.org/project/mdformat/
+[mdformat-wikilink]: https://pypi.org/project/mdformat-wikilink/
+[mdformat_myst]: https://pypi.org/project/mdformat_myst/
+[mdformat_simple_breaks]: https://pypi.org/project/mdformat_simple_breaks/
+[myst]: https://mystmd.org/
+[pandoc]: https://pandoc.org/
+[pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
+[reference links]: https://pandoc.org/MANUAL.html#reference-links
+[semantic line breaks]: https://sembr.org/
+[semantic versioning]: https://semver.org/spec/v2.0.0.html
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.1...HEAD
+[vim-zettel]: https://github.com/michal-h21/vim-zettel
+[vimjas/vint]: https://github.com/Vimjas/vint

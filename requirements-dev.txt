@@ -8,25 +8,76 @@ freezegun==1.5.0
     # via pytest-freezegun
 iniconfig==2.0.0
     # via pytest
+markdown-it-py==3.0.0
+    # via
+    #   mdformat
+    #   mdformat-wikilink
+    #   mdit-py-plugins
+mdformat==0.7.22
+    # via
+    #   panvimwiki (pyproject.toml)
+    #   mdformat-footnote
+    #   mdformat-frontmatter
+    #   mdformat-myst
+    #   mdformat-simple-breaks
+    #   mdformat-tables
+    #   mdformat-wikilink
+mdformat-footnote==0.1.1
+    # via mdformat-myst
+mdformat-frontmatter==2.0.8
+    # via mdformat-myst
+mdformat-myst==0.2.1
+    # via panvimwiki (pyproject.toml)
+mdformat-simple-breaks==0.0.1
+    # via panvimwiki (pyproject.toml)
+mdformat-tables==1.0.0
+    # via mdformat-myst
+mdformat-wikilink==0.2.0
+    # via panvimwiki (pyproject.toml)
+mdit-py-plugins==0.4.2
+    # via
+    #   mdformat-footnote
+    #   mdformat-frontmatter
+    #   mdformat-myst
+mdurl==0.1.2
+    # via markdown-it-py
 packaging==24.0
     # via pytest
 panflute==2.3.1
+    # via panvimwiki (pyproject.toml)
 pluggy==1.5.0
     # via pytest
-pypandoc @ git+https://github.com/JessicaTegner/pypandoc@7b65192ae9709eca8a9084fc9809a34ea63f1f0f
+pypandoc==1.15
+    # via panvimwiki (pyproject.toml)
 pytest==8.1.2
     # via
+    #   panvimwiki (pyproject.toml)
     #   pytest-cov
     #   pytest-freezegun
     #   pytest-pretty-terminal
 pytest-cov==5.0.0
+    # via panvimwiki (pyproject.toml)
 pytest-freezegun==0.4.2
+    # via panvimwiki (pyproject.toml)
 pytest-pretty-terminal==1.1.0
+    # via panvimwiki (pyproject.toml)
 python-dateutil==2.9.0.post0
-    # via freezegun
+    # via
+    #   panvimwiki (pyproject.toml)
+    #   freezegun
 pyyaml==6.0.1
     # via panflute
+ruamel-yaml==0.18.14
+    # via
+    #   mdformat-frontmatter
+    #   mdformat-myst
+ruamel-yaml-clib==0.2.12
+    # via ruamel-yaml
 setuptools==69.5.1
+    # via panvimwiki (pyproject.toml)
 six==1.16.0
     # via python-dateutil
 vim-bridge3==0.6
+    # via panvimwiki (pyproject.toml)
+wcwidth==0.2.13
+    # via mdformat-tables

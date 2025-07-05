@@ -3,6 +3,7 @@ description: Filter and convert Vimwiki notes using pandoc.
 project: panvimwiki
 toc: true
 vimversion: Vim v9.0
+reference-links: true
 ---
 
 <!-- These are examples of badges you might want to add to your README:
