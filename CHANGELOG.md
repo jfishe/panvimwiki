@@ -15,6 +15,16 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ### Added
 
+### Fixed
+
+### Changed
+
+### Removed
+
+## [0.11.0] - 2025-07-06
+
+### Added
+
 - GitHub Action `CSchoel/release-notes-from-changelog`
 - Adopt [Conventional Commits]
   via `pre-commit` with `gitlint`.
@@ -41,8 +51,7 @@ The format is based on [Keep a Changelog], and this project adheres to
   `:he VimwikiMarkdownFormat` and `:he VimwikiReference`.
 - Constrain conda `environment.yml`, pandoc versions and vim to match Github
   Actions default Ubuntu.
-
-### Removed
+- Github Actions and expected tests to match pandoc 3.7 output.
 
 ## [0.10.1] - 2024-11-06
 
@@ -192,7 +201,6 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Switch build to flit.
 
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
-[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
 [0.2.0]: https://github.com/jfishe/panvimwiki/compare/0.1.0...0.2.0
 [0.3.0]: https://github.com/jfishe/panvimwiki/compare/0.2.0...0.3.0
 [0.4.0]: https://github.com/jfishe/panvimwiki/compare/0.3.0...0.4.0
@@ -202,6 +210,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
+[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
+[0.11.0]: https://github.com/jfishe/panvimwiki/compare/0.10.1...0.11.0
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [mdformat]: https://pypi.org/project/mdformat/
@@ -214,6 +224,6 @@ The format is based on [Keep a Changelog], and this project adheres to
 [reference links]: https://pandoc.org/MANUAL.html#reference-links
 [semantic line breaks]: https://sembr.org/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.10.1...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.11.0...HEAD
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimjas/vint]: https://github.com/Vimjas/vint

@@ -4,8 +4,7 @@ channels:
 dependencies:
   - mdformat
   - mdformat-myst
-  - pandoc[version='>=3.5,<3.6']
-  - panflute[version='<2.1']
+  - pandoc[version='>=3.7']
   - pip
   - pipx
   - pre-commit
@@ -23,3 +22,4 @@ dependencies:
     - pytest-pretty-terminal
     - mdformat-simple-breaks
     - mdformat-wikilink
+    - panflute
