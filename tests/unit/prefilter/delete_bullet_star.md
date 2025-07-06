@@ -19,7 +19,7 @@
 * [[d|Bulleted list item 13 should NOT appear]]
 
 ``` bash
-cat delete_bullet_star.md | delete_bullet_star |
+cat tests/unit/prefilter/delete_bullet_star.md | delete_bullet_star |
   pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
-  --to=markdown > out/delete_bullet_star.md.md
+  --to=markdown > tests/unit/prefilter/out/delete_bullet_star.md.md
 ```

@@ -12,8 +12,8 @@ The heading should convert the Viewports should not.
 The heading should convert the Preset should not.
 
 ``` bash
-cat delete_taskwiki_heading.md |
+cat tests/unit/filter/delete_taskwiki_heading.md |
   pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
   --filter=delete_taskwiki_heading \
-  --to=markdown > out/delete_taskwiki_heading.md.md
+  --to=markdown > tests/unit/filter/out/delete_taskwiki_heading.md.md
 ```

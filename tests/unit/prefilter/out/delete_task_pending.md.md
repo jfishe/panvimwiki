@@ -1,9 +1,9 @@
 # Vimwiki Remove Pending and Waiting tasks and set Start tasks to \[.\]
 
 ``` bash
-cat delete_task_pending.md | delete_task_pending |
+cat tests/unit/prefilter/delete_task_pending.md | delete_task_pending |
   pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
-  --to=markdown > out/delete_task_pending.md.md
+  --to=markdown > tests/unit/prefilter/out/delete_task_pending.md.md
 ```
 
 ## Vimwiki Tasks Ordered List
@@ -27,19 +27,19 @@ f)  \[-\] Numbered list doneX item 5 should appear
 
 ## Vimwiki Tasks Unordered List
 
--   \[.\] Bulleted list done1 item 1 should appear
--   \[o\] Bulleted list done2 item 2 should appear
-    -   \[.\] Bulleted list done1 item 1 should appear
-    -   \[o\] Bulleted list done2 item 2 should appear
-    -   \[O\] Bulleted list done3 item 3 should appear
-    -   \[X\] Bulleted list done4 item 4 should appear
-    -   \[-\] Bulleted list doneX item 5 should appear
--   \[O\] Bulleted list done3 item 3 should appear
--   \[X\] Bulleted list done4 item 4 should appear
--   \[-\] Bulleted list doneX item 5 should appear
+- \[.\] Bulleted list done1 item 1 should appear
+- \[o\] Bulleted list done2 item 2 should appear
+  - \[.\] Bulleted list done1 item 1 should appear
+  - \[o\] Bulleted list done2 item 2 should appear
+  - \[O\] Bulleted list done3 item 3 should appear
+  - \[X\] Bulleted list done4 item 4 should appear
+  - \[-\] Bulleted list doneX item 5 should appear
+- \[O\] Bulleted list done3 item 3 should appear
+- \[X\] Bulleted list done4 item 4 should appear
+- \[-\] Bulleted list doneX item 5 should appear
 
 ## Taskwiki Unordered List
 
--   \[.\] Bulleted list item 1 should appear #4a7369ae
--   \[.\] Bulleted list item 2 should convert to \[.\] done1 #d6198091
--   \[X\] Bulleted list done4 item 4 should appear
+- \[.\] Bulleted list item 1 should appear #4a7369ae
+- \[.\] Bulleted list item 2 should convert to \[.\] done1 #d6198091
+- \[X\] Bulleted list done4 item 4 should appear

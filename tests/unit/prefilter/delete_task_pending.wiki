@@ -1,9 +1,9 @@
 = Vimwiki Remove Pending and Waiting tasks and set Start tasks to [.] =
 
 {{{bash
-cat delete_task_pending.wiki | delete_task_pending |
+cat tests/unit/prefilter/delete_task_pending.wiki | delete_task_pending |
   pandoc --from=vimwiki \
-  --to=markdown > out/delete_task_pending.wiki.md
+  --to=markdown > tests/unit/prefilter/out/delete_task_pending.wiki.md
 }}}
 
 == Vimwiki Tasks Ordered List ==

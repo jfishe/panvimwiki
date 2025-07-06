@@ -1,10 +1,10 @@
 = Vimwiki Tag Lines and In-line Tags =
 
 {{{bash
-cat delete_tag_lines.wiki |
+cat tests/unit/filter/delete_tag_lines.wiki |
   pandoc --from=vimwiki \
   --filter=delete_tag_lines \
-  --to=markdown > out/delete_tag_lines.wiki.md
+  --to=markdown > tests/unit/filter/out/delete_tag_lines.wiki.md
 }}}
 
 In normal paragraphs :InlineTagShouldAppear:InlineTagShouldAppear:

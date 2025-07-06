@@ -1,9 +1,9 @@
 # Vimwiki Remove Pending and Waiting tasks and set Start tasks to \[.\] {#Vimwiki Remove Pending and Waiting tasks and set Start tasks to [.]}
 
 ``` bash
-cat delete_task_pending.wiki | delete_task_pending |
+cat tests/unit/prefilter/delete_task_pending.wiki | delete_task_pending |
   pandoc --from=vimwiki \
-  --to=markdown > out/delete_task_pending.wiki.md
+  --to=markdown > tests/unit/prefilter/out/delete_task_pending.wiki.md
 ```
 
 ## Vimwiki Tasks Ordered List {#Vimwiki Tasks Ordered List}
@@ -21,20 +21,19 @@ cat delete_task_pending.wiki | delete_task_pending |
 
 ## Vimwiki Tasks Unordered List {#Vimwiki Tasks Unordered List}
 
--   []{.done1}Bulleted list done1 item 1 should appear
--   []{.done2}Bulleted list done2 item 2 should appear
-    -   []{.done1}Bulleted list done1 item 1 should appear
-    -   []{.done2}Bulleted list done2 item 2 should appear
-    -   []{.done3}Bulleted list done3 item 3 should appear
-    -   []{.done4}Bulleted list done4 item 4 should appear
-    -   \[-\] Bulleted list doneX item 5 should appear
--   []{.done3}Bulleted list done3 item 3 should appear
--   []{.done4}Bulleted list done4 item 4 should appear
--   \[-\] Bulleted list doneX item 5 should appear
+- []{.done1}Bulleted list done1 item 1 should appear
+- []{.done2}Bulleted list done2 item 2 should appear
+  - []{.done1}Bulleted list done1 item 1 should appear
+  - []{.done2}Bulleted list done2 item 2 should appear
+  - []{.done3}Bulleted list done3 item 3 should appear
+  - []{.done4}Bulleted list done4 item 4 should appear
+  - \[-\] Bulleted list doneX item 5 should appear
+- []{.done3}Bulleted list done3 item 3 should appear
+- []{.done4}Bulleted list done4 item 4 should appear
+- \[-\] Bulleted list doneX item 5 should appear
 
 ## Taskwiki Unordered List {#Taskwiki Unordered List}
 
--   []{.done1}Bulleted list item 1 should appear #4a7369ae
--   []{.done1}Bulleted list item 2 should convert to \[.\] done1
-    #d6198091
--   []{.done4}Bulleted list done4 item 4 should appear
+- []{.done1}Bulleted list item 1 should appear #4a7369ae
+- []{.done1}Bulleted list item 2 should convert to \[.\] done1 #d6198091
+- []{.done4}Bulleted list done4 item 4 should appear
