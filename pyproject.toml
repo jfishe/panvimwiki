@@ -8,6 +8,10 @@ build-backend = "setuptools.build_meta"
 # check out https://github.com/pypa/setuptools_scm
 version_scheme = "no-guess-dev"
 
+[tool.mdformat]
+wrap = "keep"         # options: {"keep", "no", INTEGER}
+number = true        # options: {false, true}
+
 [tool.markdownlint]
 ignore = 'tests/**/*.md'
 

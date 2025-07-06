@@ -70,7 +70,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: nikeee/setup-pandoc@v1
         with:
-          pandoc-version: 3.5 # Compatible with tests for reference_citation.py
+          pandoc-version: 3.7 # Compatible with tests for reference_citation.py
       - uses: actions/setup-python@v5
         id: setup-python
         with:
