@@ -45,18 +45,18 @@ e.g., [CommonMark] with [MyST] extensions.
 [Panvimdoc] converts the README to Vim help format.
 
 :::{tip}
-   Please notice that the [GitHub web interface] provides a quick way of
-   propose changes in `panvimwiki`'s files. While this mechanism can
-   be tricky for normal code contributions, it works perfectly fine for
-   contributing to the docs, and can be quite handy.
+Please notice that the [GitHub web interface] provides a quick way of
+propose changes in `panvimwiki`'s files. While this mechanism can
+be tricky for normal code contributions, it works perfectly fine for
+contributing to the docs, and can be quite handy.
 
-   If you are interested in trying this method out, please navigate to
-   the `docs` folder in the source [repository], find which file you
-   would like to propose changes and click in the little pencil icon at the
-   top, to open [GitHub's code editor]. Once you finish editing the file,
-   please write a message in the form at the bottom of the page describing
-   which changes have you made and what are the motivations behind them and
-   submit your proposal.
+If you are interested in trying this method out, please navigate to
+the `docs` folder in the source [repository], find which file you
+would like to propose changes and click in the little pencil icon at the
+top, to open [GitHub's code editor]. Once you finish editing the file,
+please write a message in the form at the bottom of the page describing
+which changes have you made and what are the motivations behind them and
+submit your proposal.
 :::
 
 When working on documentation changes in your local machine, you can
@@ -102,8 +102,8 @@ to avoid any problems with your installed Python packages.
 This can easily be done via either [uv]:
 
 ```bash
-uv venv <PATH TO VENV>
-source <PATH TO VENV>/bin/activate
+uv venv [PATH TO VENV]
+source [PATH TO VENV]/bin/activate
 uv pip install --requirement requirements-dev.txt
 ```
 
@@ -166,13 +166,13 @@ conda activate panvimwiki
 4. When you’re done editing, do:
 
    ```bash
-   git add <MODIFIED FILES>
+   git add [MODIFIED FILES]
    git commit
    ```
 
    to record your changes in [git].
 
-   This project adheres to [Conventional Commits][conventional commits].
+   This project adheres to [Conventional Commits].
    The commit message should be structured as follows:
 
    ```text
@@ -290,18 +290,22 @@ on [PyPI], the following steps can be used to release a new version for
 `panvimwiki`:
 
 1. Make sure all unit tests are successful.
-2. Make sure Vim help is up to date, e.g., `tox -e docs`
-3. Tag the current commit on the main branch with a release tag, e.g., `v1.2.3`.
-4. Clean up the `dist` and `build` folders with `tox -e clean`
+2. Make sure Vim help is up to date, e.g., `tox -e docs`.
+3. Update `RELEASE_HEAD.md`, [GitHub Actions] prepends to
+   [releases].
+4. Tag the current commit on the main branch with a release tag, e.g., `1.2.3`.
+   NB: [GitHub Actions] release notes automation ignores `v1.2.3`,
+   so drop the `v`.
+5. Clean up the `dist` and `build` folders with `tox -e clean`
    (or `rm -rf dist build`)
    to avoid confusion with old builds and Sphinx docs.
-5. Run `tox -e build` and check that the files in `dist` have
+6. Run `tox -e build` and check that the files in `dist` have
    the correct version (no `.dirty` or [git] hash) according to the [git] tag.
    Also check the sizes of the distributions, if they are too big (e.g., >
    500KB), unwanted clutter may have been accidentally included.
-6. Push the new tag to the upstream [repository],
+7. Push the new tag to the upstream [repository],
    e.g., `git push --tags`
-7. [GitHub Actions] should run tests, upload to TestPyPI and [PyPI], and create
+8. [GitHub Actions] should run tests, upload to TestPyPI and [PyPI], and create
    a signed [release][releases].
 
 [^contrib1]: Even though, these resources focus on open source projects and
@@ -315,9 +319,9 @@ on [PyPI], the following steps can be used to release a new version for
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
-[gitHub actions]: https://github.com/jfishe/panvimwiki/actions
 [git]: https://git-scm.com
-[github web interface]:  https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
+[github actions]: https://github.com/jfishe/panvimwiki/actions
+[github web interface]: https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
 [guide created by freecodecamp]: https://github.com/freecodecamp/how-to-contribute-to-open-source
 [issue tracker]: https://github.com/jfishe/panvimwiki/issues
 [miniconda]: https://docs.conda.io/en/latest/miniconda.html

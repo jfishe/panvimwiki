@@ -20,9 +20,10 @@ reference-links: true
 
 # Filter and convert Vimwiki notes using pandoc
 
-[![Documentation Status][]][1] [![PyPI-Server][]][2] [![Test and Publish
-Python 🐍 distribution 📦 to PyPI and TestPyPI][]][3] [![Project
-generated with PyScaffold]][4]
+[![Documentation Status]][1]
+[![PyPI-Server]][2]
+[![Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]][3]
+[![Project generated with PyScaffold]][4]
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 ## Introduction
@@ -90,9 +91,9 @@ For example from a bash prompt:
 
 ```bash
 cat $HOME/vimwiki/diary/* |
-    delete_bullet_star |
-    delete_task_pending |
-pandoc --from=vimwiki --to=markdown \
+  delete_bullet_star |
+  delete_task_pending |
+  pandoc --from=vimwiki --to=markdown \
     --filter=delete_tag_lines \
     --filter=delete_taskwiki_heading \
     --filter=delete_empty_heading
@@ -143,8 +144,8 @@ lines. I haven't figured out a good regex for wrapped lines.
 
 ```bash
 echo '- Bulleted list item 1 should appear' \
-     '* Bulleted list item 6 should NOT appear' |
-delete_bullet_star
+  '* Bulleted list item 6 should NOT appear' |
+  delete_bullet_star
 ```
 
 ```text
@@ -157,8 +158,8 @@ Delete pending tasks.
 
 ```bash
 echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
-     '- [.] Bulleted list done1 item 1 should appear' |
-delete_task_pending
+  '- [.] Bulleted list done1 item 1 should appear' |
+  delete_task_pending
 ```
 
 ```text
@@ -226,7 +227,7 @@ and markdown links compatible with `:h vimwiki-syntax-links`.
 These commands are only available (and meaningful) when you are
 currently in a Vimwiki file.
 
-##### VimwikiConvert\[!\]
+##### VimwikiConvert[!]
 
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
@@ -240,11 +241,11 @@ Windows before copying to clipboard.
 Remove extraneous info:
 
 - Vimwiki tag lines, e.g., :tag1:tag2:
-- Not started tasks, e.g., - \[ \] Task1
+- Not started tasks, e.g., - [ ] Task1
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
-##### VimwikiConvertWeek\[!\]
+##### VimwikiConvertWeek[!]
 
 Concatenate DiaryNotes for Monday through current buffer and convert.
 With !, open in default viewer.
@@ -254,8 +255,9 @@ After concatenating DiaryNotes for the week, behave as [VimwikiConvert].
 ##### VimwikiReference
 
 If in markdown format, expand [Pandoc Citations] in the current file and
-append to the end of the file. The Yaml metadata should [specify the
-bibliographic data] and the [Citation Style Language (CSL)].
+append to the end of the file. The Yaml metadata should
+[specify the bibliographic data] and
+the [Citation Style Language (CSL)].
 
 Add the following to `.markdownlint.yml` to suppress `MD033`:
 
@@ -291,7 +293,7 @@ buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
 ##### g:panvimwiki_settings
 
 Optionally add the following to or, preferably,
-'\~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format,
+'~/.vim/plugin/vimwiki.vim'. Panvimwiki defaults to docx format,
 without extra_args.
 
 ```vim
@@ -317,9 +319,9 @@ conda activate panvimwiki
 ```
 
 ```bash
-tox -av # List tox commands and descriptions.
+tox -av        # List tox commands and descriptions.
 tox --recreate # Build the package and run tests with python and Vader.
-tox -e vim # Run Vader tests and generate coverage report.
+tox -e vim     # Run Vader tests and generate coverage report.
 # Run Vader tests and view results with Vim.
 vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 ```
@@ -333,6 +335,8 @@ information on PyScaffold see <https://pyscaffold.org/>.
 
 <!-- References -->
 
+<!-- markdownlint-disable MD051 -->
+
 [1]: https://panvimwiki.readthedocs.io/en/latest/?badge=latest
 [2]: https://pypi.org/project/panvimwiki/
 [3]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml
@@ -341,26 +345,23 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [:filetype-plugin-on]: https://neovim.io/doc/user/filetype.html#filetype
 [:packadd]: https://neovim.io/doc/user/repeat.html#%3Apackadd
 [:python3]: https://neovim.io/doc/user/if_pyth.html#python3
-[Citation Style Language (CSL)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
-[Conquer of Completion (CoC)]: https://github.com/neoclide/coc.nvim
-[Documentation Status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
-[Inline links]: https://pandoc.org/MANUAL.html#inline-links
-[Pandoc Citations]: https://pandoc.org/MANUAL.html#citation-syntax
-[Pandoc]: https://pandoc.org/
-[Project generated with PyScaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
-[PyPI-Server]: https://img.shields.io/pypi/v/panvimwiki.svg
-[Pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
-[Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
-[VimwikiConvert]: #vimwikiconvert
+[citation style language (csl)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
+[conquer of completion (coc)]: https://github.com/neoclide/coc.nvim
 [delete_tag_lines]: #delete_tag_lines
 [delete_task_pending]: #delete_task_pending
+[documentation status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
+[g:panvimwiki_settings]: #g-panvimwiki-settings
+[inline links]: https://pandoc.org/MANUAL.html#inline-links
+[pandoc]: https://pandoc.org/
+[pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
+[project generated with pyscaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+[pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
+[pypi-server]: https://img.shields.io/pypi/v/panvimwiki.svg
 [quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
+[test and publish python 🐍 distribution 📦 to pypi and testpypi]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
+[vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimrc]: https://neovim.io/doc/user/starting.html
-[Vim-Zettel]: https://github.com/michal-h21/vim-zettel
+[vimwikiconvert]: #vimwikiconvert
 [wikilinks_title_after_pipe]: https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe
-
-<!-- markdownlint-disable MD051 -->
-
-[g:panvimwiki_settings]: #g-panvimwiki-settings

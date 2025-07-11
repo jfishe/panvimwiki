@@ -94,9 +94,9 @@ For example from a bash prompt:
 
 >bash
     cat $HOME/vimwiki/diary/* |
-        delete_bullet_star |
-        delete_task_pending |
-    pandoc --from=vimwiki --to=markdown \
+      delete_bullet_star |
+      delete_task_pending |
+      pandoc --from=vimwiki --to=markdown \
         --filter=delete_tag_lines \
         --filter=delete_taskwiki_heading \
         --filter=delete_empty_heading
@@ -149,8 +149,8 @@ haven’t figured out a good regex for wrapped lines.
 
 >bash
     echo '- Bulleted list item 1 should appear' \
-         '* Bulleted list item 6 should NOT appear' |
-    delete_bullet_star
+      '* Bulleted list item 6 should NOT appear' |
+      delete_bullet_star
 <
 
 >text
@@ -164,8 +164,8 @@ Delete pending tasks.
 
 >bash
     echo '- [ ] Bulleted list done0 item 0 should NOT appear' \
-         '- [.] Bulleted list done1 item 1 should appear' |
-    delete_task_pending
+      '- [.] Bulleted list done1 item 1 should appear' |
+      delete_task_pending
 <
 
 >text
@@ -347,9 +347,9 @@ parameter.
 <
 
 >bash
-    tox -av # List tox commands and descriptions.
+    tox -av        # List tox commands and descriptions.
     tox --recreate # Build the package and run tests with python and Vader.
-    tox -e vim # Run Vader tests and generate coverage report.
+    tox -e vim     # Run Vader tests and generate coverage report.
     # Run Vader tests and view results with Vim.
     vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 <

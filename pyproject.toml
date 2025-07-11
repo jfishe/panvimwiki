@@ -9,8 +9,18 @@ build-backend = "setuptools.build_meta"
 version_scheme = "no-guess-dev"
 
 [tool.mdformat]
-wrap = "keep"         # options: {"keep", "no", INTEGER}
-number = true        # options: {false, true}
+wrap = "keep" # options: {"keep", "no", INTEGER}
+number = true # options: {false, true}
+extensions = [ # options: a list of enabled extensions (default: all installed are enabled)
+  "gfm",
+  "footnote",
+  "frontmatter",
+  "pyproject",
+]
+codeformatters = [ # options: a list of enabled code formatter languages (default: all installed are enabled)
+  "python",
+  "bash",
+]
 
 [tool.markdownlint]
 ignore = 'tests/**/*.md'

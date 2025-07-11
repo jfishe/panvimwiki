@@ -201,6 +201,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Switch build to flit.
 
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
+[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
+[0.11.0]: https://github.com/jfishe/panvimwiki/compare/0.10.1...0.11.0
 [0.2.0]: https://github.com/jfishe/panvimwiki/compare/0.1.0...0.2.0
 [0.3.0]: https://github.com/jfishe/panvimwiki/compare/0.2.0...0.3.0
 [0.4.0]: https://github.com/jfishe/panvimwiki/compare/0.3.0...0.4.0
@@ -210,8 +212,6 @@ The format is based on [Keep a Changelog], and this project adheres to
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
-[0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
-[0.11.0]: https://github.com/jfishe/panvimwiki/compare/0.10.1...0.11.0
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [mdformat]: https://pypi.org/project/mdformat/
