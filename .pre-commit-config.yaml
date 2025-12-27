@@ -61,6 +61,20 @@ repos:
           - "--ignore"
           - "tests/**/*.md"
 
+  - repo: https://github.com/hukkin/mdformat
+    rev: 1.0.0  # Use the ref you want to point at
+    hooks:
+    - id: mdformat
+      # Optionally add plugins
+      additional_dependencies:
+        - mdformat-front-matters
+        - mdformat-gfm
+        - mdformat-pyproject
+        - mdformat-ruff
+        - mdformat-shfmt
+        - mdformat_footnote
+        - ruff
+
   ## Vint Vim script linting
   - repo: https://github.com/Vimjas/vint
     rev: v0.4a3

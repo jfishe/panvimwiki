@@ -97,6 +97,7 @@ wikilink_markdown = "panvimwiki.filter.wikilink_markdown:main"
 
 [dependency-groups]
 dev = [
+    "mdformat-footnote>=0.1.2",
     "mdformat-front-matters>=2.0.0",
     "mdformat-gfm>=1.0.0",
     "mdformat-pyproject>=0.1.1",
