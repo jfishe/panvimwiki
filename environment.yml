@@ -4,7 +4,7 @@ channels:
 dependencies:
   - mdformat
   - mdformat-myst
-  - pandoc[version='>=3.7']
+  - pandoc # [version='>=3.7']
   - pip
   - pipx
   - pre-commit
@@ -12,10 +12,10 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-freezegun
-  - python[version='<3.13'] # Should match vim --version | grep python3
+  - python # [version='<3.13'] # Should match vim --version | grep python3
   - sphinx
-  - tox[version='>=4.23.2']
-  - vim
+  - tox # [version='>=4.23.2']
+  # - vim
   - pip:
     - -e .
     - vim_bridge3

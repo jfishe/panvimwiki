@@ -8,18 +8,137 @@ build-backend = "setuptools.build_meta"
 # check out https://github.com/pypa/setuptools_scm
 version_scheme = "no-guess-dev"
 
+[project]
+name = "panvimwiki"
+description = "Filter and convert Vimwiki notes using pandoc."
+authors = [{ name = "John D. Fisher", email = "jdfenw@gmail.com" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+requires-python = ">=3.10"
+dynamic = ["version"]
+
+# https://pypi.org/classifiers/
+# Adjust as needed:
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "Natural Language :: English",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Text Editors",
+  "Topic :: Text Editors :: Text Processing",
+]
+keywords = ["panvimwiki", "vimwiki", "pandoc"]
+dependencies = [
+    "mdformat>=1.0.0",
+    "mdformat-myst>=0.3.0",
+    "mdformat-simple-breaks>=0.1.0",
+    "mdformat-wikilink>=0.3.0",
+    "panflute>=2.3.1",
+    "pypandoc>=1.16.2",
+    "python-dateutil>=2.9.0.post0",
+    "vim-bridge3>=0.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/jfishe/panvimwiki"
+Documentation = "https://panvimwiki.readthedocs.io/"
+Source = "https://github.com/jfishe/panvimwiki"
+Tracker = "https://github.com/jfishe/panvimwiki/issues"
+Changelog = "https://panvimwiki.readthedocs.io/en/latest/changelog.html"
+#    Conda-Forge = "https://anaconda.org/conda-forge/pyscaffold"
+Download = "https://pypi.org/project/panvimwiki/#files"
+# Twitter = https://twitter.com/PyScaffold
+# Change if running only on Windows, Mac or Linux (comma-separated)
+# Add here all kinds of additional classifiers as defined under
+# https://pypi.org/classifiers/
+
+[project.optional-dependencies]
+# Add here additional requirements for extra features, to install with:
+# `pip install panvimwiki[PDF]` like:
+# PDF = ReportLab; RXP
+# Add here test requirements (semicolon/line-separated)
+# testing = [
+#   "setuptools",
+#   "pytest",
+#   "pytest-cov",
+#   "pytest-freezegun",
+#   "pytest-pretty-terminal",
+#   "python-dateutil >=2.8",
+# ]
+
+[project.entry-points]
+# Add here console scripts like:
+# script_name = panvimwiki.module:function
+# For example:
+# console_scripts =
+# fibonacci = panvimwiki.skeleton:run
+# And any other entry points, for example:
+# pyscaffold.cli =
+# awesome = pyscaffoldext.awesome.extension:AwesomeExtension
+
+[project.scripts]
+delete_empty_heading = "panvimwiki.filter.delete_empty_heading:main"
+delete_taskwiki_heading = "panvimwiki.filter.delete_taskwiki_heading:main"
+delete_tag_lines = "panvimwiki.filter.delete_tag_lines:main"
+delete_bullet_star = "panvimwiki.filter.delete_bullet_star:main"
+delete_task_pending = "panvimwiki.filter.delete_task_pending:main"
+do_nothing = "panvimwiki.filter.do_nothing:main"
+reference_citation = "panvimwiki.filter.reference_citation:main"
+wikilink_markdown = "panvimwiki.filter.wikilink_markdown:main"
+
+[dependency-groups]
+dev = [
+    "mdformat-front-matters>=2.0.0",
+    "mdformat-gfm>=1.0.0",
+    "mdformat-pyproject>=0.1.1",
+    "mdformat-ruff>=0.1.3",
+    "mdformat-shfmt>=0.2.0",
+    "myst-parser[linkify]>=4.0.1",
+    "pipx>=1.8.0",
+    "pre-commit>=4.5.1",
+    "pypandoc>=1.16.2",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "pytest-freezegun>=0.4.2",
+    "pytest-pretty-terminal>=1.1.0",
+    "ruff>=0.14.10",
+    "setuptools>=80.9.0",
+    "sphinx>=8.1.3",
+    "sphinx-rtd-theme>=3.0.2",
+    "tox-uv>=1.29.0",
+]
+
 [tool.mdformat]
 wrap = "keep" # options: {"keep", "no", INTEGER}
 number = true # options: {false, true}
+# end_of_line = "lf"    # options: {"lf", "crlf", "keep"}
+validate = true # options: {false, true}
 extensions = [ # options: a list of enabled extensions (default: all installed are enabled)
   "gfm",
   "footnote",
-  "frontmatter",
+  "front_matters",
   "pyproject",
 ]
 codeformatters = [ # options: a list of enabled code formatter languages (default: all installed are enabled)
   "python",
   "bash",
+]
+# Python 3.13+ only:
+exclude = [ # options: a list of file path pattern strings
+  "**/.venv/**",
+  "**/.tox/**",
+  "**/build/**",
+  "**/docs/**",
+  "**/tests/**",
 ]
 
 [tool.markdownlint]
@@ -62,3 +181,40 @@ convention = "numpy"
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 20
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+package-dir = { "" = "src" }
+# Require a min/specific Python version (comma-separated conditions)
+# Add here dependencies of your project (line-separated), e.g. requests>=2.2,<3.0.
+# Version specifiers like >=2.2,<3.0 avoid problems due to API changes in
+# new major versions. This works if the required packages follow Semantic Versioning.
+# For more information, check out https://semver.org/.
+platforms = ["any"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests"]
+namespaces = true
+
+[tool.pytest.ini_options]
+# Specify command line options as you would do when invoking pytest directly.
+# e.g. --cov-report html (or xml) for html/xml output or --junitxml junit.xml
+# in order to write a coverage file that can be read by Jenkins.
+# CAUTION: --cov flags may prohibit setting breakpoints while debugging.
+# Comment those flags to avoid this pytest issue.
+xfail_strict = true
+addopts = """
+--cov panvimwiki --cov-report term-missing
+--verbose"""
+norecursedirs = ["dist", "build", ".tox"]
+testpaths = ["tests"]
+filterwarnings = [
+  "error",
+  "ignore:distutils Version classes are deprecated. Use packaging.version instead.:DeprecationWarning",
+]
+# Use pytest markers to select/deselect specific tests
+# markers =
+# slow: mark tests as slow (deselect with '-m "not slow"')
+# system: mark end-to-end system tests
