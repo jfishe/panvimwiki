@@ -70,7 +70,7 @@ ${vimdoc_targets}: | ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua
 		--to=${lua-filter}/panvimdoc.lua \
 		--output=$@ \
 		$<
-	pipx run pre-commit run --files $@
+	uvx prek run --files $@
 
 ${lua-filter}/include-files.lua ${lua-filter}/panvimdoc.lua ${lua-filter}/skip-blocks.lua: | build/
 	cd build && \

@@ -73,9 +73,9 @@ and use Python's built-in web server for a preview in your web browser
 python3 -m http.server --directory 'docs/_build/html' --bind localhost
 ```
 
-Tox runs `make` and `pre-commit` to build Vim help documentation in
+Tox runs `make` and `prek` to build Vim help documentation in
 `doc/panvimwiki.txt`; you may need to run tox twice to resolve the following
-`pre-commit` error message:
+`prek` error message:
 
 :::{error}
 trim trailing whitespace.................................................Failed
@@ -102,16 +102,18 @@ to avoid any problems with your installed Python packages.
 This can easily be done via either [uv]:
 
 ```bash
-uv venv [PATH TO VENV]
-source [PATH TO VENV]/bin/activate
-uv pip install --requirement requirements-dev.txt
+# Select python version compatible with installed Vim.
+#   vim --version | grep python3
+uv sync --all-extras --dev --python=3.13
+source .venv/bin/activate
 ```
 
-or [Miniconda]:
+or [conda]:
 
 ```bash
 conda env create --file=environment.yml
 conda activate panvimwiki
+uv pip install --group dev -e .
 ```
 
 ### Clone the repository
@@ -136,13 +138,13 @@ conda activate panvimwiki
 
    to be able to import the package under development in the Python REPL.
 
-5. Install [pre-commit]:
+5. Install [prek]:
 
    ```bash
-   uv tool install pre-commit
-   pre-commit autoupdate
-   pre-commit install --install-hooks
-   pre-commit install --hook-type commit-msg
+   uv tool install prek
+   prek autoupdate
+   prek install --install-hooks
+   prek install --hook-type commit-msg
    ```
 
    `panvimwiki` comes with a lot of hooks configured to automatically help the
@@ -183,7 +185,7 @@ conda activate panvimwiki
    [optional footer(s)]
    ```
 
-   Please make sure to see the validation messages from [pre-commit] and fix
+   Please make sure to see the validation messages from [prek] and fix
    any eventual issues.
    This should automatically use [ruff] to check/fix the code style
    in a way that is compatible with the project.
@@ -242,7 +244,7 @@ package:
    potentially in the root of your project.
 
 2. Sometimes [tox] misses out when new dependencies are added, especially to
-   `setup.cfg` and `docs/requirements.txt`. If you find any problems with
+   `pyproject.toml` and `docs/requirements.txt`. If you find any problems with
    missing dependencies when running a command with [tox], try to recreate the
    `tox` environment using the `-r` flag. For example, instead of:
 
@@ -314,6 +316,7 @@ on [PyPI], the following steps can be used to release a new version for
     of environments, including private companies and proprietary code bases.
 
 [commonmark]: https://commonmark.org/
+[conda]: https://conda-forge.org/download/
 [contribution-guide.org]: https://www.contribution-guide.org/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
@@ -324,11 +327,10 @@ on [PyPI], the following steps can be used to release a new version for
 [github web interface]: https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
 [guide created by freecodecamp]: https://github.com/freecodecamp/how-to-contribute-to-open-source
 [issue tracker]: https://github.com/jfishe/panvimwiki/issues
-[miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [myst]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
 [other kinds of contributions]: https://opensource.guide/how-to-contribute
 [panvimdoc]: https://github.com/kdheepak/panvimdoc
-[pre-commit]: https://pre-commit.com/
+[prek]: https://prek.j178.dev/
 [pypi]: https://pypi.org/
 [pytest can drop you]: https://docs.pytest.org/en/stable/how-to/failures.html#dropping-to-pdb-on-failures
 [python software foundation's code of conduct]: https://www.python.org/psf/conduct/

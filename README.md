@@ -2,21 +2,9 @@
 description: Filter and convert Vimwiki notes using pandoc.
 project: panvimwiki
 toc: true
-vimversion: Vim v9.0
+vimversion: Vim 9.1
 reference-links: true
 ---
-
-<!-- These are examples of badges you might want to add to your README:
-     please update the URLs accordingly
-
-[![Built Status](https://api.cirrus-ci.com/github/<USER>/panvimwiki.svg?branch=main)](https://cirrus-ci.com/github/<USER>/panvimwiki)
-[![ReadTheDocs](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io/en/stable/)
-[![Coveralls](https://img.shields.io/coveralls/github/<USER>/panvimwiki/main.svg)](https://coveralls.io/r/<USER>/panvimwiki)
-[![PyPI-Server](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki/)
-[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/panvimwiki.svg)](https://anaconda.org/conda-forge/panvimwiki)
-[![Monthly Downloads](https://pepy.tech/badge/panvimwiki/month)](https://pepy.tech/project/panvimwiki)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/panvimwiki)
--->
 
 # Filter and convert Vimwiki notes using pandoc
 
