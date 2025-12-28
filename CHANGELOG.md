@@ -25,6 +25,7 @@ The format is based on [Keep a Changelog], and this project adheres to
   - TOP
   - TMP
   - COVERAGE_PROCESS_START
+- `mdformat` configuration to `.pre-commit-config.yaml` and `pyproject.toml`.
 
 ### Fixed
 
@@ -47,12 +48,20 @@ The format is based on [Keep a Changelog], and this project adheres to
   in `pyproject.toml` and `tox.ini`.
 - Git hooks from `pre-commit` to `prek`.
 - GitHub Actions `pipx` and `pre-commit` with `uv` and `prek`.
+- Expected test results per
+  [Pandoc v3.8.3 Text.Pandoc.Citeproc](https://pandoc.org/releases.html#pandoc-3.8.3-2025-12-01).
+- To `Astral-uv` dependency management and
+  moved optional-dependencies to dependency-groups,
+  in `pyproject.toml` and `tox.ini`.
+- Git hooks from `pre-commit` to `prek`.
 
 ### Removed
 
 - Legacy `setup.py`, `setup.cfg` and `requirements.txt`
   in favor of `pyproject.toml`.
 - Standalone `run.sh` since `covimerage` separated from PyTest.
+- Legacy `setup.py`, `setup.cfg` and `requirements.txt`
+  in favor of `pyproject.toml`.
 
 ## [0.11.0] - 2025-07-06
 
