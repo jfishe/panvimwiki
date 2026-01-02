@@ -1,6 +1,16 @@
 set noloadplugins
 filetype off
 
+py3 << trim END
+  try:
+    import coverage
+  except ModuleNotFoundError:
+    import sys
+    sys.path.append('/usr/lib/python3.13/lib-dynload')
+    import coverage
+  coverage.process_startup()
+END
+
 " Absolute path to this vimrc file.
 let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Default parent directory for Vimwiki files, converted output and templates.

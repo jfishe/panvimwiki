@@ -1,15 +1,16 @@
 # .coveragerc to control coverage.py
 [run]
+parallel = True
 branch = True
-source = panvimwiki
-include =
-    autoload/*.vim
-    plugin/*.vim
-    after/*/*.vim
+# source = panvimwiki
+# include =
+#     autoload/*.vim
+#     plugin/*.vim
+#     after/*/*.vim
 # plugins = covimerage
-data_file = .coverage_covimerage
+data_file = $TOP/.coverage
 # omit =
-disable_warnings = include-ignored
+# disable_warnings = include-ignored
 patch = subprocess
 
 [paths]
@@ -24,20 +25,36 @@ source =
 # Regexes for lines to exclude from consideration
 exclude_lines =
     # Have to re-enable the standard pragma
-    pragma: no cover
+    \#.*pragma:\s*no.?cover
+    # pragma: no cover
 
-    # Don't complain about missing debug-only code:
-    def __repr__
-    if self\.debug
+    # we can't get coverage for functions that don't return:
+    \#.*never returns
+    \#.*doesn't return
 
     # Don't complain if tests don't hit defensive assertion code:
-    raise AssertionError
-    raise NotImplementedError
+    ^\s*raise Impossible\b
+    ^\s*raise AssertionError\b
+    ^\s*raise NotImplementedError\b
+    ^\s*return NotImplemented\b
+
+    # Don't complain if tests don't hit re-raise of unexpected errors:
+    ^\s*raise$
+
+    # if main is covered, we're good:
+    ^\s*exit\(main\(\)\)$
 
     # Don't complain if non-runnable code isn't run:
     if 0:
     if __name__ == .__main__.:
+
+    # Don't complain about missing debug-only code:
+    def __repr__
+    if self\.debug
 omit =
     tests/vim/bundle/*
     tests/vim/vimrc
-show_missing = true
+show_missing = True
+
+[html]
+directory = $TOP/coverage-html

@@ -81,6 +81,7 @@ clean: ## Remove build, dist, tests/vim/bundle and docs/_build
 	${MAKE} --directory=docs clean
 	rm -rf ${bundledir} $(tmpdir)
 	rm -f doc/*
+	rm .coverage .coverage.* .coverage_covimerage
 	# rm tests/vim/prepm.docx
 
 .PHONY: clean
