@@ -38,14 +38,14 @@ classifiers = [
 ]
 keywords = ["panvimwiki", "vimwiki", "pandoc"]
 dependencies = [
-    "mdformat>=1.0.0",
-    "mdformat-myst>=0.3.0",
-    "mdformat-simple-breaks>=0.1.0",
-    "mdformat-wikilink>=0.3.0",
-    "panflute>=2.3.1",
-    "pypandoc>=1.16.2",
-    "python-dateutil>=2.9.0.post0",
-    "vim-bridge3>=0.6",
+  "mdformat>=1.0.0",
+  "mdformat-myst>=0.3.0",
+  "mdformat-simple-breaks>=0.1.0",
+  "mdformat-wikilink>=0.3.0",
+  "panflute>=2.3.1",
+  "pypandoc>=1.16.2",
+  "python-dateutil>=2.9.0.post0",
+  "vim-bridge3>=0.6",
 ]
 
 [project.urls]
@@ -97,24 +97,32 @@ wikilink_markdown = "panvimwiki.filter.wikilink_markdown:main"
 
 [dependency-groups]
 dev = [
-    "mdformat-footnote>=0.1.2",
-    "mdformat-front-matters>=2.0.0",
-    "mdformat-gfm>=1.0.0",
-    "mdformat-pyproject>=0.1.1",
-    "mdformat-ruff>=0.1.3",
-    "mdformat-shfmt>=0.2.0",
-    "myst-parser[linkify]>=4.0.1",
-    "prek>=0.2.25",
-    "pypandoc>=1.16.2",
-    "pytest>=9.0.2",
-    "pytest-cov>=7.0.0",
-    "pytest-freezegun>=0.4.2",
-    "pytest-pretty-terminal>=1.1.0",
-    "ruff>=0.14.10",
-    "setuptools>=80.9.0",
-    "sphinx>=8.1.3",
-    "sphinx-rtd-theme>=3.0.2",
-    "tox-uv>=1.29.0",
+  "tox-uv>=1.29.0",
+  { include-group = "docs" },
+  { include-group = "lint" },
+  # { include-group = "testing" },
+]
+docs = [
+  "myst-parser[linkify]>=4.0.1",
+  "sphinx>=8.1.3",
+  "sphinx-rtd-theme>=3.0.2",
+]
+lint = [
+  "mdformat-pyproject>=0.1.1",
+  "mdformat-ruff>=0.1.3",
+  "mdformat-shfmt>=0.2.0",
+  "prek>=0.2.25",
+  "ruff>=0.14.10",
+]
+testing = [
+  "pytest-cov>=7.0.0",
+  "pytest-freezegun>=0.4.2",
+  "pytest-pretty-terminal>=1.1.0",
+  "pytest>=9.0.2",
+  "setuptools>=80.9.0",
+]
+vader = [
+  "covimerage>=0.2.2",
 ]
 
 [tool.mdformat]
@@ -218,3 +226,11 @@ filterwarnings = [
 # markers =
 # slow: mark tests as slow (deselect with '-m "not slow"')
 # system: mark end-to-end system tests
+
+[tool.uv]
+conflicts = [
+    [
+      { group = "testing" },
+      { group = "vader" },
+    ],
+]
