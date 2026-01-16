@@ -104,7 +104,7 @@ This can easily be done via either [uv]:
 ```bash
 # Select python version compatible with installed Vim.
 #   vim --version | grep python3
-uv sync --all-extras --dev --python=3.13
+uv sync --all-extras --dev --group=testing --python=3.13
 source .venv/bin/activate
 ```
 
@@ -113,7 +113,7 @@ or [conda]:
 ```bash
 conda env create --file=environment.yml
 conda activate panvimwiki
-uv pip install --group dev -e .
+uv pip install --group=dev --group=testing -e .
 ```
 
 ### Clone the repository
@@ -207,7 +207,9 @@ uv pip install --group dev -e .
 5. Please check that your changes don't break any unit tests with:
 
    ```bash
-   tox
+   # Select python version compatible with installed Vim.
+   vim --version | grep python3
+   tox -e 3.14
    ```
 
    (after having installed [tox] with `uv tool install tox --with tox-uv`).
