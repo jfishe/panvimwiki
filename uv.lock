@@ -740,6 +740,15 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "mdformat-pyproject" },
+    { name = "mdformat-ruff" },
+    { name = "mdformat-shfmt" },
+    { name = "myst-parser", extra = ["linkify"] },
+    { name = "prek" },
+    { name = "ruff" },
+    { name = "sphinx", version = "8.1.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11' or (extra == 'group-10-panvimwiki-testing' and extra == 'group-10-panvimwiki-vader')" },
+    { name = "sphinx", version = "8.2.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' or (extra == 'group-10-panvimwiki-testing' and extra == 'group-10-panvimwiki-vader')" },
+    { name = "sphinx-rtd-theme" },
     { name = "tox-uv" },
 ]
 docs = [
@@ -779,7 +788,17 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "tox-uv", specifier = ">=1.29.0" }]
+dev = [
+    { name = "mdformat-pyproject", specifier = ">=0.1.1" },
+    { name = "mdformat-ruff", specifier = ">=0.1.3" },
+    { name = "mdformat-shfmt", specifier = ">=0.2.0" },
+    { name = "myst-parser", extras = ["linkify"], specifier = ">=4.0.1" },
+    { name = "prek", specifier = ">=0.2.25" },
+    { name = "ruff", specifier = ">=0.14.10" },
+    { name = "sphinx", specifier = ">=8.1.3" },
+    { name = "sphinx-rtd-theme", specifier = ">=3.0.2" },
+    { name = "tox-uv", specifier = ">=1.29.0" },
+]
 docs = [
     { name = "myst-parser", extras = ["linkify"], specifier = ">=4.0.1" },
     { name = "sphinx", specifier = ">=8.1.3" },

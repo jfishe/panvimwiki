@@ -1,3 +1,8 @@
+" Required by covimerage
+"   https://github.com/Vimjas/covimerage
+profile start $TMP/vim-profile.txt
+profile! file ./*
+
 set noloadplugins
 filetype off
 
@@ -5,11 +10,10 @@ if !empty($COVERAGE_PROCESS_START)
   py3 << trim END
     try:
       import coverage
+      coverage.process_startup()
     except ModuleNotFoundError:
-      import sys
-      sys.path.append('/usr/lib/python3.13/lib-dynload')
-      import coverage
-    coverage.process_startup()
+      # env PYTHONPATH='/usr/lib/python3.13/lib-dynload' tox -e 3.13
+      pass
   END
 endif
 
