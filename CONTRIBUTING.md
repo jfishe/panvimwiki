@@ -108,7 +108,7 @@ This can easily be done via either [uv]:
 # can conflict with Vim compiled python, affecting `coverage.py`.
 # Allowing system python and packages aligns Vim and Tox.
 uv venv --system-site-packages --python-preference=system
-uv sync --all-extras --dev --group=testing
+uv sync --all-extras --dev --group=testing --python=3.13
 source .venv/bin/activate
 ```
 
