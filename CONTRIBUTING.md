@@ -104,7 +104,11 @@ This can easily be done via either [uv]:
 ```bash
 # Select python version compatible with installed Vim.
 #   vim --version | grep python3
-uv sync --all-extras --dev --group=testing --python=3.13
+# Tox creates environments with its installed python version, which
+# can conflict with Vim compiled python, affecting `coverage.py`.
+# Allowing system python and packages aligns Vim and Tox.
+uv venv --system-site-packages --python-preference=system
+uv sync --all-extras --dev --group=testing
 source .venv/bin/activate
 ```
 
