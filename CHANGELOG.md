@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Added
 
 - `mdformat` configuration to `.pre-commit-config.yaml` and `pyproject.toml`.
+- `VimwikiConvert!` opens MS Word file with `shell=pwsh` and
+  `Windows PowerShell`.
 
 ### Fixed
 
@@ -37,6 +39,7 @@ The format is based on [Keep a Changelog], and this project adheres to
   moved optional-dependencies to dependency-groups,
   in `pyproject.toml` and `tox.ini`.
 - Git hooks from `pre-commit` to `prek`.
+- GitHub Actions `pipx` and `pre-commit` with `uv` and `prek`.
 
 ### Removed
 
