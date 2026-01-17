@@ -85,8 +85,10 @@ function! panvimwiki#convert(bang, ...) abort "{{{
 
     " Open in MS Word.
     if a:bang
-        if (has('win32') || has('win64'))
+        if &shell =~? 'cmd'
             silent execute '!start /b' shellescape(l:output)
+        elseif &shell =~? 'powershell\|pwsh'
+            silent execute '!&' shellescape(l:output)
         elseif executable('wslpath')
             silent execute system('wslview "$(wslpath -w '..shellescape(l:output)..')"')
         endif
