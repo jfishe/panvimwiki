@@ -36,7 +36,8 @@ jobs:
         with: { fetch-depth: 0 } # deep clone for setuptools-scm
       - uses: actions/setup-python@v6
         id: setup-python
-        with: { python-version-file: "3.12" }
+        with:
+          python-version: "3.12"
       - name: Install uv
         uses: astral-sh/setup-uv@v7
       - name: Run static analysis and format checkers
@@ -51,7 +52,7 @@ jobs:
       - name: Store the distribution files for use in other stages
         # `tests` and `publish` will use the same pre-built distributions,
         # so we make sure to release the exact same package that was tested
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: python-distribution-files
           path: dist/
@@ -69,30 +70,32 @@ jobs:
         # - windows-latest
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: nikeee/setup-pandoc@v1
         with:
           pandoc-version: 3.8 # Compatible with tests for reference_citation.py
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         id: setup-python
         with:
           python-version: ${{ matrix.python }}
       - uses: rhysd/action-setup-vim@v1
       - name: Retrieve pre-built distribution files
-        uses: actions/download-artifact@v4
-        with: { name: python-distribution-files, path: dist/ }
+        uses: actions/download-artifact@v7
+        with:
+          name: python-distribution-files
+          path: dist/
       - name: Run tests
         run: >-
-          pipx run --python '${{ steps.setup-python.outputs.python-path }}'
+          uvx --python '${{ steps.setup-python.outputs.python-path }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
           -e '${{ matrix.python }}'
           -- -rFEx --durations 10 --color yes -vv # pytest args
       - name: Generate coverage report
-        run: pipx run coverage lcov -o coverage.lcov
+        run: uvx coverage lcov -o coverage.lcov
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2.3.4
+        uses: coverallsapp/github-action@v2
         with:
-          path-to-lcov: coverage.lcov
+          file: coverage.lcov
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: ${{ matrix.platform }} - py${{ matrix.python }}
           parallel: true
@@ -102,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Finalize coverage report
-        uses: coverallsapp/github-action@v2.3.4
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
@@ -122,8 +125,10 @@ jobs:
 
     steps:
       - name: Retrieve pre-built distribution files
-        uses: actions/download-artifact@v4
-        with: { name: python-distribution-files, path: dist/ }
+        uses: actions/download-artifact@v7
+        with:
+          name: python-distribution-files
+          path: dist/
       - name: Publish distribution 📦 to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
@@ -143,8 +148,10 @@ jobs:
       id-token: write # IMPORTANT: mandatory for trusted publishing
     steps:
       - name: Retrieve pre-built distribution files
-        uses: actions/download-artifact@v4
-        with: { name: python-distribution-files, path: dist/ }
+        uses: actions/download-artifact@v7
+        with:
+          name: python-distribution-files
+          path: dist/
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 
@@ -162,13 +169,15 @@ jobs:
       id-token: write # IMPORTANT: mandatory for sigstore
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: CSchoel/release-notes-from-changelog@v1
       - name: Download all the dists
-        uses: actions/download-artifact@v4
-        with: { name: python-distribution-files, path: dist/ }
+        uses: actions/download-artifact@v7
+        with:
+          name: python-distribution-files
+          path: dist/
       - name: Sign the dists with Sigstore
-        uses: sigstore/gh-action-sigstore-python@v3.0.0
+        uses: sigstore/gh-action-sigstore-python@v3.2.0
         with:
           inputs: >-
             ./dist/*.tar.gz
