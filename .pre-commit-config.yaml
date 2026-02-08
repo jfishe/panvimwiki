@@ -74,6 +74,7 @@ repos:
         - mdformat-shfmt
         - mdformat_footnote
         - ruff
+      language_version: python3.13
 
   ## Vint Vim script linting
   - repo: https://github.com/Vimjas/vint
