@@ -67,7 +67,7 @@ install panvimwiki in `pack/*/start/panvimwiki`.
 <
 
 Install Conquer of Completion (CoC) <https://github.com/neoclide/coc.nvim> to
-use |panvimwiki-zettelkasten-completion|.
+use |panvimwiki-completion|.
 
 
 ==============================================================================
