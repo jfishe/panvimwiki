@@ -1,3 +1,6 @@
+# Environment variables file
+.env
+
 # Temporary and binary files
 !.isort.cfg
 !setup.cfg
