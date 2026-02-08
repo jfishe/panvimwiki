@@ -18,6 +18,13 @@ The format is based on [Keep a Changelog], and this project adheres to
 - `mdformat` configuration to `.pre-commit-config.yaml` and `pyproject.toml`.
 - `VimwikiConvert!` opens MS Word file with `shell=pwsh` and
   `Windows PowerShell`.
+- `make test` runs `pytest` using `.env`.
+  Tests should thus behave similar to `tox`.
+  `Makefile` creates `.env`, if absent,
+  to set environment variables required by `pytest` and `coverage.py`,
+  - TOP
+  - TMP
+  - COVERAGE_PROCESS_START
 
 ### Fixed
 
