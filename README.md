@@ -57,7 +57,7 @@ if has('python3')
 endif
 ```
 
-Install [Conquer of Completion (CoC)] to use [Zettelkasten completion](#completion).
+Install [Conquer of Completion (CoC)] to use [completion](#completion).
 
 ## Usage
 
