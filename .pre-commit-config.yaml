@@ -71,7 +71,7 @@ repos:
         - mdformat-gfm
         - mdformat-pyproject
         - mdformat-ruff
-        - mdformat-shfmt
+        # - mdformat-shfmt
         - mdformat_footnote
         - ruff
       language_version: python3.13
