@@ -138,7 +138,7 @@ extensions = [ # options: a list of enabled extensions (default: all installed a
 ]
 codeformatters = [ # options: a list of enabled code formatter languages (default: all installed are enabled)
   "python",
-  "bash",
+  # "bash",
 ]
 # Python 3.13+ only:
 exclude = [ # options: a list of file path pattern strings
