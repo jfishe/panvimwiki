@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ### Fixed
 
+- Issue {issue}`5` UnicodeEncodeError: 'charmap' codec can't encode character.
+
 ### Changed
 
 ### Removed
