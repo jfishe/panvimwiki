@@ -63,6 +63,7 @@ except Exception as e:
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx.ext.autosummary",
@@ -311,6 +312,10 @@ intersphinx_mapping = {
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     "setuptools": ("https://setuptools.pypa.io/en/stable/", None),
     "pyscaffold": ("https://pyscaffold.org/en/stable", None),
+}
+
+extlinks = {
+    "issue": ("https://github.com/jfishe/panvimwiki/issues/%s", "#%s"),
 }
 
 print(f"loading configurations for {project} {version} ...", file=sys.stderr)

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -85,6 +86,14 @@ def convert(
     with open(inputfile, encoding="utf8") as fin:
         source = fin.read()
 
+    # Ensure Python-based filter executables use UTF-8
+    # for stdio on Windows (and elsewhere).
+    # This prevents UnicodeEncodeError/DecodeError
+    # when piping text through subprocesses.
+    utf8_env = os.environ.copy()
+    utf8_env.setdefault("PYTHONIOENCODING", "utf-8")
+    utf8_env.setdefault("PYTHONUTF8", "1")
+
     # Prefilter
     if prefilters is not None:
         for cmd in prefilters:
@@ -94,13 +103,14 @@ def convert(
                 capture_output=True,
                 text=True,
                 check=True,
+                encoding="utf-8",
+                errors="strict",
+                env=utf8_env,
             )
             source = filter_out.stdout
 
     # Pandoc Filter
-    extraargs = ()
-    if extra_args is not None:
-        extraargs = extra_args
+    pandoc_args = extra_args or ()
 
     try:
         source = pypandoc.convert_text(
@@ -109,7 +119,7 @@ def convert(
             format=format,
             filters=filters,
             outputfile=None,
-            extra_args=extraargs,
+            extra_args=pandoc_args,
         )
     except RuntimeError:
         return pypandoc.convert_text(
@@ -118,7 +128,7 @@ def convert(
             format=format,
             filters=filters,
             outputfile=outputfile,
-            extra_args=extraargs,
+            extra_args=pandoc_args,
         )
 
     # Postfilter
@@ -130,12 +140,19 @@ def convert(
                 capture_output=True,
                 text=True,
                 check=True,
+                encoding="utf-8",
+                errors="strict",
+                env=utf8_env,
             )
             source = filter_out.stdout
 
     if outputfile is None:
         return source
     else:
-        with open(outputfile, mode="w") as f:
+        with open(
+            outputfile,
+            mode="w",
+            encoding="utf-8",
+        ) as f:
             f.write(source)
         return None
