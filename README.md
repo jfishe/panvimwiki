@@ -8,11 +8,14 @@ reference-links: true
 
 # Filter and convert Vimwiki notes using pandoc
 
-[![Documentation Status]][1]
-[![PyPI-Server]][2]
-[![Test and Publish Python 🐍 distribution 📦 to PyPI and TestPyPI]][3]
-[![Project generated with PyScaffold]][4]
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![CI](https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/jfishe/panvimwiki/actions)
+[![PyPI](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki)
+[![Release](https://img.shields.io/github/v/release/jfishe/panvimwiki)](https://github.com/jfishe/panvimwiki/releases)
+[![License](https://img.shields.io/github/license/jfishe/panvimwiki)](LICENSE.txt)
+[![Coverage Status](https://coveralls.io/repos/github/jfishe/panvimwiki/badge.svg)](https://coveralls.io/github/jfishe/panvimwiki)
+[![Python](https://img.shields.io/pypi/pyversions/panvimwiki.svg)](https://pypi.org/project/panvimwiki)
+[![Docs](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io)
+[![Issues](https://img.shields.io/github/issues/jfishe/panvimwiki)](https://github.com/jfishe/panvimwiki/issues)
 
 ## Introduction
 
@@ -325,10 +328,6 @@ information on PyScaffold see <https://pyscaffold.org/>.
 
 <!-- markdownlint-disable MD051 -->
 
-[1]: https://panvimwiki.readthedocs.io/en/latest/?badge=latest
-[2]: https://pypi.org/project/panvimwiki/
-[3]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml
-[4]: https://pyscaffold.org/
 [:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
 [:filetype-plugin-on]: https://neovim.io/doc/user/filetype/#filetypes
 [:packadd]: https://neovim.io/doc/user/repeat.html#%3Apackadd
@@ -337,18 +336,14 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [conquer of completion (coc)]: https://github.com/neoclide/coc.nvim
 [delete_tag_lines]: #delete_tag_lines
 [delete_task_pending]: #delete_task_pending
-[documentation status]: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
 [g:panvimwiki_settings]: #g-panvimwiki-settings
 [inline links]: https://pandoc.org/MANUAL.html#inline-links
 [pandoc]: https://pandoc.org/
 [pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
-[project generated with pyscaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
 [pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
-[pypi-server]: https://img.shields.io/pypi/v/panvimwiki.svg
 [quoteplus]: https://neovim.io/doc/user/provider/#quoteplus
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
-[test and publish python 🐍 distribution 📦 to pypi and testpypi]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimrc]: https://neovim.io/doc/user/starting.html
 [vimwikiconvert]: #vimwikiconvert
