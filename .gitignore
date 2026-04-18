@@ -42,6 +42,7 @@ tags
 .tox
 Session.vim
 coverage.xml
+coverage.lcov
 htmlcov/*
 junit*.xml
 prepm.*
