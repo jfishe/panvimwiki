@@ -41,10 +41,10 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
       - name: Run static analysis and format checkers
-        run: uvx prek run --all-files --show-diff-on-failure
+        run: uv run prek run --all-files --show-diff-on-failure
       - name: Build package distribution files 📦
         run: >-
-          uvx --python '${{ steps.setup-python.outputs.python-path }}'
+          uv run --python '${{ steps.setup-python.outputs.python-path }}'
           tox -e clean,build
       - name: Record the path of wheel distribution
         id: wheel-distribution
@@ -86,12 +86,12 @@ jobs:
           path: dist/
       - name: Run tests
         run: >-
-          uvx --python '${{ steps.setup-python.outputs.python-path }}'
+          uv run --python '${{ steps.setup-python.outputs.python-path }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
           -e '${{ matrix.python }}'
           -- -rFEx --durations 10 --color yes -vv # pytest args
       - name: Generate coverage report
-        run: uvx coverage lcov -o coverage.lcov
+        run: uv run coverage lcov -o coverage.lcov
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
         with:
