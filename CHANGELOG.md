@@ -17,7 +17,10 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ### Fixed
 
-- Issue {issue}`5` UnicodeEncodeError: 'charmap' codec can't encode character.
+- Issue {issue}`5`, `UnicodeEncodeError`: 'charmap' codec can't encode
+  character.
+- Issue {issue}`6`, suppress `SyntaxWarning` from vim_bridge and panflute
+  appearing in Vim.
 
 ### Changed
 

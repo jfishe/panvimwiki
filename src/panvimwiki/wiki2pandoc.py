@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import warnings
 from pathlib import Path
 from typing import Literal
 
@@ -10,6 +11,10 @@ from vim_bridge import bridged
 
 from panvimwiki.convert import convert
 from panvimwiki.vimwiki_week import concatenate_diary
+
+# Suppress SyntaxWarning from third-party libraries (e.g., panflute)
+# that have invalid escape sequences in docstrings
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 FORMAT = "commonmark_x+wikilinks_title_after_pipe"
 """Pandoc commonmark_x to hopefully maximize MyST compatibility."""
