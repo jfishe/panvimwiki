@@ -124,6 +124,20 @@ Key conventions and repository-specific patterns
 
 - Conventional commits: project follows Conventional
   Commits for PR messages (see CONTRIBUTING.md).
+  Use the following `.gitmessage.txt` as an example.
+
+  ```gitcommit
+  # id:<id> <type>(<scope>): (If applied, this commit will) <subject>
+  # id:12345 feat(login): add password enforcement
+  # |<---- Subject is maximum 50 Characters  ---->|
+
+  # <body>
+  # |<----  Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+
+  # <footer>
+  # |<----  Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+  ```
 
 Where to look first
 
