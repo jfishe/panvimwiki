@@ -330,9 +330,9 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [3]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml
 [4]: https://pyscaffold.org/
 [:buffer]: https://neovim.io/doc/user/windows.html#%3Abuffer
-[:filetype-plugin-on]: https://neovim.io/doc/user/filetype.html#filetype
+[:filetype-plugin-on]: https://neovim.io/doc/user/filetype/#filetypes
 [:packadd]: https://neovim.io/doc/user/repeat.html#%3Apackadd
-[:python3]: https://neovim.io/doc/user/if_pyth.html#python3
+[:python3]: https://neovim.io/doc/user/if_pyth/#python3
 [citation style language (csl)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
 [conquer of completion (coc)]: https://github.com/neoclide/coc.nvim
 [delete_tag_lines]: #delete_tag_lines
@@ -345,7 +345,7 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [project generated with pyscaffold]: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
 [pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
 [pypi-server]: https://img.shields.io/pypi/v/panvimwiki.svg
-[quoteplus]: https://neovim.io/doc/user/provider.html#quoteplus
+[quoteplus]: https://neovim.io/doc/user/provider/#quoteplus
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
 [test and publish python 🐍 distribution 📦 to pypi and testpypi]: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg

@@ -1,4 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
+                     For NVIM v0.11.6    Last change: Sat Apr 18 06:03:12 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -293,7 +294,7 @@ Add the following to `.markdownlint.yml` to suppress `MD033`:
 <
 
 `VimwikiReference` overwrites the file, so Vim may prompt to reload the buffer
-(cf. Warning |W12|). If you choose not to reload the buffer, |:DiffOrig|
+(cf. Warning |W12|). If you choose not to reload the buffer, |:DiffOrig|
 facilitate review of the changes.
 
 
@@ -307,8 +308,8 @@ title that pandoc adds by default. Preserve |vimwiki-todo-lists|, using
 task_lists <https://pandoc.org/MANUAL.html#extension-task_lists>.
 
 `VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
-buffer (cf. Warning |W12|). If you choose not to reload the buffer,
-|:DiffOrig| facilitate review of the changes.
+buffer (cf. Warning |W12|). If you choose not to reload the buffer, |:DiffOrig|
+facilitate review of the changes.
 
 
 SETTINGS                                                 *panvimwiki-settings*
