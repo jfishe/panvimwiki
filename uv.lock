@@ -310,6 +310,19 @@ toml = [
 ]
 
 [[package]]
+name = "coverage-lcov"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click", version = "8.3.1", source = { registry = "https://pypi.org/simple" } },
+    { name = "coverage", version = "7.13.1", source = { registry = "https://pypi.org/simple" }, extra = ["toml"], marker = "extra == 'group-10-panvimwiki-testing'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/59/87/e4d30c4b9461db4dae0f62ff7e375a1adffdd9f3354bacf19319ee6cfd88/coverage-lcov-0.3.0.tar.gz", hash = "sha256:0b352da0c72eacd555de2e10fa75ec165b8849ab6827218abc3ef6be2ec861f6", size = 8145, upload-time = "2024-06-21T22:17:16.253Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7a/e2/100f07ab0796511e2c119a8a0519d57c4dd3e215aa532b7022a5df13c6a9/coverage_lcov-0.3.0-py3-none-any.whl", hash = "sha256:23ae34a535f1ed3fa4cdf9682f6c1fe1a40aa98c94aa05614512dbf2da82e749", size = 8375, upload-time = "2024-06-21T22:17:17.581Z" },
+]
+
+[[package]]
 name = "covimerage"
 version = "0.2.2"
 source = { registry = "https://pypi.org/simple" }
@@ -765,6 +778,7 @@ lint = [
     { name = "ruff" },
 ]
 testing = [
+    { name = "coverage-lcov" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-freezegun" },
@@ -812,6 +826,7 @@ lint = [
     { name = "ruff", specifier = ">=0.14.10" },
 ]
 testing = [
+    { name = "coverage-lcov", specifier = ">=0.3.0" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
     { name = "pytest-freezegun", specifier = ">=0.4.2" },
