@@ -34,14 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with: { fetch-depth: 0 } # deep clone for setuptools-scm
-      - uses: astral-sh/setup-uv@v3
-        with:
-          python-version: "3.12"
-      - name: Install the latest version of uv and set the python version
+      - name: Install uv (pinned)
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           python-version: "3.12"
-          # python-version: ${{ matrix.python-version }}
       - name: Run static analysis and format checkers
         run: uv tool run prek run --all-files --show-diff-on-failure
       - name: Build package distribution files 📦
@@ -49,14 +45,14 @@ jobs:
           uv tool run tox -e clean,build
       - name: Record the path of wheel distribution
         id: wheel-distribution
-        run: echo "path=$(ls dist/*.whl)" >> $GITHUB_OUTPUT
+        run: echo "path=$(ls dist/*.whl | head -n1)" >> $GITHUB_OUTPUT
       - name: Store the distribution files for use in other stages
         # `tests` and `publish` will use the same pre-built distributions,
         # so we make sure to release the exact same package that was tested
         uses: actions/upload-artifact@v6
         with:
           name: python-distribution-files
-          path: dist/
+          path: dist/*
           retention-days: 1
 
   test:
@@ -75,7 +71,7 @@ jobs:
       - uses: nikeee/setup-pandoc@v1
         with:
           pandoc-version: 3.8 # Compatible with tests for reference_citation.py
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           python-version: ${{ matrix.python }}
       - uses: rhysd/action-setup-vim@v1
@@ -84,6 +80,17 @@ jobs:
         with:
           name: python-distribution-files
           path: dist/
+      - name: Debug downloaded artifact
+        run: ls -la dist || true
+      - name: Show recorded wheel path
+        run: |
+          echo "WHEEL='${{ needs.prepare.outputs.wheel-distribution }}'"
+          if [ -f "${{ needs.prepare.outputs.wheel-distribution }}" ]; then
+            echo "Wheel exists at path"
+          else
+            echo "Wheel not found at path; listing dist:"
+            ls -la dist || true
+          fi
       - name: Run tests
         run: >-
           uv tool run tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}' \
