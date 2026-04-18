@@ -40,6 +40,8 @@ jobs:
           python-version: "3.12"
       - name: Install uv
         uses: astral-sh/setup-uv@v7
+        with:
+          cache: true
       - name: Run static analysis and format checkers
         run: uv run prek run --all-files --show-diff-on-failure
       - name: Build package distribution files 📦
