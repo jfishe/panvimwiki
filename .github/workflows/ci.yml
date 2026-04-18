@@ -95,8 +95,12 @@ jobs:
         run: >-
           uv tool run tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}' \
             -e '${{ matrix.python }}' -- -rFEx --durations 10 --color yes -vv
-      - name: Generate coverage report
-        run: uv tool run coverage lcov -o coverage.lcov
+      - name: List coverage files
+        run: ls -la .coverage* || true
+      - name: Combine coverage data (uv)
+        run: uv tool run --from=coverage --with=coverage-lcov coverage combine || true
+      - name: Generate coverage report (uv)
+        run: uv tool run --from=coverage --with=coverage-lcov coverage lcov -o coverage.lcov
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
         with:
