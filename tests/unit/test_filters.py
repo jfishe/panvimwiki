@@ -113,7 +113,7 @@ def pandoc_filter_fixture():
 
 @pytest.mark.parametrize(
     "test_input, expected",
-    pandoc_filter_fixture(),
+    tuple(pandoc_filter_fixture()),
 )
 def test_pandoc_filter(test_input: str, expected: str):
     """Test pandoc python filters wiki to produce expected markdown.
