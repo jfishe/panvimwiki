@@ -16,12 +16,12 @@
 ### Definition List
 
 Term 1
-:   Definition 1 should appear
+: Definition 1 should appear
 
 Term 2
-:   should appear
-:   Definition 2 should appear
-:   Definition 3 should appear
+: should appear
+: Definition 2 should appear
+: Definition 3 should appear
 
 ### Unordered lists
 

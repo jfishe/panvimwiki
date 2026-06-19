@@ -26,8 +26,8 @@ Multiple rows of tags should be deleted, when not part of a paragraph.
 ## Tag Lines and Definition lists
 
 [Hancock, John R.](mailto:Hancock, John R. <none@nowhere.org> "wikilink")
-:   above the tagline. Pandoc pareses this as two paragraphs\--i.e.,
-    taglines should always follow the tagged item.
+: above the tagline. Pandoc pareses this as two paragraphs\--i.e.,
+  taglines should always follow the tagged item.
 
 ## Tag Lines without hard breaks
 
