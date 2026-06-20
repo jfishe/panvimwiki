@@ -1,8 +1,4 @@
 ---
-description: Filter and convert Vimwiki notes using pandoc.
-project: panvimwiki
-toc: true
-vimversion: Vim 9.1
 reference-links: true
 ---
 

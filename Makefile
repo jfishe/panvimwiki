@@ -68,7 +68,7 @@ $(vimdoc_targets): | $(lua-filter)/include-files.lua $(lua-filter)/panvimdoc.lua
 		--citeproc \
 		--shift-heading-level-by=-1 \
 		--metadata=project:$(notdir $(basename $@)) \
-		--metadata=vimversion: \
+		--metadata=vimversion:'Vim 9.1' \
 		--metadata=toc:true \
 		--metadata=description:'Filter and convert Vimwiki notes using pandoc.' \
 		--metadata=dedupsubheadings:false \
@@ -79,6 +79,7 @@ $(vimdoc_targets): | $(lua-filter)/include-files.lua $(lua-filter)/panvimdoc.lua
 		--metadata=incrementheadinglevelby:0 \
 		--lua-filter=$(lua-filter)/include-files.lua \
 		--lua-filter=$(lua-filter)/skip-blocks.lua \
+		--data-dir=$(lua-filter)/../lib \
 		--to=$(lua-filter)/panvimdoc.lua \
 		--output=$@ \
 		$<
