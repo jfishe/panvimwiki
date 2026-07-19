@@ -235,7 +235,11 @@ conflicts = [
       { group = "vader" },
     ],
 ]
-audit.ignore = ["PYSEC-2026-2132"]
-# PYSEC-2026-2132: click<8.3.3 command-injection in click.edit().
-# covimerage (vader group, dev-only Vim coverage tool) pins click<7.1 and is incompatible with click 8 (unmaintained since 2021).
-# It never calls click.edit(); risk is not applicable to this usage.
+# PYSEC-2026-2132 (click<8.3.3 command-injection in click.edit()) is ignored
+# only when auditing the `vader` group, via `make audit`, because `uv audit`
+# ignores are matched by vulnerability ID alone with no package/version
+# scoping: a blanket `audit.ignore` here would also silence this ID for any
+# unrelated future dependency that happens to trigger it. covimerage (vader
+# group, dev-only Vim coverage tool) pins click<7.1 and is incompatible with
+# click 8 (unmaintained since 2021); it never calls click.edit(), so the risk
+# does not apply to this usage.

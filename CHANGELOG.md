@@ -262,7 +262,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
 [0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
 [0.11.0]: https://github.com/jfishe/panvimwiki/compare/0.10.1...0.11.0
-[0.12.0]: https://github.com/jfishe/panvimwiki/compare/0.11.1...0.12.0
+[0.12.0]: https://github.com/jfishe/panvimwiki/compare/0.11.0...0.12.0
 [0.2.0]: https://github.com/jfishe/panvimwiki/compare/0.1.0...0.2.0
 [0.3.0]: https://github.com/jfishe/panvimwiki/compare/0.2.0...0.3.0
 [0.4.0]: https://github.com/jfishe/panvimwiki/compare/0.3.0...0.4.0
@@ -281,14 +281,14 @@ The format is based on [Keep a Changelog], and this project adheres to
 [mdformat_simple_breaks]: https://pypi.org/project/mdformat_simple_breaks/
 [myst]: https://mystmd.org/
 [pandoc]: https://pandoc.org/
-[pandoc citations]: https://pandoc.org/manual.html#citation-syntax
+[pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [pandoc v3.10]: https://pandoc.org/releases.html#pandoc-3.10-2026-06-03
 [pinact]: https://github.com/suzuki-shunsuke/pinact
-[pysec-2026-2132]: https://access.redhat.com/errata/rhsa-2026:24761
+[pysec-2026-2132]: https://access.redhat.com/errata/RHSA-2026:24761
 [pysec-2026-3447]: https://github.com/pypa/setuptools/releases/tag/v83.0.0
-[reference links]: https://pandoc.org/manual.html#reference-links
+[reference links]: https://pandoc.org/MANUAL.html#reference-links
 [semantic line breaks]: https://sembr.org/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.12.0...head
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.12.0...HEAD
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimjas/vint]: https://github.com/vimjas/vint

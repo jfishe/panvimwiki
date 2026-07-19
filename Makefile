@@ -18,10 +18,17 @@ VADER_INPUT := $(VADER_DIR)/reference_citation.md
 help: ## Prints help for targets with comments
 	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: help test vader vimdoc clean
+.PHONY: help test vader vimdoc clean audit
 
 test: vader $(ENVFILE)  ## Run pytest with pretty printing, in a virtual environment.
 	uv run --env-file=.env -- pytest --pretty
+
+audit: ## Audit dependencies for known vulnerabilities. PYSEC-2026-2132 is ignored only for the vader group (see pyproject.toml).
+	# `--no-group`/`--no-default-groups` do not actually exclude a group's
+	# packages from `uv audit` (as of uv 0.11.28, preview `audit` command) so
+	# non-vader groups must be selected explicitly via repeated `--only-group`.
+	uv audit --only-group dev --only-group docs --only-group lint --only-group testing
+	uv audit --only-group vader --ignore PYSEC-2026-2132
 
 vader: $(VADER_INPUT) $(bundledir)/vader.vim $(bundledir)/vimwiki $(bundledir)/panvimwiki $(ENVFILE) | $(bundledir)/ $(tmpdir)/  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
 
