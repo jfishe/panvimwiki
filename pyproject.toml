@@ -235,3 +235,7 @@ conflicts = [
       { group = "vader" },
     ],
 ]
+audit.ignore = ["PYSEC-2026-2132"]
+# PYSEC-2026-2132: click<8.3.3 command-injection in click.edit().
+# covimerage (vader group, dev-only Vim coverage tool) pins click<7.1 and is incompatible with click 8 (unmaintained since 2021).
+# It never calls click.edit(); risk is not applicable to this usage.
