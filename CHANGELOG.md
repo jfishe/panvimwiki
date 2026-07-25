@@ -25,6 +25,11 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 <!-- ### Security -->
 
+### Added
+
+- `make audit` runs `uv audit` with necessary ignore options.
+- `make audit` runs [zizmor] with auditor persona.
+
 ### Security
 
 - Upgrade `click` for [PYSEC-2026-2132], except `covimerage` because
@@ -32,6 +37,12 @@ The format is based on [Keep a Changelog], and this project adheres to
   is incompatible with click 8 (unmaintained since 2021).
 - Upgrade `setuptools` for [PYSEC-2026-3447]
 - Pin GitHub Actions with [pinact].
+- Adopt [zizmor] recommendations to avoid:
+  - anonymous-definition
+  - template-injection
+  - cache-poisoning
+  - dependabot-cooldown
+  - artipacked
 
 ## [0.12.0] - 2026-06-20
 
@@ -292,3 +303,4 @@ The format is based on [Keep a Changelog], and this project adheres to
 [unreleased]: https://github.com/jfishe/panvimwiki/compare/0.12.0...HEAD
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimjas/vint]: https://github.com/vimjas/vint
+[zizmor]: https://docs.zizmor.sh/

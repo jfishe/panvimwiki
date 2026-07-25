@@ -28,6 +28,7 @@ concurrency:
 
 jobs:
   prepare:
+    name: Prepare Distribution Wheels
     runs-on: ubuntu-latest
     outputs:
       wheel-distribution: ${{ steps.wheel-distribution.outputs.path }}
@@ -60,6 +61,7 @@ jobs:
           retention-days: 1
 
   test:
+    name: Run tests on multiple platforms and Python versions
     needs: prepare
     strategy:
       matrix:
@@ -90,18 +92,23 @@ jobs:
       - name: Debug downloaded artifact
         run: ls -la dist || true
       - name: Show recorded wheel path
+        env:
+          WHEEL_PATH: ${{ needs.prepare.outputs.wheel-distribution }}
         run: |
-          echo "WHEEL='${{ needs.prepare.outputs.wheel-distribution }}'"
-          if [ -f "${{ needs.prepare.outputs.wheel-distribution }}" ]; then
+          echo "WHEEL='$WHEEL_PATH'"
+          if [ -f "$WHEEL_PATH" ]; then
             echo "Wheel exists at path"
           else
             echo "Wheel not found at path; listing dist:"
             ls -la dist || true
           fi
       - name: Run tests
+        env:
+          WHEEL_PATH: ${{ needs.prepare.outputs.wheel-distribution }}
+          PYTHON_VERSION: ${{ matrix.python }}
         run: >-
-          uv tool run tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}' \
-            -e '${{ matrix.python }}' -- -rFEx --durations 10 --color yes -vv
+          uv tool run tox --installpkg "$WHEEL_PATH" \
+            -e "$PYTHON_VERSION" -- -rFEx --durations 10 --color yes -vv
       - name: List coverage files
         run: ls -la .coverage* || true
       - name: Coveralls GitHub Action
@@ -113,6 +120,7 @@ jobs:
           parallel: true
 
   finalize:
+    name: Finalize coverage report
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -199,10 +207,11 @@ jobs:
       - name: Create GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: >-
           gh release create
-          '${GITHUB_REF_NAME}'
-          --repo '${{ github.repository }}'
+          "${GITHUB_REF_NAME}"
+          --repo "$REPO"
           --notes ""
           --draft
       - name: Update release notes from changelog
@@ -210,17 +219,18 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh release edit
-          '${GITHUB_REF_NAME}'
+          "${GITHUB_REF_NAME}"
           --notes-file RELEASE.md
           --title "Version $RELEASE_VERSION"
           --draft=false
       - name: Upload artifact signatures to GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         # Upload to GitHub Release using the `gh` CLI.
         # `dist/` contains the built packages, and the
         # sigstore-produced signatures and certificates.
         run: >-
           gh release upload
-          '${GITHUB_REF_NAME}' dist/**
-          --repo '${{ github.repository }}'
+          "${GITHUB_REF_NAME}" dist/**
+          --repo "$REPO"
