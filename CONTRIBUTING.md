@@ -325,7 +325,7 @@ on [PyPI], the following steps can be used to release a new version for
 [conda]: https://conda-forge.org/download/
 [contribution-guide.org]: https://www.contribution-guide.org/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
-[creating a pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+[creating a pr]: https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request
 [descriptive commit message]: https://cbea.ms/git-commit/
 [docstrings]: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 [git]: https://git-scm.com
