@@ -29,6 +29,7 @@ audit: ## Audit dependencies for known vulnerabilities. PYSEC-2026-2132 is ignor
 	# non-vader groups must be selected explicitly via repeated `--only-group`.
 	uv audit --only-group dev --only-group docs --only-group lint --only-group testing
 	uv audit --only-group vader --ignore PYSEC-2026-2132
+	uvx zizmor --persona=auditor "$(CURDIR)"
 
 vader: $(VADER_INPUT) $(bundledir)/vader.vim $(bundledir)/vimwiki $(bundledir)/panvimwiki $(ENVFILE) | $(bundledir)/ $(tmpdir)/  ## Required for tox -e vim and tests/vim/test_vimwiki_convert.py::test_vim_vader_all Clone Vader and Vimwiki. Link panvimwiki folders.
 
