@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sat Jul 18 14:12:25 2026
+                          For Vim 9.1    Last change: Sun Aug  2 08:26:56 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -17,7 +17,7 @@ Table of Contents                               *panvimwiki-table-of-contents*
 <https://github.com/jfishe/panvimwiki/actions>
 <https://pypi.org/project/panvimwiki>
 <https://github.com/jfishe/panvimwiki/releases> <LICENSE.txt>
-<https://coveralls.io/github/jfishe/panvimwiki>
+<https://coveralls.io/github/jfishe/panvimwiki?branch=main>
 <https://pypi.org/project/panvimwiki> <https://panvimwiki.readthedocs.io>
 <https://github.com/jfishe/panvimwiki/issues>
 
@@ -371,7 +371,7 @@ information on PyScaffold see <https://pyscaffold.org/>.
 2. *PyPI*: https://img.shields.io/pypi/v/panvimwiki.svg
 3. *Release*: https://img.shields.io/github/v/release/jfishe/panvimwiki
 4. *License*: https://img.shields.io/github/license/jfishe/panvimwiki
-5. *Coverage Status*: https://coveralls.io/repos/github/jfishe/panvimwiki/badge.svg
+5. *Coverage Status*: https://coveralls.io/repos/github/jfishe/panvimwiki/badge.svg?branch=main
 6. *Python*: https://img.shields.io/pypi/pyversions/panvimwiki.svg
 7. *Docs*: https://readthedocs.org/projects/panvimwiki/badge/?version=latest
 8. *Issues*: https://img.shields.io/github/issues/jfishe/panvimwiki

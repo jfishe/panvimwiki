@@ -8,7 +8,7 @@ reference-links: true
 [![PyPI](https://img.shields.io/pypi/v/panvimwiki.svg)](https://pypi.org/project/panvimwiki)
 [![Release](https://img.shields.io/github/v/release/jfishe/panvimwiki)](https://github.com/jfishe/panvimwiki/releases)
 [![License](https://img.shields.io/github/license/jfishe/panvimwiki)](LICENSE.txt)
-[![Coverage Status](https://coveralls.io/repos/github/jfishe/panvimwiki/badge.svg)](https://coveralls.io/github/jfishe/panvimwiki)
+[![Coverage Status](https://coveralls.io/repos/github/jfishe/panvimwiki/badge.svg?branch=main)](https://coveralls.io/github/jfishe/panvimwiki?branch=main)
 [![Python](https://img.shields.io/pypi/pyversions/panvimwiki.svg)](https://pypi.org/project/panvimwiki)
 [![Docs](https://readthedocs.org/projects/panvimwiki/badge/?version=latest)](https://panvimwiki.readthedocs.io)
 [![Issues](https://img.shields.io/github/issues/jfishe/panvimwiki)](https://github.com/jfishe/panvimwiki/issues)

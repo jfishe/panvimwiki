@@ -30,6 +30,10 @@ The format is based on [Keep a Changelog], and this project adheres to
 - `make audit` runs `uv audit` with necessary ignore options.
 - `make audit` runs [zizmor] with auditor persona.
 
+### Changed
+
+- `tox`, `sphinx` and Read the Docs use uv.
+
 ### Security
 
 - Upgrade `click` for [PYSEC-2026-2132], except `covimerage` because
