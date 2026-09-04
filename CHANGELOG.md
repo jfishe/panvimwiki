@@ -35,6 +35,11 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 - `tox`, `sphinx` and Read the Docs use uv.
 
+### Fixed
+
+Issue {issue}`18`, Ubuntu eliminated `wslview`
+so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
+
 ### Security
 
 - Upgrade `click` for [PYSEC-2026-2132], except `covimerage` because
