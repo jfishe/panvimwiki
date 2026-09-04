@@ -21,6 +21,7 @@ help: ## Prints help for targets with comments
 .PHONY: help test vader vimdoc clean audit
 
 test: vader $(ENVFILE)  ## Run pytest with pretty printing, in a virtual environment.
+	uv sync --group=dev --group=testing
 	uv run --env-file=.env -- pytest --pretty
 
 audit: ## Audit dependencies for known vulnerabilities. PYSEC-2026-2132 is ignored only for the vader group (see pyproject.toml).
