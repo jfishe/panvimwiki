@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 - `make audit` runs `uv audit` with necessary ignore options.
 - `make audit` runs [zizmor] with auditor persona.
+- CI: GitHub action runs [zizmor] with regular persona.
 
 ### Changed
 
