@@ -117,7 +117,7 @@ source .venv/bin/activate
 
 1. Create an user account on GitHub if you do not already have one.
 
-2. Fork the project [repository]: click on the *Fork* button near the top of the
+2. Fork the project [repository]: click on the _Fork_ button near the top of the
    page. This creates a copy of the code under your account on GitHub.
 
 3. Clone this copy to your local disk:
@@ -243,10 +243,13 @@ package:
    `.eggs`, as well as the `*.egg-info` folders in the `src` folder or
    potentially in the root of your project.
 
-2. Sometimes [tox] misses out when new dependencies are added, especially to
-   `pyproject.toml` and `docs/requirements.txt`. If you find any problems with
-   missing dependencies when running a command with [tox], try to recreate the
-   `tox` environment using the `-r` flag. For example, instead of:
+2. Sometimes [tox] misses out when new dependencies are added,
+   especially to the `docs` group
+   under `[dependency-groups]` in `pyproject.toml`.
+   If you find any problems with missing dependencies
+   when running a command with [tox],
+   try to recreate the `tox` environment using the `-r` flag.
+   For example, instead of:
 
    ```bash
    tox -e docs
