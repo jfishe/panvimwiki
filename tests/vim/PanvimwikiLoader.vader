@@ -1,0 +1,42 @@
+Before (Setup conversion output vimwiki/html, etc.):
+  call chdir(g:vimdir)
+  let s:tmpdir = tempname()
+  let g:html = s:tmpdir .. '/vimwiki_html/html'
+  call vimwiki#vars#set_wikilocal('path_html', g:html, 0)
+
+  let g:docx = s:tmpdir .. '/vimwiki_html/docx'
+
+Execute (plugin/panvimwiki.vim: already-loaded guard is a no-op):
+  " g:panvimwiki_loaded is set the first time Vim starts up and loads
+  " plugin/panvimwiki.vim; re-sourcing it should just hit the early finish.
+  Assert exists('g:panvimwiki_loaded'),
+        \ 'ERROR: plugin/panvimwiki.vim should already be loaded at startup'
+  execute 'source ' .. g:panvimwiki_path .. '/plugin/panvimwiki.vim'
+  Assert exists('g:panvimwiki_loaded')
+
+Execute (autoload/panvimwiki.vim: already-loaded guard is a no-op):
+  edit vimwiki/diary/2017-04-24.wiki
+  VimwikiConvert
+  Assert exists('g:loaded_panvimwiki_auto'),
+        \ 'ERROR: autoload/panvimwiki.vim should be loaded after VimwikiConvert'
+  execute 'source ' .. g:panvimwiki_path .. '/autoload/panvimwiki.vim'
+  Assert exists('g:loaded_panvimwiki_auto')
+
+Execute (after/ftplugin/vimwiki.vim: already-loaded guard is a no-op):
+  edit vimwiki/non-diary.wiki
+  Assert exists('b:did_ftplugin_panvimwiki'),
+        \ 'ERROR: after/ftplugin/vimwiki.vim should have run for a vimwiki buffer'
+  execute 'source ' .. g:panvimwiki_path .. '/after/ftplugin/vimwiki.vim'
+  Assert exists('b:did_ftplugin_panvimwiki')
+
+Execute (after/ftplugin/vimwiki.vim: appends to an existing b:undo_ftplugin):
+  " vimwiki's own ftplugin never sets b:undo_ftplugin, but another ftplugin
+  " earlier in the chain (e.g. Vim's built-in ftplugin/markdown.vim) can.
+  " Simulate that by pre-setting it, then force the after/ftplugin to
+  " re-run so it takes the "append" branch instead of the "create" one.
+  edit vimwiki/non-diary.wiki
+  unlet! b:did_ftplugin_panvimwiki
+  let b:undo_ftplugin = 'setlocal commentstring<'
+  execute 'source ' .. g:panvimwiki_path .. '/after/ftplugin/vimwiki.vim'
+  Assert b:undo_ftplugin ==# 'setlocal commentstring< | unlet b:did_ftplugin_panvimwiki',
+        \ 'ERROR: b:undo_ftplugin: ' .. string(b:undo_ftplugin)

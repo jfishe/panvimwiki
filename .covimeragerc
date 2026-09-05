@@ -22,4 +22,5 @@ source =
 omit =
     tests/vim/bundle/*
     tests/vim/vimrc
+    tests/vim/autoload_stubs/*
 show_missing = true

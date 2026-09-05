@@ -21,6 +21,27 @@ Execute (VimwikiConvert non-diary):
   VimwikiConvert
   Assert filereadable(g:docx .. '/non-diary.docx')
 
+Execute (VimwikiConvert bang opens the converted file):
+  " dist#vim9#Open is autoload-namespaced, so Vim only allows it to be
+  " defined from a script at .../autoload/dist/vim9.vim. Prepend a stub
+  " directory ahead of the real one so the test doesn't launch a real
+  " external program; asserting it was called with the converted path is
+  " enough to exercise the `if a:bang` branch in panvimwiki#convert().
+  let s:stub_dir = resolve(g:vimdir .. '/autoload_stubs')
+  execute 'set runtimepath^=' .. s:stub_dir
+
+  edit vimwiki/diary/2017-04-24.wiki
+  VimwikiConvert!
+  Assert filereadable(g:docx .. '/diary/2017-04-24.docx')
+  Assert exists('g:panvimwiki_test_open_path'),
+        \ 'ERROR: dist#vim9#Open was not called by VimwikiConvert!'
+  Assert g:panvimwiki_test_open_path ==# g:docx .. '/diary/2017-04-24.docx',
+        \ 'ERROR: dist#vim9#Open called with: ' .. g:panvimwiki_test_open_path
+
+  execute 'set runtimepath-=' .. s:stub_dir
+  delfunction dist#vim9#Open
+  unlet g:panvimwiki_test_open_path
+
 Execute (VimwikiConvertWeek non-diary):
   edit vimwiki/non-diary.wiki
   AssertThrows VimwikiConvertWeek

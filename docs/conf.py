@@ -312,7 +312,6 @@ intersphinx_mapping = {
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     "setuptools": ("https://setuptools.pypa.io/en/stable/", None),
-    "pyscaffold": ("https://pyscaffold.org/en/stable", None),
 }
 
 extlinks = {

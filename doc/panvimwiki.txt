@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sat Sep  5 11:01:51 2026
+                          For Vim 9.1    Last change: Sat Sep  5 11:58:15 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -12,8 +12,7 @@ Table of Contents                               *panvimwiki-table-of-contents*
   - Commands                                             |panvimwiki-commands|
   - Settings                                             |panvimwiki-settings|
 4. Development and Testing                |panvimwiki-development-and-testing|
-5. Note                                                      |panvimwiki-note|
-6. Links                                                    |panvimwiki-links|
+5. Links                                                    |panvimwiki-links|
 <https://github.com/jfishe/panvimwiki/actions>
 <https://pypi.org/project/panvimwiki>
 <https://github.com/jfishe/panvimwiki/releases> <LICENSE.txt>
@@ -356,15 +355,8 @@ Pandoc is required for testing; install it separately (see
     vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 <
 
-
 ==============================================================================
-5. Note                                                      *panvimwiki-note*
-
-This project has been set up using PyScaffold 4.5. For details and usage
-information on PyScaffold see <https://pyscaffold.org/>.
-
-==============================================================================
-6. Links                                                    *panvimwiki-links*
+5. Links                                                    *panvimwiki-links*
 
 1. *CI*: https://github.com/jfishe/panvimwiki/actions/workflows/ci.yml/badge.svg
 2. *PyPI*: https://img.shields.io/pypi/v/panvimwiki.svg
