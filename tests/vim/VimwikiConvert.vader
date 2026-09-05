@@ -30,17 +30,24 @@ Execute (VimwikiConvert bang opens the converted file):
   let s:stub_dir = resolve(g:vimdir .. '/autoload_stubs')
   execute 'set runtimepath^=' .. s:stub_dir
 
-  edit vimwiki/diary/2017-04-24.wiki
-  VimwikiConvert!
-  Assert filereadable(g:docx .. '/diary/2017-04-24.docx')
-  Assert exists('g:panvimwiki_test_open_path'),
-        \ 'ERROR: dist#vim9#Open was not called by VimwikiConvert!'
-  Assert g:panvimwiki_test_open_path ==# g:docx .. '/diary/2017-04-24.docx',
-        \ 'ERROR: dist#vim9#Open called with: ' .. g:panvimwiki_test_open_path
-
-  execute 'set runtimepath-=' .. s:stub_dir
-  delfunction dist#vim9#Open
-  unlet g:panvimwiki_test_open_path
+  try
+    edit vimwiki/diary/2017-04-24.wiki
+    VimwikiConvert!
+    Assert filereadable(g:docx .. '/diary/2017-04-24.docx')
+    Assert exists('g:panvimwiki_test_open_path'),
+          \ 'ERROR: dist#vim9#Open was not called by VimwikiConvert!'
+    Assert g:panvimwiki_test_open_path ==# g:docx .. '/diary/2017-04-24.docx',
+          \ 'ERROR: dist#vim9#Open called with: ' .. g:panvimwiki_test_open_path
+  finally
+    execute 'set runtimepath-=' .. s:stub_dir
+    unlet s:stub_dir
+    if exists('*dist#vim9#Open')
+      delfunction dist#vim9#Open
+    endif
+    if exists('g:panvimwiki_test_open_path')
+      unlet g:panvimwiki_test_open_path
+    endif
+  endtry
 
 Execute (VimwikiConvertWeek non-diary):
   edit vimwiki/non-diary.wiki
