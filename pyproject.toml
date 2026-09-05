@@ -1,5 +1,4 @@
 [build-system]
-# AVOID CHANGING REQUIRES: IT WILL BE UPDATED BY PYSCAFFOLD!
 requires = ["setuptools>=46.1.0", "setuptools_scm[toml]>=5"]
 build-backend = "setuptools.build_meta"
 
@@ -54,9 +53,7 @@ Documentation = "https://panvimwiki.readthedocs.io/"
 Source = "https://github.com/jfishe/panvimwiki"
 Tracker = "https://github.com/jfishe/panvimwiki/issues"
 Changelog = "https://panvimwiki.readthedocs.io/en/latest/changelog.html"
-#    Conda-Forge = "https://anaconda.org/conda-forge/pyscaffold"
 Download = "https://pypi.org/project/panvimwiki/#files"
-# Twitter = https://twitter.com/PyScaffold
 # Change if running only on Windows, Mac or Linux (comma-separated)
 # Add here all kinds of additional classifiers as defined under
 # https://pypi.org/classifiers/
@@ -81,9 +78,6 @@ Download = "https://pypi.org/project/panvimwiki/#files"
 # For example:
 # console_scripts =
 # fibonacci = panvimwiki.skeleton:run
-# And any other entry points, for example:
-# pyscaffold.cli =
-# awesome = pyscaffoldext.awesome.extension:AwesomeExtension
 
 [project.scripts]
 delete_empty_heading = "panvimwiki.filter.delete_empty_heading:main"

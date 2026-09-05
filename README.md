@@ -313,13 +313,6 @@ tox -e vim     # Run Vader tests and generate coverage report.
 vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 ```
 
-<!-- pyscaffold-notes -->
-
-## Note
-
-This project has been set up using PyScaffold 4.5. For details and usage
-information on PyScaffold see <https://pyscaffold.org/>.
-
 <!-- References -->
 
 <!-- markdownlint-disable MD051 -->
