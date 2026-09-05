@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Fri Sep  4 08:21:55 2026
+                          For Vim 9.1    Last change: Sat Sep  5 11:01:51 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -34,11 +34,11 @@ convert any Vimwiki note.
 ==============================================================================
 2. Installation                                      *panvimwiki-installation*
 
-Panvimwiki requires Pandoc <https://pandoc.org/> Installation with `conda` is
-recommended because the system version, e.g., with Ubuntu, may be too old. Or
-download from the website. Pypandoc
+Panvimwiki requires Pandoc <https://pandoc.org/>. Installation with pixi
+<https://pixi.prefix.dev/> is recommended because the system version, e.g.,
+with Ubuntu, may be too old. Or download from the website. Pypandoc
 <https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip>
-supports binary installation of pandoc using `pip`.
+supports binary installation of pandoc.
 
 Using the Vim 8 native packages, panvimwiki should install in
 `pack/*/opt/panvimwiki` because it depends on |:python3| and requires
@@ -338,15 +338,14 @@ Panvimwiki defaults to docx format, without extra_args.
 ==============================================================================
 4. Development and Testing                *panvimwiki-development-and-testing*
 
-Because pandoc is required, a conda environment called `panvimwiki` is created.
-The default name may be overridden with the `--name <environment name>`
-parameter.
+Pandoc is required for testing; install it separately (see
+|panvimwiki-installation|). Then create an isolated Python environment with uv
+<https://github.com/astral-sh/uv>:
 
 >bash
     git clone https://github.com/jfishe/panvimwiki.git
     cd panvimwiki
-    conda env create --file environment.yml
-    conda activate panvimwiki
+    uv sync --all-extras --dev --group=testing
 <
 
 >bash

@@ -22,10 +22,11 @@ convert any Vimwiki note.
 
 ## Installation
 
-Panvimwiki requires [Pandoc] Installation with `conda` is recommended
-because the system version, e.g., with Ubuntu, may be too old. Or
-download from the website. [Pypandoc] supports binary installation of
-pandoc using `pip`.
+Panvimwiki requires [Pandoc].
+Installation with [pixi] is recommended
+because the system version, e.g., with Ubuntu, may be too old.
+Or download from the website.
+[Pypandoc] supports binary installation of pandoc.
 
 Using the Vim 8 native packages, panvimwiki should install in
 `pack/*/opt/panvimwiki` because it depends on [:python3] and requires
@@ -294,15 +295,14 @@ let g:panvimwiki_settings = {
 
 ## Development and Testing
 
-Because pandoc is required, a conda environment called `panvimwiki` is
-created. The default name may be overridden with the
-`--name <environment name>` parameter.
+Pandoc is required for testing; install it separately (see
+[Installation](#installation)). Then create an isolated Python environment
+with [uv]:
 
 ```bash
 git clone https://github.com/jfishe/panvimwiki.git
 cd panvimwiki
-conda env create --file environment.yml
-conda activate panvimwiki
+uv sync --all-extras --dev --group=testing
 ```
 
 ```bash
@@ -336,10 +336,12 @@ information on PyScaffold see <https://pyscaffold.org/>.
 [inline links]: https://pandoc.org/MANUAL.html#inline-links
 [pandoc]: https://pandoc.org/
 [pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
+[pixi]: https://pixi.prefix.dev/
 [pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
 [quoteplus]: https://neovim.io/doc/user/provider/#quoteplus
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists
+[uv]: https://github.com/astral-sh/uv
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimrc]: https://neovim.io/doc/user/starting.html
 [vimwikiconvert]: #vimwikiconvert

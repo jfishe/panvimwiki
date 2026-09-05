@@ -70,7 +70,8 @@ and use Python's built-in web server for a preview in your web browser
 (`http://localhost:8000`):
 
 ```bash
-python3 -m http.server --directory 'docs/_build/html' --bind localhost
+uv run python -m http.server --bind localhost 8000 \
+  --directory 'docs/_build/html'
 ```
 
 Tox runs `make` and `prek` to build Vim help documentation in
@@ -99,7 +100,7 @@ This often provides additional considerations and avoids unnecessary work.
 
 Before you start coding, we recommend creating an isolated [virtual environment]
 to avoid any problems with your installed Python packages.
-This can easily be done via either [uv]:
+This can easily be done via [uv]:
 
 ```bash
 # Select python version compatible with installed Vim.
@@ -110,14 +111,6 @@ This can easily be done via either [uv]:
 uv venv --system-site-packages --python-preference=system
 uv sync --all-extras --dev --group=testing --python=3.13
 source .venv/bin/activate
-```
-
-or [conda]:
-
-```bash
-conda env create --file=environment.yml
-conda activate panvimwiki
-uv pip install --group=dev --group=testing -e .
 ```
 
 ### Clone the repository
@@ -214,6 +207,7 @@ uv pip install --group=dev --group=testing -e .
    # Select python version compatible with installed Vim.
    vim --version | grep python3
    tox -e 3.14
+   tox -e vim
    ```
 
    (after having installed [tox] with `uv tool install tox --with tox-uv`).
@@ -322,7 +316,6 @@ on [PyPI], the following steps can be used to release a new version for
     of environments, including private companies and proprietary code bases.
 
 [commonmark]: https://commonmark.org/
-[conda]: https://conda-forge.org/download/
 [contribution-guide.org]: https://www.contribution-guide.org/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [creating a pr]: https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request
