@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Audit workflows with zizmor
 
 on:
@@ -21,9 +22,9 @@ jobs:
     name: Audit workflows with zizmor
     runs-on: ubuntu-latest
     permissions:
-      security-events: write
-      contents: read
-      actions: read
+      security-events: write # upload zizmor SARIF results to code scanning
+      contents: read # checkout the repository
+      actions: read # required by zizmor to audit reusable workflow calls
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

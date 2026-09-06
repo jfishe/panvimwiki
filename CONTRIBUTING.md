@@ -294,7 +294,7 @@ If you are part of the group of maintainers and have correct user permissions
 on [PyPI], the following steps can be used to release a new version for
 `panvimwiki`:
 
-1. Make sure all unit tests are successful.
+1. Make sure all unit tests and audit are successful.
 2. Make sure Vim help is up to date, e.g., `tox -e docs`.
 3. Update `RELEASE_HEAD.md`, [GitHub Actions] prepends to
    [releases].
