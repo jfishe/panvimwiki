@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 <!-- ### Security -->
 
+## [1.0.0] - 2026-09-05
+
 ### Added
 
 - `make audit` runs `uv audit` with necessary ignore options.
@@ -34,6 +36,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Changed
 
 - `tox`, `sphinx` and Read the Docs use uv.
+- Retire `PyScaffold` project template.
+
+### Removed
+
+- Remove `conda` instructions in favor of `pixi` for pandoc installation.
+- Remove `appveyor`, `TravisCI`, and `Codacy`.
 
 ### Fixed
 
@@ -293,6 +301,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [0.7.1]: https://github.com/jfishe/panvimwiki/compare/0.7...0.7.1
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
+[1.0.0]: https://github.com/jfishe/panvimwiki/compare/0.12.0...1.0.0
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [kdheepak/panvimdoc v4.0.1]: https://github.com/kdheepak/panvimdoc
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
@@ -310,7 +319,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [reference links]: https://pandoc.org/MANUAL.html#reference-links
 [semantic line breaks]: https://sembr.org/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/0.12.0...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/1.0.0...HEAD
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimjas/vint]: https://github.com/vimjas/vint
 [zizmor]: https://docs.zizmor.sh/

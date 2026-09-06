@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sat Sep  5 11:58:15 2026
+                          For Vim 9.1    Last change: Sat Sep  5 12:07:01 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*

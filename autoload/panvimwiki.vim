@@ -65,8 +65,6 @@ function! panvimwiki#convert(bang, ...) abort "{{{
     endif
 
     " Assume the basename for the Vimwiki Diary buffer is in ISO format.
-    " " TODO:  <26-06-21, jdfenw@gmail.com> Generalize to other Vimwiki file
-    " name conventions "
     let l:end_date = expand('%:t:r')
 
     python3 from panvimwiki.wiki2pandoc import wiki2pandoc
