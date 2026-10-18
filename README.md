@@ -207,6 +207,9 @@ New York: Holt, Rinehart & Winston.
 
 Convert [Pandoc] markdown tasks and wikilinks to `:h vimwiki-todo-lists`
 and markdown links compatible with `:h vimwiki-syntax-links`.
+Restore Vimwiki done tasks, `- [X]`, from [Pandoc] `- [x]`.
+Rejoin task lists that [Pandoc] splits with an empty HTML comment, `<!-- -->`,
+e.g., a `- [X]` task followed by a `- [.]` task.
 
 ### Commands
 

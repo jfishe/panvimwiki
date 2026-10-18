@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sat Sep  5 12:07:01 2026
+                          For Vim 9.1    Last change: Sun Oct 18 11:48:54 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -234,6 +234,9 @@ WIKILINK_MARKDOWN
 
 Convert Pandoc <https://pandoc.org/> markdown tasks and wikilinks to
 |vimwiki-todo-lists| and markdown links compatible with |vimwiki-syntax-links|.
+Restore Vimwiki done tasks, `- [X]`, from Pandoc <https://pandoc.org/> `- [x]`.
+Rejoin task lists that Pandoc <https://pandoc.org/> splits with an empty HTML
+comment, `<!-- -->`, e.g., a `- [X]` task followed by a `- [.]` task.
 
 
 COMMANDS                                                 *panvimwiki-commands*

@@ -15,13 +15,20 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 <!-- ### Added -->
 
-<!-- ### Changed -->
+### Changed
+
+- Expected test results per [pandoc v3.12].
 
 <!-- ### Deprecated -->
 
 <!-- ### Removed -->
 
-<!-- ### Fixed -->
+### Fixed
+
+- `wikilink_markdown` (`:VimwikiMarkdownFormat`) rejoins task lists that
+  [pandoc v3.12] splits with an empty HTML comment, `<!-- -->`.
+- `wikilink_markdown` (`:VimwikiMarkdownFormat`) restores Vimwiki done tasks,
+  `- [X]`, from [pandoc v3.12] `- [x]`.
 
 <!-- ### Security -->
 
@@ -313,6 +320,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [pandoc]: https://pandoc.org/
 [pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [pandoc v3.10]: https://pandoc.org/releases.html#pandoc-3.10-2026-06-03
+[pandoc v3.12]: https://pandoc.org/releases.html#pandoc-3.12
 [pinact]: https://github.com/suzuki-shunsuke/pinact
 [pysec-2026-2132]: https://access.redhat.com/errata/RHSA-2026:24761
 [pysec-2026-3447]: https://github.com/pypa/setuptools/releases/tag/v83.0.0

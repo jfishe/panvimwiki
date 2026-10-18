@@ -3,6 +3,8 @@ r"""
 Convert GitHub Flavored Markdown (gfm) to Vimwiki/Taskwiki syntax.
 
 - Remove backslashes from [ ] tasks
+- Restore Vimwiki done task [X] from pandoc [x].
+- Rejoin task lists split by an empty HTML comment, <!-- -->.
 - Remove backslashes from apostrophe-s, \`s.
 - Remove link title "wikilink".
 - Unescape taskwiki octothorpe and use asterisk-marker.
@@ -24,6 +26,16 @@ REPLACE = (
     dict(
         pattern=r"\\\[(\S|\s)\\\]",
         repl=r"[\1]",
+    ),
+    # Restore Vimwiki done task [X] from pandoc [x].
+    dict(
+        pattern=r"^(\s*[-*+]\s)\[x\]",
+        repl=r"\1[X]",
+    ),
+    # Rejoin task lists that pandoc splits with an empty HTML comment.
+    dict(
+        pattern=r"(?<=\n)\n[ \t]*<!-- -->\n\n(?=[ \t]*[-*+] )",
+        repl=r"",
     ),
     # Remove backslashes from apostrophe-s, `s.
     dict(
