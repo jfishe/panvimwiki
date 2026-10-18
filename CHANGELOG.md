@@ -13,7 +13,13 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
-<!-- ### Added -->
+### Added
+
+- `:VimwikiMarkdownFormat`, `:VimwikiReference` and `:VimwikiConvert` process
+  Vimwiki markdown definition lists, `Term:: Definition`, as pandoc
+  [definition_lists] ([#4]).
+  - Prefilter `definition_list_pandoc` converts to [definition_lists].
+  - Postfilter `definition_list_vimwiki` restores Vimwiki definition lists.
 
 ### Changed
 
@@ -295,6 +301,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 
 - Switch build to flit.
 
+[#4]: https://github.com/jfishe/panvimwiki/issues/4
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
 [0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1
 [0.11.0]: https://github.com/jfishe/panvimwiki/compare/0.10.1...0.11.0
@@ -310,6 +317,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
 [1.0.0]: https://github.com/jfishe/panvimwiki/compare/0.12.0...1.0.0
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+[definition_lists]: https://pandoc.org/MANUAL.html#extension-definition_lists
 [kdheepak/panvimdoc v4.0.1]: https://github.com/kdheepak/panvimdoc
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [mdformat]: https://pypi.org/project/mdformat/

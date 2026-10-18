@@ -9,7 +9,7 @@ from typing import Literal
 import vim  # noqa
 from vim_bridge import bridged
 
-from panvimwiki.convert import convert
+from panvimwiki.convert import PREFILTER, convert
 from panvimwiki.vimwiki_week import concatenate_diary
 
 # Suppress SyntaxWarning from third-party libraries (e.g., panflute)
@@ -57,14 +57,14 @@ def vimwiki_task_link() -> None:
         outputfile=str(path),
         format=FORMAT,
         to="commonmark_x",
-        prefilters=None,
+        prefilters=("definition_list_pandoc",),
         filters=None,
         extra_args=(
             "--standalone",
             "--wrap",
             "preserve",
         ),
-        postfilters=("wikilink_markdown",),
+        postfilters=("wikilink_markdown", "definition_list_vimwiki"),
     )
 
 
@@ -85,7 +85,7 @@ def expand_citeproc() -> None:
         outputfile=str(path),
         format=FROMCITE,
         to=FORMAT,
-        prefilters=None,
+        prefilters=("definition_list_pandoc",),
         filters=None,
         extra_args=(
             "--metadata",
@@ -95,7 +95,7 @@ def expand_citeproc() -> None:
             "--wrap",
             "preserve",
         ),
-        postfilters=("wikilink_markdown",),
+        postfilters=("wikilink_markdown", "definition_list_vimwiki"),
     )
 
 
@@ -190,14 +190,17 @@ def wiki2pandoc(
 
     if vim.eval("vimwiki#vars#get_wikilocal('syntax')") == "markdown":
         local_format: str = FORMAT
+        prefilters = PREFILTER + ("definition_list_pandoc",)
     else:
         local_format = "vimwiki"
+        prefilters = PREFILTER
 
     convert(
         inputfile=str(inputfile),
         outputfile=str(outputfile),
         format=local_format,
         to=to,
+        prefilters=prefilters,
         extra_args=tuple(extra_args),
     )
 

@@ -1,5 +1,5 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sun Oct 18 11:48:54 2026
+                          For Vim 9.1    Last change: Sun Oct 18 12:29:38 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
@@ -266,6 +266,9 @@ Remove extraneous info:
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
+If in markdown format, convert Vimwiki definition lists to definition_lists
+<https://pandoc.org/MANUAL.html#extension-definition_lists>.
+
 
 VimwikiConvertWeek[!]                          *panvimwiki-VimwikiConvertWeek*
 
@@ -309,7 +312,9 @@ wikilinks_title_after_pipe
 <https://pandoc.org/MANUAL.html#extension-wikilinks_title_after_pipe> to Inline
 links <https://pandoc.org/MANUAL.html#inline-links>, without the "wikilink"
 title that pandoc adds by default. Preserve |vimwiki-todo-lists|, using
-task_lists <https://pandoc.org/MANUAL.html#extension-task_lists>.
+task_lists <https://pandoc.org/MANUAL.html#extension-task_lists>. Preserve
+|vimwiki-syntax-lists| definition lists, using definition_lists
+<https://pandoc.org/MANUAL.html#extension-definition_lists>.
 
 `VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
 buffer (cf. Warning |W12|). If you choose not to reload the buffer, |:DiffOrig|

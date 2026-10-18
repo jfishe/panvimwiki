@@ -225,3 +225,75 @@ def test_convert_syntax_markdown(tmp_path):
         format="docx",
     )
     assert test_input == expected
+
+
+DEFINITION_LIST = """\
+Term 1:: Definition 1 should appear
+
+Term 2::
+:: Definition 2 should appear
+:: Definition 3 should appear
+"""
+
+
+def test_convert_definition_list_markdown_format(tmp_path):
+    r"""Given Vimwiki markdown definition lists.
+
+    When converting as VimwikiMarkdownFormat,
+    Then preserve Vimwiki definition lists.
+
+    cat definition_list.md |
+    definition_list_pandoc |
+    pandoc \
+      --from=commonmark_x+wikilinks_title_after_pipe \
+      --standalone \
+      --wrap=preserve \
+      --to=commonmark_x |
+    wikilink_markdown |
+    definition_list_vimwiki
+    """
+    inputfile = tmp_path / "definition_list.md"
+    inputfile.write_text(DEFINITION_LIST, encoding="utf-8")
+    test_input = convert(
+        inputfile=str(inputfile),
+        outputfile=None,
+        format="commonmark_x+wikilinks_title_after_pipe",
+        to="commonmark_x",
+        prefilters=("definition_list_pandoc",),
+        filters=None,
+        extra_args=(
+            "--standalone",
+            "--wrap",
+            "preserve",
+        ),
+        postfilters=("wikilink_markdown", "definition_list_vimwiki"),
+    )
+    # wikilink_markdown appends an empty line.
+    assert test_input == DEFINITION_LIST + "\n"
+
+
+def test_convert_definition_list_docx(tmp_path):
+    r"""Given Vimwiki markdown definition lists.
+
+    When converting to docx with prefilter definition_list_pandoc,
+    Then pandoc can convert back to a DefinitionList.
+    """
+    inputfile = tmp_path / "definition_list.md"
+    inputfile.write_text(DEFINITION_LIST, encoding="utf-8")
+    outputfile = tmp_path / "definition_list.docx"
+    convert(
+        inputfile=str(inputfile),
+        outputfile=str(outputfile),
+        format="commonmark_x+wikilinks_title_after_pipe",
+        to="docx",
+        prefilters=PREFILTER + ("definition_list_pandoc",),
+        filters=FILTER,
+        extra_args=None,
+    )
+    test_input = pypandoc.convert_file(
+        str(outputfile),
+        to="native",
+        format="docx",
+    )
+    assert test_input.count("DefinitionList") == 1
+    assert 'Str "1::"' not in test_input

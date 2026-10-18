@@ -80,6 +80,8 @@ Download = "https://pypi.org/project/panvimwiki/#files"
 # fibonacci = panvimwiki.skeleton:run
 
 [project.scripts]
+definition_list_pandoc = "panvimwiki.filter.definition_list_pandoc:main"
+definition_list_vimwiki = "panvimwiki.filter.definition_list_vimwiki:main"
 delete_empty_heading = "panvimwiki.filter.delete_empty_heading:main"
 delete_taskwiki_heading = "panvimwiki.filter.delete_taskwiki_heading:main"
 delete_tag_lines = "panvimwiki.filter.delete_tag_lines:main"

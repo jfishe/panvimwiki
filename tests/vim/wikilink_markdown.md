@@ -26,6 +26,12 @@ wikilink_markdown
 
 @bloggs-jones discusses [@chomsky-73, p. 74].
 
+Term 1:: Definition 1
+
+Term 2::
+:: Definition 2
+:: Definition 3
+
 Required `mdformat` extensions:
 
 1. mdformat_wikilink: wikilink

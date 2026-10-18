@@ -236,6 +236,9 @@ Remove extraneous info:
 - Non-task bullet lines, e.g., `* [[URI|Description]]` or `* Text`
 - Remove empty parent/child headings.
 
+If in markdown format, convert Vimwiki definition lists to
+[definition_lists].
+
 ##### VimwikiConvertWeek[!]
 
 Concatenate DiaryNotes for Monday through current buffer and convert.
@@ -272,6 +275,8 @@ If in markdown format, convert `:h vimwiki-syntax-links`
 [wikilinks_title_after_pipe] to [Inline links],
 without the "wikilink" title that pandoc adds by default.
 Preserve `:h vimwiki-todo-lists`, using [task_lists].
+Preserve `:h vimwiki-syntax-lists` definition lists, using
+[definition_lists].
 
 `VimwikiMarkdownFormat` overwrites the file, so Vim may prompt to reload the
 buffer (cf. Warning `:h W12`). If you choose not to reload the buffer,
@@ -326,6 +331,7 @@ vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 [:python3]: https://neovim.io/doc/user/if_pyth/#python3
 [citation style language (csl)]: https://pandoc.org/MANUAL.html#specifying-a-citation-style
 [conquer of completion (coc)]: https://github.com/neoclide/coc.nvim
+[definition_lists]: https://pandoc.org/MANUAL.html#extension-definition_lists
 [delete_tag_lines]: #delete_tag_lines
 [delete_task_pending]: #delete_task_pending
 [g:panvimwiki_settings]: #g-panvimwiki-settings
