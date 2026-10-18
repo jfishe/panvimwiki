@@ -48,7 +48,9 @@ def action(
 
 
 def prefilter(
-    delete: str | None = None, replace: tuple[str, str] | None = None
+    delete: str | None = None,
+    replace: tuple[str, str] | None = None,
+    delete_continuation: bool = False,
 ) -> None:
     """Read stdin, filter with action() to stdout.
 
@@ -60,9 +62,24 @@ def prefilter(
     replace
         Regex re.search string and replacement string for re.sub.
 
+    delete_continuation
+        Also delete the non-blank lines following a deleted line which are
+        indented more than it, e.g., wrapped lines and nested items of a list
+        item. A blank line or a line at the same or lesser indent ends the
+        deletion.
+
     """
+    indent: int | None = None
+
     with fileinput.input() as f:
         for line in f:
+            if indent is not None:
+                if line.strip() and len(line) - len(line.lstrip()) > indent:
+                    continue
+                indent = None
+
             lineout = action(line, delete, replace)
             if lineout is not None:
                 print(lineout.rstrip("\n"))
+            elif delete_continuation:
+                indent = len(line) - len(line.lstrip())

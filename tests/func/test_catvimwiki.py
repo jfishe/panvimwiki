@@ -57,5 +57,5 @@ def test_catdiary(catdiary_fixture):
 
     """
     containsnot, containsshould = search_not(catdiary_fixture)
-    assert len(containsnot) == 21, containsnot
-    assert len(containsshould) == 24, containsshould
+    assert len(containsnot) == 22, containsnot
+    assert len(containsshould) == 23, containsshould

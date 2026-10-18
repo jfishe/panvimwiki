@@ -41,3 +41,12 @@ cat tests/unit/prefilter/delete_task_pending.md | delete_task_pending |
 * [S] Bulleted list item 2 should convert to [.] done1 #d6198091
 * [W] Bulleted list item 3 should NOT appear  #2da7eb9b
 * [X] Bulleted list done4 item 4 should appear
+
+## Wrapped Taskwiki Unordered List
+* [ ] Wrapped bulleted list item 5 should NOT appear, including
+  its wrapped line  #0c1d2e3f
+* [.] Wrapped bulleted list item 6 should appear, including
+  its wrapped line  #4f5e6d7c
+* [W] Bulleted list item 7 should NOT appear  #8a9b0c1d
+  - Nested list item 8 should NOT appear
+* [X] Bulleted list done4 item 9 should appear

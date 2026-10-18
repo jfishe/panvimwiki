@@ -14,12 +14,12 @@ diary_path: Path = Path(__file__).parents[0] / "vimwiki/diary"
 @pytest.mark.parametrize(
     "start_date, end_date, diary_path, expected",
     [
-        pytest.param(None, None, diary_path, (2, 2521), id="No start or end date"),
+        pytest.param(None, None, diary_path, (2, 2507), id="No start or end date"),
         pytest.param(
             "2017-04-24",
             "2017-04-26",
             diary_path,
-            (2, 2521),
+            (2, 2507),
             id="Specify start and end dates",
         ),
     ],

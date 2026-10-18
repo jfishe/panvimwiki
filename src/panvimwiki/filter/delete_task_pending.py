@@ -5,6 +5,7 @@ Plain text filter
 
 - Read stdin.
 - Remove Pending [ ] and Waiting [W] tasks.
+- Remove wrapped lines and nested items of removed tasks.
 - Change Start [S] task to [.].
 - Write filtered result to stdout.
 
@@ -30,7 +31,7 @@ REPLACE = (r"\s\[S\]", " [.]")
 
 def main():
     """Filter stdio with action()."""
-    prefilter(delete=DELETE, replace=REPLACE)
+    prefilter(delete=DELETE, replace=REPLACE, delete_continuation=True)
 
 
 if __name__ == "__main__":

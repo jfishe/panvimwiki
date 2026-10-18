@@ -4,7 +4,7 @@
 
 1.  []{.done4}OrderedList done4 should appear
     []{#-InlineTagShouldAppear}[InlineTagShouldAppear]{#InlineTagShouldAppear
-    .tag} Continuation should appear\--avoid hard wrap!
+    .tag}
 2.  []{.done1}OrderedList done1 should appear
     1.  []{.done1}OrderedList a) done1 should appear
 3.  []{.done2}OrderedList done2 should appear

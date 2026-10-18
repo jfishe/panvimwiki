@@ -160,3 +160,24 @@ def test_delete_tag_lines_disorder():
             encoding="utf8",
         )
     assert "AttributeError" in str(excinfo.value)
+
+
+def test_delete_bullet_star_wrapped():
+    """test_delete_bullet_star_wrapped.
+
+    Given a wrapped star bullet, delete the bullet and its wrapped lines (#1).
+    """
+    bullet = (
+        "* Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\n"
+        "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\n"
+        "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\n"
+        "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit\n"
+    )
+    filter_out = subprocess.run(
+        "delete_bullet_star",
+        capture_output=True,
+        encoding="utf8",
+        input=bullet,
+        check=True,
+    )
+    assert filter_out.stdout == ""

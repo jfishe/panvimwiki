@@ -37,3 +37,9 @@ cat tests/unit/prefilter/delete_task_pending.wiki | delete_task_pending |
 - []{.done1}Bulleted list item 1 should appear #4a7369ae
 - []{.done1}Bulleted list item 2 should convert to \[.\] done1 #d6198091
 - []{.done4}Bulleted list done4 item 4 should appear
+
+## Wrapped Taskwiki Unordered List {#Wrapped Taskwiki Unordered List}
+
+- []{.done1}Wrapped bulleted list item 6 should appear, including its
+  wrapped line #4f5e6d7c
+- []{.done4}Bulleted list done4 item 9 should appear

@@ -43,3 +43,9 @@ f)  \[-\] Numbered list doneX item 5 should appear
 - \[.\] Bulleted list item 1 should appear #4a7369ae
 - \[.\] Bulleted list item 2 should convert to \[.\] done1 #d6198091
 - \[X\] Bulleted list done4 item 4 should appear
+
+## Wrapped Taskwiki Unordered List
+
+- \[.\] Wrapped bulleted list item 6 should appear, including its
+  wrapped line #4f5e6d7c
+- \[X\] Bulleted list done4 item 9 should appear

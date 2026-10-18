@@ -23,3 +23,13 @@ cat tests/unit/prefilter/delete_bullet_star.md | delete_bullet_star |
   pandoc --from=markdown+wikilinks_title_after_pipe-task_lists-citations \
   --to=markdown > tests/unit/prefilter/out/delete_bullet_star.md.md
 ```
+
+## Wrapped Bulleted Lists
+
+* Wrapped bulleted list item 14 should NOT appear, including
+  its wrapped line
+- Wrapped bulleted list item 15 should appear, including
+  its wrapped line
+* Bulleted list item 16 should NOT appear
+  - Nested list item 17 should NOT appear
+- Bulleted list item 18 should appear

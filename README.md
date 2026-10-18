@@ -126,9 +126,9 @@ convert(
 Remove unordered lists which use the star (asterisk) bullet marker.
 
 The pre-filter does not remove task list items (see
-[delete_task_pending]). The pre-filter does not handle wrapped
-bullets--i.e., it will delete the bulleted-line and leave the wrapped
-lines. I haven't figured out a good regex for wrapped lines.
+[delete_task_pending]). The pre-filter also deletes the wrapped lines
+and nested items of a deleted bullet, i.e., the following lines indented
+more than the bullet, up to a blank line.
 
 ```bash
 echo '- Bulleted list item 1 should appear' \
@@ -142,7 +142,8 @@ echo '- Bulleted list item 1 should appear' \
 
 ##### delete_task_pending
 
-Delete pending tasks.
+Delete pending tasks, including their wrapped lines and nested
+items.
 
 ```bash
 echo '- [ ] Bulleted list done0 item 0 should NOT appear' \

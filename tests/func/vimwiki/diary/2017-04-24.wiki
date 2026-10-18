@@ -6,7 +6,7 @@
 1. [X] OrderedList done4 should appear
        :InlineTagShouldAppear:
 2. [ ] OrderedList done0 should NOT appear
-       Continuation should appear--avoid hard wrap!
+       Continuation should NOT appear
   a) [ ] OrderedList a) done0 should NOT appear
 3. [.] OrderedList done1 should appear
   a) [.] OrderedList a) done1 should appear

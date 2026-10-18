@@ -8,6 +8,7 @@ Plain text prefilter
   `|delete_task_pending|`).
 - Read stdin.
 - Remove non-task * bullet lines, e.g., * [[URI|Description]] or * Text.
+- Remove wrapped lines and nested items of removed bullets.
 - Write filtered result to stdout.
 
 .. code:: bash
@@ -31,7 +32,7 @@ REPLACE = None
 
 def main():
     """Filter stdio with action()."""
-    prefilter(delete=DELETE, replace=REPLACE)
+    prefilter(delete=DELETE, replace=REPLACE, delete_continuation=True)
 
 
 if __name__ == "__main__":

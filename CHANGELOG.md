@@ -35,6 +35,8 @@ The format is based on [Keep a Changelog], and this project adheres to
   [pandoc v3.12] splits with an empty HTML comment, `<!-- -->`.
 - `wikilink_markdown` (`:VimwikiMarkdownFormat`) restores Vimwiki done tasks,
   `- [X]`, from [pandoc v3.12] `- [x]`.
+- Prefilters `delete_bullet_star` and `delete_task_pending` delete wrapped
+  lines and nested items of deleted list items ([#1]).
 
 <!-- ### Security -->
 
@@ -301,6 +303,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 
 - Switch build to flit.
 
+[#1]: https://github.com/jfishe/panvimwiki/issues/1
 [#4]: https://github.com/jfishe/panvimwiki/issues/4
 [0.1.0]: https://github.com/jfishe/panvimwiki/releases/tag/0.1.0
 [0.10.1]: https://github.com/jfishe/panvimwiki/compare/0.9.0...0.10.1

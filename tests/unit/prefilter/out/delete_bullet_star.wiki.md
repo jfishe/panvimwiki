@@ -22,3 +22,9 @@ cat tests/unit/prefilter/delete_bullet_star.wiki | delete_bullet_star |
   pandoc --from=vimwiki \
   --to=markdown > tests/unit/prefilter/out/delete_bullet_star.wiki.md
 ```
+
+## Wrapped Bulleted Lists {#Wrapped Bulleted Lists}
+
+- Wrapped bulleted list item 15 should appear, including its wrapped
+  line
+- Bulleted list item 18 should appear
