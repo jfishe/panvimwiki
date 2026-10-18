@@ -23,6 +23,7 @@ def action(elem, doc):
         if (
             isinstance(elem, pf.Para)
             and isinstance(elem.content[0], pf.Span)
+            # pyrefly: ignore[missing-attribute]
             and elem.content[-1].classes == ["tag"]  # pyright: ignore [ reportAttributeAccessIssue ]
         ):
             return []

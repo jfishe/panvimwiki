@@ -38,6 +38,7 @@ def action(elem, doc):
             ),
             count=0,
         )
+        # pyrefly: ignore[missing-attribute]
         elem.content = pf.convert_text(result)[0].content  # pyright: ignore [ reportAttributeAccessIssue, reportIndexIssue ]
         elem.identifier = ""
         return elem

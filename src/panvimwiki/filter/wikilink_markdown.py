@@ -63,7 +63,7 @@ def main():
     """Filter stdio with action()."""
     lines = sys.stdin.read()
     for subst in REPLACE:
-        lines = re.sub(**subst, string=lines, flags=re.MULTILINE)
+        lines = re.sub(subst["pattern"], subst["repl"], lines, flags=re.MULTILINE)
     print(
         mdformat.text(
             lines.rstrip("\n"),

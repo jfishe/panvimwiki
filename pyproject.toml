@@ -108,6 +108,7 @@ lint = [
   "mdformat-ruff>=0.1.3",
   "mdformat-shfmt>=0.2.0",
   "prek>=0.2.25",
+  "pyrefly>=1.3.2",
   "ruff>=0.14.10",
 ]
 testing = [
@@ -186,6 +187,11 @@ convention = "numpy"
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 20
+
+[tool.pyrefly]
+project-excludes = ["docs/conf.py"]
+# Provided by Vim at runtime.
+ignore-missing-imports = ["vim"]
 
 [tool.setuptools]
 zip-safe = false

@@ -38,6 +38,16 @@ repos:
       - id: ruff-format
         types_or: [python, pyi]
 
+  ## Pyrefly type checker, run in the project venv to resolve imports.
+  - repo: local
+    hooks:
+      - id: pyrefly
+        name: pyrefly check
+        entry: uv run pyrefly check
+        language: system
+        types_or: [python, pyi]
+        pass_filenames: false
+
   ## Check for misspells in documentation files:
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3

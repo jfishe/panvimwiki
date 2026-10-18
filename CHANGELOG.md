@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Changed
 
 - Expected test results per [pandoc v3.12].
+- Type check with [pyrefly] (`uv run pyrefly check`, prek hook).
 
 <!-- ### Deprecated -->
 
@@ -333,6 +334,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [pandoc v3.10]: https://pandoc.org/releases.html#pandoc-3.10-2026-06-03
 [pandoc v3.12]: https://pandoc.org/releases.html#pandoc-3.12
 [pinact]: https://github.com/suzuki-shunsuke/pinact
+[pyrefly]: https://pyrefly.org/
 [pysec-2026-2132]: https://access.redhat.com/errata/RHSA-2026:24761
 [pysec-2026-3447]: https://github.com/pypa/setuptools/releases/tag/v83.0.0
 [reference links]: https://pandoc.org/MANUAL.html#reference-links
