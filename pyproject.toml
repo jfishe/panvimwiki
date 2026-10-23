@@ -231,6 +231,7 @@ filterwarnings = [
 # system: mark end-to-end system tests
 
 [tool.uv]
+exclude-newer = "7 days"
 conflicts = [
     [
       { group = "testing" },
