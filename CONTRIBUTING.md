@@ -139,7 +139,7 @@ source .venv/bin/activate
 
    ```bash
    uv tool install prek
-   prek autoupdate
+   prek autoupdate --cooldown-days=7
    prek install --install-hooks
    prek install --hook-type commit-msg
    ```
