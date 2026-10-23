@@ -24,11 +24,17 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Changed
 
 - Expected test results per [pandoc v3.12].
-- Type check with [pyrefly] (`uv run pyrefly check`, prek hook).
+- Type check with [pyrefly] (`uv run pyrefly check`, prek hook with the
+  `testing` dependency group).
+- uv resolves only packages published at least 7 days ago
+  (`exclude-newer = "7 days"`).
+- CONTRIBUTING: `prek autoupdate --cooldown-days=7`.
 
 <!-- ### Deprecated -->
 
-<!-- ### Removed -->
+### Removed
+
+- Remove `.vim/coc-settings.json`.
 
 ### Fixed
 
