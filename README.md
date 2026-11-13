@@ -22,29 +22,41 @@ convert any Vimwiki note.
 
 ## Installation
 
+Panvimwiki has three parts, and each one is installed separately:
+
+1. [Pandoc].
+2. The command line filters. They must be on `PATH`, because the Vim
+   commands also run them.
+3. The Vim plugin, plus the panvimwiki Python package where Vim's
+   [:python3] can import it.
+
+### Pandoc
+
 Panvimwiki requires [Pandoc].
 Installation with [pixi] is recommended
 because the system version, e.g., with Ubuntu, may be too old.
 Or download from the website.
 [Pypandoc] supports binary installation of pandoc.
 
-Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on [:python3] and requires
-installation of the python package panvimwiki.
+### Command Line Filters
 
-From a bash shell, enter the following:
+Install the filters as an isolated tool with [uv] (or `pipx`):
+
+```bash
+uv tool install panvimwiki
+uv tool update-shell # Add ~/.local/bin to PATH, if needed.
+which delete_bullet_star # Windows: where delete_bullet_star
+```
+
+### Vim Plugin
+
+Using the Vim 8 native packages, panvimwiki should install in
+`pack/*/opt/panvimwiki` because it depends on [:python3].
 
 ```bash
 # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
 dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
-
 git clone https://github.com/jfishe/panvimwiki.git "$dest"
-
-# Activate the python environment used by Vim.
-# Then install panvimwiki in that python environment.
-python -m pip install "$dest"
-# Or to install from pypi:
-python -m pip install panvimwiki
 ```
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to
@@ -55,6 +67,75 @@ explanation. Otherwise, install panvimwiki in `pack/*/start/panvimwiki`.
 if has('python3')
   packadd! panvimwiki
 endif
+```
+
+### Python Package for Vim
+
+The commands run `:python3 import panvimwiki` inside Vim, so the package
+must be installed for **Vim's** Python, which may differ from the Python
+on `PATH`. First, ask Vim which Python it uses:
+
+```vim
+:py3 import sys; print(sys.version)
+:echo has('python3_dynamic')
+```
+
+Then create a virtual environment with the same Python minor version
+(panvimwiki requires Python 3.10 or later). For example, with a [uv]
+project next to your vimrc:
+
+```bash
+cd ~/.vim # Windows: ~/vimfiles
+uv init --bare
+uv python pin 3.13 # Use the version Vim reported.
+# Linux system Vim only (see Platform notes); --clear replaces any .venv.
+uv venv --system-site-packages --python-preference=system --clear
+uv add panvimwiki
+```
+
+Tell panvimwiki where the environment's `site-packages` is with
+[g:panvimwiki_python_path], before `packadd! panvimwiki`:
+
+```vim
+" Linux and macOS:
+let g:panvimwiki_python_path = '~/.vim/.venv/lib/python3.*/site-packages'
+" Windows:
+let g:panvimwiki_python_path = '~/vimfiles/.venv/Lib/site-packages'
+```
+
+Prefer this to setting `$PYTHONPATH`. Child processes inherit
+`$PYTHONPATH`, so it also changes the Python used by the filters and by
+pandoc.
+
+Platform notes:
+
+- **Linux system Vim** is linked to the distribution's Python, and other
+  Vim plugins may rely on packages installed with apt (or another system
+  package manager). Build the environment on that same interpreter with
+  `--python-preference=system`, so uv does not substitute its own Python
+  build. Use `--system-site-packages` so the apt packages stay visible
+  instead of being replaced by different copies. To keep later
+  `uv sync` runs on the system interpreter, also add
+  `python-preference = "system"` under `[tool.uv]` in `pyproject.toml`.
+  [g:panvimwiki_python_path] adds the environment after the system
+  directories, so when apt also provides one of panvimwiki's
+  dependencies (e.g., `python3-dateutil`), Vim imports the apt copy. If
+  that copy is older than panvimwiki requires, upgrade it with apt, or
+  remove it if no other package needs it.
+- **Windows** Vim loads Python dynamically. Set [pythonthreedll] (and
+  [pythonthreehome] if needed) to the base interpreter of the
+  environment. That interpreter is the `home =` entry in
+  `.venv/pyvenv.cfg`.
+- **Neovim** runs Python in a separate host process, so the version does
+  not need to match. Add `pynvim` to the environment (`uv add pynvim`) and
+  point [g:python3_host_prog] at it, e.g.,
+  `let g:python3_host_prog = expand('~/.vim/.venv/bin/python')`.
+  `g:panvimwiki_python_path` is not needed.
+
+Check the installation from Vim:
+
+```vim
+:py3 import panvimwiki; print(panvimwiki.__file__)
 ```
 
 Install [Conquer of Completion (CoC)] to use [completion](#completion).
@@ -302,6 +383,20 @@ let g:panvimwiki_settings = {
       \ }
 ```
 
+##### g:panvimwiki_python_path
+
+A String or List of directories to add to Vim's Python `sys.path` with
+`site.addsitedir()`. Use it for a virtual environment's `site-packages`
+(see [Python Package for Vim](#python-package-for-vim)). Each entry is
+expanded with `glob()`, so `~` and wildcards work. Set it before
+panvimwiki loads, i.e., before `packadd! panvimwiki`.
+
+```vim
+let g:panvimwiki_python_path = [
+      \ '~/.vim/.venv/lib/python3.*/site-packages',
+      \ ]
+```
+
 ## Development and Testing
 
 Pandoc is required for testing; install it separately (see
@@ -335,12 +430,16 @@ vim -Nu tests/vim/vimrc -c 'Vader tests/vim/*.vader'
 [definition_lists]: https://pandoc.org/MANUAL.html#extension-definition_lists
 [delete_tag_lines]: #delete_tag_lines
 [delete_task_pending]: #delete_task_pending
+[g:panvimwiki_python_path]: #g-panvimwiki-python-path
 [g:panvimwiki_settings]: #g-panvimwiki-settings
+[g:python3_host_prog]: https://neovim.io/doc/user/provider/#g%3Apython3_host_prog
 [inline links]: https://pandoc.org/MANUAL.html#inline-links
 [pandoc]: https://pandoc.org/
 [pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [pixi]: https://pixi.prefix.dev/
 [pypandoc]: https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip
+[pythonthreedll]: https://vimhelp.org/options.txt.html#%27pythonthreedll%27
+[pythonthreehome]: https://vimhelp.org/options.txt.html#%27pythonthreehome%27
 [quoteplus]: https://neovim.io/doc/user/provider/#quoteplus
 [specify the bibliographic data]: https://pandoc.org/MANUAL.html#specifying-bibliographic-data
 [task_lists]: https://pandoc.org/MANUAL.html#extension-task_lists

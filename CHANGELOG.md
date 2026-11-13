@@ -13,9 +13,15 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
-<!-- ### Added -->
+### Added
 
-<!-- ### Changed -->
+- `g:panvimwiki_python_path` adds virtual environment `site-packages`
+  directories to Vim's Python `sys.path`.
+
+### Changed
+
+- README installation: install the filters with `uv tool install` and give
+  Vim its own environment that matches Vim's Python version.
 
 <!-- ### Deprecated -->
 

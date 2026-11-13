@@ -40,3 +40,33 @@ Execute (after/ftplugin/vimwiki.vim: appends to an existing b:undo_ftplugin):
   execute 'source ' .. g:panvimwiki_path .. '/after/ftplugin/vimwiki.vim'
   Assert b:undo_ftplugin ==# 'setlocal commentstring< | unlet b:did_ftplugin_panvimwiki',
         \ 'ERROR: b:undo_ftplugin: ' .. string(b:undo_ftplugin)
+
+Execute (plugin/panvimwiki.vim: g:panvimwiki_python_path extends sys.path):
+  " Create a fake site-packages with a module and a .pth file, then point
+  " g:panvimwiki_python_path at it with a wildcard and re-source the plugin.
+  let g:test_venv = tempname() .. '/venv'
+  let g:test_site = g:test_venv .. '/lib/python3.99/site-packages'
+  call mkdir(g:test_site .. '/extra', 'p')
+  call writefile(['VALUE = 42'], g:test_site .. '/panvimwiki_fake_mod.py')
+  call writefile(['extra'], g:test_site .. '/fake.pth')
+  let g:panvimwiki_python_path = g:test_venv .. '/lib/python3.*/site-packages'
+  unlet g:panvimwiki_loaded
+  execute 'source ' .. g:panvimwiki_path .. '/plugin/panvimwiki.vim'
+  unlet g:panvimwiki_python_path
+  Assert py3eval('__import__("panvimwiki_fake_mod").VALUE') == 42,
+        \ 'ERROR: module in g:panvimwiki_python_path not importable'
+  Assert index(py3eval('__import__("sys").path'), g:test_site .. '/extra') >= 0,
+        \ 'ERROR: .pth file in g:panvimwiki_python_path not processed'
+  unlet g:test_venv g:test_site
+
+Execute (plugin/panvimwiki.vim: g:panvimwiki_python_path accepts a List):
+  let g:test_list_dir = tempname()
+  call mkdir(g:test_list_dir, 'p')
+  call writefile(['VALUE = 7'], g:test_list_dir .. '/panvimwiki_fake_list.py')
+  let g:panvimwiki_python_path = [g:test_list_dir, g:test_list_dir .. '/does-not-exist']
+  unlet g:panvimwiki_loaded
+  execute 'source ' .. g:panvimwiki_path .. '/plugin/panvimwiki.vim'
+  unlet g:panvimwiki_python_path
+  Assert py3eval('__import__("panvimwiki_fake_list").VALUE') == 7,
+        \ 'ERROR: List entry in g:panvimwiki_python_path not importable'
+  unlet g:test_list_dir

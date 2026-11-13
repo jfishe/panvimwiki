@@ -1,11 +1,15 @@
 *panvimwiki.txt*                Filter and convert Vimwiki notes using pandoc.
-                          For Vim 9.1    Last change: Sun Oct 18 13:18:21 2026
+                          For Vim 9.1    Last change: Fri Nov 13 13:11:37 2026
 
 ==============================================================================
 Table of Contents                               *panvimwiki-table-of-contents*
 
 1. Introduction                                      |panvimwiki-introduction|
 2. Installation                                      |panvimwiki-installation|
+  - Pandoc                                                 |panvimwiki-pandoc|
+  - Command Line Filters                     |panvimwiki-command-line-filters|
+  - Vim Plugin                                         |panvimwiki-vim-plugin|
+  - Python Package for Vim                 |panvimwiki-python-package-for-vim|
 3. Usage                                                    |panvimwiki-usage|
   - Completion                                         |panvimwiki-completion|
   - Command Line Shell                         |panvimwiki-command-line-shell|
@@ -33,29 +37,45 @@ convert any Vimwiki note.
 ==============================================================================
 2. Installation                                      *panvimwiki-installation*
 
+Panvimwiki has three parts, and each one is installed separately:
+
+1. Pandoc <https://pandoc.org/>.
+2. The command line filters. They must be on `PATH`, because the Vim
+commands also run them.
+3. The Vim plugin, plus the panvimwiki Python package where Vim’s
+|:python3| can import it.
+
+
+PANDOC                                                     *panvimwiki-pandoc*
+
 Panvimwiki requires Pandoc <https://pandoc.org/>. Installation with pixi
 <https://pixi.prefix.dev/> is recommended because the system version, e.g.,
 with Ubuntu, may be too old. Or download from the website. Pypandoc
 <https://github.com/JessicaTegner/pypandoc?tab=readme-ov-file#installing-via-pip>
 supports binary installation of pandoc.
 
-Using the Vim 8 native packages, panvimwiki should install in
-`pack/*/opt/panvimwiki` because it depends on |:python3| and requires
-installation of the python package panvimwiki.
 
-From a bash shell, enter the following:
+COMMAND LINE FILTERS                         *panvimwiki-command-line-filters*
+
+Install the filters as an isolated tool with uv
+<https://github.com/astral-sh/uv> (or `pipx`):
+
+>bash
+    uv tool install panvimwiki
+    uv tool update-shell # Add ~/.local/bin to PATH, if needed.
+    which delete_bullet_star # Windows: where delete_bullet_star
+<
+
+
+VIM PLUGIN                                             *panvimwiki-vim-plugin*
+
+Using the Vim 8 native packages, panvimwiki should install in
+`pack/*/opt/panvimwiki` because it depends on |:python3|.
 
 >bash
     # Adjust dest to suit, e.g., $HOME/vimfiles/pack/vimwiki/opt/panvimwiki
     dest="$HOME/.vim/pack/vimwiki/opt/panvimwiki"
-
     git clone https://github.com/jfishe/panvimwiki.git "$dest"
-
-    # Activate the python environment used by Vim.
-    # Then install panvimwiki in that python environment.
-    python -m pip install "$dest"
-    # Or to install from pypi:
-    python -m pip install panvimwiki
 <
 
 Panvimwiki requires Vim compiled with Python 3, so add the following to |vimrc|
@@ -66,6 +86,75 @@ install panvimwiki in `pack/*/start/panvimwiki`.
     if has('python3')
       packadd! panvimwiki
     endif
+<
+
+
+PYTHON PACKAGE FOR VIM                     *panvimwiki-python-package-for-vim*
+
+The commands run `:python3 import panvimwiki` inside Vim, so the package must
+be installed for **Vim’s** Python, which may differ from the Python on
+`PATH`. First, ask Vim which Python it uses:
+
+>vim
+    :py3 import sys; print(sys.version)
+    :echo has('python3_dynamic')
+<
+
+Then create a virtual environment with the same Python minor version
+(panvimwiki requires Python 3.10 or later). For example, with a uv
+<https://github.com/astral-sh/uv> project next to your vimrc:
+
+>bash
+    cd ~/.vim # Windows: ~/vimfiles
+    uv init --bare
+    uv python pin 3.13 # Use the version Vim reported.
+    # Linux system Vim only (see Platform notes); --clear replaces any .venv.
+    uv venv --system-site-packages --python-preference=system --clear
+    uv add panvimwiki
+<
+
+Tell panvimwiki where the environment’s `site-packages` is with
+g:panvimwiki_python_path, before `packadd! panvimwiki`:
+
+>vim
+    " Linux and macOS:
+    let g:panvimwiki_python_path = '~/.vim/.venv/lib/python3.*/site-packages'
+    " Windows:
+    let g:panvimwiki_python_path = '~/vimfiles/.venv/Lib/site-packages'
+<
+
+Prefer this to setting `$PYTHONPATH`. Child processes inherit `$PYTHONPATH`, so
+it also changes the Python used by the filters and by pandoc.
+
+Platform notes:
+
+- **Linux system Vim** is linked to the distribution’s Python, and other
+    Vim plugins may rely on packages installed with apt (or another system
+    package manager). Build the environment on that same interpreter with
+    `--python-preference=system`, so uv does not substitute its own Python
+    build. Use `--system-site-packages` so the apt packages stay visible
+    instead of being replaced by different copies. To keep later
+    `uv sync` runs on the system interpreter, also add
+    `python-preference = "system"` under `[tool.uv]` in `pyproject.toml`.
+    g:panvimwiki_python_path adds the environment after the system
+    directories, so when apt also provides one of panvimwiki’s
+    dependencies (e.g., `python3-dateutil`), Vim imports the apt copy. If
+    that copy is older than panvimwiki requires, upgrade it with apt, or
+    remove it if no other package needs it.
+- **Windows** Vim loads Python dynamically. Set pythonthreedll <https://vimhelp.org/options.txt.html#%27pythonthreedll%27> (and
+    pythonthreehome <https://vimhelp.org/options.txt.html#%27pythonthreehome%27> if needed) to the base interpreter of the
+    environment. That interpreter is the `home =` entry in
+    `.venv/pyvenv.cfg`.
+- **Neovim** runs Python in a separate host process, so the version does
+    not need to match. Add `pynvim` to the environment (`uv add pynvim`) and
+    point |g:python3_host_prog| at it, e.g.,
+    `let g:python3_host_prog = expand('~/.vim/.venv/bin/python')`.
+    `g:panvimwiki_python_path` is not needed.
+
+Check the installation from Vim:
+
+>vim
+    :py3 import panvimwiki; print(panvimwiki.__file__)
 <
 
 Install Conquer of Completion (CoC) <https://github.com/neoclide/coc.nvim> to
@@ -144,10 +233,9 @@ delete_bullet_star                             *panvimwiki-delete_bullet_star*
 
 Remove unordered lists which use the star (asterisk) bullet marker.
 
-The pre-filter does not remove task list items (see
-|panvimwiki-delete_task_pending|). The pre-filter also deletes the wrapped
-lines and nested items of a deleted bullet, i.e., the following lines indented
-more than the bullet, up to a blank line.
+The pre-filter does not remove task list items (see delete_task_pending). The
+pre-filter also deletes the wrapped lines and nested items of a deleted bullet,
+i.e., the following lines indented more than the bullet, up to a blank line.
 
 >bash
     echo '- Bulleted list item 1 should appear' \
@@ -189,7 +277,7 @@ Delete lines which only contain Vimwiki tags, e.g., ':tag1:tag2:'
 delete_empty_heading                         *panvimwiki-delete_empty_heading*
 
 Remove headings that do not have any children or paragraphs. Remove tag lines
-first, |panvimwiki-delete_tag_lines| or the heading is not considered empty.
+first, delete_tag_lines or the heading is not considered empty.
 
 
 delete_taskwiki_heading                   *panvimwiki-delete_taskwiki_heading*
@@ -253,7 +341,7 @@ VimwikiConvert[!]                                  *panvimwiki-VimwikiConvert*
 Convert the current Vimwiki buffer. With !, open with default viewer.
 
 Convert the current Vimwiki |:buffer| to the selected output format (default:
-docx) specified in |panvimwiki-g:panvimwiki_settings|.
+docx) specified in g:panvimwiki_settings.
 
 Copy the path to the Word file to the clipboard register “+ |quoteplus|. On
 Windows Subsystem for Linux (WSL), convert the path from POSIX to Windows
@@ -275,8 +363,7 @@ VimwikiConvertWeek[!]                          *panvimwiki-VimwikiConvertWeek*
 Concatenate DiaryNotes for Monday through current buffer and convert. With !,
 open in default viewer.
 
-After concatenating DiaryNotes for the week, behave as
-|panvimwiki-vimwikiconvert|.
+After concatenating DiaryNotes for the week, behave as VimwikiConvert.
 
 
 VimwikiReference                                 *panvimwiki-VimwikiReference*
@@ -339,6 +426,21 @@ Panvimwiki defaults to docx format, without extra_args.
           \ ],
           \ 'format': 'docx'
           \ }
+<
+
+
+g:panvimwiki_python_path                 *panvimwiki-g:panvimwiki_python_path*
+
+A String or List of directories to add to Vim’s Python `sys.path` with
+`site.addsitedir()`. Use it for a virtual environment’s `site-packages` (see
+|panvimwiki-python-package-for-vim|). Each entry is expanded with `glob()`, so
+`~` and wildcards work. Set it before panvimwiki loads, i.e., before `packadd!
+panvimwiki`.
+
+>vim
+    let g:panvimwiki_python_path = [
+          \ '~/.vim/.venv/lib/python3.*/site-packages',
+          \ ]
 <
 
 
