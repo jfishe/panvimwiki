@@ -13,6 +13,20 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+<!-- ### Added -->
+
+<!-- ### Changed -->
+
+<!-- ### Deprecated -->
+
+<!-- ### Removed -->
+
+<!-- ### Fixed -->
+
+<!-- ### Security -->
+
+## [1.1.0] - 2026-11-13
+
 ### Added
 
 - `:VimwikiMarkdownFormat`, `:VimwikiReference` and `:VimwikiConvert` process
@@ -23,14 +37,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ### Changed
 
-- Expected test results per [pandoc v3.12].
+- Expected test results per [pandoc v3.14].
 - Type check with [pyrefly] (`uv run pyrefly check`, prek hook with the
   `testing` dependency group).
 - uv resolves only packages published at least 7 days ago
   (`exclude-newer = "7 days"`).
 - CONTRIBUTING: `prek autoupdate --cooldown-days=7`.
-
-<!-- ### Deprecated -->
 
 ### Removed
 
@@ -44,8 +56,6 @@ The format is based on [Keep a Changelog], and this project adheres to
   `- [X]`, from [pandoc v3.12] `- [x]`.
 - Prefilters `delete_bullet_star` and `delete_task_pending` delete wrapped
   lines and nested items of deleted list items ([#1]).
-
-<!-- ### Security -->
 
 ## [1.0.0] - 2026-09-05
 
@@ -326,6 +336,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [0.8.0]: https://github.com/jfishe/panvimwiki/compare/0.7.1...0.8.0
 [0.9.0]: https://github.com/jfishe/panvimwiki/compare/0.8.0...0.9.0
 [1.0.0]: https://github.com/jfishe/panvimwiki/compare/0.12.0...1.0.0
+[1.1.0]: https://github.com/jfishe/panvimwiki/compare/1.0.0...1.1.0
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [definition_lists]: https://pandoc.org/MANUAL.html#extension-definition_lists
 [kdheepak/panvimdoc v4.0.1]: https://github.com/kdheepak/panvimdoc
@@ -339,6 +350,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [pandoc citations]: https://pandoc.org/MANUAL.html#citation-syntax
 [pandoc v3.10]: https://pandoc.org/releases.html#pandoc-3.10-2026-06-03
 [pandoc v3.12]: https://pandoc.org/releases.html#pandoc-3.12
+[pandoc v3.14]: https://pandoc.org/releases.html#pandoc-3.14
 [pinact]: https://github.com/suzuki-shunsuke/pinact
 [pyrefly]: https://pyrefly.org/
 [pysec-2026-2132]: https://access.redhat.com/errata/RHSA-2026:24761
@@ -346,7 +358,7 @@ so switch to built-in `dist#vim9#Open()` for `VimwikiConvert!`.
 [reference links]: https://pandoc.org/MANUAL.html#reference-links
 [semantic line breaks]: https://sembr.org/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/jfishe/panvimwiki/compare/1.0.0...HEAD
+[unreleased]: https://github.com/jfishe/panvimwiki/compare/1.1.0...HEAD
 [vim-zettel]: https://github.com/michal-h21/vim-zettel
 [vimjas/vint]: https://github.com/vimjas/vint
 [zizmor]: https://docs.zizmor.sh/
