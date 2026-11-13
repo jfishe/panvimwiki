@@ -41,7 +41,7 @@ jobs:
       - name: Install uv (pinned)
         uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
-          python-version: "3.12"
+          python-version: "3.14"
           enable-cache: false
       - name: Run static analysis and format checkers
         run: uv tool run prek run --all-files --show-diff-on-failure
@@ -66,7 +66,7 @@ jobs:
     strategy:
       matrix:
         python:
-          - "3.12" # Required by rhysd/action-setup-vim on ubuntu-latest
+          - "3.14" # Required by rhysd/action-setup-vim on ubuntu-latest
         platform:
           - ubuntu-latest
         # - macos-latest
