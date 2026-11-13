@@ -9,7 +9,7 @@
     1.  []{.done1}OrderedList a) done1 should appear
 3.  []{.done2}OrderedList done2 should appear
 4.  []{.done3}OrderedList done3 should appear
-5.  \[-\] OrderedList doneX should appear
+5.  []{.rejected}OrderedList doneX should appear
 6.  OrderedList should appear
     1.  OrderedList a) should appear
 

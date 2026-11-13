@@ -14,10 +14,10 @@ cat tests/unit/prefilter/delete_task_pending.wiki | delete_task_pending |
     2.  []{.done2}Numbered list done2 item 2 should appear
     3.  []{.done3}Numbered list done3 item 3 should appear
     4.  []{.done4}Numbered list done4 item 4 should appear
-    5.  \[-\] Numbered list doneX item 5 should appear
+    5.  []{.rejected}Numbered list doneX item 5 should appear
 3.  []{.done3}Numbered list done3 item 3 should appear
 4.  []{.done4}Numbered list done4 item 4 should appear
-5.  \[-\] Numbered list doneX item 5 should appear
+5.  []{.rejected}Numbered list doneX item 5 should appear
 
 ## Vimwiki Tasks Unordered List {#Vimwiki Tasks Unordered List}
 
@@ -27,10 +27,10 @@ cat tests/unit/prefilter/delete_task_pending.wiki | delete_task_pending |
   - []{.done2}Bulleted list done2 item 2 should appear
   - []{.done3}Bulleted list done3 item 3 should appear
   - []{.done4}Bulleted list done4 item 4 should appear
-  - \[-\] Bulleted list doneX item 5 should appear
+  - []{.rejected}Bulleted list doneX item 5 should appear
 - []{.done3}Bulleted list done3 item 3 should appear
 - []{.done4}Bulleted list done4 item 4 should appear
-- \[-\] Bulleted list doneX item 5 should appear
+- []{.rejected}Bulleted list doneX item 5 should appear
 
 ## Taskwiki Unordered List {#Taskwiki Unordered List}
 
